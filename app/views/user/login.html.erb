@@ -1,0 +1,15 @@
+<h1>Please Log In</h1>
+
+<%= form_tag(:action => "login") do %>
+<h3>Login</h3>  
+
+<label for="name">Login:</label><br/>
+<%= text_field("user", "name", :size => 20 )%><br/>
+
+<label for="student_id">Student ID:</label><br/>
+<%= password_field("user", "student_id", :size => 20)%><br/>
+
+<%= submit_tag("Submit")%>
+
+<% end %>
+
