@@ -15,7 +15,6 @@ ActiveRecord::Schema.define(:version => 20120921223829) do
 
   create_table "users", :force => true do |t|
     t.string  "name"
-    t.decimal "student_id"
     t.decimal "session1"
     t.decimal "session2"
   end
