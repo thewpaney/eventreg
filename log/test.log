@@ -1,0 +1,91 @@
+Connecting to database specified by database.yml
+
+
+Started GET "/" for 127.0.0.1 at 2012-09-22 10:36:32 -0600
+Processing by UserController#login as HTML
+  Rendered user/login.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 15ms (Views: 15.0ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2012-09-22 10:36:32 -0600
+Compiled jquery.js  (5ms)  (pid 1068)
+Compiled jquery_ujs.js  (0ms)  (pid 1068)
+Compiled user.js  (217ms)  (pid 1068)
+Compiled application.js  (332ms)  (pid 1068)
+Served asset /application.js - 200 OK (357ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2012-09-22 10:36:32 -0600
+Compiled user.css  (58ms)  (pid 1068)
+Compiled application.css  (63ms)  (pid 1068)
+Served asset /application.css - 200 OK (93ms)
+
+
+Started POST "/" for 127.0.0.1 at 2012-09-22 10:36:42 -0600
+Processing by UserController#login as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"name"=>"dlazerri13", "student_id"=>"28416"}, "commit"=>"Submit"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE (name='dlazerri13' AND id='28416') LIMIT 1[0m
+SQLite3::SQLException: no such column: name: SELECT  "users".* FROM "users"  WHERE (name='dlazerri13' AND id='28416') LIMIT 1
+Completed 500 Internal Server Error in 4ms
+
+
+Started POST "/" for 127.0.0.1 at 2012-09-22 10:36:58 -0600
+Processing by UserController#login as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"name"=>"dlazerri13'", "student_id"=>""}, "commit"=>"Submit"}
+  [1m[35mUser Load (0.3ms)[0m  SELECT "users".* FROM "users" WHERE (name='dlazerri13''' AND id='') LIMIT 1
+SQLite3::SQLException: no such column: name: SELECT  "users".* FROM "users"  WHERE (name='dlazerri13''' AND id='') LIMIT 1
+Completed 500 Internal Server Error in 1ms
+
+
+Started POST "/" for 127.0.0.1 at 2012-09-22 10:37:03 -0600
+Processing by UserController#login as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"name"=>"dlazerri13'", "student_id"=>"adf"}, "commit"=>"Submit"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users" WHERE (name='dlazerri13''' AND id='adf') LIMIT 1[0m
+SQLite3::SQLException: no such column: name: SELECT  "users".* FROM "users"  WHERE (name='dlazerri13''' AND id='adf') LIMIT 1
+Completed 500 Internal Server Error in 1ms
+Connecting to database specified by database.yml
+
+
+Started GET "/" for 127.0.0.1 at 2012-09-22 10:37:27 -0600
+Processing by UserController#login as HTML
+  Rendered user/login.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 16ms (Views: 15.1ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2012-09-22 10:37:27 -0600
+Served asset /application.js - 304 Not Modified (39ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2012-09-22 10:37:27 -0600
+Served asset /application.css - 304 Not Modified (3ms)
+
+
+Started POST "/" for 127.0.0.1 at 2012-09-22 10:37:33 -0600
+Processing by UserController#login as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"name"=>"mhaney13", "student_id"=>"28477"}, "commit"=>"Submit"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE (name='mhaney13' AND id='28477') LIMIT 1[0m
+SQLite3::SQLException: no such column: name: SELECT  "users".* FROM "users"  WHERE (name='mhaney13' AND id='28477') LIMIT 1
+Completed 500 Internal Server Error in 3ms
+Connecting to database specified by database.yml
+
+
+Started GET "/" for 127.0.0.1 at 2012-09-22 10:39:44 -0600
+Processing by UserController#login as HTML
+  Rendered user/login.html.erb within layouts/application (3.7ms)
+Completed 200 OK in 16ms (Views: 15.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/application.js" for 127.0.0.1 at 2012-09-22 10:39:44 -0600
+Served asset /application.js - 304 Not Modified (45ms)
+
+
+Started GET "/assets/application.css" for 127.0.0.1 at 2012-09-22 10:39:44 -0600
+Served asset /application.css - 304 Not Modified (3ms)
+
+
+Started POST "/" for 127.0.0.1 at 2012-09-22 10:39:48 -0600
+Processing by UserController#login as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"name"=>"mhaney13", "student_id"=>"28477"}, "commit"=>"Submit"}
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users" WHERE (name='mhaney13' AND id='28477') LIMIT 1[0m
+SQLite3::SQLException: no such column: name: SELECT  "users".* FROM "users"  WHERE (name='mhaney13' AND id='28477') LIMIT 1
+Completed 500 Internal Server Error in 4ms

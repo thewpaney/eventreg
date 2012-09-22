@@ -2,17 +2,17 @@
 
 <p style="width: 500px;"></p>
 
-<%= form_tag(:controller => "event", :action => "register") do %>
+<%= form_tag(:controller => "user", :action => "register_event") do %>
 <h3>Modify Registration</h3>
 
 <% unless session[:user][:event].nil? %>
-<p>Currently registered for event: <%= session[:user][:event][:name] %></p>
+<p>Currently registered for event: <%= session[:user][:event].name %></p>
 <% else %>
 <p>Not currently registered for an event.</p>
 <% end %>
 <label for="sessionid">Event:</label><br/>
 
-<%= select("event", "sessionid", Event.all.collect {|e| [ e.name, e.id ] }, { :include_blank => true }) %>
+<%= select("event", "sessionid", ["--Unregister--"].concat(Event.all.collect {|e| [ "#{e.name} - #{e.currentcapacity}/#{e.maxcapacity}", e.id ] }), { :include_blank => true }) %>
 
 
 <br/>

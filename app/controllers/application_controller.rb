@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   
   def login_required
-    if session[:user]
+    unless session[:user].nil?
       return true
     end
     flash[:error]='You must log in to continue.'
