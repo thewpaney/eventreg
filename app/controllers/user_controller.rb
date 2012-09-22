@@ -41,36 +41,6 @@ before_filter :login_required, :only=>['welcome', 'edit_sessions', 'hidden']
     
   end
 
-  # def register_event
-  #   if request.post?
-  #     if params[:event][:sessionid] == ""
-  #       unless session[:user][:event].nil?
-  #         Event.unregister_event(session[:user][:event].id)
-  #         flash[:message] = "You have cancelled your registration for #{session[:user][:event].name}."
-          
-  #         session[:user][:event] = nil
-  #       else
-  #         flash[:error] = "You are not currently registered for an event."
-  #       end
-  #       redirect_to :controller => "user", :action => "edit_sessions"
-  #     elsif Event.is_available?(params[:event][:sessionid])
-  #       unless session[:user][:event].nil?
-  #         ActiveRecord::Base.connection.execute("UPDATE Users SET sessionid=0 WHERE id=#{session[:user][:student_id]}")
-  #         flash[:error] = "Successfully cancelled registration for #{session[:user][:event].name}."
-  #       end
-  #       Event.register_event(params[:event][:sessionid])
-  #       session[:user][:event] = Event.find(:first, :conditions=>["id=?", params[:event][:sessionid]])
-        
-  #       ActiveRecord::Base.connection.execute("UPDATE Users SET sessionid=(#{params[:event][:sessionid]}) WHERE id=#{session[:user][:student_id]}")
-  #       flash[:message] = "Successfully saved registration for #{Event.find(:first, :conditions=>["id=?", params[:event][:sessionid]]).name}."
-  #       redirect_to :action => "edit_sessions"
-  #     else
-  #       flash[:error] = "There are no spots available for session: #{Event.find(:first, :conditions=>["id=?", params[:event][:sessionid]]).name}."
-  #       redirect_to :controller => "user", :action => "edit_sessions".
-  #     end
-  #   end
-  # end
-
   def register_event
     if request.post?
       if params[:event][:sessionid] == "--Unregister--" # They clicked "--Unregister--" -- unregister if they're registered, do nothing otherwise.
@@ -83,6 +53,9 @@ before_filter :login_required, :only=>['welcome', 'edit_sessions', 'hidden']
         else
           flash[:error] = "You are not currently registered for an event."
         end
+        redirect_to :controller => "user", :action => "edit_sessions"
+        return
+      elsif params[:event][:sessionid] == ""
         redirect_to :controller => "user", :action => "edit_sessions"
         return
       end # params empty SID check
