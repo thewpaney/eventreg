@@ -6,6 +6,7 @@ before_filter :login_required, :only=>['welcome', 'edit_sessions', 'hidden']
     if request.post?
       if session[:user] = User.authenticate(params[:user][:name], params[:user][:student_id])
         flash[:message]  = "You have successfully logged in as #{params[:user][:name]}."
+        session[:user] = params[:user]
         redirect_to "/user/edit_sessions"
       else
         flash[:error] = "Login unsuccessful."

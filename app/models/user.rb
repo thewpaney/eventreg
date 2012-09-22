@@ -16,4 +16,13 @@ class User < ActiveRecord::Base
     nil
   end  
   
+  def self.store(session1, session2)
+    u = find(:first, :conditions=>["name=? AND id=?", name, pass])
+    unless u.nil?
+      u.update_attributes
+    else
+      flash[:error] = "That operation requires you to be logged in."
+    end
+  end
+  
 end
