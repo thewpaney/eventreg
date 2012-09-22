@@ -10,13 +10,13 @@
 #two: {}
 #  column: value
 
+dlazerri13:
+  id: 1000002
+  student_id: 28416
+  login: dlazerri13
 
 mhaney13:
   id: 1000001
   name: mhaney13
   student_id: 28477
 
-dlazerri13:
-  id: 1000002
-  student_id: 28416
-  login: dlazerri13

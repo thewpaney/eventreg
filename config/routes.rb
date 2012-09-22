@@ -1,6 +1,9 @@
 Spr::Application.routes.draw do
 
+  get "event/register"
+  post "event/register"
   get "user/edit_sessions"
+  post "user/edit_sessions"
   root :to => "user#login"
   get "user/login"
   post "user/login"

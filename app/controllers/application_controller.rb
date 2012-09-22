@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
     if session[:user]
       return true
     end
-    flash[:warning]='You must log in to continue.'
+    flash[:error]='You must log in to continue.'
     redirect_to :controller => "user", :action => "login"
     return false 
   end

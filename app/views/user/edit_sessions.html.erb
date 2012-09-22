@@ -1,5 +1,23 @@
-<h1>View and Edit Available Sessions</h1>
+<h1>Edit Currently Registered Event</h1>
+
+<p style="width: 500px;"></p>
+
+<%= form_tag(:controller => "event", :action => "register") do %>
+<h3>Modify Registration</h3>
+
+<% unless session[:user][:event].nil? %>
+<p>Currently registered for event: <%= session[:user][:event][:name] %></p>
+<% else %>
+<p>Not currently registered for an event.</p>
+<% end %>
+<label for="sessionid">Event:</label><br/>
+
+<%= select("event", "sessionid", Event.all.collect {|e| [ e.name, e.id ] }, { :include_blank => true }) %>
 
 
+<br/>
 
-<p>Find me in app/views/user/edit_sessions.html.erb</p>
+<%= submit_tag("Submit")%>
+
+<% end %>
+
