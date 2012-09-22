@@ -13,7 +13,6 @@ class User < ActiveRecord::Base
 
   def self.authenticate(name, pass)
     u = find(:first, :conditions=>["name=? AND id=?", name, pass])
-    puts u.inspect
     return u unless u.nil?
     nil
   end  
@@ -25,6 +24,11 @@ class User < ActiveRecord::Base
     else
       flash[:error] = "That operation requires you to be logged in."
     end
+  end
+
+  def self.eventid(name, pass)
+    u = find(:first, :conditions=>["name=? AND id=?", name, pass])
+    return u.sessionid
   end
   
 end
