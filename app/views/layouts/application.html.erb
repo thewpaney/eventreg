@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>RJHS Service Project Registration</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  
+  <% if flash[:message] %>
+  <p class="message" style="color: green;"><%= flash[:message] %></p>
+  <% end %>
+  <% if flash[:warning] %>
+  <p class="warning" style="color: yellow;"><%= flash[:warning] %></p>
+  <% end %>
+  <% if flash[:notice] %>
+  <p class="notice"><%= flash[:notice] %></p>
+  <% end %>
+  <% if flash[:error] %>
+  <p class="error" style="color: red;"><%= flash[:error] %></p>
+  <% end %>
+
+  <%= yield %>
+
+  <%= link_to "Logout", "user/logout" %> <%= link_to "Login", "user/login" %>
+  
+</body>
+</html>
