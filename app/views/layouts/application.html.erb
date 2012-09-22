@@ -7,6 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+  <% if session[:user] %>
+  <p class="info">Logged in as <%= session[:user][:name] %>.</p>
+  <% else %>
+  <p class="info">Not logged in.</p>
+  <% end %>
   
   <% if flash[:message] %>
   <p class="message" style="color: green;"><%= flash[:message] %></p>
