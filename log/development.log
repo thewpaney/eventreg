@@ -28731,3 +28731,348 @@ Served asset /user.js - 304 Not Modified (0ms)
 
 Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-09-22 14:33:53 -0600
 Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started POST "/user/register_event" for 127.0.0.1 at 2012-09-22 14:35:05 -0600
+Processing by UserController#register_event as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"67Om56k/r3YcF+BLJHXXrjdndvlNotTDySu4UKgAAGU=", "event"=>{"sessionid"=>""}, "commit"=>"Submit"}
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT "events".* FROM "events" WHERE (id='') LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "events".* FROM "events" WHERE (id='') LIMIT 1
+Completed 500 Internal Server Error in 1ms
+
+NoMethodError (undefined method `name' for nil:NilClass):
+  app/controllers/user_controller.rb:108:in `register_event'
+
+
+  Rendered /Users/matthewhaney/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_trace.erb (1.5ms)
+  Rendered /Users/matthewhaney/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/_request_and_response.erb (1.1ms)
+  Rendered /Users/matthewhaney/.rvm/gems/ruby-1.9.2-p290/gems/actionpack-3.2.8/lib/action_dispatch/middleware/templates/rescues/diagnostics.erb within rescues/layout (10.6ms)
+
+
+Started GET "/user/edit_sessions" for 127.0.0.1 at 2012-09-22 14:35:35 -0600
+Processing by UserController#edit_sessions as HTML
+  [1m[36mEvent Load (0.1ms)[0m  [1mSELECT "events".* FROM "events" [0m
+  Rendered user/edit_sessions.html.erb within layouts/application (52.9ms)
+Completed 200 OK in 60ms (Views: 59.0ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/event.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:35 -0600
+Served asset /event.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:35 -0600
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:35 -0600
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-09-22 14:35:35 -0600
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:35 -0600
+Served asset /user.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user.css?body=1" for 127.0.0.1 at 2012-09-22 14:35:35 -0600
+Served asset /user.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/event.css?body=1" for 127.0.0.1 at 2012-09-22 14:35:35 -0600
+Served asset /event.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:35 -0600
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started POST "/user/register_event" for 127.0.0.1 at 2012-09-22 14:35:36 -0600
+Processing by UserController#register_event as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"67Om56k/r3YcF+BLJHXXrjdndvlNotTDySu4UKgAAGU=", "event"=>{"sessionid"=>""}, "commit"=>"Submit"}
+Redirected to http://localhost:3000/user/edit_sessions
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/user/edit_sessions" for 127.0.0.1 at 2012-09-22 14:35:36 -0600
+Processing by UserController#edit_sessions as HTML
+  [1m[35mEvent Load (0.2ms)[0m  SELECT "events".* FROM "events" 
+  Rendered user/edit_sessions.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 8ms (Views: 7.2ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-09-22 14:35:36 -0600
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user.css?body=1" for 127.0.0.1 at 2012-09-22 14:35:36 -0600
+Served asset /user.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/event.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:36 -0600
+Served asset /event.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:36 -0600
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:36 -0600
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:36 -0600
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/event.css?body=1" for 127.0.0.1 at 2012-09-22 14:35:36 -0600
+Served asset /event.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:36 -0600
+Served asset /user.js - 304 Not Modified (0ms)
+
+
+Started POST "/user/register_event" for 127.0.0.1 at 2012-09-22 14:35:37 -0600
+Processing by UserController#register_event as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"67Om56k/r3YcF+BLJHXXrjdndvlNotTDySu4UKgAAGU=", "event"=>{"sessionid"=>""}, "commit"=>"Submit"}
+Redirected to http://localhost:3000/user/edit_sessions
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/user/edit_sessions" for 127.0.0.1 at 2012-09-22 14:35:37 -0600
+Processing by UserController#edit_sessions as HTML
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT "events".* FROM "events" [0m
+  Rendered user/edit_sessions.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 7ms (Views: 6.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/user.css?body=1" for 127.0.0.1 at 2012-09-22 14:35:37 -0600
+Served asset /user.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:37 -0600
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/event.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:37 -0600
+Served asset /event.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:37 -0600
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/event.css?body=1" for 127.0.0.1 at 2012-09-22 14:35:37 -0600
+Served asset /event.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:37 -0600
+Served asset /user.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-09-22 14:35:37 -0600
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:37 -0600
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started POST "/user/register_event" for 127.0.0.1 at 2012-09-22 14:35:39 -0600
+Processing by UserController#register_event as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"67Om56k/r3YcF+BLJHXXrjdndvlNotTDySu4UKgAAGU=", "event"=>{"sessionid"=>"1"}, "commit"=>"Submit"}
+  [1m[35mEvent Load (0.2ms)[0m  SELECT "events".* FROM "events" WHERE (id='1') LIMIT 1
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT "events".* FROM "events" WHERE (id='1') LIMIT 1[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "events".* FROM "events" WHERE (id='1') LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  UPDATE "events" SET "currentcapacity" = 1.0 WHERE "events"."id" = 1
+  [1m[36m (2.6ms)[0m  [1mcommit transaction[0m
+  [1m[35mEvent Load (0.2ms)[0m  SELECT "events".* FROM "events" WHERE (id='1') LIMIT 1
+  [1m[36m (1.8ms)[0m  [1mUPDATE Users SET sessionid=(1) WHERE id=28477[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT "events".* FROM "events" WHERE (id='1') LIMIT 1
+Redirected to http://localhost:3000/user/edit_sessions
+Completed 302 Found in 12ms (ActiveRecord: 5.2ms)
+
+
+Started GET "/user/edit_sessions" for 127.0.0.1 at 2012-09-22 14:35:39 -0600
+Processing by UserController#edit_sessions as HTML
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT "events".* FROM "events" [0m
+  Rendered user/edit_sessions.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 7ms (Views: 7.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:39 -0600
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:39 -0600
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user.css?body=1" for 127.0.0.1 at 2012-09-22 14:35:39 -0600
+Served asset /user.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/event.css?body=1" for 127.0.0.1 at 2012-09-22 14:35:39 -0600
+Served asset /event.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/event.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:39 -0600
+Served asset /event.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-09-22 14:35:39 -0600
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:39 -0600
+Served asset /user.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:39 -0600
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started POST "/user/register_event" for 127.0.0.1 at 2012-09-22 14:35:40 -0600
+Processing by UserController#register_event as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"67Om56k/r3YcF+BLJHXXrjdndvlNotTDySu4UKgAAGU=", "event"=>{"sessionid"=>""}, "commit"=>"Submit"}
+Redirected to http://localhost:3000/user/edit_sessions
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/user/edit_sessions" for 127.0.0.1 at 2012-09-22 14:35:40 -0600
+Processing by UserController#edit_sessions as HTML
+  [1m[35mEvent Load (0.2ms)[0m  SELECT "events".* FROM "events" 
+  Rendered user/edit_sessions.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 7ms (Views: 6.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:40 -0600
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/event.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:40 -0600
+Served asset /event.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:40 -0600
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-09-22 14:35:40 -0600
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:40 -0600
+Served asset /user.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/event.css?body=1" for 127.0.0.1 at 2012-09-22 14:35:40 -0600
+Served asset /event.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user.css?body=1" for 127.0.0.1 at 2012-09-22 14:35:40 -0600
+Served asset /user.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:40 -0600
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started POST "/user/register_event" for 127.0.0.1 at 2012-09-22 14:35:41 -0600
+Processing by UserController#register_event as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"67Om56k/r3YcF+BLJHXXrjdndvlNotTDySu4UKgAAGU=", "event"=>{"sessionid"=>""}, "commit"=>"Submit"}
+Redirected to http://localhost:3000/user/edit_sessions
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/user/edit_sessions" for 127.0.0.1 at 2012-09-22 14:35:41 -0600
+Processing by UserController#edit_sessions as HTML
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT "events".* FROM "events" [0m
+  Rendered user/edit_sessions.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 7ms (Views: 6.7ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-09-22 14:35:41 -0600
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:41 -0600
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user.css?body=1" for 127.0.0.1 at 2012-09-22 14:35:41 -0600
+Served asset /user.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:41 -0600
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/event.css?body=1" for 127.0.0.1 at 2012-09-22 14:35:41 -0600
+Served asset /event.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:41 -0600
+Served asset /user.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/event.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:41 -0600
+Served asset /event.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:41 -0600
+Served asset /application.js - 304 Not Modified (0ms)
+
+
+Started POST "/user/register_event" for 127.0.0.1 at 2012-09-22 14:35:43 -0600
+Processing by UserController#register_event as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"67Om56k/r3YcF+BLJHXXrjdndvlNotTDySu4UKgAAGU=", "event"=>{"sessionid"=>"--Unregister--"}, "commit"=>"Submit"}
+  [1m[35mEvent Load (0.2ms)[0m  SELECT "events".* FROM "events" WHERE (id=1) LIMIT 1
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.3ms)[0m  UPDATE "events" SET "currentcapacity" = 0.0 WHERE "events"."id" = 1
+  [1m[36m (1.3ms)[0m  [1mcommit transaction[0m
+  [1m[35m (1.2ms)[0m  UPDATE Users SET sessionid=0 WHERE id=28477
+Redirected to http://localhost:3000/user/edit_sessions
+Completed 302 Found in 6ms (ActiveRecord: 3.0ms)
+
+
+Started GET "/user/edit_sessions" for 127.0.0.1 at 2012-09-22 14:35:43 -0600
+Processing by UserController#edit_sessions as HTML
+  [1m[36mEvent Load (0.2ms)[0m  [1mSELECT "events".* FROM "events" [0m
+  Rendered user/edit_sessions.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 7ms (Views: 6.5ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:43 -0600
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.css?body=1" for 127.0.0.1 at 2012-09-22 14:35:43 -0600
+Served asset /application.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/event.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:43 -0600
+Served asset /event.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:43 -0600
+Served asset /user.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/event.css?body=1" for 127.0.0.1 at 2012-09-22 14:35:43 -0600
+Served asset /event.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/user.css?body=1" for 127.0.0.1 at 2012-09-22 14:35:43 -0600
+Served asset /user.css - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:43 -0600
+Served asset /jquery.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-09-22 14:35:43 -0600
+Served asset /application.js - 304 Not Modified (0ms)
