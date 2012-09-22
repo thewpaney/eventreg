@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
   attr_protected :student_id, :name
 
   def self.authenticate(name, pass)
-    u = find(:first, :conditions=>["name=? AND student_id=?", name, pass])
+    u = find(:first, :conditions=>["name=? AND id=?", name, pass])
     puts u.inspect
     return u unless u.nil?
     nil
