@@ -9,6 +9,8 @@ class User < ActiveRecord::Base
 
   attr_protected :student_id, :name
 
+  has_one :event
+
   def self.authenticate(name, pass)
     u = find(:first, :conditions=>["name=? AND id=?", name, pass])
     puts u.inspect

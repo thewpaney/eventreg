@@ -14,6 +14,17 @@ before_filter :login_required, :only=>['welcome', 'edit_sessions', 'hidden']
     end
   end
 
+  def edit_sessions
+    unless session[:user]
+      flash[:error] = "You must be logged in to edit your registered sessions."
+      redirect_to :action => 'login'
+    end
+    if request.post?
+      ActiveRecord::Base.connection.execute('REPLACE INTO Users (sessionid) VALUES (#{params[:user][:sessionid]})')
+      flash[:message] = "Successfully saved registration for #{params[:user][:sessionid]}."
+    end
+  end
+
   def logout
     unless session[:user].nil?
       session[:user] = nil
