@@ -9,12 +9,13 @@ class User < ActiveRecord::Base
 
   belongs_to :event
 
-  def self.authenticate(name, pass)
-    u = find(:first, :conditions=>["name=?", name])
-    if u.nil?
+  def self.authenticate(n, pass)
+    if User.find(:first, :conditions=>["name = ?", n]).nil?
       return nil
     end
-    
+    if User.find(:first, :conditions=>["name = ?", n]).student_id.to_i == pass.to_i
+      return u
+    end
     nil
   end  
   
