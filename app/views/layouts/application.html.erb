@@ -9,7 +9,7 @@
   <style type="text/css">
     body { background-color:#c41130; }
     #wrapper { margin: 0px auto; width: 779px; }
-    #header { position: absolute; top: 0; left: 10%; width: 80%; background-color:#DDDBDB; height: 120px;
+    #header { position: absolute; top: 0; left: 0%; width: 100%; background-color:#DDDBDB; height: 120px;
     
     background: #999;
     
@@ -32,8 +32,9 @@
 
 <div id="wrapper">
 <div id="header">
-  
-  <a href="http://www.regisjesuit.com/page.aspx?pid=192" tab="0" did="0" pid="192"><%= image_tag "/assets/rjhs-logo.png" %></a>
+  <div style="position: absolute; left: 10%;">
+    <a href="http://www.regisjesuit.com/page.aspx?pid=192" tab="0" did="0" pid="192" ><%= image_tag "/assets/rjhs-logo.png" %></a>
+  </div>
   
   <% if session[:user] %>
   <p id="info">Logged in as <%= session[:user][:name] %>.  <%= link_to "Log out", "/user/logout" %></p>
@@ -62,7 +63,7 @@
 </div>
 
 <style type="text/css">
-  #footer { position: absolute; bottom: 0; left: 10%; width: 80%; background-color:#DDDBDB; 
+  #footer { position: absolute; bottom: 0; left: 0%; width: 100%; background-color:#DDDBDB; 
 
   background: #999;
 
@@ -74,14 +75,16 @@
   #footer_table { width: 80%; text-align: left; height: 120px; spacing: 50px; }
 </style>
 <div id="wrapper">
-  <div id="footer">
-    <table id="footer_table">
-      <tr>
-	<td><%= link_to "Edit Site Registration", "/user/edit_sessions" %></td>
-	<td><%= link_to "Print Site Information", "/user/print_sessions" %></td>
-	<td>RJHS Service Project Handbook: <a href="http://www.regisjesuit.com/document.doc?id=9017" target="blank">BD</a></td>
-      </tr>
-    </table>
+  <div id="footer" >
+    <div style="position: absolute; left: 10%;">
+      <table id="footer_table">
+	<tr>
+	  <td><%= link_to "Edit Site Registration", "/user/edit_sessions" %></td>
+	  <td><%= link_to "Print Site Information", "/user/print_sessions" %></td>
+	  <td>RJHS Service Project Handbook: <a href="http://www.regisjesuit.com/document.doc?id=9017" target="blank">BD</a></td>
+	</tr>
+      </table>
+    </div>
   </div>
 </div>  <!-- Wrapper -->
 
