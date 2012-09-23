@@ -44,7 +44,7 @@ class UserController < ApplicationController
         unless session[:user].event_id == 0
           # Clear session ID in database
           flash[:error] = "Cancelled registration for #{Event.find(:first, :conditions => ['id=?', session[:user].event_id]).name}."
-          session[:user].event_id = 0
+          session[:user].event.id = 0
           session[:user].update_attribute(:event_id, 0)
         else
           flash[:error] = "You are not currently registered for an event."
@@ -58,10 +58,10 @@ class UserController < ApplicationController
       
       if Event.is_available?(params[:event][:sessionid])
         # first check to see if we're already registered for a session - if so, unregister
-        if not session[:user].event.nil?
+        if not session[:user].event.id == 0
           # Clear session ID in database
+          flash[:error] = "Cancelled registration for #{Event.find(:first, :conditions=>['id=?', session[:user].event_id]).name}."
           session[:user].event_id = 0
-          flash[:error] = "Cancelled registration for #{Event.find(:first, :conditions=>['id=?', params[:event][:sessionid]]).name}."
           session[:user].update_attribute(:event_id, 0)
         end
         # now we can register!
