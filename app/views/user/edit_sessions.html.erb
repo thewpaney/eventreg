@@ -11,7 +11,7 @@
 <% end %>
 <label for="sessionid">Event:</label><br/>
 
-<%= select("event", "sessionid", ["--Unregister--"].concat(Event.all.sort { |a, b|  a.name <=> b.name }.collect {|e| [ "#{e.name} - #{e.currentcapacity}/#{e.maxcapacity}", e.id ] }), { :include_blank => true }) %>
+<%= select("event", "sessionid", ["--Unregister--"].concat(Event.all.sort { |a, b|  a.name <=> b.name }.collect {|e| [ "#{e.name} - #{e.users.count}/#{e.maxcapacity}", e.id ] }), { :include_blank => true }) %>
 
 
 <br/>
