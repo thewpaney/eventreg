@@ -10,10 +10,11 @@ class User < ActiveRecord::Base
   belongs_to :event
 
   def self.authenticate(n, pass)
-    if User.find(:first, :conditions=>["name = ?", n]).nil?
+    u = User.find(:first, :conditions=>["name = ?", n])
+    if u.nil?
       return nil
     end
-    if User.find(:first, :conditions=>["name = ?", n]).student_id.to_i == pass.to_i
+    if u.attributes["student_id"] == pass.to_i
       return u
     end
     nil
