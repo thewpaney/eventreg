@@ -4,8 +4,8 @@
 
 <%= form_tag(:controller => "user", :action => "register_event") do %>
 
-<% unless session[:user][:event].nil? %>
-<p>Currently registered for site: <%= session[:user][:event].name %></p>
+<% unless session[:user].event_id == 0 %>
+<p>Currently registered for site: <%= Event.find(:first, :conditions => ["id=?", session[:user].event_id]).name %></p>
 <% else %>
 <p>Not currently registered for a site.</p>
 <% end %>
