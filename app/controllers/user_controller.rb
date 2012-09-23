@@ -22,7 +22,7 @@ before_filter :login_required, :only=>['welcome', 'edit_sessions', 'hidden']
     end
     if request.post?
       ActiveRecord::Base.connection.execute('REPLACE INTO Users (sessionid) VALUES (#{params[:user][:sessionid]})')
-      flash[:message] = "Successfully saved registration for #{params[:user][:sessionid]}."
+      flash[:message] = "Saved registration for #{params[:user][:sessionid]}."
     end
   end
 
@@ -48,7 +48,7 @@ before_filter :login_required, :only=>['welcome', 'edit_sessions', 'hidden']
           Event.unregister_event(session[:user][:event].id)
           # Clear session ID in database
           ActiveRecord::Base.connection.execute("UPDATE Users SET sessionid=0 WHERE id=#{session[:user][:student_id]}")
-          flash[:error] = "You have cancelled your registration for #{session[:user][:event].name}."
+          flash[:error] = "Cancelled registration for #{session[:user][:event].name}."
           session[:user][:event] = nil
         else
           flash[:error] = "You are not currently registered for an event."
@@ -66,7 +66,7 @@ before_filter :login_required, :only=>['welcome', 'edit_sessions', 'hidden']
           Event.unregister_event(session[:user][:event].id)
           # Clear session ID in database
           ActiveRecord::Base.connection.execute("UPDATE Users SET sessionid=0 WHERE id=#{session[:user][:student_id]}")
-          flash[:error] = "You have cancelled your registration for #{session[:user][:event].name}."
+          flash[:error] = "Cancelled registration for #{session[:user][:event].name}."
           session[:user][:event] = nil
         end
         # now we can register!
@@ -75,10 +75,10 @@ before_filter :login_required, :only=>['welcome', 'edit_sessions', 'hidden']
         session[:user][:event] = Event.find(:first, :conditions=>["id=?", params[:event][:sessionid]])
         # save to users database
         ActiveRecord::Base.connection.execute("UPDATE Users SET sessionid=(#{params[:event][:sessionid]}) WHERE id=#{session[:user][:student_id]}")
-        flash[:message] = "Successfully saved registration for #{Event.find(:first, :conditions=>['id=?', params[:event][:sessionid]]).name}."
+        flash[:message] = "Saved registration for #{Event.find(:first, :conditions=>['id=?', params[:event][:sessionid]]).name}."
         redirect_to :action => "edit_sessions"
       else
-        flash[:error] = "There are no spots available for session: #{Event.find(:first, :conditions=>['id=?', params[:event][:sessionid]]).name}."
+        flash[:error] = "No spots left for site: #{Event.find(:first, :conditions=>['id=?', params[:event][:sessionid]]).name}."
         redirect_to :controller => "user", :action => "edit_sessions"
       end # Event.is_available?
     end # request.post?
