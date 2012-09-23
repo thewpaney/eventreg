@@ -1,6 +1,6 @@
 class EventController < ApplicationController
 
-  before_filter :authenticate, :only => "review"
+#  before_filter :authenticate, :only => "review"
 
   def review
     nil
