@@ -6,9 +6,8 @@ class UserController < ApplicationController
 
   def login
     if request.post?
-      @user = User.authenticate(params[:user][:name], params[:user][:student_id])
-      session[:user] = @user
-      if not @user.nil?
+      session[:user] = User.authenticate(params[:user][:name], params[:user][:student_id])
+      if not session[:user].nil?
         flash[:message]  = "You have successfully logged in as #{params[:user][:name]}."
         redirect_to :controller => "user", :action => "edit_sessions"
       else
