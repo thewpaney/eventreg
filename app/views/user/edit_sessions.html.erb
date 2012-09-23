@@ -1,9 +1,8 @@
-<h1>Edit Currently Registered Event</h1>
+<h1>Register for Sites</h1>
 
 <p style="width: 500px;"></p>
 
 <%= form_tag(:controller => "user", :action => "register_event") do %>
-<h3>Modify Registration</h3>
 
 <% unless session[:user][:event].nil? %>
 <p>Currently registered for event: <%= session[:user][:event].name %></p>

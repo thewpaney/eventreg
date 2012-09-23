@@ -5,31 +5,92 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  
+  <style type="text/css">
+    body { background-color:#c41130; }
+    #wrapper { margin: 0px auto; width: 779px; }
+    #header { position: absolute; top: 0; left: 10%; width: 80%; background-color:#DDDBDB; height: 120px;
+    
+    background: #999;
+    
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#C0C0C0', endColorstr='#DDDBDB');
+    background: -webkit-gradient(linear, left top, left bottom, from(#c0c0c0), to(#dddbdb));
+    background: -moz-linear-gradient(top,  #c0c0c0,  #dddbdb);
+    
+    }
+    #body { position: absolute; top: 0; left: 10%; width: 80%; bottom: 0; background-color: #C0C0C0 }
+  </style>
+  <link rel="stylesheet" href="www.regisjesuit.com/stylesheet0.0.css?id=0&iuqt=0" type="text/css" />
+  <link rel="stylesheet" href="www.regisjesuit.com/stylesheet15.634681284701030000.css?id=15&nodefaults=1&iuqt=0" type="text/css" />
+  <link rel="stylesheet" href="www.regisjesuit.com/stylesheet4.634818738672430000.css?id=4&nodefaults=1&iuqt=0" type="text/css" />
 </head>
 <body>
 
-  <% if session[:user] %>
-  <p class="info">Logged in as <%= session[:user][:name] %>.</p>
-  <% else %>
-  <p class="info">Not logged in.</p>
-  <% end %>
+<!--<div class="gutter" style="z-align: 0; position: absolute; left: 100px; top: 100px;"><a href="http://www.regisjesuit.com/page.aspx?pid=192" tab="0" did="0" pid="192"><img src="http://www.regisjesuit.com/view.image?Id=405" alt="Regis Jesuit High School" /></a></div>-->
+
+<style type="text/css">
+  #info { position: absolute; right: 5%; top: 0px; }
+  #flash { text-align: right; position: relative; top: -90px; right: 5%;}
+  #yielded { position: absolute; top: 125px; left: 10%; }
+</style>
+<div id="body">
+
+<div id="wrapper">
+<div id="header">
   
+  <a href="http://www.regisjesuit.com/page.aspx?pid=192" tab="0" did="0" pid="192"><%= image_tag "/assets/rjhs-logo.jpeg" %></a>
+  
+  <% if session[:user] %>
+  <p id="info">Logged in as <%= session[:user][:name] %>.  <%= link_to "Log out", "/user/logout" %></p>
+  <% else %>
+  <p id="info">Not logged in.  <%= link_to "Log in", "/user/login" %></p>
+  <% end %>
   <% if flash[:message] %>
-  <p class="message" style="color: green;"><%= flash[:message] %></p>
+  <p id="flash" class="message" style="color: green;"><%= flash[:message] %></p>
   <% end %>
   <% if flash[:warning] %>
-  <p class="warning" style="color: yellow;"><%= flash[:warning] %></p>
+  <p id="flash" class="warning" style="color: yellow;"><%= flash[:warning] %></p>
   <% end %>
   <% if flash[:notice] %>
-  <p class="notice"><%= flash[:notice] %></p>
+  <p id="flash" class="notice"><%= flash[:notice] %></p>
   <% end %>
   <% if flash[:error] %>
-  <p class="error" style="color: red;"><%= flash[:error] %></p>
+  <p id="flash" class="error" style="color: #c41130;"><%= flash[:error] %></p>
   <% end %>
+</div>
+</div>
   
+<div id="yielded">
+
   <%= yield %>
-  
-  <%= link_to "Logout", "/user/logout" %>    <%= link_to "Login", "/user/login" %>    <%= link_to "Edit Session Registration", "/user/edit_sessions" %>
-  
+
+</div>
+
+<style type="text/css">
+  #footer { position: absolute; bottom: 0; left: 10%; width: 80%; background-color:#DDDBDB; 
+
+  background: #999;
+
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#DDDBDB', endColorstr='#C0C0C0');
+  background: -webkit-gradient(linear, left top, left bottom, from(#DDDBDB), to(#C0C0C0));
+  background: -moz-linear-gradient(top,  #DDDBDB,  #C0C0C0);
+
+  }
+  #footer_table { width: 80%; text-align: left; height: 120px; spacing: 50px; }
+</style>
+<div id="wrapper">
+  <div id="footer">
+    <table id="footer_table">
+      <tr>
+	<td><%= link_to "Edit Site Registration", "/user/edit_sessions" %></td>
+	<td><%= link_to "Print Site Information", "/user/print_sessions" %></td>
+	<td>RJHS Service Project Handbook: <a href="http://www.regisjesuit.com/document.doc?id=9017" target="blank">BD</a></td>
+      </tr>
+    </table>
+  </div>
+</div>  <!-- Wrapper -->
+
+</div> <!-- Body -->
+
 </body>
 </html>
