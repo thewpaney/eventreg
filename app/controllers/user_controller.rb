@@ -61,7 +61,7 @@ class UserController < ApplicationController
         if not session[:user].event.nil?
           # Clear session ID in database
           session[:user].event_id = 0
-          flash[:error] = "Cancelled registration for #{session[:user][:event].name}."
+          flash[:error] = "Cancelled registration for #{Event.find(:first, :conditions=>['id=?', params[:event][:sessionid]]).name}."
           session[:user].update_attribute(:event_id, 0)
         end
         # now we can register!
