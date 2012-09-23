@@ -1,10 +1,8 @@
 class CreateEvents < ActiveRecord::Migration
   def change
     create_table :events do |t|
-      t.column :name, :string
-      t.column :sessionid, :number
-      t.column :maxcapacity, :number
-      t.column :currentcapacity, :number
+      t.string :name
+      t.integer :maxcapacity
     end
   end
 end

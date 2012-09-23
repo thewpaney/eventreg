@@ -1,34 +1,35 @@
 class User < ActiveRecord::Base
   # attr_accessible :title, :body
 
-  validates_length_of :student_id, :within => 5..5
-  validates_presence_of :name, :student_id
-  validates_uniqueness_of :name, :student_id
+  validates :name, :student_id, presence: true, uniqueness: true
 
-  attr_accessor :student_id
+  validates :student_id, :length => { :is => 5 }
 
-  attr_protected :student_id, :name
+  attr_accessor :student_id, :name
 
-  has_one :event
+  belongs_to :event
 
   def self.authenticate(name, pass)
-    u = find(:first, :conditions=>["name=? AND id=?", name, pass])
-    return u unless u.nil?
+    u = find(:first, :conditions=>["name=?", name])
+    if u.nil?
+      return nil
+    end
+    
     nil
   end  
   
-  def self.store(session1, session2)
-    u = find(:first, :conditions=>["name=? AND id=?", name, pass])
-    unless u.nil?
-      u.update_attributes
-    else
-      flash[:error] = "That operation requires you to be logged in."
-    end
-  end
+  # def self.store(session1, session2)
+  #   u = find(:first, :conditions=>["name=? AND id=?", name, pass])
+  #   unless u.nil?
+  #     u.update_attributes
+  #   else
+  #     flash[:error] = "That operation requires you to be logged in."
+  #   end
+  # end
 
-  def self.eventid(name, pass)
-    u = find(:first, :conditions=>["name=? AND id=?", name, pass])
-    return u.sessionid
-  end
+  # def self.eventid(name, pass)
+  #   u = find(:first, :conditions=>["name=? AND id=?", name, pass])
+  #   return u.sessionid
+  # end
   
 end
