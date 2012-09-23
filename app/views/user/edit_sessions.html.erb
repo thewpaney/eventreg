@@ -5,9 +5,9 @@
 <%= form_tag(:controller => "user", :action => "register_event") do %>
 
 <% unless session[:user][:event].nil? %>
-<p>Currently registered for event: <%= session[:user][:event].name %></p>
+<p>Currently registered for site: <%= session[:user][:event].name %></p>
 <% else %>
-<p>Not currently registered for an event.</p>
+<p>Not currently registered for a site.</p>
 <% end %>
 <label for="sessionid">Event:</label><br/>
 
