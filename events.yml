@@ -1,0 +1,435 @@
+---
+- !ruby/object:Event
+  attributes:
+    id: 1
+    name: Elementary School - Annunciation Grade School
+    sessionid: 1.0
+    maxcapacity: 2.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 2
+    name: Early Childhood Education - Bal Swan Children's Center
+    sessionid: 2.0
+    maxcapacity: 6.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 3
+    name: Emergency Assistance - Broadway Assistance Center
+    sessionid: 3.0
+    maxcapacity: 4.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 4
+    name: Elderly Care - Brookside Inn
+    sessionid: 4.0
+    maxcapacity: 3.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 5
+    name: Elderly Care - Care Link
+    sessionid: 5.0
+    maxcapacity: 2.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 6
+    name: Early Childhood Education - CCECP - Eastridge
+    sessionid: 6.0
+    maxcapacity: 2.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 7
+    name: Early Childhood Education - CCECP - The Cottage Preschool
+    sessionid: 7.0
+    maxcapacity: 2.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 12
+    name: Early Childhood Education - CCECP - Red Hawk Ridge Preschool
+    sessionid: 12.0
+    maxcapacity: 4.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 13
+    name: At-Risk Youth - CCSAS - Eaglecrest High School
+    sessionid: 13.0
+    maxcapacity: 3.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 14
+    name: At-Risk Youth - CCSAS - Grandview High School
+    sessionid: 14.0
+    maxcapacity: 3.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 15
+    name: At-Risk Youth - CCSAS - Belview Elementary
+    sessionid: 15.0
+    maxcapacity: 2.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 16
+    name: At-Risk Youth - CCSAS - Sunrise Elementary
+    sessionid: 16.0
+    maxcapacity: 2.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 17
+    name: At-Risk Youth - CCSAS - Willow Creek Elementary
+    sessionid: 17.0
+    maxcapacity: 2.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 18
+    name: At-Risk Youth - CCSAS - Coyote Hills Elementary
+    sessionid: 18.0
+    maxcapacity: 2.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 19
+    name: At-Risk Youth - CCSAS - Chery Hills Elementary
+    sessionid: 19.0
+    maxcapacity: 2.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 20
+    name: At-Risk Youth - CCSAS - Polton Elementary
+    sessionid: 20.0
+    maxcapacity: 17.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 21
+    name: Hospital - Children's Hospital
+    sessionid: 21.0
+    maxcapacity: 4.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 22
+    name: Elderly Care - Clare Bridge of Highlands Ranch
+    sessionid: 22.0
+    maxcapacity: 2.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 23
+    name: Elementary School - Colfax Elementary
+    sessionid: 23.0
+    maxcapacity: 10.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 24
+    name: Early Childhood Education - Creative Options - Florence
+    sessionid: 24.0
+    maxcapacity: 8.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 25
+    name: Early Childhood Education - Creative Options - Jamaica
+    sessionid: 25.0
+    maxcapacity: 3.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 26
+    name: Early Childhood Education - Creative Options - Lowry
+    sessionid: 26.0
+    maxcapacity: 8.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 27
+    name: Early Childhood Education - Creative Options - S. Ironton
+    sessionid: 27.0
+    maxcapacity: 6.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 28
+    name: At-Risk Youth - DU Bridge Project
+    sessionid: 28.0
+    maxcapacity: 12.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 29
+    name: At-Risk Youth - Each One Teach One
+    sessionid: 29.0
+    maxcapacity: 20.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 30
+    name: Elementary School - Eastridge Elementary
+    sessionid: 30.0
+    maxcapacity: 24.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 31
+    name: Elementary School - Excel Institute
+    sessionid: 31.0
+    maxcapacity: 8.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 32
+    name: Emergency Assistance - Fr. Woody's Haven of Hope
+    sessionid: 32.0
+    maxcapacity: 3.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 33
+    name: Elementary School - Highline Community School
+    sessionid: 33.0
+    maxcapacity: 20.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 34
+    name: Elementary School - Holm Elementary
+    sessionid: 34.0
+    maxcapacity: 15.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 35
+    name: At-Risk Youth - Littleton Transition Program
+    sessionid: 35.0
+    maxcapacity: 4.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 36
+    name: At-Risk Youth - MHM - Edna Oliver Early Learning Center
+    sessionid: 36.0
+    maxcapacity: 2.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 37
+    name: At-Risk Youth - MHM - Lowry Early Learning Center
+    sessionid: 37.0
+    maxcapacity: 2.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 38
+    name: At-Risk Youth - MHM - Rude Park Early Learning Center
+    sessionid: 38.0
+    maxcapacity: 2.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 39
+    name: At-Risk Youth - MHM - Westwood Early Learning Center
+    sessionid: 39.0
+    maxcapacity: 3.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 40
+    name: At-Risk Youth - MHM - Sun Valley Early Learning Center
+    sessionid: 40.0
+    maxcapacity: 2.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 41
+    name: At-Risk Youth - Mount St. Vincent Home
+    sessionid: 41.0
+    maxcapacity: 8.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 42
+    name: Elementary School - Palmer Elementary
+    sessionid: 42.0
+    maxcapacity: 17.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 43
+    name: Elementary School - Place Bridge Academy
+    sessionid: 43.0
+    maxcapacity: 20.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 44
+    name: At-Risk Youth - Praying Hands Ranch
+    sessionid: 44.0
+    maxcapacity: 8.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 45
+    name: Elementary School - Presentation Of Our Lady Catholic School
+    sessionid: 45.0
+    maxcapacity: 3.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 46
+    name: Early Childhood Education - Rise School
+    sessionid: 46.0
+    maxcapacity: 4.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 47
+    name: Adults with Special Needs - Rocky Mountain MS Center
+    sessionid: 47.0
+    maxcapacity: 10.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 48
+    name: Early Childhood Education - Rocky Mountain SER-Denver Head Start
+    sessionid: 48.0
+    maxcapacity: 40.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 49
+    name: Elderly Care - Rowan Community, Inc.
+    sessionid: 49.0
+    maxcapacity: 4.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 50
+    name: Elementary School - Sable Elementary
+    sessionid: 50.0
+    maxcapacity: 8.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 51
+    name: At-Risk Youth - SaddleUp! Foundation
+    sessionid: 51.0
+    maxcapacity: 15.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 52
+    name: Emergency Assistance - Samaritan House
+    sessionid: 52.0
+    maxcapacity: 8.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 53
+    name: Early Childhood Education - Sewall Child Development
+    sessionid: 53.0
+    maxcapacity: 5.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 54
+    name: Elderly Care - Shalom Park
+    sessionid: 54.0
+    maxcapacity: 4.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 55
+    name: Emergency Assistance - St. Francis Center
+    sessionid: 55.0
+    maxcapacity: 2.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 56
+    name: Elementary School - St. Francis De Sales
+    sessionid: 56.0
+    maxcapacity: 2.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 57
+    name: Elementary School - St. Pius X School
+    sessionid: 57.0
+    maxcapacity: 2.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 58
+    name: Elementary School - St. Therese School
+    sessionid: 58.0
+    maxcapacity: 10.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 59
+    name: Hospital - Swedish Medical Center
+    sessionid: 59.0
+    maxcapacity: 5.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 60
+    name: At-Risk Youth - Tennyson Center At Colorado Christian Home
+    sessionid: 60.0
+    maxcapacity: 20.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 61
+    name: Elementary School - Village Of Littleton Public Schools
+    sessionid: 61.0
+    maxcapacity: 6.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 62
+    name: Early Childhood Education - Volunteers Of America
+    sessionid: 62.0
+    maxcapacity: 5.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 63
+    name: Early Childhood Education - Warren Village, Inc.
+    sessionid: 63.0
+    maxcapacity: 6.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 64
+    name: Early Childhood Education - Wild Plum Center for Young Children and Families
+    sessionid: 64.0
+    maxcapacity: 4.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 65
+    name: At-Risk Youth /Special Needs - Firefly Autistim
+    sessionid: 65.0
+    maxcapacity: 2.0
+    currentcapacity: 0.0
+- !ruby/object:Event
+  attributes:
+    id: 66
+    name: Hospital - Azura of Lakewood
+    sessionid: 66.0
+    maxcapacity: 4.0
+    currentcapacity: 0.0
