@@ -11,18 +11,6 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120922182759) do
-
-  create_table "events", :force => true do |t|
-    t.string  "name"
-    t.decimal "sessionid"
-    t.decimal "maxcapacity"
-    t.decimal "currentcapacity"
-  end
-
-  create_table "users", :force => true do |t|
-    t.string  "name"
-    t.decimal "sessionid"
-  end
+ActiveRecord::Schema.define(:version => 20120923041643) do
 
 end
