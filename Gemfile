@@ -2,10 +2,7 @@ source :rubygems
 
 gem 'rails', '3.2.8'
 gem 'jquery-rails'
-
-group :production do
-  gem 'mysql2'
-end
+gem 'mysql2'
 
 group :test, :development do
   # SQLite
