@@ -38,6 +38,7 @@ GEM
       execjs
     coffee-script-source (1.3.3)
     daemons (1.1.8)
+<<<<<<< Updated upstream
     daemons (1.1.9)
     erubis (2.7.0)
     eventmachine (0.12.10)
