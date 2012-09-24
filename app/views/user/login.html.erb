@@ -7,7 +7,7 @@
 <h1 class="text">Step 1: Log In</h1>
 
 <div style="float: left; ">
-  <%=image_tag "/assets/Howard ID.png"%>
+  <%=image_tag "/assets/john.png"%>
 </div>
 <div class="text" style="float: left">
   <div class = "text" style="float: left; position: relative; left: 15%;" >
@@ -15,13 +15,15 @@
 
     <label for="name">Username:</label><br/>
     Your first initial followed by <br/> your last name and your year.<br/><br/>    
-    <%= text_field("user", "name", :size => 20, :placeholder => "JHoward88" )%><br/><br/>
+
+    <%= text_field("user", "name", :size => 20, :placeholder => "JSmith88")%><br/><br/>
 
     <label for="student_id">Student ID:</label><br/>
     The five digit number on your <br/> student ID.<br/><br/>
-    <%= password_field("user", "student_id", :size => 20, :placeholder => "12345")%><br/><br/>
+
+    <%= password_field("user","student_id",:size => 20, :placeholder => "12345" )%><br/><br/>
     
-    <%= submit_tag("Continue")%>
+    <%= submit_tag("Continue", :disable_with => "Stop Clicking. I'm getting it.")%>
     
     <% end %>
   </div>

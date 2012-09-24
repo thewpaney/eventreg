@@ -25,7 +25,7 @@
 
 <style type="text/css">
   #info { position: absolute; right: 5%; top: 0px; }
-  .flash { z-index: 3; text-align: right; position: relative; top: 30px; left: -5%; font-size: 75%;}
+  .flash { z-index: 3; text-align: right; position: relative; top: 30px; left: -5%; font-size: 1.1em;}
   #yielded { position: absolute; top: 125px; left: 10%; }
 </style>
 <div id="body">
@@ -79,8 +79,9 @@
     <table id="footer_table" cellspacing="20px">
       <tr>
 	<td><%= link_to "Edit Site Registration", "/user/edit_sessions" %></td>
-	<td><a href="javascript:alert('Coming soon!');">Print Site Registration</td>
 	<td>RJHS Service Project Handbook: <a href="http://www.regisjesuit.com/document.doc?id=9017" target="blank">BD</a> GD</td>
+	<td><%= link_to "Administration", "/event/review"  %></td>
+	
       </tr>
     </table>
   </div>
