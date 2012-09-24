@@ -17,7 +17,6 @@
 <% end %>
 
 <label for="sessionid">Please choose a site:</label><br/>
->>>>>>> 825a0e6bc8bd54fef161b98d4193e4448417a3ba
 
 <%= select("event", "sessionid", ["--Unregister--"].concat(Event.all.sort { |a, b|  a.name <=> b.name }.collect {|e| [ "#{e.name} - #{e.users.count}/#{e.maxcapacity}", e.id ] }), { :include_blank => true }) %>
 
