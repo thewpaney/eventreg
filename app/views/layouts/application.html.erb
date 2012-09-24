@@ -16,7 +16,7 @@
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#C0C0C0', endColorstr='#DDDBDB');
     background: -webkit-gradient(linear, left top, left bottom, from(#C0C0C0), to(#DDDBDB));
     background: -moz-linear-gradient(top,  #C0C0C0,  #DDDBDB);
-    
+
     }
     #body { position: absolute; top: 0; left: 10%; width: 80%; bottom: 0; background-color: #C0C0C0 }
   </style>
@@ -24,7 +24,7 @@
 <body>
 
 <style type="text/css">
-  #info { position: absolute; right: 5%; top: 0px; }
+  #info { position: absolute; right: 5%; top: 5px; }
   #flash { text-align: right; position: relative; top: -90px; right: 5%; font-size: 75%;}
   #yielded { position: absolute; top: 125px; left: 10%; }
 </style>
@@ -38,8 +38,6 @@
   
   <% if session[:user] %>
   <p id="info">Logged in as <%= session[:user][:name] %>.  <%= link_to "Log out", "/user/logout" %></p>
-  <% else %>
-  <p id="info">Not logged in.  <%= link_to "Log in", "/user/login" %></p>
   <% end %>
   <% if flash[:message] %>
   <p id="flash" class="message" style="color: green;"><%= flash[:message] %></p>
@@ -76,7 +74,7 @@
 </style>
 <div id="wrapper">
   <div id="footer">
-    <table id="footer_table">
+    <table id="footer_table" ">
       <tr>
 	<td></td>
 	<td><%= link_to "Edit Site Registration", "/user/edit_sessions" %></td>
