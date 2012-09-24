@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
   
   <style type="text/css">
-    body { background-color:#c41130; }
+    body { background-color:#c41130;}
     #wrapper { margin: 0px auto; width: 779px; }
     #header { position: absolute; top: 0; left: 0%; width: 100%; background-color:#DDDBDB; height: 120px;
     
@@ -75,16 +75,15 @@
   #footer_table { width: 80%; text-align: center; height: 120px; spacing: 50px; }
 </style>
 <div id="wrapper">
-  <div id="footer" >
-    <div style="position: absolute; left: 10%;">
-      <table id="footer_table">
-	<tr>
-	  <td><%= link_to "Edit Site Registration", "/user/edit_sessions" %></td>
-	  <td><%= link_to "Print Site Information", "/user/print_sessions" %></td>
-	  <td>RJHS Service Project Handbook: <a href="http://www.regisjesuit.com/document.doc?id=9017" target="blank">BD</a></td>
-	</tr>
-      </table>
-    </div>
+  <div id="footer">
+    <table id="footer_table">
+      <tr>
+	<td></td>
+	<td><%= link_to "Edit Site Registration", "/user/edit_sessions" %></td>
+	<td><%= link_to "Print Site Information", "/user/print_sessions" %></td>
+	<td>RJHS Service Project Handbook: <a href="http://www.regisjesuit.com/document.doc?id=9017" target="blank">BD</a></td>
+      </tr>
+    </table>
   </div>
 </div>  <!-- Wrapper -->
 
