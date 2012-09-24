@@ -15,17 +15,14 @@
     <%= form_tag(:action => "login") do %>
 
     <label for="name">Username:</label><br/>
-    Your first initial followed by <br/> your last name and your year.<br/>    
-    <%= text_field("user", "name", :size => 20 )%><br/>
+    Your first initial followed by <br/> your last name and your year.<br/><br/>    
+    <%= text_field("user", "name", :size => 20, :placeholder => "Eg: JHoward88" )%><br/><br/>
 
-    <p style="font-size: .75em;">Eg: JHoward88</p>
-    
     <label for="student_id">Student ID:</label><br/>
-    The five digit number on your <br/> student ID.<br/>  
-    <%= password_field("user", "student_id", :size => 20)%><br/>
-    <p style="font-size: .75em;">Eg: 12345</p>    
+    The five digit number on your <br/> student ID.<br/><br/>
+    <%= password_field("user", "student_id", :size => 20, :placeholder => "Eg: 12345")%><br/><br/>
     
-    <%= submit_tag("Submit")%>
+    <%= submit_tag("Continue")%>
     
     <% end %>
   </div>
