@@ -12,5 +12,12 @@
 # It's strongly recommended to check this file into your version control system.
 
 ActiveRecord::Schema.define(:version => 20120923041643) do
+  create_table "events", :force => true do |t|
+    t.string  "name"
+    t.decimal "maxcapacity"
+  end
 
+  create_table "users", :force => true do |t|
+    t.string "name"
+  end
 end
