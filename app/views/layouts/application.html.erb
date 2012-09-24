@@ -25,37 +25,37 @@
 
 <style type="text/css">
   #info { position: absolute; right: 5%; top: 0px; }
-  #flash { text-align: right; position: relative; top: -90px; right: 5%; font-size: 75%;}
+  #flash { z-index: 3; text-align: right; position: relative; top: -90px; right: 5%; font-size: 75%;}
   #yielded { position: absolute; top: 125px; left: 10%; }
 </style>
 <div id="body">
 
 <div id="wrapper">
-<div id="header">
-  <div style="position: absolute; left: 10%;">
-    <a href="http://www.regisjesuit.com/page.aspx?pid=192" tab="0" did="0" pid="192" ><%= image_tag "/assets/rjhs-logo.png" %></a>
+  <div id="header">
+    <div style="position: absolute; left: 10%;">
+      <a href="http://www.regisjesuit.com/page.aspx?pid=192" tab="0" did="0" pid="192" ><%= image_tag "/assets/rjhs-logo.png" %></a>
+    </div>
+    
+    <% if session[:user] %>
+    <p id="info">Logged in as <%= session[:user][:name] %>.  <%= link_to "Log out", "/user/logout" %></p>
+    <% else %>
+    <p id="info">Not logged in.  <%= link_to "Log in", "/user/login" %></p>
+    <% end %>
+    <% if flash[:message] %>
+    <p id="flash" class="message" style="color: green;"><%= flash[:message] %></p>
+    <% end %>
+    <% if flash[:warning] %>
+    <p id="flash" class="warning" style="color: yellow;"><%= flash[:warning] %></p>
+    <% end %>
+    <% if flash[:notice] %>
+    <p id="flash" class="notice"><%= flash[:notice] %></p>
+    <% end %>
+    <% if flash[:error] %>
+    <p id="flash" class="error" style="color: #c41130;"><%= flash[:error] %></p>
+    <% end %>
   </div>
-  
-  <% if session[:user] %>
-  <p id="info">Logged in as <%= session[:user][:name] %>.  <%= link_to "Log out", "/user/logout" %></p>
-  <% else %>
-  <p id="info">Not logged in.  <%= link_to "Log in", "/user/login" %></p>
-  <% end %>
-  <% if flash[:message] %>
-  <p id="flash" class="message" style="color: green;"><%= flash[:message] %></p>
-  <% end %>
-  <% if flash[:warning] %>
-  <p id="flash" class="warning" style="color: yellow;"><%= flash[:warning] %></p>
-  <% end %>
-  <% if flash[:notice] %>
-  <p id="flash" class="notice"><%= flash[:notice] %></p>
-  <% end %>
-  <% if flash[:error] %>
-  <p id="flash" class="error" style="color: #c41130;"><%= flash[:error] %></p>
-  <% end %>
 </div>
-</div>
-  
+
 <div id="yielded">
 
   <%= yield %>
@@ -76,15 +76,13 @@
 </style>
 <div id="wrapper">
   <div id="footer" >
-    <div style="position: absolute; left: 10%;">
-      <table id="footer_table">
-	<tr>
-	  <td><%= link_to "Edit Site Registration", "/user/edit_sessions" %></td>
-	  <td><%= link_to "Print Site Information", "/user/print_sessions" %></td>
-	  <td>RJHS Service Project Handbook: <a href="http://www.regisjesuit.com/document.doc?id=9017" target="blank">BD</a></td>
-	</tr>
-      </table>
-    </div>
+    <table id="footer_table">
+      <tr>
+	<td><%= link_to "Edit Site Registration", "/user/edit_sessions" %></td>
+	<td><%= link_to "Print Site Information", "/user/print_sessions" %></td>
+	<td>RJHS Service Project Handbook: <a href="http://www.regisjesuit.com/document.doc?id=9017" target="blank">BD</a></td>
+      </tr>
+    </table>
   </div>
 </div>  <!-- Wrapper -->
 

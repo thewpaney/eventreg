@@ -37,15 +37,11 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.3.3)
-<<<<<<< HEAD
     daemons (1.1.8)
-    erubis (2.7.0)
-    eventmachine (0.12.10)
-=======
     daemons (1.1.9)
     erubis (2.7.0)
+    eventmachine (0.12.10)
     eventmachine (1.0.0)
->>>>>>> 552c32d150cd628ec947fb08702a3433bf5e1400
     execjs (1.4.0)
       multi_json (~> 1.0)
     hike (1.2.1)

@@ -18,5 +18,13 @@
 
 <%= submit_tag("Submit")%>
 
+<br />
+<br />
+<br />
+
+<% unless session[:user].event_id == 0 %>
+<p><strong>You're done!</strong>  You can now safely <%= link_to "log out", "/user/logout"%>.</p>
+<% end %>
+
 <% end %>
 
