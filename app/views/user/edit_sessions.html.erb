@@ -1,4 +1,4 @@
-<h1>Register for Sites</h1>
+<h1>Step 2: Register for Sites</h1>
 
 <p style="width: 500px;"></p>
 
@@ -9,12 +9,11 @@
 <% else %>
 <p>Not currently registered for a site.</p>
 <% end %>
-<label for="sessionid">Event:</label><br/>
+<label for="sessionid">Please choose a site:</label><br/>
 
 <%= select("event", "sessionid", ["--Unregister--"].concat(Event.all.sort { |a, b|  a.name <=> b.name }.collect {|e| [ "#{e.name} - #{e.users.count}/#{e.maxcapacity}", e.id ] }), { :include_blank => true }) %>
 
-
-<br/>
+<br />
 
 <%= submit_tag("Submit")%>
 
@@ -24,6 +23,7 @@
 
 <% unless session[:user].event_id == 0 %>
 <p><strong>You're done!</strong>  You can now safely <%= link_to "log out", "/user/logout"%>.</p>
+<p>For detailed information about your service site, please consult the appropriate <strong>RJHS Service Project Handbook</strong>, a link to which can be found at the bottom of this page.</p>
 <% end %>
 
 <% end %>

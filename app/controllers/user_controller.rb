@@ -41,17 +41,18 @@ class UserController < ApplicationController
   def register_event
     if request.post?
       if params[:event][:sessionid] == "--Unregister--" # They clicked "--Unregister--" -- unregister if they're registered, do nothing otherwise.
-        unless session[:user].event_id == 0
+        unless session[:user].event_id.to_i == 0
           # Clear session ID in database
           flash[:error] = "Cancelled registration for #{Event.find(:first, :conditions => ['id=?', session[:user].event_id]).name}."
           session[:user].event_id = 0
-          session[:user].update_attribute(:event_id, 0)
+          session[:user].save
         else
           flash[:error] = "You are not currently registered for an event."
         end
         redirect_to :controller => "user", :action => "edit_sessions"
         return
       elsif params[:event][:sessionid] == ""
+        flash[:error] = "Please pick an option from the drop-down menu."
         redirect_to :controller => "user", :action => "edit_sessions"
         return
       end # params empty SID check
@@ -62,13 +63,14 @@ class UserController < ApplicationController
           # Clear session ID in database
           flash[:error] = "Cancelled registration for #{Event.find(:first, :conditions=>['id=?', session[:user].event_id]).name}."
           session[:user].event_id = 0
-          session[:user].update_attribute(:event_id, 0)
+          session[:user].save
         end
         # now we can register!
         # update session data
         session[:user].event = Event.find(:first, :conditions=>["id=?", params[:event][:sessionid]])
         # save to users database
         session[:user].update_attribute("event_id", session[:user].event_id)
+        session[:user].save
         flash[:message] = "Saved registration for #{Event.find(:first, :conditions=>['id=?', params[:event][:sessionid]]).name}."
         redirect_to :action => "edit_sessions"
       else
