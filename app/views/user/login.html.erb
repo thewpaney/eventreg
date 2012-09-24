@@ -1,16 +1,32 @@
-<h1>Please Log In</h1>
+<style type="text/css">
+  .text{font-family: Verdana, Geneva, sans-serif;}
+  .text label{font-size: 1.5em;}
+  h1 {font-size: 2.5em;}
+</style>
 
-<p style="width: 500px;">Your username is your first initial followed by your last name and your year.  For example: ajacobsohn14, dlehr12.  This is the same username that you use to access your Regis Jesuit netowrk account.  Your password to gain access to this site is your student ID number, located near the barcode on your student ID.</p>
+<h1 class="text">Step 1: Log In</h1>
 
-<%= form_tag(:action => "login") do %>
 
-<label for="name">Username:</label><br/>
-<%= text_field("user", "name", :size => 20 )%><br/>
+<div style="float: left; ">
+  <%=image_tag "/assets/Howard ID.png"%>
+</div>
+<div class="text" style="float: left">
+  <div class = "text"style="float: left">
+    <%= form_tag(:action => "login") do %>
 
-<label for="student_id">Student ID:</label><br/>
-<%= password_field("user", "student_id", :size => 20)%><br/>
+    <label for="name">Username:</label><br/>
+    Your first initial followed by <br/> your last name and your year.<br/>    
+    <%= text_field("user", "name", :size => 20 )%><br/>
 
-<%= submit_tag("Submit")%>
-
-<% end %>
-
+    <p style="font-size: .75em;">Eg: JHoward88</p>
+    
+    <label for="student_id">Student ID:</label><br/>
+    The five digit number on your <br/> student ID.<br/>  
+    <%= password_field("user", "student_id", :size => 20)%><br/>
+    <p style="font-size: .75em;">Eg: 12345</p>    
+    
+    <%= submit_tag("Submit")%>
+    
+    <% end %>
+  </div>
+</div>

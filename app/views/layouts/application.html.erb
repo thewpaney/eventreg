@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
   
   <style type="text/css">
-    body { background-color:#c41130; }
+    body { background-color:#c41130;}
     #wrapper { margin: 0px auto; width: 779px; }
     #header { position: absolute; top: 0; left: 0%; width: 100%; background-color:#DDDBDB; height: 120px;
     
@@ -25,7 +25,7 @@
 
 <style type="text/css">
   #info { position: absolute; right: 5%; top: 0px; }
-  #flash { z-index: 3; text-align: right; position: relative; top: -90px; right: 5%; font-size: 75%;}
+  .flash { z-index: 3; text-align: right; position: relative; top: 30px; left: -5%; font-size: 75%;}
   #yielded { position: absolute; top: 125px; left: 10%; }
 </style>
 <div id="body">
@@ -42,16 +42,16 @@
     <p id="info">Not logged in.  <%= link_to "Log in", "/user/login" %></p>
     <% end %>
     <% if flash[:message] %>
-    <p id="flash" class="message" style="color: green;"><%= flash[:message] %></p>
+    <p id="flash_message" class="flash" style="color: green;"><%= flash[:message] %></p>
     <% end %>
     <% if flash[:warning] %>
-    <p id="flash" class="warning" style="color: yellow;"><%= flash[:warning] %></p>
+    <p id="flash_warning" class="flash" style="color: yellow;"><%= flash[:warning] %></p>
     <% end %>
     <% if flash[:notice] %>
-    <p id="flash" class="notice"><%= flash[:notice] %></p>
+    <p id="flash_notice" class="flash"><%= flash[:notice] %></p>
     <% end %>
     <% if flash[:error] %>
-    <p id="flash" class="error" style="color: #c41130;"><%= flash[:error] %></p>
+    <p id="flash_error" class="flash"style="color: #c41130;"><%= flash[:error] %></p>
     <% end %>
   </div>
 </div>
@@ -72,15 +72,15 @@
   background: -moz-linear-gradient(top,  #DDDBDB,  #C0C0C0);
 
   }
-  #footer_table { width: 80%; text-align: center; height: 120px; spacing: 50px; }
+  #footer_table { width: 100%; text-align: center; height: 120px; }
 </style>
 <div id="wrapper">
   <div id="footer" >
-    <table id="footer_table">
+    <table id="footer_table" cellspacing="20px">
       <tr>
 	<td><%= link_to "Edit Site Registration", "/user/edit_sessions" %></td>
 	<td><%= link_to "Print Site Information", "/user/print_sessions" %></td>
-	<td>RJHS Service Project Handbook: <a href="http://www.regisjesuit.com/document.doc?id=9017" target="blank">BD</a></td>
+	<td>RJHS Service Project Handbook: <a href="http://www.regisjesuit.com/document.doc?id=9017" target="blank">BD</a> GD</td>
       </tr>
     </table>
   </div>
