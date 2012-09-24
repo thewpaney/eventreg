@@ -1,14 +1,21 @@
-<h1>Register for Sites</h1>
+<style type="text/css">
+  .text{font-family: Verdana, Geneva, sans-serif;}
+  .text label{font-size: 1.5em;}
+  h1 {font-size: 2.5em;}
+</style>
+
+<h1 class="text">Step 2: Choose Site</h1>
 
 <p style="width: 500px;"></p>
 
 <%= form_tag(:controller => "user", :action => "register_event") do %>
 
 <% unless session[:user].event_id == 0 %>
-<p>Currently registered for site: <%= Event.find(:first, :conditions => ["id=?", session[:user].event_id]).name %></p>
+<p class="text">Currently registered for site: <%= Event.find(:first, :conditions => ["id=?", session[:user].event_id]).name %></p>
 <% else %>
-<p>Not currently registered for a site.</p>
+<p class="text">You are not currently registered for a site.</p>
 <% end %>
+
 <label for="sessionid">Event:</label><br/>
 
 <%= select("event", "sessionid", ["--Unregister--"].concat(Event.all.sort { |a, b|  a.name <=> b.name }.collect {|e| [ "#{e.name} - #{e.users.count}/#{e.maxcapacity}", e.id ] }), { :include_blank => true }) %>
@@ -19,4 +26,3 @@
 <%= submit_tag("Submit")%>
 
 <% end %>
-
