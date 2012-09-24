@@ -15,4 +15,10 @@
 /tmp
 *~
 .*~
+<<<<<<< HEAD
 .DS_Store
+=======
+.DS_Store
+
+events.yml
+>>>>>>> 98de30b380d3653f2d7a8f1d3bf17cacfacf5c60
