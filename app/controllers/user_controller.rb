@@ -85,7 +85,7 @@ class UserController < ApplicationController
   
   def is_time?
     t = Time.new
-    if (t.year == 2012 and t.day >= 28 and time.hour >= 5)# or (session[:user].name == "admin")
+    if (t.year >= 2012 and t.day >= 28 and t.hour >= 5) and (t.year < 2013 and t.day < 4 and (t.month == 5 or t.month == 6))# or (session[:user].name == "admin")
       return true
     end
     return false
