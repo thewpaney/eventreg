@@ -1,13 +1,16 @@
 Spr::Application.routes.draw do
 
-  post "user/register_event"
+  get "user/ready"
   get "user/edit_sessions"
-  get "event/review"
-  post "user/edit_sessions"
-  root :to => "user#login"
   get "user/login"
-  post "user/login"
   get "user/logout"
+  get "event/review"
+
+  post "user/register_event"
+  post "user/login"
+  post "user/edit_sessions"
+
+  root :to => "user#login"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

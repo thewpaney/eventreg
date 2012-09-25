@@ -2,14 +2,12 @@ class UserController < ApplicationController
 
   before_filter :login_required, :only=>['welcome', 'edit_sessions', 'hidden']
 
-  @user = nil
-
   def login
     if request.post?
       session[:user] = User.authenticate(params[:user][:name], params[:user][:student_id])
       if not session[:user].nil?
         flash[:message]  = "You have successfully logged in as #{params[:user][:name]}."
-        redirect_to :controller => "user", :action => "edit_sessions"
+        redirect_to :controller => "user", :action => "ready"
       else
         flash[:error] = "Login failed."
       end
@@ -20,6 +18,9 @@ class UserController < ApplicationController
     if session[:user].nil?
       flash[:error] = "You must be logged in to edit your registered sessions."
       redirect_to :action => 'login'
+    elsif not is_time?
+      flash[:error] = "Registration hasn't opened yet!"
+      redirect_to :action => 'ready'
     end
   end
 
@@ -82,7 +83,12 @@ class UserController < ApplicationController
     end # request.post?
   end
   
-  def hidden
+  def is_time?
+    t = Time.new
+    if (t.year == 2012 and t.day >= 28 and time.hour >= 5)# or (session[:user].name == "admin")
+      return true
+    end
+    return false
     
   end
   

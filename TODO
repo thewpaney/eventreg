@@ -1,6 +1,6 @@
 * Make all flashes go to pop-up JS box (or maybe just errors)
 * Export to Excel
-* Implement time start/time limit
+DONE Implement time start/time limit
 * Make fancy interface for admins
-* No unregistering or switching - leave that to ProFe
-* Phil Steele for intro
+DONE No unregistering or switching - leave that to ProFe
+* Phil Steele for intro?
