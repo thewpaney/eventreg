@@ -14,10 +14,9 @@
 <p class="text">Currently registered for site: <%= Event.find(:first, :conditions => ["id=?", session[:user].event_id]).name %></p>
 <% else %>
 <p class="text">You are not currently registered for a site.</p>
-<% end %>
 <label for="sessionid">Please choose a site:</label><br/>
 
-<%= select("event", "sessionid", ["--Unregister--"].concat(Event.all.sort { |a, b|  a.name <=> b.name }.collect {|e| [ "#{e.name} - #{e.users.count}/#{e.maxcapacity}", e.id ] }), { :include_blank => true }) %>
+<%= select("event", "sessionid", ["--Unregister--"].concat(Event.all.sort { |a, b|  a.name <=> b.name }.collect {|e| [ "#{e.users.count}/#{e.maxcapacity} - #{e.name}", e.id ] }), { :include_blank => true }) %>
 
 <br />
 
@@ -27,6 +26,8 @@
 <br />
 <br />
 
+
+<% end %>
 <% unless session[:user].event_id == 0 %>
 <div class="text"><p><strong>You're done!</strong>  You can now safely <%= link_to "log out", "/user/logout"%>.</p>
 <p>For detailed information about your service site, please consult the appropriate <strong>RJHS Service Project Handbook</strong>, a link to which can be found at the bottom of this page.</p></div>
