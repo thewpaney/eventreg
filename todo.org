@@ -1,0 +1,13 @@
+Matt,
+The amount of *'s at the beginning of the line denote nest-depth
+Type tab on a line to either hide or show it's branches
+Use ctrl-c ctrl-t to change the status of any of the things below.
+The percentage will adjust automatically.
+* Tasks [50%]
+** DONE Make all flashes go to pop-up JS box (or maybe just errors)
+** TODO Export to Excel
+** DONE Implement time start/time limit
+** TODO Make fancy interface for admins
+** DONE No unregistering or switching - leave that to ProFe
+** TODO Phil Steele for intro
+   
