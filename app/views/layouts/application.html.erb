@@ -33,7 +33,7 @@
 <div id="wrapper">
   <div id="header">
     <div style="position: absolute; left: 10%;">
-      <a href="http://www.regisjesuit.com/page.aspx?pid=192" tab="0" did="0" pid="192" ><%= image_tag "/assets/rjhs-logo.png" %></a>
+      <a href="/" tab="0" did="0" pid="192" ><%= image_tag "/assets/rjhs-logo.png" %></a>
     </div>
     
     <% if session[:user] %>
@@ -64,7 +64,8 @@
 
 <style type="text/css">
   #footer { position: absolute; bottom: 0; left: 0%; width: 100%; background-color:#DDDBDB; 
-
+  font-size: 1.5em;
+  text-align: center;
   background: #999;
 
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#DDDBDB', endColorstr='#C0C0C0');
@@ -72,18 +73,10 @@
   background: -moz-linear-gradient(top,  #DDDBDB,  #C0C0C0);
 
   }
-  #footer_table { width: 100%; text-align: center; height: 60px; }
 </style>
 <div id="wrapper">
   <div id="footer" >
-    <table id="footer_table" cellspacing="20px">
-      <tr>
-	<td><%= link_to "Edit Site Registration", "/user/edit_sessions" %></td>
-	<td>RJHS Service Project Handbook: <a href="http://www.regisjesuit.com/document.doc?id=9017" target="blank">BD</a> GD</td>
-	<td><%= link_to "Administration", "/event/review"  %></td>
-	
-      </tr>
-    </table>
+    <a href="http://www.regisjesuit.com/document.doc?id=9017" target="blank">Click to open the BD Service Project handbook</a>
   </div>
 </div>  <!-- Wrapper -->
 
