@@ -4,33 +4,48 @@
   h1 {font-size: 2.5em;}
 </style>
 
-<h1>Step 2: Register for Sites</h1>
+<h1>Step 3: Register for Sites</h1>
 
 <p style="width: 500px;"></p>
 
-<%= form_tag(:controller => "user", :action => "register_event") do %>
+<% if session[:register_status] == 0 %>
+<!-- Do nothing - this is the default! -->
+<% elsif session[:register_status] == 1 %>
+<!-- Registration successful - yay! -->
+<script type="text/javascript">
+alert("Registration successful!");
+</script>
+<% session[:register_status] = 0 %>
+<% elsif session[:register_status] == 2 %>
+<!-- Registration failed - let the poor chaps know! -->
+<script type="text/javascript">
+alert("Registration failed!  Someone beat you to it!");
+<% session[:register_status] = 0 %>
+</script>
+<% end %>
 
-<% unless session[:user].event_id == 0 %>
+<% if not session[:user].event_id == 0 %>
 <p class="text">Currently registered for site: <%= Event.find(:first, :conditions => ["id=?", session[:user].event_id]).name %></p>
 <% else %>
+<%= form_tag(:controller => "user", :action => "register_event") do %>
 <p class="text">You are not currently registered for a site.</p>
 <label for="sessionid">Please choose a site:</label><br/>
 
-<%= select("event", "sessionid", ["--Unregister--"].concat(Event.all.sort { |a, b|  a.name <=> b.name }.collect {|e| [ "#{e.users.count}/#{e.maxcapacity} - #{e.name}", e.id ] }), { :include_blank => true }) %>
+<%= select("event", "sessionid", Event.all.sort { |a, b|  a.name <=> b.name }.collect {|e| [ "#{e.users.count}/#{e.maxcapacity} - #{e.name}", e.id ] }, { :include_blank => true }) %>
 
 <br />
 
-<%= submit_tag("Submit")%>
+<%= submit_tag("Submit") %>
 
 <br />
 <br />
 <br />
-
 
 <% end %>
+
+<% end %>
+
 <% unless session[:user].event_id == 0 %>
 <div class="text"><p><strong>You're done!</strong>  You can now safely <%= link_to "log out", "/user/logout"%>.</p>
 <p>For detailed information about your service site, please consult the appropriate <strong>RJHS Service Project Handbook</strong>, a link to which can be found at the bottom of this page.</p></div>
-<% end %>
-
 <% end %>
