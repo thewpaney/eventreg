@@ -6,12 +6,16 @@ class Event < ActiveRecord::Base
   def self.generate_html_list
     str = ""
     Event.all.sort {|a,b| a.name <=> b.name }.each do |e|
-      str += "<tr><td>#{e.name} - #{e.users.count}/#{e.maxcapacity}<br />"
+      str += "<tr><td>#{e.users.count}/#{e.maxcapacity} - #{e.name}<br />"
       e.users.each do |u|
         str += "----- #{u.attributes["name"]}<br />"
       end
     end
     return str.html_safe
+  end
+
+  def self.users_registered
+    return "#{User.all.find_all {|user| user.event_id != 0}.length}/#{User.all.length}"
   end
 
   def self.is_available?(sessionid)
