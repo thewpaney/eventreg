@@ -3,6 +3,7 @@ class UserController < ApplicationController
   before_filter :login_required, :only=>['welcome', 'edit_sessions', 'hidden']
 
   def login
+    session[:register_status] = 0
     if request.post?
       session[:user] = User.authenticate(params[:user][:name], params[:user][:student_id])
       if not session[:user].nil?
@@ -41,20 +42,20 @@ class UserController < ApplicationController
 
   def register_event
     if request.post?
-      if params[:event][:sessionid] == "--Unregister--" # They clicked "--Unregister--" -- unregister if they're registered, do nothing otherwise.
-        unless session[:user].event_id.to_i == 0
-          # Clear session ID in database
-          flash[:error] = "Cancelled registration for #{Event.find(:first, :conditions => ['id=?', session[:user].event_id]).name}."
-          session[:user].event = nil
-          session[:user].event_id = "0"
-          session[:user].update_attribute("event_id", "0")
-          session[:user].save
-        else
-          flash[:error] = "You are not currently registered for an event."
-        end
-        redirect_to :controller => "user", :action => "edit_sessions"
-        return
-      elsif params[:event][:sessionid] == ""
+      # if params[:event][:sessionid] == "--Unregister--" # They clicked "--Unregister--" -- unregister if they're registered, do nothing otherwise.
+      #   unless session[:user].event_id.to_i == 0
+      #     # Clear session ID in database
+      #     flash[:error] = "Cancelled registration for #{Event.find(:first, :conditions => ['id=?', session[:user].event_id]).name}."
+      #     session[:user].event = nil
+      #     session[:user].event_id = "0"
+      #     session[:user].update_attribute("event_id", "0")
+      #     session[:user].save
+      #   else
+      #     flash[:error] = "You are not currently registered for an event."
+      #   end
+      #   redirect_to :controller => "user", :action => "edit_sessions"
+      #   return
+      if params[:event][:sessionid] == ""
         flash[:error] = "Please pick an option from the drop-down menu."
         redirect_to :controller => "user", :action => "edit_sessions"
         return
@@ -62,12 +63,12 @@ class UserController < ApplicationController
       
       if Event.is_available?(params[:event][:sessionid])
         # first check to see if we're already registered for a session - if so, unregister
-        if not session[:user].event_id == 0
-          # Clear session ID in database
-          flash[:error] = "Cancelled registration for #{Event.find(:first, :conditions=>['id=?', session[:user].event_id]).name}."
-          session[:user].event_id = 0
-          session[:user].save
-        end
+        # if not session[:user].event_id == 0
+        #   # Clear session ID in database
+        #   flash[:error] = "Cancelled registration for #{Event.find(:first, :conditions=>['id=?', session[:user].event_id]).name}."
+        #   session[:user].event_id = 0
+        #   session[:user].save
+        # end
         # now we can register!
         # update session data
         session[:user].event = Event.find(:first, :conditions=>["id=?", params[:event][:sessionid]])
@@ -75,15 +76,18 @@ class UserController < ApplicationController
         session[:user].update_attribute("event_id", session[:user].event_id)
         session[:user].save
         flash[:message] = "Saved registration for #{Event.find(:first, :conditions=>['id=?', params[:event][:sessionid]]).name}."
+        session[:register_status] = 1
         redirect_to :action => "edit_sessions"
       else
         flash[:error] = "No spots left for site: #{Event.find(:first, :conditions=>['id=?', params[:event][:sessionid]]).name}."
+        session[:register_status] = 2
         redirect_to :controller => "user", :action => "edit_sessions"
       end # Event.is_available?
     end # request.post?
   end
   
   def is_time?
+    return true
     t = Time.new
     if (t.year >= 2012 and t.day >= 28 and t.hour >= 5) and (t.year < 2013 and t.day < 4 and (t.month == 5 or t.month == 6))# or (session[:user].name == "admin")
       return true
