@@ -1,8 +1,9 @@
 source :rubygems
 
-gem 'rails', '3.2.8'
+gem 'rails', '~> 3.2.8'
 gem 'jquery-rails'
 gem 'mysql2'
+gem 'scroll'
 
 group :test, :development do
   # SQLite
@@ -19,7 +20,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
+  gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
 end
