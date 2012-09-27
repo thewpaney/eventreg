@@ -16,3 +16,17 @@ The percentage will adjust automatically.
 *** TODO Allow Admin to Open/Close Registration
 ** DONE No unregistering or switching - leave that to ProFe
 ** DONE Phil Steele for intro
+
+
+Morgan is implementing a failover (Tommy's server), but in order to do that
+we need to talk with the tech department.
+
+<integ3r> I'm suggesting that the failover be winterhold.skyrim.stratosphe.re
+<integ3r> The main should be whiterun.skyrim.stratosphe.re
+<integ3r> Talk to the tech department
+<integ3r> Get them to add a DNS entry (e.g. service.regisjesuit.com)
+<integ3r> and add a CNAME entry to service.stratosphe.re
+<integ3r> which is another CNAME, pointing to one of the two servers
+<integ3r> both running the Rails app and MySQL.
+<integ3r> so, service.regisjesuit.com => service.stratosphe.re => /(winterhold|whiterun)/
+<integ3r> There's no redirect
