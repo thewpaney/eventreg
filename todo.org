@@ -4,7 +4,7 @@ Type tab on a line to either hide or show it's branches
 Use ctrl-c ctrl-t to change the status of any of the things below.
 The percentage will adjust automatically.
 
-* Tasks [80%]
+* Functionality [80%]
 ** DONE Make all flashes go to pop-up JS box (or maybe just errors)
 ** DONE Implement time start/time limit
 ** TODO Make fancy interface for admins [25%]
@@ -13,10 +13,13 @@ The percentage will adjust automatically.
 **** DONE Download
 *** TODO Manually Add Users
 *** TODO Manually Add Events
-*** TODO Allow Admin to Open/Close Registration
+** TODO Modify database fields to suit RJHS in-place database
 ** DONE No unregistering or switching - leave that to ProFe
 ** DONE Phil Steele for intro
-
+   
+* Deployment [0%]
+** TODO Stress test (blitz.io)
+** TODO Deploy on stratosphe.re
 
 Morgan is implementing a failover (Tommy's server), but in order to do that
 we need to talk with the tech department.
