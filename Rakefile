@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Spr::Application.load_tasks
+ER::Application.load_tasks
