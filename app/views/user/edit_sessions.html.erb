@@ -24,8 +24,13 @@ alert("Registration failed!  Someone beat you to it!");
 </script>
 <% end %>
 
+<% if session[:user].nil? %>
+<% flash[:error] = "You are not logged in!" %>
+<% redirect_to :controller => "user", :action  => "login" %>
+<% end %>
+
 <% if not session[:user].event_id == 0 %>
-<p class="text">Currently registered for site: <%= Event.find(:first, :conditions => ["id=?", session[:user].event_id]).name %></p>
+<p class="text">Currently registered for site: <%= Event.where(:id => session[:user].event_id).first.name %></p>
 <% else %>
 <%= form_tag(:controller => "user", :action => "register_event") do %>
 <p class="text">You are not currently registered for a site.</p>
