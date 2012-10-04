@@ -1,6 +1,8 @@
 class UserController < ApplicationController
 
-  before_filter :login_required, :only=>['welcome', 'edit_sessions', 'hidden']
+  before_filter :login_required, :only => ['edit_sessions', 'ready']
+  before_filter :check_open, :only => ['ready']
+  before_filter :is_time?, :only => ['edit_sessions']
 
   def login
     session[:register_status] = 0
@@ -36,7 +38,7 @@ class UserController < ApplicationController
     end
   end
   
-  def welcome
+  def ready
     
   end
 
@@ -86,14 +88,35 @@ class UserController < ApplicationController
     end # request.post?
   end
   
+  def is_time_junior?
+    junior_open = Time.utc(2012, 10, 17, 20, 0)
+    junior_close = Time.utc(2012, 10, 19, 20, 0)
+    return (Time.now - junior_open > 0) && (Time.now - junior_close < 0)
+  end
+
+  def is_time_senior?
+    senior_open = Time.utc(2012, 10, 7, 20, 0)
+    senior_close = Time.utc(2012, 10, 9, 20, 0)    
+    return (Time.now - senior_open > 0) && (Time.now - senior_close < 0)
+  end
+
   def is_time?
-    return true
-    t = Time.new
-    if (t.year >= 2012 and t.day >= 28 and t.hour >= 5) and (t.year < 2013 and t.day < 4 and (t.month == 5 or t.month == 6))# or (session[:user].name == "admin")
-      return true
+    is_time_senior? || is_time_junior?
+  end
+
+  def check_is_time?
+    # For now, override.  Remove before flight!
+    return true if is_time?
+    flash[:error] = "Registration is not yet open."
+    redirect_to :action => "ready"    
+  end
+
+  def check_open
+    if is_time?
+      redirect_to :action => "edit_sessions"
+    else
+      flash[:error] = "Registration is not yet open."
     end
-    return false
-    
   end
   
 end
