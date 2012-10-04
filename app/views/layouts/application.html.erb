@@ -37,7 +37,7 @@
     </div>
     
     <% if session[:user] %>
-    <p id="info">Logged in as <%= session[:user][:name] %>.  <%= link_to "Log out", "/user/logout" %></p>
+    <p id="info">Logged in as <%= "#{session[:user][:firstname]} #{session[:user][:lastname]}" %>.  <%= link_to "Log out", "/user/logout" %></p>
     <% else %>
     <p id="info">Not logged in.  <%= link_to "Log in", "/user/login" %></p>
     <% end %>
