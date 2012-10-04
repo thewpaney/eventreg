@@ -15,4 +15,4 @@ tmp
 .*#
 .DS_Store
 events.yml
-spr-users.*
+spr-*.csv
