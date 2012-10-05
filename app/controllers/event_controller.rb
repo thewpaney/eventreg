@@ -1,41 +1,33 @@
-require 'csv'
+require 'fastercsv'
 
 class EventController < ApplicationController
-  before_filter :authenticate
+  before_filter :admin!, only: [:admin, :export]
 
   def review
-    nil
+    # silence is golden
+  end
+
+  def admin
+    # silence is golden
   end
 
   def export
-    csv_data = CSV.generate do |csv|
-      User.all.collect {|u| [u.name, (u.event.nil? 'NONE' : u.event.name)]}.each {|u| csv << u}
+    csv_data = FCSV.generate do |csv|
+      csv << %w(id name event)
+      User.all.collect {|u| [u.id, u.name, (u.event.nil? 'NONE' : u.event.name)]}.each {|u| csv << u}
     end
     send_data csv_data, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=eventreg.csv"
   end
 
-  def admin
-    nil
-  end
-
-  def edit_events
-    if request.post?
-      
-    end
-    nil
+  def edit_event
   end
   
   def edit_users
-    if request.post?
-      
-    end
-    nil
   end
-  
-  private
-  def authenticate
-    authenticate_or_request_with_http_basic "Authentication Required to Continue" do |username, password|
-      username === "letmein" && password === "yesssir"
-    end
+
+  def save_event
+  end
+
+  def save_users
   end
 end

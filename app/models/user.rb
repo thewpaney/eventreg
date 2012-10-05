@@ -1,22 +1,34 @@
 class User < ActiveRecord::Base
-  # attr_accessible :title, :body
+  attr_accessible :student_id, :login, :first, :last, :grade, :event
 
-  attr_accessible :grade, :email, :login, :student_id, :firstname, :lastname, :event_id
-
-  validates :email, :login, :student_id, presence: true, uniqueness: true
-  
-  validates :firstname, :lastname, presence: true
+  validates :student_id, numericality: true, uniqueness: true
+  validates :login, uniqueness: true
+  validates :first, :last, presence: true
+  validates :grade, numericality: true
 
   belongs_to :event
 
-  def self.authenticate(n, pass)
-    where(:login => n, :student_id => pass).first
-#    u = (User.where(:login => n).first).student_id == pass.to_i ? u : nil
-    #u = User.where(name: n).first
-    #u = User.find(:first, :conditions=>["name = ?", n])
-    #return nil if u.nil?
-    #return u if u.student_id == pass.to_i
-    #nil
+  def self.authenticate(id, login)
+    where(student_id: id, login: login).first
   end
-  
+
+  def self.registered
+    where('event_id IS NOT NULL')
+  end
+
+  def name
+    first + ' ' + last
+  end
+
+  def year
+    %w(freshman sophomore junior senior)[(grade - 9) % 4]
+  end
+
+  def registration
+    Rails.configuration.time[(grade - 9) % 4 + 9]
+  end
+
+  def registered?
+    !event.nil?
+  end
 end

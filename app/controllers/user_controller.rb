@@ -1,98 +1,81 @@
 class UserController < ApplicationController
+  before_filter :login_required!, only: [:edit_sessions, :ready]
+  before_filter :check_open, only: :ready
+  before_filter :get_event, only: :register
+  before_filter :is_time?, only: :register
 
-  before_filter :login_required, :only => ['edit_sessions', 'ready']
-  before_filter :check_open, :only => ['ready']
-  before_filter :is_time?, :only => ['edit_sessions']
+  POSITIVE_ENCOURAGEMENT = [
+                            "That's all you have to do!"
+                           ]
 
-  def login
-    session[:register_status] = 0
-    if request.post?
-      session[:user] = User.authenticate(params[:user][:name], params[:user][:student_id])
-      if not session[:user].nil?
-        flash[:message]  = "You have successfully logged in as #{session[:user].name}."
-        redirect_to :controller => "user", :action => "ready"
-      else
-        flash[:error] = "Login failed."
-      end
-    end
-  end
+  NEGATIVE_ENCOURAGEMENT = [
+                   "The one that got away!",
+                   "Aww man!"
+                   ]
 
-  def edit_sessions
-    if session[:user].nil?
-      flash[:error] = "You must be logged in to edit your registered sessions."
-      redirect_to :action => 'login'
-    elsif not is_time?
-      flash[:error] = "Registration hasn't opened yet!"
-      redirect_to :action => 'ready'
-    end
-  end
-
-  def logout
-    unless session[:user].nil?
-      session[:user] = nil
-      flash[:message] = 'Successfully logged out.'
-      redirect_to :action => 'login'
-    else
-      flash[:error] = "You are not currently logged in!"
-      redirect_to :action => 'login'
-    end
-  end
-  
-  def ready
-    
-  end
-
-  def register_event
-    if request.post?
-      if params[:event][:id].nil? || params[:event][:id].empty?
-        flash[:error] = "Please pick an option from the drop-down menu."
-        redirect_to :controller => "user", :action => "edit_sessions"
-        return
-      end
-
-      if Event.is_available?(params[:event])
-        session[:user].event = Event.where(:id => params[:event][:id])
-        session[:user].save
-        flash[:message] = "Saved registration for #{Event.find(:first, :conditions=>['id=?', params[:event][:sessionid]]).name}."
-        session[:register_status] = 1
-        redirect_to :action => "edit_sessions"
-      else
-        flash[:error] = "No spots left for site: #{Event.find(:first, :conditions=>['id=?', params[:event][:sessionid]]).name}."
-        session[:register_status] = 2
-        redirect_to :controller => "user", :action => "edit_sessions"
-      end # Event.is_available?
-    end # request.post?
-  end
-  
-  def is_time_junior?
-    junior_open = Time.utc(2012, 10, 17, 20, 0)
-    junior_close = Time.utc(2012, 10, 19, 20, 0)
-    return (Time.now - junior_open > 0) && (Time.now - junior_close < 0)
-  end
-
-  def is_time_senior?
-    senior_open = Time.utc(2012, 10, 7, 20, 0)
-    senior_close = Time.utc(2012, 10, 9, 20, 0)    
-    return (Time.now - senior_open > 0) && (Time.now - senior_close < 0)
-  end
-
-  def is_time?
-    is_time_senior? || is_time_junior?
-  end
-
-  def check_is_time?
-    # For now, override.  Remove before flight!
-    return true if is_time?
-    flash[:error] = "Registration is not yet open."
-    redirect_to :action => "ready"    
-  end
 
   def check_open
     if is_time?
-      redirect_to :action => "edit_sessions"
+      redirect_to action: 'register'
     else
       flash[:error] = "Registration is not yet open."
     end
   end
-  
+
+  def get_event
+    @event = !params[:event].nil? && !params[:event][:id].nil? ? Event.where(id: params[:event][:id]).first : nil
+  end
+
+  def is_time?
+    !(g = user.registration).nil? && ((t = Time.now) - g[:open] > 0) && (t - g[:close] < 0)
+  end
+
+  def ready
+    # silence is golden
+  end
+
+  def edit
+    if !user?
+      flash[:error] = "You must be logged in to register."
+      redirect_to action: 'login'
+    elsif !is_time?
+      flash[:error] = "Registration hasn't opened yet!"
+      redirect_to action: 'ready'
+    end
+  end
+
+  def register
+    return unless request.post?
+
+    if @event.nil?
+      flash[:error] = "Please pick an option."
+    else
+      if @event.available?
+        self.user.update_attributes event: @event
+        flash[:message] = "You're now registered for #{@event}! #{POSITIVE_ENCOURAGEMENT.sample}"
+      else
+        flash[:error] = "No spots left for #{@event}! #{NEGATIVE_ENCOURAGEMENT.sample}"
+      end
+    end
+  end
+
+  def login
+    self.authenticate! params[:user]
+    if self.user?
+      flash[:message]  = "You are logged in as #{user.name}."
+      redirect_to action: "ready"
+    elsif request.post?
+      flash[:error] = "Login failed."
+    end
+  end
+
+  def logout
+    unless user?
+      self.deauthenticate!
+      flash[:message] = 'Successfully logged out.'
+    else
+      flash[:error] = "You are not currently logged in!"
+    end
+    redirect_to action: 'login'
+  end
 end

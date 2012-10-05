@@ -1,11 +1,11 @@
 <h1>Review Event Registration Status</h1>
 <div style="font-size: 2em;">
-<%= "Students Registered: #{Event.users_registered}" %>
+<%= "Students registered: #{User.registered.count}" %>
 </div>
 
 <div style="height: 290px; background-color: #DDDBDB; width: 800px; border: 1px solid; overflow: auto;">
 <table>
-<%= Event.generate_html_list %>
+<%= EventHelper.generate_html_list %>
 </table>
 </div>
 

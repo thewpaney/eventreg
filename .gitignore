@@ -16,3 +16,4 @@ tmp
 .DS_Store
 events.yml
 spr-*.csv
+*.orig
