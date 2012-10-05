@@ -1,7 +1,7 @@
 require 'fastercsv'
 
 class EventController < ApplicationController
-  before_filter :admin!, only: [:admin, :export]
+  before_filter :admin!
 
   def review
     # silence is golden
