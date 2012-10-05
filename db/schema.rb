@@ -11,11 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120922182759) do
+ActiveRecord::Schema.define(:version => 20121005181339) do
 
   create_table "events", :force => true do |t|
     t.string  "name"
     t.integer "capacity"
+    t.integer "restrict"
   end
 
   create_table "users", :force => true do |t|

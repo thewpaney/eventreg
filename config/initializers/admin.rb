@@ -1,5 +1,5 @@
 ER::Application.config.admin = {
-  message: 'Authentication required',
-  username: 'admin',
-  password: 'letmein'
+  message: 'Log in to continue',
+  username: 'profe',
+  password: 'watchmen02'
 }
