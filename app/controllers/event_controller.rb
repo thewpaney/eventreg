@@ -1,4 +1,4 @@
-require 'fastercsv'
+require 'csv'
 
 class EventController < ApplicationController
   before_filter :admin!
@@ -12,7 +12,7 @@ class EventController < ApplicationController
   end
 
   def export
-    csv_data = FCSV.generate do |csv|
+    csv_data = CSV.generate do |csv|
       csv << %w(id name event)
       User.all.collect {|u| [u.id, u.name, (u.event.nil? ? 'NONE' : u.event.name)]}.each {|u| csv << u}
     end
