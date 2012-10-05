@@ -1,13 +1,12 @@
 class UserController < ApplicationController
-
-  before_filter :login_required, :only=>['welcome', 'edit_sessions', 'hidden']
+  before_filter :login_required, :only => ['welcome', 'edit_sessions', 'hidden']
 
   def login
     session[:register_status] = 0
     if request.post?
       session[:user] = User.authenticate(params[:user][:name], params[:user][:student_id])
       if not session[:user].nil?
-        flash[:message]  = "You have successfully logged in as #{params[:user][:name]}."
+        flash[:message]  = "You have successfully logged in as #{session[:user].name}."
         redirect_to :controller => "user", :action => "ready"
       else
         flash[:error] = "Login failed."
@@ -42,38 +41,14 @@ class UserController < ApplicationController
 
   def register_event
     if request.post?
-      # if params[:event][:sessionid] == "--Unregister--" # They clicked "--Unregister--" -- unregister if they're registered, do nothing otherwise.
-      #   unless session[:user].event_id.to_i == 0
-      #     # Clear session ID in database
-      #     flash[:error] = "Cancelled registration for #{Event.find(:first, :conditions => ['id=?', session[:user].event_id]).name}."
-      #     session[:user].event = nil
-      #     session[:user].event_id = "0"
-      #     session[:user].update_attribute("event_id", "0")
-      #     session[:user].save
-      #   else
-      #     flash[:error] = "You are not currently registered for an event."
-      #   end
-      #   redirect_to :controller => "user", :action => "edit_sessions"
-      #   return
-      if params[:event][:sessionid] == ""
+      if params[:event][:id].nil? || params[:event][:id].empty?
         flash[:error] = "Please pick an option from the drop-down menu."
         redirect_to :controller => "user", :action => "edit_sessions"
         return
-      end # params empty SID check
-      
-      if Event.is_available?(params[:event][:sessionid])
-        # first check to see if we're already registered for a session - if so, unregister
-        # if not session[:user].event_id == 0
-        #   # Clear session ID in database
-        #   flash[:error] = "Cancelled registration for #{Event.find(:first, :conditions=>['id=?', session[:user].event_id]).name}."
-        #   session[:user].event_id = 0
-        #   session[:user].save
-        # end
-        # now we can register!
-        # update session data
-        session[:user].event = Event.find(:first, :conditions=>["id=?", params[:event][:sessionid]])
-        # save to users database
-        session[:user].update_attribute("event_id", session[:user].event_id)
+      end
+
+      if Event.is_available?(params[:event])
+        session[:user].event = Event.where(:id => params[:event][:id])
         session[:user].save
         flash[:message] = "Saved registration for #{Event.find(:first, :conditions=>['id=?', params[:event][:sessionid]]).name}."
         session[:register_status] = 1

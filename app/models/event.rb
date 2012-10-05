@@ -1,6 +1,5 @@
 class Event < ActiveRecord::Base
-  attr_accessible :maxcapacity, :name
-
+  attr_accessible :capacity, :name
   has_many :users
 
   def self.generate_html_list
@@ -15,25 +14,10 @@ class Event < ActiveRecord::Base
   end
 
   def self.users_registered
-    return "#{User.all.find_all {|user| user.event_id != 0}.length}/#{User.all.length}"
+    self.count :conditions => ['event_id IS NOT NULL']
   end
 
-  def self.is_available?(sessionid)
-    e = find(:first, :conditions=>["id=?", sessionid])
-    return false if e.nil?
-    return true if e.users.count < e.maxcapacity
-    return false
+  def self.is_available? id
+    !(e = self.find(id)).nil? && e.users.count < e.capacity
   end
-
-#  def self.register_event(sessionid)
-#    e = find(:first, :conditions=>["id=?", sessionid])
-#    e.currentcapacity += 1 if is_available?(sessionid)
-#    e.save
-#  end
-
-#  def self.unregister_event(sessionid)
-#    e = find(:first, :conditions=>["id=?", sessionid])
-#    e.currentcapacity -= 1
-#    e.save
-#  end
 end
