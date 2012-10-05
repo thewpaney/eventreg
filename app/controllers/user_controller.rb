@@ -27,7 +27,7 @@ class UserController < ApplicationController
   end
 
   def is_time?
-    !(g = user.registration).nil? && ((t = Time.now) - g[:open] > 0) && (t - g[:close] < 0)
+    !(g = user.registration).nil? && ((t = Time.now.utc) - g[:open] > 0) && (t - g[:close] < 0)
   end
 
   def ready
