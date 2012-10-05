@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   belongs_to :event
 
   def self.authenticate(id, login)
-    where(student_id: id, login: login).first
+    where(student_id: id, login: login.downcase).first
   end
 
   def self.registered
