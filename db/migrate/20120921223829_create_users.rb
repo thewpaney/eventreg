@@ -3,14 +3,14 @@ class CreateUsers < ActiveRecord::Migration
   def change
     create_table :users do |t|
       t.integer :student_id
-      t.string :firstname
-      t.string :lastname
-      t.integer :grade
       t.string :login
-      t.string :email
-      t.integer :event_id
+      t.string :first
+      t.string :last
+      t.integer :grade
       t.references :event
     end
-  end
 
+    add_index :users, :student_id, unique: true
+    add_index :users, :login, unique: true
+  end
 end

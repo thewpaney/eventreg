@@ -7,23 +7,23 @@
 <h1 class="text">Step 1: Log In</h1>
 
 <div style="float: left; ">
-  <%=image_tag "/assets/steele.png"%>
+  <%= image_tag "/assets/steele.png" %>
 </div>
 <div class="text" style="float: left">
   <div class = "text" style="float: left; position: relative; left: 15%;" >
     <%= form_tag(:action => "login") do %>
 
-    <label for="name">Username:</label><br/>
+    <label for="user_login">Username:</label><br/>
     Your first initial followed by <br/> your last name and your year.<br/><br/>    
 
-    <%= text_field("user", "name", :size => 20, :placeholder => "PSteele88")%>
+    <%= text_field("user", "login", :size => 20, :placeholder => "PSteele88")%>
     <% if flash[:error] %>
     <p id="flash_error" style="color: #c41130;"><%= flash[:error] %></p>
     <% else %>
     <br /><br /><br />
     <% end %>
 
-    <label for="student_id">Student ID:</label><br/>
+    <label for="user_student_id">Student ID:</label><br/>
     The five digit number on your <br/> student ID.<br/><br/>
 
     <%= password_field("user","student_id",:size => 20, :placeholder => "12345" )%>

@@ -36,8 +36,8 @@
       <a href="/" tab="0" did="0" pid="192" ><%= image_tag "/assets/rjhs-logo.png" %></a>
     </div>
     
-    <% if session[:user] %>
-    <p id="info">Logged in as <%= "#{session[:user][:firstname]} #{session[:user][:lastname]}" %>.  <%= link_to "Log out", "/user/logout" %></p>
+    <% if user? %>
+    <p id="info">Logged in as <%= user.name %>.  <%= link_to "Log out", "/user/logout" %></p>
     <% else %>
     <p id="info">Not logged in.  <%= link_to "Log in", "/user/login" %></p>
     <% end %>
@@ -57,9 +57,7 @@
 </div>
 
 <div id="yielded">
-
   <%= yield %>
-
 </div>
 
 <style type="text/css">
@@ -84,4 +82,4 @@
 
 </body>
 </html>
-<!-- <%= Scroll::Elder.fortune %> -->
+<!-- Skyrim fact: <%= Scroll::Elder.fortune %> -->
