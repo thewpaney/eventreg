@@ -4,6 +4,7 @@ gem 'rails', '~> 3.2.8'
 gem 'jquery-rails'
 gem 'mysql2'
 gem 'scroll'
+gem 'fastercsv'
 
 group :test, :development do
   # SQLite
