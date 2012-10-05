@@ -18,16 +18,4 @@ class EventController < ApplicationController
     end
     send_data csv_data, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=eventreg.csv"
   end
-
-  def edit_event
-  end
-  
-  def edit_users
-  end
-
-  def save_event
-  end
-
-  def save_users
-  end
 end
