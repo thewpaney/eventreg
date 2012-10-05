@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     end
     flash[:error]='You must log in to continue.'
     redirect_to :controller => "user", :action => "login"
-    return false 
+    false 
   end
   
   def current_user
@@ -22,5 +22,4 @@ class ApplicationController < ActionController::Base
       redirect_to :controller=>'user', :action=>'welcome'
     end
   end
-  
 end
