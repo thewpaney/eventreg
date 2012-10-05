@@ -50,11 +50,15 @@ class UserController < ApplicationController
     if @event.nil?
       flash[:error] = "Please pick an option."
     else
-      if @event.available?
-        self.user.update_attributes event: @event
-        flash[:message] = "You're now registered for #{@event}! #{POSITIVE_ENCOURAGEMENT.sample}"
+      if @event.restrict == 0 || @event.restrict == user.grade 
+        if @event.available?
+          self.user.update_attributes event: @event
+          flash[:message] = "You're now registered for #{@event}! #{POSITIVE_ENCOURAGEMENT.sample}"
+        else
+          flash[:error] = "No spots left for #{@event}! #{NEGATIVE_ENCOURAGEMENT.sample}"
+        end
       else
-        flash[:error] = "No spots left for #{@event}! #{NEGATIVE_ENCOURAGEMENT.sample}"
+        flash[:error] = "You aren't allowed to register for #{@event}!"
       end
     end
   end
