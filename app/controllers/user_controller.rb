@@ -1,5 +1,5 @@
 class UserController < ApplicationController
-  before_filter :login_required!, only: [:edit_sessions, :ready]
+  before_filter :login_required!, only: [:register, :ready]
   before_filter :check_open, only: :ready
   before_filter :get_event, only: :register
   before_filter :is_time?, only: :register
