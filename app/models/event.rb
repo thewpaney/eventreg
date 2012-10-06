@@ -6,6 +6,10 @@ class Event < ActiveRecord::Base
     users.count < capacity
   end
 
+  def availability
+    "#{users.count}/#{capacity}"
+  end
+
   def to_s
     name
   end
