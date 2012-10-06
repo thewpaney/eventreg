@@ -12,6 +12,7 @@
 ** DONE Phil Steele for intro
    
 * Deployment [50%]
+** TODO Verify all site information
 ** TODO Stress test (blitz.io)
 ** DONE Deploy on stratosphe.re
    
