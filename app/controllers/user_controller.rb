@@ -4,6 +4,8 @@ class UserController < ApplicationController
   before_filter :get_event, only: :register
   before_filter :edit, only: :register
 
+  caches_page :login
+
   POSITIVE_ENCOURAGEMENT = [
                             "That's all you have to do!"
                            ]
