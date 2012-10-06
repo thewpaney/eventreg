@@ -11,6 +11,10 @@ ER::Application.routes.draw do
   get '/event/admin' => 'event#admin'
   get '/event/review' => 'event#review'
   get '/event/export' => 'event#export'
+  get '/event/edit_events' => 'event#edit_events'
+  get '/event/edit_users' => 'event#edit_users'
+  post '/event/edit_events' => 'event#edit_events'
+  post '/event/edit_users' => 'event#edit_users'
 
   root :to => 'user#login'
 end

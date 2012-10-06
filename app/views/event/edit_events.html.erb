@@ -1,0 +1,31 @@
+<style type="text/css">
+  .text{font-family: Verdana, Geneva, sans-serif;}
+  .text label{font-size: 1.2em;}
+  h1 {font-size: 2.5em;}
+</style>
+
+<h1>Edit Event Data</h1>
+
+<div class="text">
+  
+  <%= form_tag(:controller => "event", :action => "edit_events") do %>
+  
+  <p class="text">Here you can view and update event data.  Fields left blank will not me modified.</p>
+  
+  <label for="id"><span class="text">Select the site you wish to modify:</span></label><br />
+  <%= select("event", "id", Event.all.sort {|a, b|  a.name <=> b.name }.collect {|e| [ "#{e.availability} - #{e.name}", e.id ] }, :id => "event_selection", :include_blank => true) %>
+  <br />
+  <br />
+  <label for="name">Change name of site:</label><br />
+  <%= text_field("event", "name", :size => 80, :id => "name_input", :placeholder => "No Change") %>
+  <br />
+  <br />
+  <label for="capacity">Change capacity of site:</label><br />
+  <%= text_field("event", "capacity", :size => 10, :id => "capacity_input", :placeholder => "No Change") %>
+  <br />
+  <br />
+  <%= submit_tag("Submit") %>
+  
+  <% end %>
+  
+</div>
