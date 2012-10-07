@@ -15,6 +15,10 @@ class User < ActiveRecord::Base
   def self.registered
     where('event_id IS NOT NULL')
   end
+
+  def is_time?
+     !(g = registration).nil? && ((t = Time.now.utc) - g[:open] > 0) && (t - g[:close] < 0)
+  end
   
   def name
     first + ' ' + last
@@ -30,5 +34,9 @@ class User < ActiveRecord::Base
   
   def registered?
     !event.nil?
+  end
+
+  def can_register? event
+    event.restrict.nil? || event.restrict == 0 || event.restrict == grade
   end
 end

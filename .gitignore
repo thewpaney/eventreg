@@ -5,6 +5,11 @@
 db/*.sqlite3
 db/*.sql
 
+# Ignore database, time and admin configs
+config/database.yml
+config/initializers/time.rb
+config/initializers/admin.rb
+
 # Ignore all logfiles and tempfiles.
 log/*.log
 tmp
