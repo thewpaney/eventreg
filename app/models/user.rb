@@ -16,6 +16,10 @@ class User < ActiveRecord::Base
     where('event_id IS NOT NULL')
   end
 
+  def self.unregistered
+    where('event_id IS NULL')
+  end
+
   def is_time?
      !(g = registration).nil? && ((t = Time.now.utc) - g[:open] > 0) && (t - g[:close] < 0)
   end
@@ -29,7 +33,7 @@ class User < ActiveRecord::Base
   end
   
   def registration
-    Rails.configuration.time[(grade - 9) % 4 + 9]
+    p Rails.configuration.time[(grade - 9) % 4 + 9]
   end
   
   def registered?
