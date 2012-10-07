@@ -31,14 +31,12 @@ ActiveRecord::Schema.define(:version => 20121006235251) do
 
   create_table "users", :force => true do |t|
     t.integer "student_id"
-    t.string  "login"
     t.string  "first"
     t.string  "last"
     t.integer "grade"
+    t.string  "login"
+    t.string  "email"
     t.integer "event_id"
   end
-
-  add_index "users", ["login"], :name => "index_users_on_login", :unique => true
-  add_index "users", ["student_id"], :name => "index_users_on_student_id", :unique => true
 
 end

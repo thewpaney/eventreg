@@ -13,8 +13,17 @@ class EventController < ApplicationController
 
   def edit_events
     return unless request.post?
-    if params[:event][:id].empty?
+    if !(params[:new].nil?) and params[:new] == "false"
+      if Event.new(:name => params[:event][:name], :capacity => params[:event][:capacity]).save!
+        flash[:message] = "Event created successfully."
+      else
+        flash[:message] = "Error creating event.  E-mail the developers."
+      end
+    elsif params[:event][:id].empty?
       flash[:error] = "Please select a site to modify."
+    elsif !(params[:kill].nil?) and params[:kill] == "false"
+      Event.find(params[:event][:id].to_i).destroy
+      flash[:message] = "Event removed."
     else 
       e = Event.find(params[:event][:id].to_i)
       e.first.name = params[:event][:name] unless params[:event][:name].empty?
