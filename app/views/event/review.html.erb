@@ -1,7 +1,5 @@
 <h1>Review Event Registration Status</h1>
 <div style="font-size: 2em;">
-<li><%= link_to "Export Event Registration", "export" %><br />
-<br />  
 <%= "Students registered: #{User.registered.count}" %>
 </div>
 
@@ -9,5 +7,6 @@
 <table>
 <%= EventHelper.generate_html_list.html_safe %>
 </table>
+<%= link_to "Export Event Registration", "export" %><br />
 </div>
 
