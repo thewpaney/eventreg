@@ -43,7 +43,7 @@ module ER
     config.active_support.escape_html_entities_in_json = true
 
     # Make a decicated cache directory
-    config.page_cache_directory = "#{Rails.public_path}/cache"
+    config.action_controller.page_cache_directory = File.join(Rails.public_path, 'cache')
 
     # Use SQL instead of Active Record's schema dumper when creating the database.
     # This is necessary if your schema can't be completely dumped by the schema dumper,
