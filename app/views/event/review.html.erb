@@ -1,6 +1,8 @@
 <h1>Review Event Registration Status</h1>
 <div style="font-size: 2em;">
 <%= "Students registered: #{User.registered.count}" %>
+<br />
+<%= "Students not yet registered: #{User.unregistered.count}" %>
 </div>
 
 <div style="height: 290px; background-color: #DDDBDB; width: 800px; border: 1px solid; overflow: auto;">
