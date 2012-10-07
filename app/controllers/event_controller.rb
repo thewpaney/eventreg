@@ -14,10 +14,14 @@ class EventController < ApplicationController
   def edit_events
     return unless request.post?
     if !(params[:new].nil?) and params[:new] == "false"
-      if Event.new(:name => params[:event][:name], :capacity => params[:event][:capacity]).save!
-        flash[:message] = "Event created successfully."
+      if !params[:event][:name].empty? and !params[:event][:capacity].empty?
+        if Event.new(:name => params[:event][:name], :capacity => params[:event][:capacity]).save!
+          flash[:message] = "Event created successfully."
+        else
+          flash[:message] = "Error creating event.  E-mail the developers."
+        end
       else
-        flash[:message] = "Error creating event.  E-mail the developers."
+        flash[:error] = "Please specify a name and a capacity when creating a new site."
       end
     elsif params[:event][:id].empty?
       flash[:error] = "Please select a site to modify."
