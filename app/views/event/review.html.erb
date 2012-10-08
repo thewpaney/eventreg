@@ -2,7 +2,7 @@
 <div style="font-size: 2em;">
 <%= "Seniors registered: #{User.where('grade = 12 AND event_id IS NOT NULL').count}/#{User.where('grade=12').count} (#{(User.where('grade = 12 AND event_id IS NOT NULL').count.to_f/User.where('grade=12').count).to_s[0..4]})" %>
 <br />
-<%= "Juniors registered: #{User.where('grade = 11 AND event_id IS NOT NULL').count}/#{User.where('grade=11).count} (#{(User.where('grade = 11 AND event_id IS NOT NULL').count.to_f/User.where('grade=11).count).to_s[0..4]})" %>
+<%= "Juniors registered: #{User.where('grade = 11 AND event_id IS NOT NULL').count}/#{User.where('grade=11').count} (#{(User.where('grade = 11 AND event_id IS NOT NULL').count.to_f/User.where('grade=11).count).to_s[0..4]})" %>
 </div>
 
 <div style="height: 290px; background-color: #DDDBDB; border: 1px solid; overflow: auto;">
