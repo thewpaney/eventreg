@@ -1,6 +1,6 @@
 <h1>Step 2: Wait</h1>
 
-<p><%= user.year.capitalize %> registration will (tentatively) open on <strong><%= user.registration[:open].in_time_zone.strftime '%A, %B %-d %Y at %I:%M:%S %p %Z' %></strong> and close on <strong><%= user.registration[:close].in_time_zone.strftime '%A, %B %-d %Y at %I:%M:%S %p %Z' %></strong>.  Right now, it's <strong><%= Time.now.in_time_zone.strftime '%A, %B %-d %Y, %I:%M:%S %p %Z' %></strong>.  Until then, to keep things fair, you'll have to wait.  This page will automatically redirect you to the event registration page when the time comes.</p>
+<p><%= user.year.capitalize %> registration will open on <strong><%= user.registration[:open].in_time_zone.strftime '%A, %B %-d %Y at %I:%M:%S %p %Z' %></strong> and close on <strong><%= user.registration[:close].in_time_zone.strftime '%A, %B %-d %Y at %I:%M:%S %p %Z' %></strong>.  Until then, to keep things fair, you'll have to wait.  Refreshing this page will automatically redirect you to the event registration page when the time comes.</p>
 
 <p>When you get to the registration page, you'll be presented with a <strong>drop-down box</strong> containing every service site available for registration this year.  Sites are presented alphabetically by site category, like this:</p>
 
