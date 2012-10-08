@@ -1,8 +1,8 @@
 <h1>Review Event Registration Status</h1>
 <div style="font-size: 2em;">
-<%= "Students registered: #{User.registered.count}" %>
+<%= "Seniors registered: #{User.where('grade = 12 AND event_id IS NOT NULL')}/#{User.where('grade=12').count}" %>
 <br />
-<%= "Students not yet registered: #{User.unregistered.count}" %>
+<%= "Juniors registered: #{User.where('grade = 11 AND event_id IS NOT NULL')}/#{User.where('grade=11').count}" %>
 </div>
 
 <div style="height: 290px; background-color: #DDDBDB; width: 800px; border: 1px solid; overflow: auto;">
