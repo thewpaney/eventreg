@@ -1,19 +1,19 @@
-* Functionality [83%]
+* Functionality [100%]
 ** DONE Make all flashes go to pop-up JS box (or maybe just errors)
 ** DONE Implement time start/time limit
-** TODO Make fancy interface for admins [25%]
+** DONE Make fancy interface for admins [100%]
 *** DONE Export to Excel [100%]
 **** DONE Export to CSV
 **** DONE Download
-*** TODO Manually Add Users
-*** TODO Manually Add Events
+*** DONE Manually Add Users
+*** DONE Manually Add Events
 ** DONE Modify database fields to suit RJHS in-place database
 ** DONE No unregistering or switching - leave that to ProFe
 ** DONE Phil Steele for intro
    
-* Deployment [50%]
-** TODO Verify all site information
-** TODO Stress test (blitz.io)
+* Deployment [100%]
+** DONE Verify all site information
+** DONE Stress test (blitz.io)
 ** DONE Deploy on stratosphe.re
    
 Morgan is implementing a failover (Tommy's server), but in order to do that
