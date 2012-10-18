@@ -9,8 +9,9 @@
 <% if user.registered? %>
 <p class="text">Currently registered for: <%= user.event.name %></p>
 <div class="text">
-  <p><strong>You're done!</strong> You can now safely <%= link_to "log out", "/user/logout"%>.</p>
-  <p>For detailed information about your service site, please consult the appropriate <strong>RJHS Service Project Handbook</strong>, a link to which can be found at the bottom of this page.</p>
+  <p><strong>You're done!</strong> You can now <%= link_to "log out", "/user/logout"%>.</p>
+  <p>For detailed information about your service site, please consult the
+ <a href="http://www.regisjesuit.com/document.doc?id=14392"><strong>RJHS Service Project Handbook</strong></a><>.</p>
 </div>
 <% else %>
 <p class="text">You are not currently registered for a site.</p>

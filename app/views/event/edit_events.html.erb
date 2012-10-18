@@ -10,17 +10,17 @@
   
   <%= form_tag(:controller => "event", :action => "edit_events") do %>
   
-  <p class="text">Here you can view and update event data.  Fields left blank will not me modified.</p>
+  <p class="text">Either select a site and submit new data for it, <br> or select "I want ot make a new site" and submit data for the new site.</p>
   
   <label for="id"><span class="text">Select the site you wish to modify:</span></label><br />
   <%= select("event", "id", Event.all.sort {|a, b|  a.name <=> b.name }.collect {|e| [ "#{e.availability} - #{e.name}", e.id ] }, :id => "event_selection", :include_blank => true) %>
   <br />
   <br />
-  <label for="new">Alternatively, create new site?</label>
+  <label for="new">I want to make a new site</label>
   <%= check_box_tag "new", false %>
   <br />
   <br />
-  <label for="kill">Or delete selected site?</label>
+  <label for="kill">I want to delete the selected site</label>
   <%= check_box_tag "kill", false %>
   <br />
   <br />
