@@ -1,0 +1,15 @@
+<style type="text/css">
+  .text{font-family: Verdana, Geneva, sans-serif;}
+  .text label{font-size: 1.5em;}
+  h1 {font-size: 2.5em;}
+</style>
+
+<h1>Modify User Information</h1>
+
+<%= form_tag(:controller => "event", :action => "register") do %>
+<p class="text"></p>
+<label for="id">Please choose a site:</label><br />
+<%= select("event", "id", ["--Unregister--"].concat(Event.all.sort {|a, b|  a.name <=> b.name }.collect {|e| [ "#{e.availability} - #{e.name}", e.id ] }), { :include_blank => true } ) %>
+<br />
+<%= submit_tag("Submit") %>
+<% end %>
