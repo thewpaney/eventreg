@@ -11,6 +11,35 @@ class EventController < ApplicationController
     # silence is golden
   end
 
+  def edit_users
+    return unless request.post?
+    if params[:user][:id].empty?
+      flash[:error] = "No user selected!"
+      return
+    elsif params[:event][:id].empty?
+      flash[:error] = "No event action selected!"
+      return
+    end
+    u = User.where(:id => params[:user][:id].to_i).first
+    if u.nil?
+      flash[:error] = "Invalid user!"
+      return
+    end
+    if params[:event][:id] == "--Unregister--"
+      u.event = nil
+      u.save!
+      flash[:message] = "Unregistered!"
+    else
+      u.event = Event.where(:id => params[:event][:id]).first
+      u.event_id = (u.event.id ? u.event.id : nil)
+      if u.save!
+        flash[:message] = "Successfully updated user #{u.name}."
+      else
+        flash[:message] = "Error saving user!"
+      end
+    end
+  end
+
   def edit_events
     return unless request.post?
     if !(params[:new].nil?) and params[:new] == "false"
@@ -29,10 +58,10 @@ class EventController < ApplicationController
       Event.find(params[:event][:id].to_i).destroy
       flash[:message] = "Event removed."
     else 
-      e = Event.find(params[:event][:id].to_i)
+      e = Event.where(:id => params[:event][:id].to_i)
       e.first.name = params[:event][:name] unless params[:event][:name].empty?
-      e.first.capacity = params[:event][:capacity].to_i unless params[:event][:capacity].empty
-      if e.first.save
+      e.first.capacity = params[:event][:capacity].to_i unless params[:event][:capacity].empty?
+      if e.first.save!
         flash[:message] = "Event successfully updated."
       else
         flash[:message] = "Error modifying event."
