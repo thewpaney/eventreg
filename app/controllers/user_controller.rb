@@ -10,14 +10,21 @@ class UserController < ApplicationController
                             "That's all you have to do!",
                             "You're done!",
                             "That's it! Seriously!",
-                            "Congratulations!"
+                            "Congratulations!",
+                            "You're registered!",
+                            "You got in!",
+                            "It'll be a blast!",
+                            "Oppa Regis style!"
                            ]
 
   NEGATIVE_ENCOURAGEMENT = [
-                   "The one that got away!",
-                   "Aww man!",
-                   "Hope you had a backup!"
-                   ]
+                            "The one that got away!",
+                            "Aww man!",
+                            "Hope you had a backup!",
+                            "Try again!",
+                            "Nope!",
+                            ":(",
+                           ]
 
   def check_open
     if user.is_time?
