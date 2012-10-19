@@ -18,7 +18,6 @@
 <label for="id">Please choose a site:</label><br />
 <% end %>
 <%= form_tag(:controller => "user", :action => "register") do %>
-<%= form_authenticity_token %>
 <%= select("event", "id", ["--Unregister--"].concat(Event.all.sort {|a, b|  a.name <=> b.name }.collect {|e| [ "#{e.availability} - #{e.name}", e.id ] }), { :include_blank => true }) %>
 <br />
 <%= submit_tag("Submit") %>
