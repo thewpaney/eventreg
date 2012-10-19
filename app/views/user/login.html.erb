@@ -12,6 +12,7 @@
 <div class="text" style="float: left">
   <div class = "text" style="float: left; position: relative; left: 15%;" >
     <%= form_tag(:action => "login") do %>
+    <%= form_authenticity_token %>
 
     <label for="user_login">Username:</label><br/>
     Your Regis Login <br/>
