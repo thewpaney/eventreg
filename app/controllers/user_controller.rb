@@ -47,8 +47,10 @@ class UserController < ApplicationController
 
   def register
     return unless request.post?
-
-    if @event.nil?
+    if params[:event][:id] == "--Unregister--"
+      self.user.update_attributes(event: nil)
+      flash[:message] = "Unregistered!"
+    elsif @event.nil?
       flash[:error] = "Please pick an option."
     else
       if user.can_register?(@event) 
@@ -56,7 +58,7 @@ class UserController < ApplicationController
           if self.user.update_attributes(event: @event)
             flash[:message] = "You're now registered for #{@event}! #{POSITIVE_ENCOURAGEMENT.sample}"
           else
-            flash[:error] = "Couldn't register you for this event. Try another one, maybe?"
+            flash[:error] = "Couldn't register you for this event. Odd. Try again one, maybe?"
           end
         else
           flash[:error] = "No spots left for #{@event}! #{NEGATIVE_ENCOURAGEMENT.sample}"
