@@ -11,32 +11,40 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121006235251) do
+ActiveRecord::Schema.define(:version => 20130216194658) do
 
-  create_table "events", :force => true do |t|
-    t.string  "name"
-    t.integer "capacity"
-    t.integer "restrict"
+  create_table "students", :force => true do |t|
+    t.string "number"
+    t.string "last"
+    t.string "first"
+    t.string "full"
+    t.string "gender"
+    t.string "grade"
+    t.string "year"
+    t.string "email"
+    t.string "prefix"
+    t.string "rw"
+    t.string "rw_number"
+    t.string "rw_teacher"
+    t.string "advisement"
   end
 
-  create_table "sessions", :force => true do |t|
-    t.string   "session_id", :null => false
-    t.text     "data"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+  create_table "teachers", :force => true do |t|
+    t.string "number"
+    t.string "name"
+    t.string "email"
   end
 
-  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
-  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
-
-  create_table "users", :force => true do |t|
-    t.integer "student_id"
-    t.string  "first"
-    t.string  "last"
-    t.integer "grade"
-    t.string  "login"
-    t.string  "email"
-    t.integer "event_id"
+  create_table "workshops", :force => true do |t|
+    t.string "name"
+    t.string "presentor"
+    t.string "description"
+    t.string "first"
+    t.string "second"
+    t.string "third"
+    t.string "tlimit"
+    t.string "slimit"
+    t.string "room"
   end
 
 end

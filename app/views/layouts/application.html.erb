@@ -1,85 +1,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>RJHS Service Project Registration</title>
+  <title>Diversity</title>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-  
-  <style type="text/css">
-    body { background-color:#c41130;}
-    #wrapper { margin: 0px auto; width: 779px; }
-    #header { position: absolute; top: 0; left: 0%; width: 100%; background-color:#DDDBDB; height: 120px;
-    
-    background: #999;
-    
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#C0C0C0', endColorstr='#DDDBDB');
-    background: -webkit-gradient(linear, left top, left bottom, from(#C0C0C0), to(#DDDBDB));
-    background: -moz-linear-gradient(top,  #C0C0C0,  #DDDBDB);
-
-    }
-    #body { position: absolute; top: 0; left: 10%; width: 80%; bottom: 0;background-color: #C0C0C0 }
-  </style>
 </head>
 <body>
 
-<style type="text/css">
-  #info { position: absolute; right: 5%; top: 0px; }
-  .flash { z-index: 3; text-align: right; position: relative; top: 30px; left: -5%; font-size: 1.1em;}
-  #yielded { position: absolute; top: 125px; left: 10%; }
-</style>
-<div id="body">
-
-<div id="wrapper">
-  <div id="header">
-    <div style="position: absolute; left: 10%;">
-      <a href="/" tab="0" did="0" pid="192" ><%= image_tag "/assets/rjhs-logo.png" %></a>
-    </div>
-    
-    <% if user? %>
-    <p id="info">Logged in as <%= user.name %>.  <%= link_to "Log out", "/user/logout" %></p>
-    <% else %>
-    <p id="info">Not logged in.  <%= link_to "Log in", "/user/login" %></p>
-    <% end %>
-    <% if flash[:message] %>
-    <p id="flash_message" class="flash" style="color: green;"><%= flash[:message] %></p>
-    <% end %>
-    <% if flash[:warning] %>
-    <p id="flash_warning" class="flash" style="color: yellow;"><%= flash[:warning] %></p>
-    <% end %>
-    <% if flash[:notice] %>
-    <p id="flash_notice" class="flash"><%= flash[:notice] %></p>
-    <% end %>
-    <% if flash[:error] %>
-    <p id="flash_error" class="flash"style="color: #c41130;"><%= flash[:error] %></p>
-    <% end %>
-  </div>
-</div>
-
-<div id="yielded">
-  <%= yield %>
-</div>
-
-<style type="text/css">
-  #footer { position: absolute; bottom: 0; left: 0%; width: 100%; background-color:#DDDBDB; 
-  font-size: 1.5em;
-  text-align: center;
-  background: #999;
-
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#DDDBDB', endColorstr='#C0C0C0');
-  background: -webkit-gradient(linear, left top, left bottom, from(#DDDBDB), to(#C0C0C0));
-  background: -moz-linear-gradient(top,  #DDDBDB,  #C0C0C0);
-
-  }
-</style>
-<div id="wrapper">
-  <div id="footer" >
-    <a href="http://www.regisjesuit.com/document.doc?id=14392" target="blank">Click to open the BD Service Project handbook</a>
-  </div>
-</div>  <!-- Wrapper -->
-
-</div> <!-- Body -->
+<%= yield %>
 
 </body>
 </html>
-<!-- Skyrim fact: <%= Scroll::Elder.fortune %> -->
