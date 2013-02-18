@@ -28,6 +28,35 @@ class Student < ActiveRecord::Base
     where('workshop_id IS NULL')
   end
 
+  def has_first?
+    workshops.collect {|w| w.session}.include? 1
+  end
+
+  def signup(workshop)
+    sessions = workshops.collect {|w| w.session}
+
+    unless sessions.include? workshop.session
+      workshop.students << self
+      workshops << workshop
+      return true
+    else
+      return false
+    end
+          
+  end
+
+  def has_second?
+    workshops.collect {|w| w.session}.include? 1
+  end
+
+  def has_third?
+    workshops.collect {|w| w.session}.include? 1
+  end
+  
+  def done
+    self.has_third? and self.has_second? and self.has_first?
+  end
+
   def to_s
     full
   end

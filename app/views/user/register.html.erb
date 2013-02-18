@@ -4,20 +4,26 @@
   h1 {font-size: 2.5em;}
 </style>
 
-<h1>Step 3: Register for Sites</h1>
+<h1>Step 3: Register for Workshops</h1>
 
-<% if user.registered? %>
-<p class="text">Currently registered for: <%= user.event.name %></p>
+<% if session[:user].done? %>
+
+<p class="text">Currently registered for: <%= session[:user].workshops.collect {|w| w.name}.join(", ")  %></p>
 <div class="text">
   <p><strong>You're done!</strong> You can now <%= link_to "log out", "/user/logout"%>.</p>
 </div>
+
 <% else %>
-<p class="text">You are not currently registered for a site.</p>
-<label for="id">Please choose a site:</label><br />
-<% end %>
+
+<p class="text">You are not currently registered for your workshops.</p>
+<label for="id">Please choose your Workshops:</label><br />
 
 <%= form_tag(:controller => "user", :action => "register") do %>
+
 <%= select("event", "id", ["--Unregister--"].concat(Event.all.sort {|a, b|  a.name <=> b.name }.collect {|e| [ "#{e.availability} - #{e.name}", e.id ] }), { :include_blank => true }) %>
+
+<%= select("first", "id", [Workshop.all.select {|w| w.session == 1}.collect {|w| "#{w.name}"}])  %>
+
 <br />
 <%= submit_tag("Submit") %>
 
