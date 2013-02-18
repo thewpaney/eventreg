@@ -4,9 +4,7 @@ class AddWorkshops < ActiveRecord::Migration
       t.string :name
       t.string :presentor
       t.string :description
-      t.string :first
-      t.string :second
-      t.string :third
+      t.integer :session
       t.string :tlimit
       t.string :slimit
       t.string :room

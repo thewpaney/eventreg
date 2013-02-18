@@ -33,18 +33,17 @@ ActiveRecord::Schema.define(:version => 20130216194658) do
     t.string "number"
     t.string "name"
     t.string "email"
+    t.string "prefix"
   end
 
   create_table "workshops", :force => true do |t|
-    t.string "name"
-    t.string "presentor"
-    t.string "description"
-    t.string "first"
-    t.string "second"
-    t.string "third"
-    t.string "tlimit"
-    t.string "slimit"
-    t.string "room"
+    t.string  "name"
+    t.string  "presentor"
+    t.string  "description"
+    t.integer "session"
+    t.string  "tlimit"
+    t.string  "slimit"
+    t.string  "room"
   end
 
 end

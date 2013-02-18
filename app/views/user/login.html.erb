@@ -10,6 +10,7 @@
   <div style="float: left; ">
     <%= image_tag "/assets/steele.png" %>
   </div>
+  
   <div class="text" style="float: left">
     <div class = "text" style="float: left; position: relative; left: 15%;" >
       <%= form_tag(:action => "login") do %>
@@ -17,22 +18,21 @@
       <label for="user_login">Username:</label><br/>
       Your Regis Login <br/>
       It's the same as the first<br/> part of your Regis email<br/><br/>
-
       <%= text_field("user", "login", :size => 20, :placeholder => "PSteele88")%>
+      
       <% if flash[:error] %>
       <p id="flash_error" style="color: #c41130;"><%= flash[:error] %></p>
       <% else %>
       <br /><br /><br />
       <% end %>
 
-      <label for="user_student_id">Student ID:</label><br/>
-    The five digit number<br/> on your student ID.<br/><br/>
-
+      <label for="user_student_id">ID Number:</label><br/>
+    The five digit number<br/> on your student/teacher ID.<br/><br/>
     <%= password_field("user","student_id",:size => 20, :placeholder => "12345" )%>
 
     <br/><br/>
     
-    <%= submit_tag("Continue") %> 
+    <%= submit_tag("Login") %> 
     
     <% end %>
   </div>

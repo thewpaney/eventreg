@@ -60,19 +60,17 @@ class UserController < ApplicationController
     elsif @event.nil?
       flash[:error] = "Please pick an option."
     else
-      if user.can_register?(@event) 
-        if @event.available?
-          if self.user.update_attributes(event: @event)
-            flash[:message] = "You're now registered for #{@event}! #{POSITIVE_ENCOURAGEMENT.sample}"
-          else
-            flash[:error] = "Couldn't register you for this event. Odd. Try again one, maybe?"
-          end
+      if @event.available?
+        if self.user.update_attributes(event: @event)
+          flash[:message] = "You're now registered for #{@event}! #{POSITIVE_ENCOURAGEMENT.sample}"
         else
-          flash[:error] = "No spots left for #{@event}! #{NEGATIVE_ENCOURAGEMENT.sample}"
+          flash[:error] = "Couldn't register you for this event. Odd. Try again one, maybe?"
         end
       else
-        flash[:error] = "You aren't allowed to register for #{@event}!"
+        flash[:error] = "No spots left for #{@event}! #{NEGATIVE_ENCOURAGEMENT.sample}"
       end
+    else
+      flash[:error] = "You aren't allowed to register for #{@event}!"
     end
   end
 
@@ -80,7 +78,7 @@ class UserController < ApplicationController
     self.authenticate! params[:user]
     if self.user?
       flash[:message]  = "You're logged in as #{user.name}."
-      redirect_to action: "ready"
+      redirect_to action: "register"
     elsif request.post?
       flash[:error] = "Login failed."
     end

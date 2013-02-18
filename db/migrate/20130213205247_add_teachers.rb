@@ -4,6 +4,7 @@ class AddTeachers < ActiveRecord::Migration
       t.string :number
       t.string :name
       t.string :email
+      t.string :prefix
     end
   end
 
