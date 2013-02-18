@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130216194658) do
+ActiveRecord::Schema.define(:version => 20130218161860) do
 
   create_table "students", :force => true do |t|
     t.string "number"
@@ -29,12 +29,28 @@ ActiveRecord::Schema.define(:version => 20130216194658) do
     t.string "advisement"
   end
 
+  create_table "students_workshops", :id => false, :force => true do |t|
+    t.integer "student_id"
+    t.integer "workshop_id"
+  end
+
+  add_index "students_workshops", ["student_id", "workshop_id"], :name => "index_students_workshops_on_student_id_and_workshop_id"
+  add_index "students_workshops", ["workshop_id", "student_id"], :name => "index_students_workshops_on_workshop_id_and_student_id"
+
   create_table "teachers", :force => true do |t|
     t.string "number"
     t.string "name"
     t.string "email"
     t.string "prefix"
   end
+
+  create_table "teachers_workshops", :id => false, :force => true do |t|
+    t.integer "teacher_id"
+    t.integer "workshop_id"
+  end
+
+  add_index "teachers_workshops", ["teacher_id", "workshop_id"], :name => "index_teachers_workshops_on_teacher_id_and_workshop_id"
+  add_index "teachers_workshops", ["workshop_id", "teacher_id"], :name => "index_teachers_workshops_on_workshop_id_and_teacher_id"
 
   create_table "workshops", :force => true do |t|
     t.string  "name"

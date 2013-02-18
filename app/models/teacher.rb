@@ -6,6 +6,7 @@ class Teacher < ActiveRecord::Base
   validates :name, presence: true
 
   validates :prefix, uniqueness: true
+  has_and_belongs_to_many :workshops
   
   def self.authenticate(number, prefix)
     where(number: number, prefix: prefix.downcase).first
