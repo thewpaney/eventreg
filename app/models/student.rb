@@ -14,6 +14,18 @@ class Student < ActiveRecord::Base
   validates :rw_teacher, presence: true
   validates :advisement, presence: true
 
+  def self.authenticate(number, prefix)
+    where(number: number, prefix: prefix.downcase).first
+  end
+
+  def self.registered
+    where('workshop_id IS NOT NULL')
+  end
+
+  def self.unregistered
+    where('workshop_id IS NULL')
+  end
+
   def to_s
     full
   end
