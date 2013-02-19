@@ -11,13 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121006235251) do
-
-  create_table "events", :force => true do |t|
-    t.string  "name"
-    t.integer "capacity"
-    t.integer "restrict"
-  end
+ActiveRecord::Schema.define(:version => 20130219063957) do
 
   create_table "sessions", :force => true do |t|
     t.string   "session_id", :null => false
@@ -29,14 +23,54 @@ ActiveRecord::Schema.define(:version => 20121006235251) do
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
-  create_table "users", :force => true do |t|
-    t.integer "student_id"
-    t.string  "first"
+  create_table "students", :force => true do |t|
+    t.integer "number"
     t.string  "last"
-    t.integer "grade"
-    t.string  "login"
+    t.string  "first"
+    t.string  "full"
+    t.string  "gender"
+    t.string  "grade"
+    t.string  "year"
     t.string  "email"
-    t.integer "event_id"
+    t.string  "prefix"
+    t.string  "rw"
+    t.string  "rw_number"
+    t.string  "rw_teacher"
+    t.string  "advisement"
+  end
+
+  create_table "students_workshops", :id => false, :force => true do |t|
+    t.integer "student_id"
+    t.integer "workshop_id"
+  end
+
+  add_index "students_workshops", ["student_id", "workshop_id"], :name => "index_students_workshops_on_student_id_and_workshop_id"
+  add_index "students_workshops", ["workshop_id", "student_id"], :name => "index_students_workshops_on_workshop_id_and_student_id"
+
+  create_table "teachers", :force => true do |t|
+    t.string "number"
+    t.string "name"
+    t.string "email"
+    t.string "prefix"
+  end
+
+  create_table "teachers_workshops", :id => false, :force => true do |t|
+    t.integer "teacher_id"
+    t.integer "workshop_id"
+  end
+
+  add_index "teachers_workshops", ["teacher_id", "workshop_id"], :name => "index_teachers_workshops_on_teacher_id_and_workshop_id"
+  add_index "teachers_workshops", ["workshop_id", "teacher_id"], :name => "index_teachers_workshops_on_workshop_id_and_teacher_id"
+
+  create_table "workshops", :force => true do |t|
+    t.string  "name"
+    t.string  "presentor"
+    t.string  "description"
+    t.integer "session"
+    t.string  "tlimit"
+    t.string  "slimit"
+    t.string  "room"
+
   end
 
 end

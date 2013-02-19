@@ -4,22 +4,37 @@
   h1 {font-size: 2.5em;}
 </style>
 
-<h1>Step 3: Register for Sites</h1>
-
-<% if user.registered? %>
-<p class="text">Currently registered for: <%= user.event.name %></p>
+<% if session[:user].done? %>
+ 
+<p class="text">Currently registered for: <%= session[:user].workshops.collect {|w| w.name}.join(", ")  %></p>
 <div class="text">
   <p><strong>You're done!</strong> You can now <%= link_to "log out", "/user/logout"%>.</p>
-  <p>For detailed information about your service site, please consult the
- <a href="http://www.regisjesuit.com/document.doc?id=14392"><strong>RJHS Service Project Handbook</strong></a><>.</p>
 </div>
+
 <% else %>
-<p class="text">You are not currently registered for a site.</p>
-<label for="id">Please choose a site:</label><br />
-<% end %>
-<%= form_tag(:controller => "user", :action => "register") do %>
-<%= select("event", "id", ["--Unregister--"].concat(Event.all.sort {|a, b|  a.name <=> b.name }.collect {|e| [ "#{e.availability} - #{e.name}", e.id ] }), { :include_blank => true }) %>
+<div style="float: left;">
+  <p class="text">You are not currently registered for your workshops.</p>
+
+  <%= form_tag(:controller => "user", :action => "register") do %>
+</br>
+First Session</br>
+<%= select(:user, :first, Workshop.all.select {|w| w.session == 1}.collect {|w| [w.name, w.id]}, {}, {:size => "6"})  %>
+</br></br>
+Second Session</br>
+<%= select(:user, :second, Workshop.all.select {|w| w.session == 2}.collect {|w| [w.name, w.id]}, {}, {:size => "6"})  %>
+</br></br>
+Third Session</br>
+<%= select(:user, :third, Workshop.all.select {|w| w.session == 3}.collect {|w| [w.name, w.id]}, {}, {:size => "6"})  %>
+</br></br>
+
 <br />
 <%= submit_tag("Submit") %>
+</div>
+<div style="float: left; width: 350px; margin: 20px;">
+  <p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc in purus quis ipsum interdum pulvinar ac quis metus. Praesent ultrices turpis ac purus tincidunt pretium. Morbi vehicula pulvinar suscipit. Cras eget dui non orci venenatis pretium eu ornare dolor. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Aenean et nulla laoreet felis ultricies venenatis. Vivamus sed magna leo.<%= params %>
+ </p>
+</div>
+<% end %>
 
 <% end %>

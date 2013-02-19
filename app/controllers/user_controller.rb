@@ -1,7 +1,5 @@
 class UserController < ApplicationController
   before_filter :login_required!, only: [:register, :ready]
-  before_filter :check_open, only: :ready
-  before_filter :get_event, only: :register
   before_filter :edit, only: :register
 
   caches_page :login
@@ -26,6 +24,7 @@ class UserController < ApplicationController
                             ":(",
                            ]
 
+<<<<<<< HEAD
   def check_open
     if user.is_time?
       redirect_to action: 'register'
@@ -38,6 +37,8 @@ class UserController < ApplicationController
     @event = !params[:event].nil? && !params[:event][:id].nil? ? Event.where(id: params[:event][:id]).first : nil
   end
 
+=======
+>>>>>>> 00404ecc7678406be3ed10e5666e7997043a8dcc
   def ready
     # silence is golden
   end
@@ -46,53 +47,33 @@ class UserController < ApplicationController
     if !user?
       flash[:error] = "You must be logged in to register."
       redirect_to action: 'login'
-    elsif !user.is_time?
-      flash[:error] = "Registration hasn't opened yet!"
-      redirect_to action: 'ready'
     end
   end
 
   def register
-    return unless request.post?
-    if params[:event][:id] == "--Unregister--"
-      self.user.update_attributes(event: nil)
-      flash[:message] = "Unregistered!"
-    elsif @event.nil?
-      flash[:error] = "Please pick an option."
-    else
-      if user.can_register?(@event) 
-        if @event.available?
-          if self.user.update_attributes(event: @event)
-            flash[:message] = "You're now registered for #{@event}! #{POSITIVE_ENCOURAGEMENT.sample}"
-          else
-            flash[:error] = "Couldn't register you for this event. Odd. Try again one, maybe?"
-          end
-        else
-          flash[:error] = "No spots left for #{@event}! #{NEGATIVE_ENCOURAGEMENT.sample}"
-        end
-      else
-        flash[:error] = "You aren't allowed to register for #{@event}!"
-      end
-    end
+    session[:user].signup params[:user][:first]
+    session[:user].signup params[:user][:second]
+    session[:user].signup params[:user][:third]    
+
   end
 
   def login
     self.authenticate! params[:user]
     if self.user?
-      flash[:message]  = "You're logged in as #{user.name}."
-      redirect_to action: "ready"
+      flash[:message]  = "You're logged in as #{session[:user].full}."
+      redirect_to action: "register"
     elsif request.post?
       flash[:error] = "Login failed."
     end
   end
 
   def logout
-    unless user?
+    if self.user?
       self.deauthenticate!
       flash[:message] = 'Successfully logged out.'
     else
       flash[:error] = "You're not currently logged in!"
     end
-    redirect_to action: 'login'
+    redirect_to action: :login
   end
 end
