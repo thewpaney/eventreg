@@ -15,10 +15,10 @@
     <div class = "text" style="float: left; position: relative; left: 15%;" >
       <%= form_tag(:action => "login") do %>
 
-      <label for="user_login">Username:</label><br/>
+      <label for="user_prefix">Username:</label><br/>
       Your Regis Login <br/>
       It's the same as the first<br/> part of your Regis email<br/><br/>
-      <%= text_field("user", "login", :size => 20, :placeholder => "PSteele88")%>
+      <%= text_field("user", "prefix", :size => 20, :placeholder => "PSteele88")%>
       
       <% if flash[:error] %>
       <p id="flash_error" style="color: #c41130;"><%= flash[:error] %></p>
@@ -26,9 +26,9 @@
       <br /><br /><br />
       <% end %>
 
-      <label for="user_student_id">ID Number:</label><br/>
+      <label for="user_number">ID Number:</label><br/>
     The five digit number<br/> on your student/teacher ID.<br/><br/>
-    <%= password_field("user","student_id",:size => 20, :placeholder => "12345" )%>
+    <%= password_field("user","number",:size => 20, :placeholder => "12345" )%>
 
     <br/><br/>
     

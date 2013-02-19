@@ -17,7 +17,7 @@ class Student < ActiveRecord::Base
   has_and_belongs_to_many :workshops
 
   def self.authenticate(number, prefix)
-    where(number: number, prefix: prefix.downcase).first
+    where(prefix: prefix.downcase, number: number).first
   end
 
   def self.registered
@@ -32,7 +32,9 @@ class Student < ActiveRecord::Base
     workshops.collect {|w| w.session}.include? 1
   end
 
-  def signup(workshop)
+
+  def signup(workshop_id)
+    workshop = Workshop.find(workshop_id)
     sessions = workshops.collect {|w| w.session}
 
     unless sessions.include? workshop.session
@@ -53,7 +55,7 @@ class Student < ActiveRecord::Base
     workshops.collect {|w| w.session}.include? 1
   end
   
-  def done
+  def done?
     self.has_third? and self.has_second? and self.has_first?
   end
 

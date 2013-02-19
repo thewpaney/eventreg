@@ -32,7 +32,8 @@ class Teacher < ActiveRecord::Base
     workshops.collect {|w| w.session}.include? 3
   end
   
-  def signup(workshop)
+  def signup(workshop_id)
+    workshop = Workshop.find(workshop_id)
     sessions = workshops.collect {|w| w.session}
 
     unless sessions.include? workshop.session
@@ -45,7 +46,7 @@ class Teacher < ActiveRecord::Base
           
   end
 
-  def done
+  def done?
     self.has_third? and self.has_second? and self.has_first?
   end
 
