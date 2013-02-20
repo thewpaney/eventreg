@@ -37,11 +37,7 @@
     </div>
     
     <% if user? %>
-<<<<<<< HEAD
-    <p id="info">Logged in as <%= user.name %>.  <%= link_to "Log out", "/user/logout" %></p>
-=======
     <p id="info">Logged in as <%= user.full %>.  <%= link_to "Log out", "/user/logout" %></p>
->>>>>>> 00404ecc7678406be3ed10e5666e7997043a8dcc
     <% else %>
     <p id="info">Not logged in.  <%= link_to "Log in", "/user/login" %></p>
     <% end %>

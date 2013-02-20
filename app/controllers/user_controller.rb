@@ -24,21 +24,11 @@ class UserController < ApplicationController
                             ":(",
                            ]
 
-<<<<<<< HEAD
-  def check_open
-    if user.is_time?
-      redirect_to action: 'register'
-    else
-      flash[:error] = "Registration is not yet open."
-    end
+  def register
+    return unless request.post?
+    session[:user].first
   end
 
-  def get_event
-    @event = !params[:event].nil? && !params[:event][:id].nil? ? Event.where(id: params[:event][:id]).first : nil
-  end
-
-=======
->>>>>>> 00404ecc7678406be3ed10e5666e7997043a8dcc
   def ready
     # silence is golden
   end
@@ -51,17 +41,18 @@ class UserController < ApplicationController
   end
 
   def register
-    session[:user].signup params[:user][:first]
-    session[:user].signup params[:user][:second]
-    session[:user].signup params[:user][:third]    
-
+    
   end
 
   def login
     self.authenticate! params[:user]
     if self.user?
-      flash[:message]  = "You're logged in as #{session[:user].full}."
-      redirect_to action: "register"
+      if self.user.class == Student
+        flash[:message]  = "You're logged in as #{session[:user].full}."
+      else
+        flash[:message]  = "You're logged in as #{session[:user].prefix}."
+      end
+        redirect_to action: "register"
     elsif request.post?
       flash[:error] = "Login failed."
     end

@@ -11,8 +11,8 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate! p
-    return if p.nil?
-    session[:user] = Student.authenticate(p[:number].to_i, p[:prefix]) or Teacher.authenticate(p[:number].to_i, p[:prefix]) or nil
+    return nil if p.nil?
+    session[:user] = (s = Student.authenticate(p[:number].to_i, p[:prefix])).nil? ? (t = Teacher.authenticate(p[:number].to_i, p[:prefix])).nil? ? nil : t : s
   end
 
   def deauthenticate!
