@@ -24,10 +24,11 @@ class UserController < ApplicationController
                             ":(",
                            ]
 
-  def ready
-    # silence is golden
+  def ajaxDescription
+    @description = Workshop.find(params[:id].to_i).description
+    render :js => @description
   end
-
+    
   def edit
     if !user?
       flash[:error] = "You must be logged in to register."

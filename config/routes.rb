@@ -16,5 +16,7 @@ ER::Application.routes.draw do
   post '/event/edit_events' => 'event#edit_events'
   post '/event/edit_users' => 'event#edit_users'
 
+  match '/user/description/:id' => 'user#ajaxDescription'
+
   root :to => 'user#login'
 end
