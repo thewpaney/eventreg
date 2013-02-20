@@ -55,7 +55,6 @@ class UserController < ApplicationController
   end
 
   def logout
-<<<<<<< HEAD
     if self.user
       self.deauthenticate!
       flash[:message] = 'Successfully logged out.'
