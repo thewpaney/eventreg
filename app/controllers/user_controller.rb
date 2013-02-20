@@ -36,11 +36,11 @@ class UserController < ApplicationController
   end
 
   def register
-    session[:user].signup params[:user][:first]
-    session[:user].signup params[:user][:second]
-    session[:user].signup params[:user][:third]    
-
-    
+    if request.post?
+      session[:user].signup params[:user][:first]
+      session[:user].signup params[:user][:second]
+      session[:user].signup params[:user][:third]
+    end
   end
 
   def login
@@ -57,9 +57,10 @@ class UserController < ApplicationController
     if self.user?
       self.deauthenticate!
       flash[:message] = 'Successfully logged out.'
+      render :login    
     else
       flash[:error] = "You're not currently logged in!"
+      render :login          
     end
-    redirect_to action: :login
   end
 end
