@@ -25,8 +25,8 @@ class UserController < ApplicationController
                            ]
 
   def ajaxDescription
-    @description = Workshop.find(params[:id].to_i)
-    render :json => @description
+    @workshop = Workshop.find(params[:id].to_i)
+    render :json => @workshop
   end
     
   def edit
@@ -55,7 +55,6 @@ class UserController < ApplicationController
   end
 
   def logout
-<<<<<<< HEAD
     if self.user
       self.deauthenticate!
       flash[:message] = 'Successfully logged out.'

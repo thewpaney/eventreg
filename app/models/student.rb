@@ -40,6 +40,8 @@ class Student < ActiveRecord::Base
     unless sessions.include? workshop.session
       workshop.students << self
       workshops << workshop
+      workshop.staken += 1
+      workshop.save!
       return true
     else
       return false
