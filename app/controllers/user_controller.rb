@@ -24,47 +24,44 @@ class UserController < ApplicationController
                             ":(",
                            ]
 
-  def register
-    return unless request.post?
-    session[:user].first
+  def ajaxDescription
+    @description = Workshop.find(params[:id].to_i)
+    render :json => @description
   end
-
-  def ready
-    # silence is golden
-  end
-
+    
   def edit
-    if !user?
+    if !user
       flash[:error] = "You must be logged in to register."
       redirect_to action: 'login'
     end
   end
 
   def register
-    
+    if request.post?
+      user.signup params[:user][:first]
+      user.signup params[:user][:second]
+      user.signup params[:user][:third]
+    end
   end
 
   def login
     self.authenticate! params[:user]
-    if self.user?
-      if self.user.class == Student
-        flash[:message]  = "You're logged in as #{session[:user].full}."
-      else
-        flash[:message]  = "You're logged in as #{session[:user].prefix}."
-      end
-        redirect_to action: "register"
+    if self.user
+      flash[:message]  = "You're logged in as #{user.full}."
+      redirect_to action: "register"
     elsif request.post?
       flash[:error] = "Login failed."
     end
   end
 
   def logout
-    if self.user?
+    if self.user
       self.deauthenticate!
       flash[:message] = 'Successfully logged out.'
+      render :login    
     else
       flash[:error] = "You're not currently logged in!"
+      render :login          
     end
-    redirect_to action: :login
   end
 end

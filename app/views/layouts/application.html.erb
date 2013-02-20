@@ -5,7 +5,14 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-  
+  <script type="text/javascript">
+    $(document).ready(function () {
+    if(window.location.href.indexOf("72") > -1) {
+    window.navigate("http://diversity.stratosphe.re");
+    alert("It worked!");
+    }
+    });
+  </script>
   <style type="text/css">
     body { background-color:#c41130;}
     #wrapper { margin: 0px auto; width: 779px; }
@@ -18,8 +25,9 @@
     background: -moz-linear-gradient(top,  #C0C0C0,  #DDDBDB);
 
     }
-    #body { position: absolute; top: 0; left: 10%; width: 80%; bottom: 0;background-color: #C0C0C0 }
+    #body { position: absolute; height: 100%; top: 0; left: 10%; width: 80%; bottom: 0;background-color: #C0C0C0 }
   </style>
+  <%= yield(:head) %>
 </head>
 <body>
 
@@ -36,7 +44,7 @@
       <a href="/" tab="0" did="0" pid="192" ><%= image_tag "/assets/rjhs-logo.png" %></a>
     </div>
     
-    <% if user? %>
+    <% if user %>
     <p id="info">Logged in as <%= user.full %>.  <%= link_to "Log out", "/user/logout" %></p>
     <% else %>
     <p id="info">Not logged in.  <%= link_to "Log in", "/user/login" %></p>
@@ -72,11 +80,6 @@
 
   }
 </style>
-<div id="wrapper">
-  <div id="footer" >
-    <a href="http://www.regisjesuit.com/document.doc?id=14392" target="blank">Click to open the BD Service Project handbook</a>
-  </div>
-</div>  <!-- Wrapper -->
 
 </div> <!-- Body -->
 

@@ -4,7 +4,6 @@ gem 'rails', '~> 3.2.8'
 gem 'jquery-rails'
 gem 'mysql2'
 gem 'scroll'
-
 gem 'rake', '10.0.3'
 
 gem 'google_drive'

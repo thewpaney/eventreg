@@ -3,7 +3,7 @@ class AddWorkshops < ActiveRecord::Migration
     create_table :workshops do |t|
       t.string :name
       t.string :presentor
-      t.string :description
+      t.text :description
       t.integer :session
       t.string :tlimit
       t.string :slimit

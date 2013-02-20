@@ -11,7 +11,20 @@ class Workshop < ActiveRecord::Base
   has_and_belongs_to_many :students
   has_and_belongs_to_many :teachers
 
+  def self.firsts
+    self.where(:session => 1)
+  end
+
+  def self.seconds
+    self.where(:session => 2)
+  end
+    
+  def self.thirds
+    self.where(:session => 3)
+  end
+      
   def to_s
+      
     name
   end
 end
