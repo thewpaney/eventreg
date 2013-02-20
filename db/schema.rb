@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(:version => 20130219063957) do
   create_table "workshops", :force => true do |t|
     t.string  "name"
     t.string  "presentor"
-    t.string  "description"
+    t.text    "description"
     t.integer "session"
     t.string  "tlimit"
     t.string  "slimit"

@@ -30,7 +30,7 @@ class UserController < ApplicationController
   end
     
   def edit
-    if !user?
+    if !user
       flash[:error] = "You must be logged in to register."
       redirect_to action: 'login'
     end
@@ -38,16 +38,16 @@ class UserController < ApplicationController
 
   def register
     if request.post?
-      session[:user].signup params[:user][:first]
-      session[:user].signup params[:user][:second]
-      session[:user].signup params[:user][:third]
+      user.signup params[:user][:first]
+      user.signup params[:user][:second]
+      user.signup params[:user][:third]
     end
   end
 
   def login
     self.authenticate! params[:user]
-    if self.user?
-      flash[:message]  = "You're logged in as #{session[:user].full}."
+    if self.user
+      flash[:message]  = "You're logged in as #{user.full}."
       redirect_to action: "register"
     elsif request.post?
       flash[:error] = "Login failed."
@@ -55,7 +55,7 @@ class UserController < ApplicationController
   end
 
   def logout
-    if self.user?
+    if self.user
       self.deauthenticate!
       flash[:message] = 'Successfully logged out.'
       render :login    

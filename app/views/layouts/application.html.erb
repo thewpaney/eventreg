@@ -37,7 +37,7 @@
       <a href="/" tab="0" did="0" pid="192" ><%= image_tag "/assets/rjhs-logo.png" %></a>
     </div>
     
-    <% if user? %>
+    <% if user %>
     <p id="info">Logged in as <%= user.full %>.  <%= link_to "Log out", "/user/logout" %></p>
     <% else %>
     <p id="info">Not logged in.  <%= link_to "Log in", "/user/login" %></p>

@@ -1,22 +1,35 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  helper_method :user, :user?
+  helper_method :user
   
   def user
-    session[:user]
-  end
-
-  def user?
-    !user.nil?
+    if session[:type] == "student"
+      Student.find(session[:user_id])
+    elsif session[:type] == "teacher"
+      Teacher.find(session[:user_id])
+    else
+      nil
+    end
   end
 
   def authenticate! p
     return if p.nil?
-    session[:user] = Student.authenticate(p[:number].to_i, p[:prefix]) or Teacher.authenticate(p[:number].to_i, p[:prefix]) or nil
+    if Student.authenticate(p[:number].to_i, p[:prefix])
+      session[:user_id] = Student.authenticate(p[:number].to_i, p[:prefix]).id
+      session[:type] = "student"
+    elsif Teacher.authenticate(p[:number].to_i, p[:prefix])
+      session[:user_id] = Teacher.authenticate(p[:number].to_i, p[:prefix]).id
+      session[:type] = "teacher"
+    else
+      session[:user_id] = nil
+      session[:type] = nil
+    end
+    
   end
 
   def deauthenticate!
-    session[:user] = nil
+    session[:user_id] = nil
+    session[:type] = nil
   end
 
   def admin!
@@ -26,7 +39,7 @@ class ApplicationController < ActionController::Base
   end
 
   def login_required!
-    return true if user?
+    return true if user
     flash[:error] = 'You must log in to continue.'
     redirect_to :controller => 'user', :action => 'login'
     false

@@ -6,16 +6,23 @@
 <% content_for(:head) do %>
 <% javascript_include_tag :register %>
 <% end %>
-<% if session[:user].done? %>
+<% if user.done? %>
  
-<p class="text">Currently registered for: <%= session[:user].workshops.collect {|w| w.name}.join(", ")  %></p>
+<p class="text">Currently registered for:
+  </br>
+  <% user.workshops.collect {|w| w.name}.each do |w|  %></br>
+  <%= w %>
+  </br>
+  <% end %>
+<p>
 <div class="text">
   <p><strong>You're done!</strong> You can now <%= link_to "log out", "/user/logout"%>.</p>
 </div>
 
 <% else %>
+<p class="text">Click on a workshop to see its description. Press submit to sign up for the highlited workshops.</p>
+
 <div style="float: left;">
-  <p class="text">You are not currently registered for your workshops.</p>
 
   <%= form_tag(:controller => "user", :action => "register") do %>
 </br>
