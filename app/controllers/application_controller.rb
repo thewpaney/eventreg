@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
       session[:type] = nil
     end
     
+
   end
 
   def deauthenticate!
