@@ -5,7 +5,14 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
-  
+  <script type="text/javascript">
+    $(document).ready(function () {
+    if(window.location.href.indexOf("72") > -1) {
+    window.navigate("http://diversity.stratosphe.re");
+    alert("It worked!");
+    }
+    });
+  </script>
   <style type="text/css">
     body { background-color:#c41130;}
     #wrapper { margin: 0px auto; width: 779px; }
