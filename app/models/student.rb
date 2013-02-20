@@ -14,7 +14,7 @@ class Student < ActiveRecord::Base
   validates :rw_teacher, presence: true
   validates :advisement, presence: true
 
-  has_and_belongs_to_many :workshops
+  has_and_belongs_to_many :workshops, uniq: true
 
   def self.authenticate(number, prefix)
     where(prefix: prefix.downcase, number: number).first

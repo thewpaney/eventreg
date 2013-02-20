@@ -9,12 +9,12 @@
 <% if user.done? %>
  
 <p class="text">Currently registered for:
-  </br>
-  <% user.workshops.collect {|w| w.name}.each do |w|  %></br>
-  <%= w %>
-  </br>
+  <br />
+  <% user.workshops.collect {|w| w.name}.each do |n|  %><br />
+  <%= n %>
+  <br />
   <% end %>
-<p>
+</p>
 <div class="text">
   <p><strong>You're done!</strong> You can now <%= link_to "log out", "/user/logout"%>.</p>
 </div>
@@ -42,7 +42,7 @@ Third Session</br>
 
 <div style="float: left; width: 350px; margin: 20px;">
 <h3 id="presentor"></h3>
-<div id="description">
+<div id="description" style="font-size: 0.9em;">
 </div>
 </div>
 <% end %>
