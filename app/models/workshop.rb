@@ -22,7 +22,7 @@ class Workshop < ActiveRecord::Base
   def self.thirds
     self.where(:session => 3)
   end
-
+      
   def to_s
       
     name

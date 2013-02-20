@@ -25,8 +25,8 @@ class UserController < ApplicationController
                            ]
 
   def ajaxDescription
-    @description = Workshop.find(params[:id].to_i).description
-    render :js => @description
+    @description = Workshop.find(params[:id].to_i)
+    render :json => @description
   end
     
   def edit
