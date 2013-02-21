@@ -8,6 +8,9 @@ class AddWorkshops < ActiveRecord::Migration
       t.string :tlimit
       t.string :slimit
       t.string :room
+      t.integer :ttaken
+      t.integer :staken
+      t.integer :percentage
     end
   end
 

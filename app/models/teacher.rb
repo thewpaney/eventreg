@@ -39,6 +39,8 @@ class Teacher < ActiveRecord::Base
     unless sessions.include? workshop.session
       workshop.teachers << self
       workshops << workshop
+      workshop.ttaken += 1
+      workshop.save!
       return true
     else
       return false

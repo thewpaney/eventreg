@@ -11,7 +11,7 @@ $(document).ready(function(){ // When the document is ready
 	    $("#description").html( // then replaces description's html with
 		response.description); // the description
 	    $("#presentor").html(
-		response.presentor + ": " + response.slimit + " students, " + response.tlimit + " teachers");
+		response.presentor + ": </br>" + response.staken + "/" + response.slimit + " spots taken");
 	    console.log(response);
 	}
     )
