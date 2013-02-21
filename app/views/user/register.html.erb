@@ -8,10 +8,12 @@
 <% end %>
 <% if user.done? %>
  
-<p class="text">Currently registered for:
+<p class="text"><h3>Currently registered for:</h3>
   <br />
   <% user.workshops.collect {|w| w.name}.each do |n|  %><br />
-  <%= n %>
+  <strong><%= n.name %> - <%= n.room %></strong><br />
+  <span style="font-size: .9em;"><%= n.description %></span>
+  <br />
   <br />
   <% end %>
 </p>
