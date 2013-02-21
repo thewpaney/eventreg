@@ -27,9 +27,10 @@ workshops.rows[1..-1].each do |row|
       w.tlimit = row[8]
       w.staken = 0
       w.ttaken = 0
+      w.percentage = row[9].blank? ? 50 : row[9].to_i
       w.save!
-     rescue
-       puts "Couldn't make workshop with row #{workshops.rows.index(row) + 1}: " << row.to_s
+#     rescue
+#       puts "Couldn't make workshop with row #{workshops.rows.index(row) + 1}: " << row.to_s
     end
   end
   if row[4] == "x"
@@ -44,9 +45,10 @@ workshops.rows[1..-1].each do |row|
       w.tlimit = row[8]
       w.staken = 0
       w.ttaken = 0
+      w.percentage = row[9].blank? ? 50 : row[9].to_i
       w.save!
-    rescue
-      puts "Couldn't make workshop with row #{workshops.rows.index(row) + 1}: " << row.to_s
+#    rescue
+#      puts "Couldn't make workshop with row #{workshops.rows.index(row) + 1}: " << row.to_s
     end
   end
   if row[5] == "x"
@@ -61,9 +63,10 @@ workshops.rows[1..-1].each do |row|
       w.tlimit = row[8]
       w.staken = 0
       w.ttaken = 0
+      w.percentage = row[9].blank? ? 50 : row[9].to_i
       w.save!
-    rescue
-      puts "Couldn't make workshop with row #{workshops.rows.index(row) + 1}: " << row.to_s
+#    rescue
+#      puts "Couldn't make workshop with row #{workshops.rows.index(row) + 1}: " << row.to_s
     end
   end
 end
@@ -91,8 +94,8 @@ students.rows[1..-1].each do |row|
     s.rw_teacher = row[15]
     s.advisement = row[22]
     s.save!
-  rescue
-    puts "Couldn't make student with row #{students.rows.index(row) + 1}: " << row.to_s
+#  rescue
+#    puts "Couldn't make student with row #{students.rows.index(row) + 1}: " << row.to_s
   end
 end
 puts "Seeded students"
@@ -110,8 +113,8 @@ teachers.rows[1..-1].each do |row|
     t.prefix = row[6].split("@")[0]
     t.email = row[6]
     t.save!
-  rescue
-    puts "Couldn't make teacher with row #{teachers.rows.index(row) + 1}: " << row.to_s
+#  rescue
+#    puts "Couldn't make teacher with row #{teachers.rows.index(row) + 1}: " << row.to_s
   end
 end
 puts "Seeded teachers"

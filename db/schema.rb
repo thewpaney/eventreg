@@ -72,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20130219063957) do
     t.string  "room"
     t.integer "ttaken"
     t.integer "staken"
+    t.integer "percentage"
   end
 
 end

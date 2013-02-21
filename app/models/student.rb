@@ -36,8 +36,8 @@ class Student < ActiveRecord::Base
   def signup(workshop_id)
     workshop = Workshop.find(workshop_id)
     sessions = workshops.collect {|w| w.session}
-
-    unless sessions.include? workshop.session
+    
+    if workshop.canSignUp self
       workshop.students << self
       workshops << workshop
       workshop.staken += 1
