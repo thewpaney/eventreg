@@ -7,6 +7,7 @@ ER::Application.routes.draw do
   post '/user/register' => 'user#register'
   post '/user/login' => 'user#login'
   post '/user/edit' => 'user#update'
+  get '/admin' => 'admin#review'
 
   get '/event/admin' => 'event#admin'
   get '/event/review' => 'event#review'

@@ -132,7 +132,7 @@ DEPENDENCIES
   google_drive
   jquery-rails
   mysql2
-  rails (~> 3.2.8)
+  rails (~> 3.2.12)
   rake (= 10.0.3)
   sass-rails (~> 3.2.3)
   scroll

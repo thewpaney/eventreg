@@ -54,4 +54,11 @@ class ApplicationController < ActionController::Base
       redirect_to :controller => 'user', :action => 'welcome'
     end
   end
+
+  def admin!
+    authenticate_or_request_with_http_basic "Provide credentials to continue." do |username, password|
+      username == "admin" && password == "ulysses2013"
+    end
+  end
+  
 end

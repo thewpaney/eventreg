@@ -3,7 +3,7 @@
   .text label{font-size: 1.5em;}
   h1 {font-size: 2.2em;}
 </style>
-  <h1 class="text">Step 1: Log Ins!</h1>
+  <h1 class="text">Step 1: Log In</h1>
 
   <div style="float: left; ">
     <%= image_tag "/assets/steele.png" %>
@@ -14,8 +14,8 @@
       <%= form_tag(:action => "login") do %>
 
       <label for="user_prefix">Username:</label><br/>
-      Your Regis Login <br/>
-      It's the same as the first<br/> part of your Regis email<br/><br/>
+      Your Regis Login Prefix<br/>
+      The same as the first<br/> part of your Regis email.<br/><br/>
       <%= text_field("user", "prefix", :size => 20, :placeholder => "PSteele88")%>
       
       <% if flash[:error] %>
@@ -25,7 +25,7 @@
       <% end %>
 
       <label for="user_number">ID Number:</label><br/>
-    The five digit number<br/> on your student/teacher ID.<br/><br/>
+    The 4 or 5 digit number<br/> on your student/teacher ID.<br/><br/>
     <%= password_field("user","number",:size => 20, :placeholder => "12345" )%>
 
     <br/><br/>

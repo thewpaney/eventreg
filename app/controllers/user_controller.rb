@@ -45,6 +45,10 @@ class UserController < ApplicationController
   end
 
   def login
+    if request.post?
+      flash[:error] = "Registration has not yet opened!"
+      return
+    end
     self.authenticate! params[:user]
     if self.user
       flash[:message]  = "You're logged in as #{user.full}."

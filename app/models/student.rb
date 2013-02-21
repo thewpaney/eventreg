@@ -16,6 +16,10 @@ class Student < ActiveRecord::Base
 
   has_and_belongs_to_many :workshops, uniq: true
 
+  def self.count_registered
+    return where()
+  end
+
   def self.authenticate(number, prefix)
     where(prefix: prefix.downcase, number: number).first
   end
