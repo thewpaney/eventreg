@@ -42,9 +42,29 @@ class UserController < ApplicationController
         flash[:error] = "Two of your workshops were the same thing.  Please diversify and try again."
         return
       end
+      if self.user.nil?
+        flash[:message] = "You are nil!  Congratulations!  You broke the system!"
+        return
+      end
+      unless Workshop.find(params[:user][:first]).canSignUp(self.user)
+        flash[:error] = "Your first workshop is full!"
+        return
+      end
+
+      unless Workshop.find(params[:user][:second]).canSignUp(self.user)
+        flash[:error] = "Your second workshop is full!"
+        return
+      end
+      
+      unless Workshop.find(params[:user][:third]).canSignUp(self.user)
+        flash[:error] = "Your third workshop is full!"
+        return
+      end
+
       user.signup params[:user][:first]
       user.signup params[:user][:second]
       user.signup params[:user][:third]
+      
     end
   end
 

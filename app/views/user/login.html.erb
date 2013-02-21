@@ -9,7 +9,7 @@
     <%= image_tag "/assets/steele.png" %>
   </div>
   
-  <div class="text" style="float: left">
+<div class="text" style="float: left">
     <div class = "text" style="float: left; position: relative; left: 15%;" >
       <%= form_tag(:action => "login") do %>
 
@@ -17,7 +17,7 @@
       Your Regis Login Prefix<br/>
       The same as the first<br/> part of your Regis email.<br/><br/>
       <%= text_field("user", "prefix", :size => 20, :placeholder => "PSteele88")%>
-      
+
       <% if flash[:error] %>
       <p id="flash_error" style="color: #c41130;"><%= flash[:error] %></p>
       <% else %>
@@ -29,9 +29,10 @@
     <%= password_field("user","number",:size => 20, :placeholder => "12345" )%>
 
     <br/><br/>
-    
-    <%= submit_tag("Login") %> 
-    
+
+    <%= submit_tag("Login") %>
+
     <% end %>
+  
   </div>
 </div>
