@@ -9,8 +9,7 @@
 <% if user.done? %>
  
 <p class="text"><h3>Currently registered for:</h3>
-  <br />
-  <% user.workshops.collect {|w| w.name}.each do |n|  %><br />
+  <% user.workshops.each do |n|  %><br />
   <strong><%= n.name %> - <%= n.room %></strong><br />
   <span style="font-size: .9em;"><%= n.description %></span>
   <br />
@@ -18,7 +17,7 @@
   <% end %>
 </p>
 <div class="text">
-  <p><strong>You're done!</strong> You can now <%= link_to "log out", "/user/logout"%>.</p>
+  <p><strong>You're done!</strong> You can now <%= link_to "log out", "/user/logout"%>.<br />If you have any questions or concerns, feel free to contact your diversity director.</p>
 </div>
 
 <% else %>
