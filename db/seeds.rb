@@ -27,7 +27,7 @@ workshops.rows[1..-1].each do |row|
       w.tlimit = row[8]
       w.staken = 0
       w.ttaken = 0
-      w.percentage = row[9].blank? ? 50 : row[9].to_i
+      w.percentage = row[9].blank? ? 66 : row[9].to_i
       w.save!
 #     rescue
 #       puts "Couldn't make workshop with row #{workshops.rows.index(row) + 1}: " << row.to_s
@@ -45,7 +45,7 @@ workshops.rows[1..-1].each do |row|
       w.tlimit = row[8]
       w.staken = 0
       w.ttaken = 0
-      w.percentage = row[9].blank? ? 50 : row[9].to_i
+      w.percentage = row[9].blank? ? 66 : row[9].to_i
       w.save!
 #    rescue
 #      puts "Couldn't make workshop with row #{workshops.rows.index(row) + 1}: " << row.to_s
@@ -63,7 +63,7 @@ workshops.rows[1..-1].each do |row|
       w.tlimit = row[8]
       w.staken = 0
       w.ttaken = 0
-      w.percentage = row[9].blank? ? 50 : row[9].to_i
+      w.percentage = row[9].blank? ? 66 : row[9].to_i
       w.save!
 #    rescue
 #      puts "Couldn't make workshop with row #{workshops.rows.index(row) + 1}: " << row.to_s
