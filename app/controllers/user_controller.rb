@@ -38,17 +38,32 @@ class UserController < ApplicationController
 
   def register
     if request.post?
+      if Workshop.where(id: params[:user][:first]).first.name == Workshop.where(id: params[:user][:second]).first.name or Workshop.where(id: params[:user][:first]).first.name == Workshop.where(id: params[:user][:third]).first.name or Workshop.where(id: params[:user][:second]).first.name == Workshop.where(id: params[:user][:third]).first.name
+        flash[:error] = "Two of your workshops were the same thing.  Please diversify and try again."
+        return
+      end
+      
+      unless Workshop.find(params[:user][:first]).canSignUp
+        flash[:error] = "Your first workshop is full!"
+      end
+
+      unless Workshop.find(params[:user][:second]).canSignUp
+        flash[:error] = "Your second workshop is full!"
+      end
+
+      unless Workshop.find(params[:user][:third]).canSignUp
+        flash[:error] = "Your third workshop is full!"
+      end
+
       user.signup params[:user][:first]
       user.signup params[:user][:second]
       user.signup params[:user][:third]
+
+      end
     end
   end
 
   def login
-    if request.post?
-      flash[:error] = "Registration has not yet opened!"
-      return
-    end
     self.authenticate! params[:user]
     if self.user
       flash[:message]  = "You're logged in as #{user.full}."

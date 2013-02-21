@@ -54,11 +54,11 @@ class Student < ActiveRecord::Base
   end
 
   def has_second?
-    workshops.collect {|w| w.session}.include? 1
+    workshops.collect {|w| w.session}.include? 2
   end
 
   def has_third?
-    workshops.collect {|w| w.session}.include? 1
+    workshops.collect {|w| w.session}.include? 3
   end
   
   def done?

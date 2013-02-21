@@ -27,7 +27,6 @@
 <div style="float: left;">
 
   <%= form_tag(:controller => "user", :action => "register") do %>
-</br>
 First Session</br>
 <%= select(:user, :first, Workshop.firsts.collect {|w| [w.name, w.id]}, {}, {:size => "6"})  %>
 </br></br>
@@ -37,9 +36,9 @@ Second Session</br>
 Third Session</br>
 <%= select(:user, :third, Workshop.thirds.collect {|w| [w.name, w.id]}, {}, {:size => "6"})  %>
 </br></br>
-
+<%= submit_tag "Submit" %>
 <br />
-<%= submit_tag("Register") %>
+
 </div>
 
 <div style="float: left; width: 350px; margin: 20px;">
