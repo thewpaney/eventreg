@@ -43,23 +43,22 @@ class UserController < ApplicationController
         return
       end
       
-      unless Workshop.find(params[:user][:first]).canSignUp
+      unless Workshop.find(params[:user][:first]).canSignUp(self.user)
         flash[:error] = "Your first workshop is full!"
       end
 
-      unless Workshop.find(params[:user][:second]).canSignUp
+      unless Workshop.find(params[:user][:second]).canSignUp(self.user)
         flash[:error] = "Your second workshop is full!"
       end
 
-      unless Workshop.find(params[:user][:third]).canSignUp
+      unless Workshop.find(params[:user][:third]).canSignUp(self.user)
         flash[:error] = "Your third workshop is full!"
       end
 
       user.signup params[:user][:first]
       user.signup params[:user][:second]
       user.signup params[:user][:third]
-
-      end
+      
     end
   end
 
