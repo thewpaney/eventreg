@@ -19,5 +19,5 @@ ER::Application.routes.draw do
 
   match '/user/description/:id' => 'user#ajaxDescription'
 
-  root :to => 'user#login'
+  root :to => 'user#table'
 end

@@ -1,8 +1,6 @@
 class Student < ActiveRecord::Base
-  attr_accessible :number, :last, :first, :full, :gender, :grade, :year, :email, :prefix, :rw, :rw_number, :rw_teacher, :advisement
+  attr_accessible :number, :full, :gender, :grade, :year, :email, :prefix, :rw, :rw_number, :rw_teacher, :advisement
   validates :number, presence: true
-  validates :last, presence: true
-  validates :first, presence: true
   validates :full, presence: true
   validates :gender, presence: true
   validates :grade, presence: true
@@ -24,6 +22,13 @@ class Student < ActiveRecord::Base
     where(prefix: prefix.downcase, number: number).first
   end
 
+  def self.boys
+    where("gender IS 'BD'")
+  end
+  def self.girls
+    where("gender IS 'GD'")
+  end
+  
   def self.registered
     where('workshop_id IS NOT NULL')
   end
@@ -32,35 +37,49 @@ class Student < ActiveRecord::Base
     where('workshop_id IS NULL')
   end
 
-  def has_first?
-    workshops.collect {|w| w.session}.include? 1
-  end
-
-
   def signup(workshop_id)
     workshop = Workshop.find(workshop_id)
     sessions = workshops.collect {|w| w.session}
     
-    if workshop.canSignUp self
+    unless (whynot = workshop.cantSignUp self)
       workshop.students << self
       workshops << workshop
       workshop.staken += 1
       workshop.save!
-      return true
+      return "Signed up"
     else
-      return false
+      return whynot
     end
-          
+  end
+
+<<<<<<< HEAD
+  def has_second?
+    workshops.collect {|w| w.session}.include? 2
+=======
+  def has_first?
+    workshops.collect {|w| w.session}.include? 1
+>>>>>>> 4cc76c041b8a7cbda1dfb0ef6f62f7082110c868
+  end
+
+  def first
+    workshops.select {|w| w.session == 1}[0]
   end
 
   def has_second?
     workshops.collect {|w| w.session}.include? 2
   end
 
+  def second
+    workshops.select {|w| w.session == 2}[0]
+  end
+
   def has_third?
     workshops.collect {|w| w.session}.include? 3
   end
   
+  def third
+    workshops.select {|w| w.session == 3}[0]
+  end
   def done?
     self.has_third? and self.has_second? and self.has_first?
   end

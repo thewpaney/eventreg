@@ -2,8 +2,6 @@ class AddStudents < ActiveRecord::Migration
   def up
     create_table :students do |t|
       t.integer :number
-      t.string :last
-      t.string :first
       t.string :full
       t.string :gender
       t.string :grade
