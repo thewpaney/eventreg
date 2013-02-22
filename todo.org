@@ -28,11 +28,17 @@ we need to talk with the tech department.
 <integ3r> both running the Rails app and MySQL.
 <integ3r> so, service.regisjesuit.com => eventreg.stratosphe.re => /(winterhold|whiterun)/
 <integ3r> There's no redirect
-* Hotfix [50%]
+* Hotfix [16%]
 ** TODO Gender limits [0%]
 *** Method in workshop that checks user signup stuff?
 ** DONE Way to display inline descriptions
 *** Separate page?
 *** "Step two"
 *** On the right side of the register screen?
-** 
+** TODO More descriptive registration results page
+** TODO Teacher registration limits
+** TODO No signing up for the same thing twice
+** TODO Admin dashboard [0%]
+*** People who aren't signed up
+**** Download a list of thems
+*** 
