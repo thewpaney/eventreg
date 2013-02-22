@@ -4,31 +4,11 @@ class UserController < ApplicationController
 
   caches_page :login
 
-  POSITIVE_ENCOURAGEMENT = [
-                            "That's all you have to do!",
-                            "You're done!",
-                            "That's it! Seriously!",
-                            "Congratulations!",
-                            "You're registered!",
-                            "You got in!",
-                            "It'll be a blast!",
-                            "Oppa Regis style!"
-                           ]
-
-  NEGATIVE_ENCOURAGEMENT = [
-                            "The one that got away!",
-                            "Aww man!",
-                            "Hope you had a backup!",
-                            "Try again!",
-                            "Nope!",
-                            ":(",
-                           ]
-
   def ajaxDescription
     @workshop = Workshop.find(params[:id].to_i)
     render :json => @workshop
   end
-    
+
   def edit
     if !user
       flash[:error] = "You must be logged in to register."
@@ -38,6 +18,7 @@ class UserController < ApplicationController
 
   def register
     if request.post?
+<<<<<<< HEAD
       if Workshop.where(id: params[:user][:first]).first.name == Workshop.where(id: params[:user][:second]).first.name or Workshop.where(id: params[:user][:first]).first.name == Workshop.where(id: params[:user][:third]).first.name or Workshop.where(id: params[:user][:second]).first.name == Workshop.where(id: params[:user][:third]).first.name
         flash[:error] = "Two of your workshops were the same thing.  Please diversify and try again."
         return
@@ -65,6 +46,30 @@ class UserController < ApplicationController
       user.signup params[:user][:second]
       user.signup params[:user][:third]
       
+=======
+      if params[:user][:first]
+        unless (whynot = user.signup(params[:user][:first])) == "Signed up"
+          workshop = Workshop.find(params[:user][:first])
+          flash[:error] = "Could not sign up for Session #{workshop.session}:\n #{whynot} "
+        end
+      end
+
+      if params[:user][:second]
+        unless (whynot = user.signup(params[:user][:second])) == "Signed up"
+          workshop = Workshop.find(params[:user][:second])
+          flash[:error] = "Could not sign up for Session #{workshop.session}:\n #{whynot} "
+        end
+      end
+
+      if params[:user][:third]
+        unless (whynot = user.signup(params[:user][:third])) == "Signed up"
+          workshop = Workshop.find(params[:user][:third])
+          flash[:error] = "Could not sign up for Session #{workshop.session}:\n #{whynot} "
+        end
+      end
+    else
+      params[:user] = {}
+>>>>>>> 4cc76c041b8a7cbda1dfb0ef6f62f7082110c868
     end
   end
 
@@ -82,10 +87,10 @@ class UserController < ApplicationController
     if self.user
       self.deauthenticate!
       flash[:message] = 'Successfully logged out.'
-      render :login    
+      redirect_to "/user/login"
     else
       flash[:error] = "You're not currently logged in!"
-      render :login          
+      redirect_to "/user/login"   
     end
   end
 end

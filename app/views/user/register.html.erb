@@ -2,41 +2,85 @@
   .text{font-family: Verdana, Geneva, sans-serif;}
   .text label{font-size: 1.5em;}
   h1 {font-size: 2.5em;}
+  td {
+    border-bottom: dashed;
+    padding: 5px;
+  }
+  table {padding:10px;}
 </style>
+
 <% content_for(:head) do %>
 <% javascript_include_tag :register %>
 <% end %>
+
 <% if user.done? %>
- 
-<p class="text"><h3>Currently registered for:</h3>
-  <% user.workshops.each do |n|  %><br />
-  <strong><%= n.name %> - <%= n.room %></strong><br />
-  <span style="font-size: .9em;"><%= n.description %></span>
+<p class="text">You are registered for:
   <br />
-  <br />
-  <% end %>
+  <table>
+    <tr>
+      <td> Session </td>
+      <td> Name </td>
+      <td> Presentor </td>
+      <td> Description </td>
+      <td> Location </td>
+      <% user.workshops.each do |w|  %>
+    <tr>
+      <td> <%= w.session %> </td>
+      <td> <%= w.name %> </td>
+      <td> <%= w.presentor %> </td>
+      <td> <%= w.description %> </td>
+      <td> <%= w.room %> </td>      
+    </tr>
+    <% end %>
+  </table>
 </p>
-<div class="text">
-  <p><strong>You're done!</strong> You can now <%= link_to "log out", "/user/logout"%>.<br />If you have any questions or concerns, feel free to contact your diversity director.</p>
-</div>
+
+<p class="text">Click on a workshop to see its description. Press submit to sign up for the highlited workshops.</p>
+<div style="float: left;">
+  <%= form_tag(:controller => "user", :action => "register") do %>
+</br>
+
+<% if user.has_first? %>
+
+<span style="color: green;">First Session: <%= (user.first.name + " &#10003;").html_safe %> </span> </br>
+<%= select(:user, :first, Workshop.firsts.collect {|w| [w.name, w.id]}, {}, {:size => "6", :disabled => "true", :selected => params[:user][:first]}) %>
+</br></br>
 
 <% else %>
-<h1>Step Two: Register for Workshops</h1>
-<p class="text">Click on a workshop to see its description. Press submit to sign up for the highlited workshops.</p>
 
-<div style="float: left;">
-
-  <%= form_tag(:controller => "user", :action => "register") do %>
 First Session</br>
-<%= select(:user, :first, Workshop.firsts.collect {|w| [w.name, w.id]}, {}, {:size => "6"})  %>
+<%= select(:user, :first, options_from_collection_for_select(Workshop.firsts, :id, :name, {:disabled => Workshop.all.select {|w| w.cantSignUp user}.collect {|w| w.id}}), {}, {:size => "6"}) %>
 </br></br>
+
+<% end %>
+
+<% if user.has_second? %>
+
+<span style="color: green;">Second Session: <%= (user.second.name + " &#10003;").html_safe %></span> </br>
+<%= select(:user, :second, Workshop.seconds.collect {|w| [w.name, w.id]}, {}, {:size => "6", :disabled => "true", :selected => params[:user][:second]}) %>
+</br></br>
+
+<% else %>
+
 Second Session</br>
-<%= select(:user, :second, Workshop.seconds.collect {|w| [w.name, w.id]}, {}, {:size => "6"})  %>
+<%= select(:user, :second, options_from_collection_for_select(Workshop.seconds, :id, :name, {:disabled => Workshop.all.select {|w| w.cantSignUp user}.collect {|w| w.id}}), {}, {:size => "6"}) %>
 </br></br>
+
+<% end %>
+
+<% if user.has_third? %>
+
+<span style="color: green;">Third Session: <%= (user.third.name + " &#10003;").html_safe %></span> </br>
+<%= select(:user, :third, Workshop.thirds.collect {|w| [w.name, w.id]}, {}, {:size => "6", :disabled => "true", :selected => params[:user][:third]}) %>
+</br></br>
+
+<% else %>
+
 Third Session</br>
-<%= select(:user, :third, Workshop.thirds.collect {|w| [w.name, w.id]}, {}, {:size => "6"})  %>
+<%= select(:user, :third, options_from_collection_for_select(Workshop.thirds, :id, :name, {:disabled => Workshop.all.select {|w| w.cantSignUp user}.collect {|w| w.id}}), {}, {:size => "6"}) %>
 </br></br>
-<%= submit_tag "Submit" %>
+<% end %>
+
 <br />
 
 </div>
