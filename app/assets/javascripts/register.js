@@ -1,4 +1,3 @@
-
 $(document).ready(function(){ // When the document is ready
     $("select").change( //Have select objects on change 
 	function() { // Execute this function
@@ -11,7 +10,7 @@ $(document).ready(function(){ // When the document is ready
 	    $("#description").html( // then replaces description's html with
 		response.description); // the description
 	    $("#presentor").html(
-		response.presentor + ": </br>" + response.staken + "/" + response.slimit + " spots taken");
+		response.presentor );
 	    console.log(response);
 	}
     )

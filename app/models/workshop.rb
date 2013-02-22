@@ -18,37 +18,28 @@ class Workshop < ActiveRecord::Base
     students.select {|s| s.gender == "GD"}    
   end
 
-  def canSignUp(user)
+  def cantSignUp(user)
     if user.workshops.count < 3
       if user.workshops.collect {|w| w.name}.include? name
-#        $stdout.write "Already Signed Up"
-        return false
+        return "You can't sign up for a workshop twice"
       end
       if user.class == Teacher and (ttaken.to_f < tlimit.to_f)
-#        $stdout.write "A teacher under limit"
-        puts "Teacher"
-        return true
+        return false
       end
       if user.class == Student and (staken.to_f < slimit.to_f)
         if user.gender = "BD" and ((boys.count + 1)/slimit.to_f < percentage.to_f/100.to_f)
-#          $stdout.write "Boy under percentage and limit"
-          return true
+          return false
         end
         if user.gender = "GD" and ((girls.count + 1)/slimit.to_f < percentage.to_f/100.to_f)
-#          $stdout.write "Girl under percentage and limit"          
-          return true
+          return false
         end
-#        $stdout.write "Student not under percentage but under limit"
-        return false
+        return "The workshop is full"
       end
-#      $stdout.write "Student or teacher not under limit"
-      return false
+      return "The workshop is full"
     end
-#    $stdout.write "Already has 3 workshops"
-    return false
+    return "You are already signed up for three workshops. How did you get here?"
   end
-  
-    
+      
   def self.firsts
     self.where(:session => 1)
   end
