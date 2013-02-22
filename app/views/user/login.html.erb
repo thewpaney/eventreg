@@ -9,9 +9,30 @@
     <%= image_tag "/assets/steele.png" %>
   </div>
   
-  <div class="text">
-    <p>Folks:<br />We encountered an error where, when signing up for a site that was already full, the website wouldn't do anything and register you for the other two silently.  We are in the process of fixing this.<br />Registration will reopen tomorrow.</p>
-  </div>
+<div class="text" style="float: left">
+    <div class = "text" style="float: left; position: relative; left: 15%;" >
+      <%= form_tag(:action => "login") do %>
+
+      <label for="user_prefix">Username:</label><br/>
+      Your Regis Login Prefix<br/>
+      The same as the first<br/> part of your Regis email.<br/><br/>
+      <%= text_field("user", "prefix", :size => 20, :placeholder => "PSteele88")%>
+
+      <% if flash[:error] %>
+      <p id="flash_error" style="color: #c41130;"><%= flash[:error] %></p>
+      <% else %>
+      <br /><br /><br />
+      <% end %>
+
+      <label for="user_number">ID Number:</label><br/>
+    The 4 or 5 digit number<br/> on your student/teacher ID.<br/><br/>
+    <%= password_field("user","number",:size => 20, :placeholder => "12345" )%>
+
+    <br/><br/>
+
+    <%= submit_tag("Login") %>
+
+    <% end %>
   
   </div>
 </div>
