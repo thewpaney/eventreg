@@ -18,30 +18,6 @@ class UserController < ApplicationController
 
   def register
     if request.post?
-<<<<<<< HEAD
-      if Workshop.where(id: params[:user][:first]).first.name == Workshop.where(id: params[:user][:second]).first.name or Workshop.where(id: params[:user][:first]).first.name == Workshop.where(id: params[:user][:third]).first.name or Workshop.where(id: params[:user][:second]).first.name == Workshop.where(id: params[:user][:third]).first.name
-        flash[:error] = "Two of your workshops were the same thing.  Please diversify and try again."
-        return
-      end
-      unless Workshop.find(params[:user][:first]).canSignUp(self.user)
-        flash[:error] = "Your first workshop is full!"
-        return
-      end
-
-      unless Workshop.find(params[:user][:second]).canSignUp(self.user)
-        flash[:error] = "Your second workshop is full!"
-        return
-      end
-      unless Workshop.find(params[:user][:third]).canSignUp(self.user)
-        flash[:error] = "Your third workshop is full!"
-        return
-      end
-
-      user.signup params[:user][:first]
-      user.signup params[:user][:second]
-      user.signup params[:user][:third]
-      
-=======
       if params[:user][:first]
         unless (whynot = user.signup(params[:user][:first])) == "Signed up"
           workshop = Workshop.find(params[:user][:first])
@@ -64,7 +40,6 @@ class UserController < ApplicationController
       end
     else
       params[:user] = {}
->>>>>>> 4cc76c041b8a7cbda1dfb0ef6f62f7082110c868
     end
   end
 

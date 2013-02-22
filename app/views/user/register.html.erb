@@ -14,17 +14,8 @@
 <% end %>
 
 <% if user.done? %>
-<<<<<<< HEAD
- 
-<p class="text"><h3>Currently registered for:</h3>
-  <% user.workshops.each do |n|  %><br />
-  <strong><%= n.name %> - <%= n.room %></strong><br />
-  <span style="font-size: .9em;"><%= n.description %></span>
-  <br />
-=======
 
 <p class="text">You are registered for:
->>>>>>> 4cc76c041b8a7cbda1dfb0ef6f62f7082110c868
   <br />
   <table>
     <tr>
@@ -44,24 +35,11 @@
     <% end %>
   </table>
 </p>
-<<<<<<< HEAD
-<div class="text">
-  <p><strong>You're done!</strong> You can now <%= link_to "log out", "/user/logout"%>.<br />If you have any questions or concerns, feel free to contact your diversity director.</p>
-</div>
-
 <% else %>
-<h1>Step Two: Register for Workshops</h1>
-<p class="text">Click on a workshop to see its description. Press submit to sign up for the highlited workshops.</p>
-=======
-
-<% else %>
->>>>>>> 4cc76c041b8a7cbda1dfb0ef6f62f7082110c868
 
 <p class="text">Click on a workshop to see its description. Press submit to sign up for the highlited workshops.</p>
 <div style="float: left;">
   <%= form_tag(:controller => "user", :action => "register") do %>
-<<<<<<< HEAD
-=======
 </br>
 
 <% if user.has_first? %>
@@ -72,7 +50,6 @@
 
 <% else %>
 
->>>>>>> 4cc76c041b8a7cbda1dfb0ef6f62f7082110c868
 First Session</br>
 <%= select(:user, :first, options_from_collection_for_select(Workshop.firsts, :id, :name, {:disabled => Workshop.all.select {|w| w.cantSignUp user}.collect {|w| w.id}}), {}, {:size => "6"}) %>
 </br></br>
@@ -104,13 +81,8 @@ Second Session</br>
 Third Session</br>
 <%= select(:user, :third, options_from_collection_for_select(Workshop.thirds, :id, :name, {:disabled => Workshop.all.select {|w| w.cantSignUp user}.collect {|w| w.id}}), {}, {:size => "6"}) %>
 </br></br>
-<<<<<<< HEAD
-<%= submit_tag "Submit" %>
-=======
-
 <% end %>
 
->>>>>>> 4cc76c041b8a7cbda1dfb0ef6f62f7082110c868
 <br />
 
 </div>

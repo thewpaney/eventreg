@@ -52,13 +52,8 @@ class Student < ActiveRecord::Base
     end
   end
 
-<<<<<<< HEAD
-  def has_second?
-    workshops.collect {|w| w.session}.include? 2
-=======
   def has_first?
     workshops.collect {|w| w.session}.include? 1
->>>>>>> 4cc76c041b8a7cbda1dfb0ef6f62f7082110c868
   end
 
   def first
