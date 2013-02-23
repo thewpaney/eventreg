@@ -51,7 +51,7 @@
 <% else %>
 
 First Session</br>
-<%= select(:user, :first, options_from_collection_for_select(Workshop.firsts, :id, :name, {:disabled => Workshop.all.select {|w| w.cantSignUp user}.collect {|w| w.id}}), {}, {:size => "6"}) %>
+<%= select(:user, :first, Workshop.firsts.select {|w| !w.cantSignUp user}.collect {|w| [w.name, w.id]}, {}, {:size => "6"}) %>
 </br></br>
 
 <% end %>
@@ -65,7 +65,7 @@ First Session</br>
 <% else %>
 
 Second Session</br>
-<%= select(:user, :second, options_from_collection_for_select(Workshop.seconds, :id, :name, {:disabled => Workshop.all.select {|w| w.cantSignUp user}.collect {|w| w.id}}), {}, {:size => "6"}) %>
+<%= select(:user, :second, Workshop.seconds.select {|w| !w.cantSignUp user}.collect {|w| [w.name, w.id]}, {}, {:size => "6"}) %>
 </br></br>
 
 <% end %>
@@ -78,8 +78,8 @@ Second Session</br>
 
 <% else %>
 
-Third Session</br>
-<%= select(:user, :third, options_from_collection_for_select(Workshop.thirds, :id, :name, {:disabled => Workshop.all.select {|w| w.cantSignUp user}.collect {|w| w.id}}), {}, {:size => "6"}) %>
+Second Session</br>
+<%= select(:user, :third, Workshop.thirds.select {|w| !w.cantSignUp user}.collect {|w| [w.name, w.id]}, {}, {:size => "6"}) %>
 </br></br>
 <% end %>
 

@@ -9,7 +9,7 @@ ER::Application.routes.draw do
   post '/user/edit' => 'user#update'
   get '/admin' => 'admin#review'
 
-  get '/event/admin' => 'event#admin'
+  get '/admin' => 'event#admin'
   get '/event/review' => 'event#review'
   get '/event/export' => 'event#export'
   get '/event/edit_events' => 'event#edit_events'
