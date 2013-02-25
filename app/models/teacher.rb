@@ -13,11 +13,11 @@ class Teacher < ActiveRecord::Base
   end
 
   def self.registered
-    where('workshop_id IS NOT NULL')
+    self.all.select {|t| t.done?}
   end
 
   def self.unregistered
-    where('workshop_id IS NULL')
+    self.all.select {|t| !t.done?}    
   end
 
   def has_first?
@@ -42,6 +42,13 @@ class Teacher < ActiveRecord::Base
   
   def third
     workshops.select {|w| w.session == 3}[0]
+  end
+  def force(workshop_id)
+    workshop = Workshop.find(workshop_id)
+    workshop.teachers << self
+    workshops << workshop
+    workshop.ttaken += 1
+    workshop.save!
   end
 
   def signup(workshop_id)

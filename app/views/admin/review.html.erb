@@ -1,15 +1,34 @@
 <h1>Review Event Registration Status</h1>
-<div style="font-size: 2em;">
-  <%= "Students registered: #{(Student.all.count) - (Student.all.collect {|s| s.workshop_ids == [] ? s : nil}.count)} of #{Student.all.count}" %>
+<div style="font-size: 1.3em; float: left; ">
+  <h3><%= "Teachers registered: #{(Teacher.all.count) - (Teacher.all.select {|s| s.workshop_ids == []}.count)} of #{Teacher.all.count}" %></h3>
+  <h4> Unregistered: </h4>
+  <div style="overflow: auto;height: 400px; width: 400px;">
+  <table style="height: 10em; width: 50%;">
+    <% Teacher.registered.each do |s| %>
+    <tr>
+      <td><%= s.full %></td>
+      <td><%= s.prefix %></td>
+      </tr>
+    <% end %>
+  </table>
+  </div>
   <br />
-  <%= "Teachers registered: #{(Teacher.all.count) - (Teacher.all.collect {|s| s.workshop_ids == [] ? s : nil}.count)} of #{Teacher.all.count}" %>
+</div>
+<div style="font-size: 1.3em; float: left; ">
+  <h3><%= "Students registered: #{(Student.all.count) - (Student.all.select {|s| s.workshop_ids == []}.count)} of #{Student.all.count}" %></h3>
+  <h4> Unregistered: </h4>
+  <div style="overflow: auto;height: 400px; width: 400px;">
+  <table style="height: 10em; width: 50%;">
+    <% Student.registered.each do |s| %>
+    <tr>
+      <td><%= s.full %></td>
+      <td><%= s.prefix %></td>
+      </tr>
+    <% end %>
+  </table>
+  </div>
+  <br />
 </div>
 
-<div style="height: 290px; background-color: #DDDBDB; border: 1px solid; overflow: auto;">
-<table>
-
-</table>
-</div>
 <br />
 <%= link_to "Export Event Registration Info", "/admin/export", :style => "font-size: 1.5em;" %>
-
