@@ -8,16 +8,24 @@ class Teacher < ActiveRecord::Base
 
   has_and_belongs_to_many :workshops, uniq: true
   
+  def self.semiregistered
+    self.all.select {|s| 0<s.workshops.count and s.workshops.count<3}
+  end
+
+  def self.overregistered
+    self.all.select {|s| s.workshops.map(&:session) != s.workshops.map(&:session).uniq}
+  end
+
   def self.authenticate(number, prefix)
     where(number: number, prefix: prefix.downcase).first
   end
 
   def self.registered
-    where('workshop_id IS NOT NULL')
+    self.all.select {|t| t.done?}
   end
 
   def self.unregistered
-    where('workshop_id IS NULL')
+    self.all.select {|t| !t.done?}    
   end
 
   def has_first?
@@ -42,6 +50,13 @@ class Teacher < ActiveRecord::Base
   
   def third
     workshops.select {|w| w.session == 3}[0]
+  end
+  def force(workshop_id)
+    workshop = Workshop.find(workshop_id)
+    workshop.teachers << self
+    workshops << workshop
+    workshop.ttaken += 1
+    workshop.save!
   end
 
   def signup(workshop_id)

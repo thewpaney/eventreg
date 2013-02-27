@@ -7,9 +7,17 @@ class Workshop < ActiveRecord::Base
   validates :slimit, presence: true
   validates :room, presence: true
 
-  has_and_belongs_to_many :students
-  has_and_belongs_to_many :teachers
+  has_and_belongs_to_many :students, uniq: true
+  has_and_belongs_to_many :teachers, uniq: true
 
+  def sfullness
+    staken.to_f/slimit.to_f
+  end
+
+  def tfullness
+    ttaken.to_f/tlimit.to_f
+  end
+  
   def boys
     students.select {|s| s.gender == "BD"}
   end
@@ -18,6 +26,30 @@ class Workshop < ActiveRecord::Base
     students.select {|s| s.gender == "GD"}    
   end
 
+  def self.full
+    all.select {|w|w.full?}
+  end
+  
+  def full?
+    students.count >= slimit.to_i
+  end
+
+  def self.available?(user)
+    all.select {|w| !w.cantSignUp user}
+  end
+
+  def self.firstsAvailable?(user)
+    firsts.select {|w| !w.cantSignUp user}
+  end
+
+  def self.secondsAvailable?(user)
+    seconds.select {|w| !w.cantSignUp user}
+  end
+
+  def self.thirdsAvailable?(user)
+    thirds.select {|w| !w.cantSignUp user}
+  end
+  
   def cantSignUp(user)
     if user.workshops.count < 3
       if user.workshops.collect {|w| w.name}.include? name
@@ -53,8 +85,7 @@ class Workshop < ActiveRecord::Base
   end
       
   def to_s
-      
-    name
+    name + ":" + session
   end
 end
   

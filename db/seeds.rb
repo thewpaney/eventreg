@@ -81,8 +81,8 @@ students.rows[1..-1].each do |row|
   begin
     s = Student.new
     s.number = row[0].to_i
-    s.last = row[1]
-    s.first = row[2]
+    #s.last = row[1]
+    #s.first = row[2]
     s.full = row[3]
     s.gender = row[4]
     s.grade = row[5]

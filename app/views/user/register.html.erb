@@ -7,6 +7,7 @@
     padding: 5px;
   }
   table {padding:10px;}
+  select {width: 45em;}
 </style>
 
 <% content_for(:head) do %>
@@ -34,6 +35,7 @@
     <% end %>
   </table>
 </p>
+<% else %>
 
 <p class="text">Click on a workshop to see its description. Press submit to sign up for the highlited workshops.</p>
 <div style="float: left;">
@@ -49,7 +51,7 @@
 <% else %>
 
 First Session</br>
-<%= select(:user, :first, Workshop.firsts.select {|w| !w.cantSignUp user}.collect {|w| [w.name, w.id]}, {}, {:size => "6"}) %>
+<%= select(:user, :first, Workshop.firstsAvailable?(user).collect {|w| [w.name, w.id]}, {}, {:size => "6"}) %>
 </br></br>
 
 <% end %>
@@ -63,7 +65,7 @@ First Session</br>
 <% else %>
 
 Second Session</br>
-<%= select(:user, :second, Workshop.seconds.select {|w| !w.cantSignUp user}.collect {|w| [w.name, w.id]}, {}, {:size => "6"}) %>
+<%= select(:user, :second, Workshop.secondsAvailable?(user).collect {|w| [w.name, w.id]}, {}, {:size => "6"}) %>
 </br></br>
 
 <% end %>
@@ -76,10 +78,11 @@ Second Session</br>
 
 <% else %>
 
-Second Session</br>
-<%= select(:user, :third, Workshop.thirds.select {|w| !w.cantSignUp user}.collect {|w| [w.name, w.id]}, {}, {:size => "6"}) %>
+Third Session</br>
+<%= select(:user, :third, Workshop.thirdsAvailable?(user).collect {|w| [w.name, w.id]}, {}, {:size => "6"}) %>
 </br></br>
 <% end %>
+<%= submit_tag("Submit") %>
 
 <br />
 
@@ -90,5 +93,9 @@ Second Session</br>
 <div id="description" style="font-size: 0.9em;">
 </div>
 </div>
+
+<div>
+</div>
 <% end %>
+
 <% end %>

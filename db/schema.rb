@@ -25,8 +25,6 @@ ActiveRecord::Schema.define(:version => 20130219063957) do
 
   create_table "students", :force => true do |t|
     t.integer "number"
-    t.string  "last"
-    t.string  "first"
     t.string  "full"
     t.string  "gender"
     t.string  "grade"

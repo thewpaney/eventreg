@@ -30,11 +30,27 @@ class Student < ActiveRecord::Base
   end
   
   def self.registered
-    where('workshop_id IS NOT NULL')
+    self.all.select {|s| s.done?}
   end
 
+  def self.semiregistered
+    self.all.select {|s| 0<s.workshops.count and s.workshops.count<3}
+  end
+
+  def self.overregistered
+    self.all.select {|s| s.workshops.map(&:session) != s.workshops.map(&:session).uniq}    
+  end
+  
   def self.unregistered
-    where('workshop_id IS NULL')
+    self.all.select {|s| !s.done?}
+  end
+
+  def force(workshop_id)
+    workshop = Workshop.find(workshop_id)
+    workshop.students << self
+    workshops << workshop
+    workshop.staken += 1
+    workshop.save!
   end
 
   def signup(workshop_id)
@@ -75,8 +91,17 @@ class Student < ActiveRecord::Base
   def third
     workshops.select {|w| w.session == 3}[0]
   end
+
+  def session_sum
+    workshops.collect {|w| w.session}.inject {|sum, x| sum + x}
+  end
+
   def done?
     self.has_third? and self.has_second? and self.has_first?
+  end
+
+  def self.problems
+    self.all.collect {|s| s if s.session_sum != nil and s.session_sum > 6}.uniq
   end
 
   def to_s
