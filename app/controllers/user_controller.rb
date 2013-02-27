@@ -1,5 +1,6 @@
 class UserController < ApplicationController
-  before_filter :login_required!, only: [:register, :ready]
+  before_filter :login_required!, only: [:register, :ready, :force_register]
+  before_filter :admin!, only: :force_register
   before_filter :edit, only: :register
 
   caches_page :login
@@ -16,6 +17,23 @@ class UserController < ApplicationController
     end
   end
 
+  def force_register
+    user.workshops.clear if request.get?
+    if request.post?
+      if params[:user][:first]
+        user.force(params[:user][:first])
+      end
+      if params[:user][:first]
+        user.force(params[:user][:second])
+      end
+      if params[:user][:first]
+        user.force(params[:user][:third])
+      end
+    else
+      params[:user] = {}
+    end
+  end
+  
   def register
     if request.post?
       if params[:user][:first]

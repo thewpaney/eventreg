@@ -10,6 +10,14 @@ class Workshop < ActiveRecord::Base
   has_and_belongs_to_many :students, uniq: true
   has_and_belongs_to_many :teachers, uniq: true
 
+  def sfullness
+    staken.to_f/slimit.to_f
+  end
+
+  def tfullness
+    ttaken.to_f/tlimit.to_f
+  end
+  
   def boys
     students.select {|s| s.gender == "BD"}
   end

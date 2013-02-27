@@ -52,7 +52,7 @@
 <% else %>
 
 First Session</br>
-<%= select(:user, :first, Workshop.thirdsAvailable?(user).collect {|w| [w.name, w.id]}, {}, {:size => "6"}) %>
+<%= select(:user, :first, Workshop.firstsAvailable?(user).collect {|w| [w.name, w.id]}, {}, {:size => "6"}) %>
 </br></br>
 
 <% end %>

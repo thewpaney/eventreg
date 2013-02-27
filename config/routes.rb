@@ -2,6 +2,7 @@ ER::Application.routes.draw do
   get '/user/ready' => 'user#ready'
   get '/user/edit' => 'user#edit'
   get '/user/register' => 'user#register'
+  match '/user/force_register' => 'user#force_register'  
   get '/user/login' => 'user#login'
   get '/user/logout' => 'user#logout'
   post '/user/register' => 'user#register'

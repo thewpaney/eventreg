@@ -8,6 +8,14 @@ class Teacher < ActiveRecord::Base
 
   has_and_belongs_to_many :workshops, uniq: true
   
+  def self.semiregistered
+    self.all.select {|s| 0<s.workshops.count and s.workshops.count<3}
+  end
+
+  def self.overregistered
+    self.all.select {|s| s.workshops.map(&:session) != s.workshops.map(&:session).uniq}
+  end
+
   def self.authenticate(number, prefix)
     where(number: number, prefix: prefix.downcase).first
   end
