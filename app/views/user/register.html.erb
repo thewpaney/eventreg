@@ -16,7 +16,7 @@
 
 <% if user.class == Teacher %>
 <br />
-<%= button_to "The 'Oops, Drew and Matt and Chris and Lindsay Goofed' Workshop Reset Button", '/user/reset', method: 'get' %>
+<%= button_to "The 'Oops, Drew and Matt and Chris and Lindsay Goofed' Workshop Reset Button", '/user/reset', method: 'get', data: { confirm: 'Are you sure?  This will clear the workshops for which you have registered!' } %>
 <% end %>
 
 <% if user.done? %>
@@ -45,49 +45,49 @@
 <p class="text">Click on a workshop to see its description. Press submit to sign up for the highlited workshops.</p>
 <div style="float: left;">
   <%= form_tag(:controller => "user", :action => "register") do %>
-</br>
+<br />
 
 <% if user.has_first? %>
 
-<span style="color: green;">First Session: <%= (user.first.name + " &#10003;").html_safe %> </span> </br>
+<span style="color: green;">First Session: <%= (user.first.name + " &#10003;").html_safe %> </span> <br />
 <%= select(:user, :first, Workshop.firsts.collect {|w| [w.name, w.id]}, {}, {:size => "6", :disabled => "true", :selected => params[:user][:first]}) %>
-</br></br>
+<br /><br />
 
 <% else %>
 
-First Session</br>
-<%= select(:user, :first, Workshop.firstsAvailable?(user).collect {|w| [w.name, w.id]}, {}, {:size => "6"}) %>
-</br></br>
+First Session<br />
+<%= select(:user, :first, Workshop.firstsAvailable(user).collect {|w| [w.name, w.id]}, {}, {:size => "6"}) %>
+<br /><br />
 
 <% end %>
 
 <% if user.has_second? %>
 
-<span style="color: green;">Second Session: <%= (user.second.name + " &#10003;").html_safe %></span> </br>
+<span style="color: green;">Second Session: <%= (user.second.name + " &#10003;").html_safe %></span> <br />
 <%= select(:user, :second, Workshop.seconds.collect {|w| [w.name, w.id]}, {}, {:size => "6", :disabled => "true", :selected => params[:user][:second]}) %>
-</br></br>
+<br /><br />
 
 <% else %>
 
-Second Session</br>
-<%= select(:user, :second, Workshop.secondsAvailable?(user).collect {|w| [w.name, w.id]}, {}, {:size => "6"}) %>
-</br></br>
+Second Session<br />
+<%= select(:user, :second, Workshop.secondsAvailable(user).collect {|w| [w.name, w.id]}, {}, {:size => "6"}) %>
+<br /><br />
 
 <% end %>
 
 <% if user.has_third? %>
 
-<span style="color: green;">Third Session: <%= (user.third.name + " &#10003;").html_safe %></span> </br>
+<span style="color: green;">Third Session: <%= (user.third.name + " &#10003;").html_safe %></span> <br />
 <%= select(:user, :third, Workshop.thirds.collect {|w| [w.name, w.id]}, {}, {:size => "6", :disabled => "true", :selected => params[:user][:third]}) %>
-</br></br>
+<br /><br />
 
 <% else %>
 
-Third Session</br>
-<%= select(:user, :third, Workshop.thirdsAvailable?(user).collect {|w| [w.name, w.id]}, {}, {:size => "6"}) %>
-</br></br>
+Third Session<br />
+<%= select(:user, :third, Workshop.thirdsAvailable(user).collect {|w| [w.name, w.id]}, {}, {:size => "6"}) %>
+<br /><br />
 <% end %>
-<%= submit_tag("Submit") %>
+Registration has now closed!  You will be able to see the sites to which you have been assigned once that happens.
 <br />
 
 </div>

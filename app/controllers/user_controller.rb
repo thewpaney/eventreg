@@ -18,7 +18,14 @@ class UserController < ApplicationController
   end
 
   def force_register
-    user.workshops.clear if request.get?
+    if request.get?
+      if user.class == "Teacher"
+        user.workshops.each {|w| w.tlimit = (w.tlimit.to_i - 1).to_s}
+      else
+        user.workshops.each {|w| w.slimit = (w.slimit.to_i - 1).to_s}
+      end
+      user.workshops.clear
+    end
     if request.post?
       if params[:user][:first]
         user.force(params[:user][:first])
