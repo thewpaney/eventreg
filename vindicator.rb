@@ -16,14 +16,14 @@ Student.all.each do |s| #Iterate through all of the users
 
         # If a list of all of the names of the workshops in session 1 that are available to them
         # includes their first choice for session three's name, put them in it. 
-        if Workshop.firstsAvailable(s).map(&:name).include? (old_shop = s.workshops.select {|w| w.session = 3}[0]).name
-          new_shop = Workshop.firstsAvailable(s).select {|w| w.name == s.name}.first
+        if Workshop.firstsAvailableWithoutCheck(s).map(&:name).include? (old_shop = s.workshops.select {|w| w.session = 3}[0]).name
+          new_shop = Workshop.firstsAvailableWithoutCheck(s).select {|w| w.name == s.name}.first
           s.workhops.delete(old_shop)
           s.signup new_shop
           
           # Likewise for the other choice for session three
-        elsif Workshop.firstsAvailable(s).map(&:name).include? (old_shop = s.workshops.select {|w| w.session = 3}[1]).name
-          new_shop = Workshop.firstsAvailable(s).select {|w| w.name == s.name}.first
+        elsif Workshop.firstsAvailableWithoutCheck(s).map(&:name).include? (old_shop = s.workshops.select {|w| w.session = 3}[1]).name
+          new_shop = Workshop.firstsAvailableWithoutCheck(s).select {|w| w.name == s.name}.first
           s.workhops.delete(old_shop)
           s.signup new_shop
 
@@ -31,6 +31,7 @@ Student.all.each do |s| #Iterate through all of the users
           # and give them to the random placer
         else
           s.workshops.delete(s.workshops.select {|w| w.session = 3}[0])
+          puts ""
         end
       end
     end
