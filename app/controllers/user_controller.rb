@@ -19,10 +19,14 @@ class UserController < ApplicationController
 
   def force_register
     user.workshops.clear if request.get?
+    if request.post?
       if params[:user][:first]
+        user.force(params[:user][:first])
+      end
+      if params[:user][:second]
         user.force(params[:user][:second])
       end
-      if params[:user][:first]
+      if params[:user][:third]
         user.force(params[:user][:third])
       end
     else
@@ -31,6 +35,7 @@ class UserController < ApplicationController
   end
   
   def register
+
     if request.post?
       if params[:user][:first]
         unless (whynot = user.signup(params[:user][:first])) == "Signed up"
@@ -76,5 +81,16 @@ class UserController < ApplicationController
       flash[:error] = "You're not currently logged in!"
       redirect_to "/user/login"   
     end
+  end
+
+  def reset
+    if self.user.workshops != []
+      self.user.workshops.each do |w|
+        w.ttaken = (w.ttaken.to_i - 1).to_s
+        w.save!
+      end
+      self.user.workshops.clear
+    end
+    redirect_to "/user/register"
   end
 end

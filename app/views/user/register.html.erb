@@ -14,6 +14,11 @@
 <% javascript_include_tag :register %>
 <% end %>
 
+<% if user.class == Teacher %>
+<br />
+<%= button_to "The 'Oops, Drew and Matt and Chris and Lindsay Goofed' Workshop Reset Button", '/user/reset', method: 'get' %>
+<% end %>
+
 <% if user.done? %>
 <p class="text">You are registered for:
   <br />
@@ -83,7 +88,6 @@ Third Session</br>
 </br></br>
 <% end %>
 <%= submit_tag("Submit") %>
-
 <br />
 
 </div>
@@ -99,3 +103,4 @@ Third Session</br>
 <% end %>
 
 <% end %>
+

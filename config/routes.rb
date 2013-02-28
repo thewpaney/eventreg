@@ -11,7 +11,8 @@ ER::Application.routes.draw do
   get '/admin' => 'admin#review'
   get '/table' => 'user#table'
   get '/admin/export' => 'admin#export'
-
+  get '/user/reset' => 'user#reset'
+  
   match '/user/description/:id' => 'user#ajaxDescription'
 
   root :to => 'user#login'
