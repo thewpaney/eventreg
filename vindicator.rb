@@ -1,12 +1,12 @@
 Student.all.each do |s| #Iterate through all of the users
-
+  next if s.nil?
   # If they aren't done (have a first, second, and third (I already checked to
   # make that nobody doesn't have more than three workshops. Nobody does!
   #(I wonder if we should have used LISP)))
   unless s.done?
 
     # If they don't have multiples of a session
-    if s.workshops.collect {|s| s.session} != s.workshops.collect {|s| s.session}.uniq?
+    if s.workshops.collect {|s| s.session} != s.workshops.collect {|s| s.session}.uniq
       # If they are even more special than the people we goofed
       if s.workshops.map(&:session).sort != [2,3,3]
         #Let us know who they are, what's up with them, and what they want
@@ -16,14 +16,14 @@ Student.all.each do |s| #Iterate through all of the users
 
         # If a list of all of the names of the workshops in session 1 that are available to them
         # includes their first choice for session three's name, put them in it. 
-        if Workshop.firstsAvailable.map(&:name).include? (old_shop = s.workshops.select {|w| w.session = 3}[0]).name
-          new_shop = Workshop.firstsAvailable.select {|w| w.name == s.name}.first
+        if Workshop.firstsAvailable(s).map(&:name).include? (old_shop = s.workshops.select {|w| w.session = 3}[0]).name
+          new_shop = Workshop.firstsAvailable(s).select {|w| w.name == s.name}.first
           s.workhops.delete(old_shop)
           s.signup new_shop
           
           # Likewise for the other choice for session three
-        elsif Workshop.firstsAvailable.map(&:name).include? (old_shop = s.workshops.select {|w| w.session = 3}[1]).name
-          new_shop = Workshop.firstsAvailable.select {|w| w.name == s.name}.first
+        elsif Workshop.firstsAvailable(s).map(&:name).include? (old_shop = s.workshops.select {|w| w.session = 3}[1]).name
+          new_shop = Workshop.firstsAvailable(s).select {|w| w.name == s.name}.first
           s.workhops.delete(old_shop)
           s.signup new_shop
 
@@ -45,7 +45,12 @@ Student.all.each do |s| #Iterate through all of the users
 
     #rinse
     unless s.has_second?
-      miserable = Workshop.secondsAvailable(s).sort {|w, w2| w.sfullness <=> w2.sfullness}.first
+      list = Workshop.secondsAvailable(s).sort {|w, w2| w.sfullness <=> w2.sfullness}.delete_if {|x| x == nil}
+      puts list.inspect
+      miserable = list.first
+      Workshop.firsts.each {|w| puts w.cantSignUp s} if miserable.nil?
+      puts miserable.nil? ? "NIL!" : "NOT NIL!"
+      puts s.inspect
       s.signup miserable
     end
 
@@ -58,7 +63,7 @@ Student.all.each do |s| #Iterate through all of the users
 end
 
 #Repeat for the Teachers. Literally copied and pasted, with only the workshop.sfullness changed to tfullness
-Student.all.each do |s| #Iterate through all of the users
+Teacher.all.each do |s| #Iterate through all of the users
 
   # If they aren't done (have a first, second, and third (I already checked to
   # make that nobody doesn't have more than three workshops. Nobody does!

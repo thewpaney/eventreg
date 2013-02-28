@@ -53,8 +53,7 @@ class Student < ActiveRecord::Base
     workshop.save!
   end
 
-  def signup(workshop_id)
-    workshop = Workshop.find(workshop_id)
+  def signup(workshop)
     sessions = workshops.collect {|w| w.session}
     
     unless (whynot = workshop.cantSignUp self)

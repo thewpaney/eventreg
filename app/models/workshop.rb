@@ -38,15 +38,15 @@ class Workshop < ActiveRecord::Base
     all.select {|w| !w.cantSignUp user}
   end
 
-  def self.firstsAvailable?(user)
+  def self.firstsAvailable(user)
     firsts.select {|w| !w.cantSignUp user}
   end
 
-  def self.secondsAvailable?(user)
+  def self.secondsAvailable(user)
     seconds.select {|w| !w.cantSignUp user}
   end
 
-  def self.thirdsAvailable?(user)
+  def self.thirdsAvailable(user)
     thirds.select {|w| !w.cantSignUp user}
   end
   
