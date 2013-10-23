@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '~> 3.2.12'
 gem 'jquery-rails'
 gem 'mysql2'
-gem 'scroll'
+# gem 'scroll'
 gem 'rake', '10.0.3'
 
 gem 'google_drive'
