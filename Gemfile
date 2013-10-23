@@ -5,6 +5,7 @@ gem 'jquery-rails'
 gem 'mysql2'
 # gem 'scroll'
 gem 'rake', '10.0.3'
+gem 'thin'
 
 gem 'google_drive'
 
