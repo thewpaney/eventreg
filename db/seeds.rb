@@ -6,7 +6,7 @@
 # cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 # Mayor.create(name: 'Emanuel', city: cities.first)
 
-session = GoogleDrive.login("dlazzeri1@gmail.com", "gooHaiRYPanda007$")
+session = GoogleDrive.login("dlazzeri1@gmail.com", gets("Google Password?"))
 puts "Connected to Google"
 
 puts "Downloading workshops"
