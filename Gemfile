@@ -12,6 +12,9 @@ gem 'google_drive'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+# Likewise, grab Scroll from Git build
+# gem 'scroll', :git => 'git@git.stratosphe.re:scroll/scroll.git'
+
 gem 'execjs'
 
 # Gems used only for assets and not required
