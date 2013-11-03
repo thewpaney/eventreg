@@ -1,4 +1,4 @@
-* Last Year
+* 2013 
 ** Functionality [100%]
 *** DONE Make all flashes go to pop-up JS box (or maybe just errors)
 *** DONE Implement time start/time limit
@@ -43,17 +43,25 @@ we need to talk with the tech department.
 **** People who aren't signed up
 ***** Download a list of thems
 **** 
-* This Year
+* 2014
 ** Basic requirements
 *** Two workshops in the morning
 **** Pull from set 1
 *** One workshop in the afternoon
 **** Pull from set 2
 *** Gender limits better
+The biggest problem we had last year was that someone could have nowhere to go 
+without either breaking the gender limit or being in the same workshop twice
+
+I think the best way to fix this is to check if the person trying to sign up
+has no options for a session. If that's the case, and allowing them to bipass 
+the gender limits will fix that, liet them break the gender limits.
+
 *** Working the first time
 *** E-mail registration confirmation
 **** Ask to complete if unfinished
 ** Target deadlines:
+*** December 17-18th ish Demo
 *** February 24th-28th ish
 *** Diversity Day: March 11th
 ** Student Info:
@@ -61,13 +69,14 @@ we need to talk with the tech department.
 ** Meet 17th/18th of December
 ** Linode Server
 *** Practice?
+Testing for Volume
+Testing whether any permutation of button presses can screw things up
 *** Month-to-month, buy in advance
 *** Buy for all of February, get set up immediately
 
 ** Sign up for one section at a time and send feedback via Javascript
-*** Make Ajax work everywhere (Netscape)
+*** Make Ajax work everywhere (Netscape, Explorer)
 *** Awesome Admin Page
 **** God Mode (™)
 **** Email?
 **** Empower the admins
-
