@@ -14,10 +14,6 @@ class Student < ActiveRecord::Base
 
   has_and_belongs_to_many :workshops, uniq: true
 
-  def self.count_registered
-    return where()
-  end
-
   def self.authenticate(number, prefix)
     where(prefix: prefix.downcase, number: number).first
   end
@@ -33,18 +29,7 @@ class Student < ActiveRecord::Base
     self.all.select {|s| s.done?}
   end
 
-  def self.semiregistered
-    self.all.select {|s| 0<s.workshops.count and s.workshops.count<3}
-  end
-
-  def self.overregistered
-    self.all.select {|s| s.workshops.map(&:session) != s.workshops.map(&:session).uniq}    
-  end
-  
-  def self.unregistered
-    self.all.select {|s| !s.done?}
-  end
-
+  #Force sign up. Does no checks
   def force(workshop_id)
     workshop = Workshop.find(workshop_id)
     workshop.students << self
@@ -53,6 +38,8 @@ class Student < ActiveRecord::Base
     workshop.save!
   end
 
+  #Regular sign up, checks before it confirms
+  #This kinda makes me want to puke. 
   def signup(workshop)
     sessions = workshops.collect {|w| w.session}
     
@@ -91,22 +78,11 @@ class Student < ActiveRecord::Base
     workshops.select {|w| w.session == 3}[0]
   end
 
-  def session_sum
-    workshops.collect {|w| w.session}.inject {|sum, x| sum + x}
-  end
-
   def done?
     self.has_third? and self.has_second? and self.has_first?
-  end
-
-  def self.problems
-    self.all.collect {|s| s if s.session_sum != nil and s.session_sum > 6}.uniq
   end
 
   def to_s
     full
   end
 end
-
-  
-  
