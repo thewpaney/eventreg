@@ -14,11 +14,6 @@
 <% javascript_include_tag :register %>
 <% end %>
 
-<% if user.class == Teacher %>
-<br />
-<%= button_to "The 'Oops, Drew and Matt and Chris and Lindsay Goofed' Workshop Reset Button", '/user/reset', method: 'get', data: { confirm: 'Are you sure?  This will clear the workshops for which you have registered!' } %>
-<% end %>
-
 <% if user.done? %>
 <p class="text">You are registered for:
   <br />

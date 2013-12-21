@@ -42,7 +42,6 @@ class UserController < ApplicationController
   end
   
   def register
-
     if request.post?
       if params[:user][:first]
         unless (whynot = user.signup(params[:user][:first])) == "Signed up"

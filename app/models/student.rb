@@ -1,17 +1,6 @@
 class Student < ActiveRecord::Base
   attr_accessible :number, :full, :gender, :grade, :year, :email, :prefix, :rw, :rw_number, :rw_teacher, :advisement
-  validates :number, presence: true
-  validates :full, presence: true
-  validates :gender, presence: true
-  validates :grade, presence: true
-  validates :year, presence: true  
-  validates :email, presence: true
-  validates :prefix, presence: true
-  validates :rw, presence: true
-  validates :rw_number, presence: true
-  validates :rw_teacher, presence: true
-  validates :advisement, presence: true
-
+  validates :number, :full, :gender, :grade, :year, :email, :prefix, :rw, :rw_number, :rw_teacher, :advisement,  presence: true
   has_and_belongs_to_many :workshops, uniq: true
 
   def self.authenticate(number, prefix)
@@ -21,6 +10,7 @@ class Student < ActiveRecord::Base
   def self.boys
     where("gender IS 'BD'")
   end
+
   def self.girls
     where("gender IS 'GD'")
   end
