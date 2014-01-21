@@ -1,38 +1,39 @@
 <style type="text/css">
-  .text{font-family: Verdana, Geneva, sans-serif;}
+  .text{font-family: Helvetica, Arial, sans-serif;}
   .text label{font-size: 1.5em;}
   h1 {font-size: 2.2em;}
 </style>
-  <h1 class="text">Step 1: Log In</h1>
 
-  <div style="float: left; ">
-    <%= image_tag "/assets/steele.png" %>
-  </div>
-  
+<h1 class="text">Step 1: Log In</h1>
+
+<div style="float: left; ">
+  <%= image_tag "/assets/steele.png" %>
+</div>
+
 <div class="text" style="float: left">
-    <div class = "text" style="float: left; position: relative; left: 15%;" >
-      <%= form_tag(:action => "login") do %>
+  <div class="text" style="float: left; position: relative; left: 15%;" >
+    <%= form_tag(:action => "login") do %>
 
-      <label for="user_prefix">Username:</label><br/>
-      Your Regis Login Prefix<br/>
-      The same as the first<br/> part of your Regis email.<br/><br/>
-      <%= text_field("user", "prefix", :size => 20, :placeholder => "PSteele88")%>
+      <label for="user_prefix">Username:</label><br/><br/>
+    <%= text_field("user", "prefix", :size => 20, :placeholder => "PSteele88")%>
+    <br/><br/>Your Regis Login Prefix<br/>
+    This is the same as the first<br/>
+    part of your Regis email.<br/><br/>
 
-      <% if flash[:error] %>
+    <% if flash[:error] %>
       <p id="flash_error" style="color: #c41130;"><%= flash[:error] %></p>
-      <% else %>
-      <br /><br /><br />
-      <% end %>
+  <% else %>
+      <br /><br />
+  <% end %>
 
-      <label for="user_number">ID Number:</label><br/>
-    The 4 or 5 digit number<br/> on your student/teacher ID.<br/><br/>
+  <label for="user_number">ID Number:</label><br/><br/>
     <%= password_field("user","number",:size => 20, :placeholder => "12345" )%>
+    <br/><br/>The 4 or 5 digit number<br/> on your student/teacher ID.<br/><br/>
 
-    <br/><br/>
 
     <%= submit_tag("Login") %>
 
-    <% end %>
-  
+  <% end %>
+
   </div>
 </div>
