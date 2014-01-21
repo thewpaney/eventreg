@@ -1,13 +1,14 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 3.2.12'
+gem 'rails'
 gem 'jquery-rails'
 gem 'mysql2'
 # gem 'scroll'
-gem 'rake', '10.0.3'
+gem 'rake'
 gem 'thin'
 
 gem 'google_drive'
+gem 'awesome_print'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -16,13 +17,15 @@ gem 'google_drive'
 # gem 'scroll', :git => 'git@git.stratosphe.re:scroll/scroll.git'
 
 gem 'execjs'
+gem 'turbolinks'
 
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-
+  gem 'sass-rails',   '~> 4.0.0'
+  gem 'coffee-rails', '~> 4.0.0'
+  gem 'zurb-foundation', '~> 4.0.0'
+  gem 'compass-rails'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 
