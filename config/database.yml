@@ -1,8 +1,14 @@
+# TO PUT INTO MYSQL:
+# CREATE USER 'eventreg'@'localhost' IDENTIFIED BY 'kurdmcfrogspleen';
+# GRANT ALL ON eventreg_development.* TO 'eventreg'@'localhost';
+# GRANT ALL ON eventreg_production.* TO 'eventreg'@'localhost';
+# GRANT ALL ON eventreg_test.* TO 'eventreg'@'localhost';
+
 development:
   adapter: mysql2
   encoding: utf8
-  database: diversity_development
-  username: diversity
+  database: eventreg_development
+  username: eventreg
   password: kurdmcfrogspleen
   host: localhost
   port: 3306
@@ -10,8 +16,8 @@ development:
 test:
   adapter: mysql2
   encoding: utf8
-  database: diversity_test
-  username: diversity
+  database: eventreg_test
+  username: eventreg
   password: kurdmcfrogspleen
   host: localhost
   port: 3306
@@ -19,8 +25,8 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
-  database: diversity_production
-  username: diversity
+  database: eventreg_production
+  username: eventreg
   password: kurdmcfrogspleen
   host: localhost
   port: 3306

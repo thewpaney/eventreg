@@ -1,11 +1,11 @@
 class CreateTeachersWorkshopsTable < ActiveRecord::Migration
   def up
-    create_table :teachers_workshops, :id => false do |t|
+    create_table :teachers_workshops do |t|
       t.references :teacher
       t.references :workshop
     end
     add_index :teachers_workshops, [:teacher_id, :workshop_id]
-    add_index :teachers_workshops, [:workshop_id, :teacher_id]    
+    add_index :teachers_workshops, [:workshop_id, :teacher_id]
   end
 
   def down

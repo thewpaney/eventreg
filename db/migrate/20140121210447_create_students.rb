@@ -1,4 +1,4 @@
-class AddStudents < ActiveRecord::Migration
+class CreateStudents < ActiveRecord::Migration
   def up
     create_table :students do |t|
       t.integer :number
@@ -8,7 +8,7 @@ class AddStudents < ActiveRecord::Migration
       t.string :year
       t.string :email
       t.string :prefix
-      t.string :rw      
+      t.string :rw
       t.string :rw_number
       t.string :rw_teacher
       t.string :advisement

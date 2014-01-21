@@ -9,21 +9,21 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130219063957) do
+ActiveRecord::Schema.define(version: 20140121211927) do
 
-  create_table "sessions", :force => true do |t|
-    t.string   "session_id", :null => false
+  create_table "sessions", force: true do |t|
+    t.string   "session_id", null: false
     t.text     "data"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
-  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
-  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", using: :btree
+  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
 
-  create_table "students", :force => true do |t|
+  create_table "students", force: true do |t|
     t.integer "number"
     t.string  "full"
     t.string  "gender"
@@ -37,30 +37,30 @@ ActiveRecord::Schema.define(:version => 20130219063957) do
     t.string  "advisement"
   end
 
-  create_table "students_workshops", :id => false, :force => true do |t|
+  create_table "students_workshops", force: true do |t|
     t.integer "student_id"
     t.integer "workshop_id"
   end
 
-  add_index "students_workshops", ["student_id", "workshop_id"], :name => "index_students_workshops_on_student_id_and_workshop_id"
-  add_index "students_workshops", ["workshop_id", "student_id"], :name => "index_students_workshops_on_workshop_id_and_student_id"
+  add_index "students_workshops", ["student_id", "workshop_id"], name: "index_students_workshops_on_student_id_and_workshop_id", using: :btree
+  add_index "students_workshops", ["workshop_id", "student_id"], name: "index_students_workshops_on_workshop_id_and_student_id", using: :btree
 
-  create_table "teachers", :force => true do |t|
+  create_table "teachers", force: true do |t|
     t.string "number"
     t.string "name"
     t.string "email"
     t.string "prefix"
   end
 
-  create_table "teachers_workshops", :id => false, :force => true do |t|
+  create_table "teachers_workshops", force: true do |t|
     t.integer "teacher_id"
     t.integer "workshop_id"
   end
 
-  add_index "teachers_workshops", ["teacher_id", "workshop_id"], :name => "index_teachers_workshops_on_teacher_id_and_workshop_id"
-  add_index "teachers_workshops", ["workshop_id", "teacher_id"], :name => "index_teachers_workshops_on_workshop_id_and_teacher_id"
+  add_index "teachers_workshops", ["teacher_id", "workshop_id"], name: "index_teachers_workshops_on_teacher_id_and_workshop_id", using: :btree
+  add_index "teachers_workshops", ["workshop_id", "teacher_id"], name: "index_teachers_workshops_on_workshop_id_and_teacher_id", using: :btree
 
-  create_table "workshops", :force => true do |t|
+  create_table "workshops", force: true do |t|
     t.string  "name"
     t.string  "presentor"
     t.text    "description"

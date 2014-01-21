@@ -1,4 +1,4 @@
-class AddTeachers < ActiveRecord::Migration
+class CreateTeachers < ActiveRecord::Migration
   def up
     create_table :teachers do |t|
       t.string :number
