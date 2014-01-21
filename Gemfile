@@ -19,6 +19,9 @@ gem 'awesome_print'
 gem 'execjs'
 gem 'turbolinks'
 
+gem 'actionpack-page_caching'
+gem 'activerecord-session_store'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
