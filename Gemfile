@@ -50,3 +50,6 @@ end
 
 # To use debugger
 # gem 'debugger'
+
+# Because we're lazy
+gem 'protected_attributes'
