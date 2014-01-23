@@ -12,4 +12,17 @@ $regis:     #c41130;
 
 .text{
 }
+.leader{
+  font-size: 7em; 
+  padding-right: 15px; 
+/*  font-family: "Courier New", Courier, monospace;*/
+  font-family: "Lucida Console", Monaco, monospace; 
+}
 
+.done {
+  color: green;
+}
+
+.not-done {
+  color: $red;
+}
