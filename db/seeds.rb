@@ -8,7 +8,7 @@
 #
 # This is the same as the one we used in 2013
 
-session = GoogleDrive.login("dlazzeri1@gmail.com", gets("Google Password?"))
+session = GoogleDrive.login("dlazzeri1@gmail.com", $stdin.gets)
 puts "Connected to Google"
 
 puts "Downloading workshops"

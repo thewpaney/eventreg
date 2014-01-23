@@ -23,3 +23,4 @@ events.yml
 spr-*.csv
 *.orig
 db/seeds.rb
+vendor/ruby/

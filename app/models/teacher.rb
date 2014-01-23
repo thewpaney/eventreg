@@ -1,31 +1,16 @@
 class Teacher < ActiveRecord::Base
   attr_accessible :number, :prefix, :email, :name
-  validates :number, presence: true
-  validates :prefix, presence: true
-  validates :email, presence: true
-  validates :name, presence: true
+  validates :number, :prefix, :email, :name, presence: true
   validates :prefix, uniqueness: true
 
   has_and_belongs_to_many :workshops, uniq: true
   
-  def self.semiregistered
-    self.all.select {|s| 0<s.workshops.count and s.workshops.count<3}
-  end
-
-  def self.overregistered
-    self.all.select {|s| s.workshops.map(&:session) != s.workshops.map(&:session).uniq}
-  end
-
   def self.authenticate(number, prefix)
     where(number: number, prefix: prefix.downcase).first
   end
 
   def self.registered
     self.all.select {|t| t.done?}
-  end
-
-  def self.unregistered
-    self.all.select {|t| !t.done?}    
   end
 
   def has_first?
@@ -51,6 +36,7 @@ class Teacher < ActiveRecord::Base
   def third
     workshops.select {|w| w.session == 3}[0]
   end
+
   def force(workshop_id)
     workshop = Workshop.find(workshop_id)
     workshop.teachers << self
