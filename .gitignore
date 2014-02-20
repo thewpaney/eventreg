@@ -24,3 +24,6 @@ spr-*.csv
 *.orig
 db/seeds.rb
 vendor/ruby/
+vendor
+vendor/
+vendor/*

@@ -3,7 +3,7 @@ class UserController < ApplicationController
   before_filter :admin!, only: :force_register
   before_filter :edit, only: :register
 
-  caches_page :login
+  # caches_page :login
 
   def ajaxDescription
     @workshop = Workshop.find(params[:id].to_i)
