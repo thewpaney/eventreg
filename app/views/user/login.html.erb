@@ -1,11 +1,10 @@
 <style type="text/css">
-  .text{font-family: Helvetica, Arial, sans-serif;}
-  .text label{font-size: 1.5em;}
-  h1 {font-size: 2.2em;}
+.text{font-family: Helvetica, Arial, sans-serif;}
+.text label{font-size: 1.5em;}
+h1 {font-size: 2.2em;}
 </style>
 
 <h1 class="text">Step 1: Log In</h1>
-
 <div style="float: left; ">
   <%= image_tag "/assets/steele.png" %>
 </div>
@@ -26,7 +25,7 @@
       <br /><br />
   <% end %>
 
-  <label for="user_number">ID Number:</label><br/><br/>
+    <label for="user_number">ID Number:</label><br/><br/>
     <%= password_field("user","number",:size => 20, :placeholder => "12345" )%>
     <br/><br/>The 4 or 5 digit number<br/> on your student/teacher ID.<br/><br/>
 
@@ -36,4 +35,8 @@
   <% end %>
 
   </div>
+
+  </div>
+  <div class="text" style="float: left; position: relative; left: 20%; top: 80px;">
+    <%= image_tag "/assets/gandhi.png" %>
 </div>

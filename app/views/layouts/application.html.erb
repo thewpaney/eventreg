@@ -24,34 +24,28 @@ $(document).ready(function () {
 
 <div id="wrapper">
   <div id="header">
-<div style="position: absolute; left: 10%;">
-  <a href="/" tab="0" did="0" pid="192" ><%= image_tag "/assets/rjhs-logo.png" %></a>
-</div>
-
+    <div style="position: absolute; left: 10%;">
+      <a href="/" tab="0" did="0" pid="192" ><%= image_tag "/assets/rjhs-logo.png" %></a>
+    </div>
 
     <% if user %>
       <p id="info">Logged in as <%= user.full %>.  <%= link_to "Log out", "/user/logout" %></p>
-  <% else %>
-      <p id="info">Not logged in.  <%= link_to "Log in", "/user/login" %></p>
-  <% end %>
-    <% if flash[:message] %>
-      <p id="flash_message" class="flash" style="color: #859900;"><%= flash[:message] %></p>
   <% end %>
     <% if flash[:warning] %>
-      <p id="flash_warning" class="flash" style="color: #b58900;"><%= flash[:warning] %></p>
+      <p id="flash_warning" class="flash" style="color: #859900;"><%= flash[:warning] %></p>
   <% end %>
     <% if flash[:notice] %>
       <p id="flash_notice" class="flash"><%= flash[:notice] %></p>
   <% end %>
     <% if flash[:error] %>
-      <p id="flash_error" class="flash"style="color: #c41130;"><%= flash[:error] %></p>
+      <p id="flash_error" class="flash"style="color: #dc322f;"><%= flash[:error] %></p>
   <% end %>
   </div>
-  
-  <div style="clear: both;"></div>
+
 </div>
-
-
->>>>>>> cruft
+<div id="yielded">
+  <%= yield %>
+</div>
+<div style="clear: both;"></div>
 </body>
 </html>

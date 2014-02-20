@@ -1,0 +1,59 @@
+<div style="float: left;">
+  <%= form_tag(:controller => "user", :action => "register") do %>
+    <br />
+
+  <% if user.has_first? %>
+
+    <span class="done">First Session: <%= (user.first.name + " &#10003;").html_safe %> </span> <br />
+  <span class="leader done">1</span>
+  <%= select(:user, :first, Workshop.firsts.collect {|w| [w.name, w.id]}, {}, {:size => "6", :disabled => "true", :selected => params[:user][:first]}) %>
+  <br /><br />
+
+<% else %>
+    <span class="leader not-done">1</span>
+  <%= select(:user, :first, Workshop.firstsAvailable(user).collect {|w| [w.name, w.id]}, {}, {:size => "6"}) %>
+  <br /><br />
+
+<% end %>
+
+  <% if user.has_second? %>
+
+    <span style="color: green;">Second Session: <%= (user.second.name + " &#10003;").html_safe %></span> <br />
+  <span class="leader done">2</span>
+  <%= select(:user, :second, Workshop.seconds.collect {|w| [w.name, w.id]}, {}, {:size => "6", :disabled => "true", :selected => params[:user][:second]}) %>
+  <br /><br />
+
+<% else %>
+
+    <span class="leader not-done">2</span>
+  <%= select(:user, :second, Workshop.secondsAvailable(user).collect {|w| [w.name, w.id]}, {}, {:size => "6"}) %>
+  <br /><br />
+
+<% end %>
+
+  <% if user.has_third? %>
+
+    <span style="color: green;">Third Session: <%= (user.third.name + " &#10003;").html_safe %></span> <br />
+  <span class="leader done">3</span>
+  <%= select(:user, :third, Workshop.thirds.collect {|w| [w.name, w.id]}, {}, {:size => "6", :disabled => "true", :selected => params[:user][:third]}) %>
+  <br /><br />
+
+<% else %>
+
+    <span class="leader not-done">3</span>
+  <%= select(:user, :third, Workshop.thirdsAvailable(user).collect {|w| [w.name, w.id]}, {}, {:size => "6"}) %>
+  <br /><br />
+<% end %>
+  <br />
+  <%= submit_tag "Request Workshops" %>
+
+</div>
+
+<div style="float: left; width: 350px; margin: 20px;">
+  <h3 id="presentor"></h3>
+  <div id="description" style="font-size: 0.9em;">
+  </div>
+</div>
+
+<% end %>
+

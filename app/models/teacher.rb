@@ -47,7 +47,6 @@ class Teacher < ActiveRecord::Base
 
   def signup(workshop_id)
     workshop = Workshop.find(workshop_id)
-    sessions = workshops.collect {|w| w.session}
     
     unless (whynot = workshop.cantSignUp self)
       workshop.teachers << self

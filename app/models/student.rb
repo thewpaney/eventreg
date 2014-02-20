@@ -1,7 +1,7 @@
 class Student < ActiveRecord::Base
   attr_accessible :number, :full, :gender, :grade, :year, :email, :prefix, :rw, :rw_number, :rw_teacher, :advisement
   validates :number, :full, :gender, :grade, :year, :email, :prefix, :rw, :rw_number, :rw_teacher, :advisement,  presence: true
-  has_and_belongs_to_many :workshops, uniq: true
+  has_and_belongs_to_many :workshops,  uniq: true
 
   def self.authenticate(number, prefix)
     where(prefix: prefix.downcase, number: number).first
@@ -30,8 +30,8 @@ class Student < ActiveRecord::Base
 
   #Regular sign up, checks before it confirms
   #This kinda makes me want to puke. 
-  def signup(workshop)
-    sessions = workshops.collect {|w| w.session}
+  def signup(workshop_id)
+    workshop = Workshop.find(workshop_id)
     
     unless (whynot = workshop.cantSignUp self)
       workshop.students << self

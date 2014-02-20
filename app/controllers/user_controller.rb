@@ -3,8 +3,6 @@ class UserController < ApplicationController
   before_filter :admin!, only: :force_register
   before_filter :edit, only: :register
 
-  caches_page :login
-
   def ajaxDescription
     @workshop = Workshop.find(params[:id].to_i)
     render :json => @workshop
@@ -17,31 +15,6 @@ class UserController < ApplicationController
     end
   end
 
-  # THIS CODE IS BAD AND WE SHOULD FEEL BAD
-  # def force_register
-  #   if request.get?
-  #     if user.class == "Teacher"
-  #       user.workshops.each {|w| w.tlimit = (w.tlimit.to_i - 1).to_s}
-  #     else
-  #       user.workshops.each {|w| w.slimit = (w.slimit.to_i - 1).to_s}
-  #     end
-  #     user.workshops.clear
-  #   end
-  #   if request.post?
-  #     if params[:user][:first]
-  #       user.force(params[:user][:first])
-  #     end
-  #     if params[:user][:second]
-  #       user.force(params[:user][:second])
-  #     end
-  #     if params[:user][:third]
-  #       user.force(params[:user][:third])
-  #     end
-  #   else
-  #     params[:user] = {}
-  #   end
-  # end
-  
   def register
     if request.post?
       if params[:user][:first]
