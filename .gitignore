@@ -27,3 +27,6 @@ vendor/ruby/
 vendor
 vendor/
 vendor/*
+
+# Seeding database files
+db/*.csv
