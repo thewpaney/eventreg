@@ -8,73 +8,74 @@
 #
 # This is the same as the one we used in 2013
 
-# session = GoogleDrive.login("dlazzeri1@gmail.com", $stdin.gets)
-# puts "Connected to Google"
+puts "Password?"
+session = GoogleDrive.login("dlazzeri1@gmail.com", $stdin.gets)
+puts "Connected to Google"
 
 require 'csv'
 
-# puts "Downloading workshops"
-# workshops = session.spreadsheet_by_key("0AiFYq092sE5adDJ2VVZCQjBib0paQk5GZ3M3WUE4NkE").worksheets[0]
-# puts "Downloaded workshops"
+puts "Downloading workshops"
+workshops = session.spreadsheet_by_key("0AiFYq092sE5adFVBNVg4ZWVyUEhiUUdia1VyUVo0MXc").worksheets[0]
+puts "Downloaded workshops"
 
-# puts "Seeding workshops"
-# workshops.rows[1..-1].each do |row|
-#   if row[3] == "x"
-#     begin
-#       w = Workshop.new
-#       w.presentor = row[0]
-#       w.name = row[1]
-#       w.description = row[2]
-#       w.session = 1
-#       w.room = row[6]
-#       w.slimit = row[7]
-#       w.tlimit = row[8]
-#       w.staken = 0
-#       w.ttaken = 0
-#       w.percentage = row[9].blank? ? 66 : row[9].to_i
-#       w.save!
-# #     rescue
-# #       puts "Couldn't make workshop with row #{workshops.rows.index(row) + 1}: " << row.to_s
-#     end
-#   end
-#   if row[4] == "x"
-#     begin
-#       w = Workshop.new
-#       w.presentor = row[0]
-#       w.name = row[1]
-#       w.description = row[2]
-#       w.session = 2
-#       w.room = row[6]
-#       w.slimit = row[7]
-#       w.tlimit = row[8]
-#       w.staken = 0
-#       w.ttaken = 0
-#       w.percentage = row[9].blank? ? 66 : row[9].to_i
-#       w.save!
-# #    rescue
-# #      puts "Couldn't make workshop with row #{workshops.rows.index(row) + 1}: " << row.to_s
-#     end
-#   end
-#   if row[5] == "x"
-#     begin
-#       w = Workshop.new
-#       w.presentor = row[0]
-#       w.name = row[1]
-#       w.description = row[2]
-#       w.session = 3
-#       w.room = row[6]
-#       w.slimit = row[7]
-#       w.tlimit = row[8]
-#       w.staken = 0
-#       w.ttaken = 0
-#       w.percentage = row[9].blank? ? 66 : row[9].to_i
-#       w.save!
-# #    rescue
-# #      puts "Couldn't make workshop with row #{workshops.rows.index(row) + 1}: " << row.to_s
-#     end
-#   end
-# end
-# puts "Seeded workshops"  
+puts "Seeding workshops"
+workshops.rows[1..-1].each do |row|
+  if row[3] == "x"
+    begin
+      w = Workshop.new
+      w.presentor = row[0]
+      w.name = row[1]
+      w.description = row[2]
+      w.session = 1
+      w.room = row[6]
+      w.slimit = row[7]
+      w.tlimit = row[8]
+      w.staken = 0
+      w.ttaken = 0
+      w.percentage = row[9].blank? ? 66 : row[9].to_i
+      w.save!
+#     rescue
+#       puts "Couldn't make workshop with row #{workshops.rows.index(row) + 1}: " << row.to_s
+    end
+  end
+  if row[4] == "x"
+    begin
+      w = Workshop.new
+      w.presentor = row[0]
+      w.name = row[1]
+      w.description = row[2]
+      w.session = 2
+      w.room = row[6]
+      w.slimit = row[7]
+      w.tlimit = row[8]
+      w.staken = 0
+      w.ttaken = 0
+      w.percentage = row[9].blank? ? 66 : row[9].to_i
+      w.save!
+#    rescue
+#      puts "Couldn't make workshop with row #{workshops.rows.index(row) + 1}: " << row.to_s
+    end
+  end
+  if row[5] == "x"
+    begin
+      w = Workshop.new
+      w.presentor = row[0]
+      w.name = row[1]
+      w.description = row[2]
+      w.session = 3
+      w.room = row[6]
+      w.slimit = row[7]
+      w.tlimit = row[8]
+      w.staken = 0
+      w.ttaken = 0
+      w.percentage = row[9].blank? ? 66 : row[9].to_i
+      w.save!
+#    rescue
+#      puts "Couldn't make workshop with row #{workshops.rows.index(row) + 1}: " << row.to_s
+    end
+  end
+end
+puts "Seeded workshops"  
 
 # Deprecated - now grab from .csv
 # puts "Downloading students"
