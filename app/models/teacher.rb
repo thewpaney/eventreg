@@ -1,10 +1,18 @@
 class Teacher < ActiveRecord::Base
   attr_accessible :number, :prefix, :email, :name
-  validates :number, :prefix, :email, :name, presence: true
+  validates :number, :prefix, :email, :division, :name, presence: true
   validates :prefix, uniqueness: true
 
   has_and_belongs_to_many :workshops, uniq: true
   
+  def self.boys
+    where(division: "BD")
+  end
+
+  def self.girls
+    where(division: "GD")
+  end
+
   def self.authenticate(number, prefix)
     where(number: number, prefix: prefix.downcase).first
   end

@@ -150,6 +150,7 @@ CSV.foreach("db/teachers-seed.csv") do |row|
   t = Teacher.new
   t.id = index
   index += 1
+  t.division = row[0] "BD" : "GD"
   t.number = row[2]
   t.name = row[4] + " " + row[3]
   t.prefix = row[6].split("@")[0]

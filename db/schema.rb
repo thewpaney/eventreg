@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140121211927) do
+ActiveRecord::Schema.define(version: 20140223231424) do
 
   create_table "sessions", force: true do |t|
     t.string   "session_id", null: false
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20140121211927) do
     t.string "name"
     t.string "email"
     t.string "prefix"
+    t.string "division"
   end
 
   create_table "teachers_workshops", force: true do |t|

@@ -8,11 +8,11 @@ class Student < ActiveRecord::Base
   end
 
   def self.boys
-    where("gender IS 'BD'")
+    where("gender = 'BD'")
   end
 
   def self.girls
-    where("gender IS 'GD'")
+    where("gender = 'GD'")
   end
   
   def self.registered
