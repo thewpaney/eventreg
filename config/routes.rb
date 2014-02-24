@@ -13,7 +13,7 @@ Eventreg::Application.routes.draw do
   get '/admin/export' => 'admin#export'
   get '/user/reset' => 'user#reset'
   
-  match '/user/description/:id' => 'user#ajaxDescription', :via => [:get]
+  match '/user/description/:id' => 'user#ajaxDescription', :via => [:post]
 
   root :to => 'user#login'
 end
