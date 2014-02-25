@@ -37,4 +37,39 @@ class AdminController < ApplicationController
     end
   end
 
+  def email
+    if request.post?
+      params[:email][:to].split(",").each do |recipient|
+        if (! (trecord = Teacher.find_by_prefix(recipient)).nil? )
+          # It's a teacher
+          EventregMailer.custom_email(trecord, params[:email][:title], params[:email][:body].html_safe).deliver
+        elsif (! (srecord = Student.find_by_prefix(recipient)).nil? )
+          # It's a student
+          EventregMailer.custom_email(srecord, params[:email][:title], params[:email][:body].html_safe).deliver
+        elsif (recipient === "STUDENTS")
+          Student.all.each do |s|
+            EventregMailer.custom_email(s, params[:email][:title], params[:email][:body].html_safe).deliver
+          end
+        elsif (recipient === "TEACHERS")
+          Teacher.all.each do |t|
+            EventregMailer.custom_email(t, params[:email][:title], params[:email][:body].html_safe).deliver
+          end
+        elsif (recipient === "ALL")
+          Teacher.all.each do |t|
+            EventregMailer.custom_email(t, params[:email][:title], params[:email][:body].html_safe).deliver
+          end
+          Student.all.each do |s|
+            EventregMailer.custom_email(s, params[:email][:title], params[:email][:body].html_safe).deliver
+          end
+        end
+      else
+          flash[:error] = flash[:error] + "No record found: #{recipient}."
+        end
+        if (recipient === "STUDENTS" and !(recipient === "ALL"))
+          EventregMailer.custom_email(Teacher.find_by_prefix("lglasscock"), params[:email][:title], params[:email][:body].html_safe).deliver
+          EventregMailer.custom_email(Teacher.find_by_prefix("cvela"), params[:email][:title], params[:email][:body].html_safe).deliver
+        end
+      end
+    end
+  end
 end

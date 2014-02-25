@@ -8,11 +8,14 @@ Eventreg::Application.routes.draw do
   post '/user/register' => 'user#register'
   post '/user/login' => 'user#login'
   post '/user/edit' => 'user#update'
-  get '/admin' => 'admin#review'
   get '/table' => 'user#table'
   get '/admin/export' => 'admin#export'
   get '/user/reset' => 'user#reset'
   
+  get '/admin' => 'admin#review'
+  get '/admin/email' => 'admin#email'
+  post '/admin/email' => 'admin#email'
+
   match '/user/description/:id' => 'user#ajaxDescription', :via => [:post]
 
   root :to => 'user#login'

@@ -8,8 +8,8 @@
 #
 # This is the same as the one we used in 2013
 
-puts "Password?"
-session = GoogleDrive.login("dlazzeri1@gmail.com", $stdin.gets)
+puts "Username and Password, one after the other."
+session = GoogleDrive.login($stdin.gets, $stdin.gets)
 puts "Connected to Google"
 
 require 'csv'
@@ -24,12 +24,12 @@ workshops.rows[1..-1].each do |row|
     begin
       w = Workshop.new
       w.presentor = row[0]
-      w.name = row[1]
-      w.description = row[2]
+      w.name = row[1].blank? ? "TBA" : row[1]
+      w.description = row[2].blank? ? "TBA" : row[2]
       w.session = 1
-      w.room = row[6]
+      w.room = row[6].blank? ? "TBA" : row[6]
       w.slimit = row[7]
-      w.tlimit = row[8]
+      w.tlimit = row[8].blank? ? 2 : row[8]
       w.staken = 0
       w.ttaken = 0
       w.percentage = row[9].blank? ? 66 : row[9].to_i
@@ -42,12 +42,12 @@ workshops.rows[1..-1].each do |row|
     begin
       w = Workshop.new
       w.presentor = row[0]
-      w.name = row[1]
-      w.description = row[2]
+      w.name = row[1].blank? ? "TBA" : row[1]
+      w.description = row[2].blank? ? "TBA" : row[2]
       w.session = 2
-      w.room = row[6]
+      w.room = row[6].blank? ? "TBA" : row[6]
       w.slimit = row[7]
-      w.tlimit = row[8]
+      w.tlimit = row[8].blank? ? 2 : row[8]
       w.staken = 0
       w.ttaken = 0
       w.percentage = row[9].blank? ? 66 : row[9].to_i
@@ -60,12 +60,12 @@ workshops.rows[1..-1].each do |row|
     begin
       w = Workshop.new
       w.presentor = row[0]
-      w.name = row[1]
-      w.description = row[2]
+      w.name = row[1].blank? ? "TBA" : row[1]
+      w.description = row[2].blank? ? "TBA" : row[2]
       w.session = 3
-      w.room = row[6]
+      w.room = row[6].blank? ? "TBA" : row[6]
       w.slimit = row[7]
-      w.tlimit = row[8]
+      w.tlimit = row[8].blank? ? 2 : row[8]
       w.staken = 0
       w.ttaken = 0
       w.percentage = row[9].blank? ? 66 : row[9].to_i
@@ -114,7 +114,7 @@ CSV.foreach("db/students-seed.csv") do |row|
   #s.last = row[1]
   #s.first = row[2]
   s.full = row[3] + " " + row[2]
-  s.gender = ( row[4] === "Male" ? 'M' : 'F' )
+  s.gender = ( row[4] === "Male" ? 'BD' : 'GD' )
   s.grade = row[5]
   s.year = ( row[5] === "Senior" ? 12 : ( row[5] === "Junior" ? 11 : ( row[5] === "Sophomore" ? 10 : ( row[5] === "Freshman" ? 9 : nil ) ) ) )
   s.email = row[7]
@@ -143,14 +143,13 @@ puts "Seeded students"
 # 9 2ND PERIOD
 # 10 2RW ROOM #
 
-
 index = 1
 puts "Seeding teachers"
 CSV.foreach("db/teachers-seed.csv") do |row|
   t = Teacher.new
   t.id = index
   index += 1
-  t.division = row[0] "BD" : "GD"
+  t.division = ( row[0] ? "BD" : "GD" )
   t.number = row[2]
   t.name = row[4] + " " + row[3]
   t.prefix = row[6].split("@")[0]

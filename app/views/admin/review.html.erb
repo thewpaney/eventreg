@@ -3,7 +3,17 @@
   <h3><%= "Teachers registered: #{(Teacher.all.count) - (Teacher.all.select {|s| s.workshop_ids == []}.count)} of #{Teacher.all.count}" %></h3>
   <h3><%= "Boys Division: #{(Teacher.boys.count) - (Teacher.boys.select {|s| s.workshop_ids == []}.count)} of #{Teacher.boys.count}" %></h3>
   <h3><%= "Girls Division: #{(Teacher.girls.count) - (Teacher.girls.select {|s| s.workshop_ids == []}.count)} of #{Teacher.girls.count}" %></h3>
-  <div style="overflow: auto;height: 400px; width: 400px;">
+  <h4> Incomplete Registration: </h4>
+  <div style="overflow: auto;height: 400px; width: 400px; background-color: #cccccc;">
+    <table style="height: 10em; width: 50%;">
+      <% Teacher.unregistered.each do |t| %>
+      <tr>
+      <td><%= t.full %></td>
+      <td><%= t.prefix %></td>
+      <td><%= t.number %></td>
+      </tr>
+      <% end %>
+    </table>
   </div>
   <br />
 </div>
@@ -11,7 +21,17 @@
   <h3><%= "Students registered: #{(Student.all.count) - (Student.all.select {|s| s.workshop_ids == []}.count)} of #{Student.all.count}" %></h3>
   <h3><%= "Boys Division: #{(Student.boys.count) - (Student.boys.select {|s| s.workshop_ids == []}.count)} of #{Student.boys.count}" %></h3>
   <h3><%= "Girls Division: #{(Student.girls.count) - (Student.girls.select {|s| s.workshop_ids == []}.count)} of #{Student.girls.count}" %></h3>
-  <div style="overflow: auto;height: 400px; width: 400px;">
+  <h4> Incomplete Registration: </h4>
+  <div style="overflow: auto;height: 400px; width: 400px; background-color: #cccccc;">
+  <table style="height: 10em; width: 50%;">
+    <% Student.unregistered.each do |s| %>
+    <tr>
+      <td><%= s.full %></td>
+      <td><%= s.prefix %></td>
+      <td><%= s.number %></td>
+      </tr>
+    <% end %>
+  </table>
   </div>
   <br />
 </div>

@@ -1,0 +1,30 @@
+<style type="text/css">
+  .text{font-family: Verdana, Geneva, sans-serif;}
+  .text label{font-size: 1.5em;}
+  h1 {font-size: 2.5em;}
+  td {
+    border-bottom: dashed;
+    padding: 5px;
+  }
+  table {padding:10px;}
+  select {width: 45em;}
+</style>
+
+<% content_for(:head) do %>
+<% javascript_include_tag :register %>
+<% end %>
+
+<%= form_tag(:action => "email") do %>
+
+<label for="email_body">To:</label><br />
+<%= text_field("email","to",:size => 80, :placeholder => "Enter student or teacher prefixes here separated by commas, or ALL/STUDENTS/TEACHERS.") %>
+<br />
+<label for="email_title">Title:</label><br />
+<%= text_field("email", "title", :size => 80, :placeholder => "RJHS Diversity Day Registration")%>
+<br />
+<label for="email_body">Body:</label><br />
+<%= text_area("email","body",:size => "120x20", :placeholder => "Enter the text of your e-mail here.  It will be formatted automagically." )%>
+<br /><br />
+<%= submit_tag("Send", confirm: "Are you sure you wanted to press the button? E-mail will be sent.") %>
+
+<% end %>

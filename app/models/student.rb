@@ -18,6 +18,10 @@ class Student < ActiveRecord::Base
   def self.registered
     self.all.select {|s| s.done?}
   end
+  
+  def self.unregistered
+    self.all.select {|s| !(s.done?)}
+  end
 
   #Force sign up. Does no checks
   def force(workshop_id)
