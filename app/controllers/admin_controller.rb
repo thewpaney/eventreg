@@ -46,15 +46,23 @@ class AdminController < ApplicationController
         elsif (! (srecord = Student.find_by_prefix(recipient)).nil? )
           # It's a student
           EventregMailer.custom_email(srecord, params[:email][:title], params[:email][:body].html_safe).deliver
-        elsif (recipient === "STUDENTS" || recipient === "ALL")
+        elsif (recipient === "STUDENTS")
           Student.all.each do |s|
             EventregMailer.custom_email(s, params[:email][:title], params[:email][:body].html_safe).deliver
           end
-        elsif (recipient === "TEACHERS" || recipient === "ALL")
+        elsif (recipient === "TEACHERS")
           Teacher.all.each do |t|
             EventregMailer.custom_email(t, params[:email][:title], params[:email][:body].html_safe).deliver
           end
-        else
+        elsif (recipient === "ALL")
+          Teacher.all.each do |t|
+            EventregMailer.custom_email(t, params[:email][:title], params[:email][:body].html_safe).deliver
+          end
+          Student.all.each do |s|
+            EventregMailer.custom_email(s, params[:email][:title], params[:email][:body].html_safe).deliver
+          end
+        end
+      else
           flash[:error] = flash[:error] + "No record found: #{recipient}."
         end
         if (recipient === "STUDENTS" and !(recipient === "ALL"))
