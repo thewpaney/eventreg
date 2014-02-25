@@ -21,6 +21,10 @@ class Teacher < ActiveRecord::Base
     self.all.select {|t| t.done?}
   end
 
+  def self.unregistered
+    self.all.select {|t| !(t.done?)}
+  end
+
   def has_first?
     workshops.collect {|w| w.session}.include? 1
   end

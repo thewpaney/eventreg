@@ -5,6 +5,12 @@ class EventregMailer < ActionMailer::Base
     mail(to: recipient.email, subject: "RJHS Diversity Day Registration Now Open!")
   end
 
+  def custom_email(recipient, title, body)
+    @title = title
+    @body = body
+    mail(to: recipient.email, subject: "#{title}")
+  end
+
   def late_email(recipient)
     
   end
