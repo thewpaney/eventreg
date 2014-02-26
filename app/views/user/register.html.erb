@@ -34,29 +34,15 @@ select {
   <% javascript_include_tag :register %>
 <% end %>
 
-
 <% if user.done? %>
 
-  <h1>You are registered for: </h1>
-<br />
-<table>
-  <tr>
-    <td> Session </td> <td> Name </td> <td> Presentor </td> <td> Description </td> <td> Location </td>
-    <% user.workshops.each do |w|  %>
-      <tr>
-      <td> <%= w.session %> </td>
-      <td> <%= w.name %> </td>
-      <td> <%= w.presentor %> </td>
-      <td> <%= w.description %> </td>
-      <td> <%= w.room %> </td>      
-    </tr>
-  <% end %>
-  </table>
-  <h1>You are done! <%= link_to "Logout", "/user/logout" %></h1>
+<h2>You are done! You can <%= link_to "Log Out", "/user/logout" %> or <%= link_to "View Details", "/user/details" %>.</h2>
+
 <% else %>
 
-
 <p class="text">Click on a workshop to see its description. Press submit to sign up for the highlited workshops.</p>
+
+<% end %>
+
 <%= render "workshop_selector" %>
 
-<% end %> 

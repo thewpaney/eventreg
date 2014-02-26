@@ -10,6 +10,7 @@ Eventreg::Application.routes.draw do
   post '/user/edit' => 'user#update'
   get '/admin/export' => 'admin#export'
   get '/user/reset' => 'user#reset'
+  get '/user/details' => 'user#details'
   
   get '/admin' => 'admin#review'
   get '/admin/email' => 'admin#email'
