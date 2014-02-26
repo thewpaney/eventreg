@@ -8,7 +8,6 @@ Eventreg::Application.routes.draw do
   post '/user/register' => 'user#register'
   post '/user/login' => 'user#login'
   post '/user/edit' => 'user#update'
-  get '/table' => 'user#table'
   get '/admin/export' => 'admin#export'
   get '/user/reset' => 'user#reset'
   
