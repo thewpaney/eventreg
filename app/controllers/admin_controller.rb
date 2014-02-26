@@ -61,9 +61,8 @@ class AdminController < ApplicationController
           Student.all.each do |s|
             EventregMailer.custom_email(s, params[:email][:title], params[:email][:body].html_safe).deliver
           end
-        end
-      else
-          flash[:error] = flash[:error] + "No record found: #{recipient}."
+        else
+          flash[:error] = ( flash[:error].nil? ? "" : flash[:error] )  + "No record found: #{recipient}."
         end
         if (recipient === "STUDENTS" and !(recipient === "ALL"))
           EventregMailer.custom_email(Teacher.find_by_prefix("lglasscock"), params[:email][:title], params[:email][:body].html_safe).deliver

@@ -108,9 +108,6 @@ CSV.foreach("db/students-seed.csv") do |row|
   s.id = index
   index += 1
   s.number = row[0].to_i
-  if s.number > 90000
-    s.number -= 200000000
-  end
   #s.last = row[1]
   #s.first = row[2]
   s.full = row[3] + " " + row[2]
