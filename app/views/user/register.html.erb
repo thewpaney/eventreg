@@ -34,6 +34,7 @@ select {
   <% javascript_include_tag :register %>
 <% end %>
 
+
 <% if user.done? %>
 
   <h1>You are registered for: </h1>
@@ -54,7 +55,8 @@ select {
   <h1>You are done! <%= link_to "Logout", "/user/logout" %></h1>
 <% else %>
 
-    <p class="text">Click on a workshop to see its description. Press submit to sign up for the highlited workshops. To see a large list of all workshops and descriptions, click <%= link_to "here", "/table" %>.</p>
-  <%= render "workshop_selector" %>
+
+<p class="text">Click on a workshop to see its description. Press submit to sign up for the highlited workshops.</p>
+<%= render "workshop_selector" %>
 
 <% end %> 

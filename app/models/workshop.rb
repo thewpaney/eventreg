@@ -43,7 +43,7 @@ class Workshop < ActiveRecord::Base
   end
 
   def to_s
-    name + ":" + session
+    "#{name}:#{session}"
   end
 
   def student_percentage_taken
@@ -92,11 +92,11 @@ class Workshop < ActiveRecord::Base
 
     if user.class == Student and (staken.to_f < slimit.to_f)
       #if adding a boy doesn't push us over the percentage limit
-      if user.gender = "BD" and ((boys.count + 1)/slimit.to_f < percentage.to_f/100.to_f)
+      if user.gender == "BD" and ((boys.count + 1)/slimit.to_f <= percentage.to_f/100.to_f)
         return false
       end
       #same with girls
-      if user.gender = "GD" and ((girls.count + 1)/slimit.to_f < percentage.to_f/100.to_f)
+      if user.gender == "GD" and ((girls.count + 1)/slimit.to_f <= percentage.to_f/100.to_f)
         return false
       end
     end
