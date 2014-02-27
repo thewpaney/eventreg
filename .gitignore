@@ -30,3 +30,5 @@ vendor/*
 
 # Seeding database files
 db/*.csv
+# Database backup dumps
+db/*.db
