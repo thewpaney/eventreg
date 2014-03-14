@@ -15,6 +15,23 @@ class UserController < ApplicationController
     end
   end
 
+  def force_register
+    if request.post?
+      if params[:user][:first]
+        user.force(params[:user][:first])
+      end
+      if params[:user][:second]
+        user.force(params[:user][:second])
+      end
+      if params[:user][:third]
+        user.force(params[:user][:third])
+      end
+    else
+      params[:user] = {}
+    end
+  end
+
+
   def register
     if request.post? and !(params[:user].nil?)
       if params[:user][:first]

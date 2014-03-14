@@ -3,14 +3,16 @@
   <h3><%= "Teachers registered: #{(Teacher.all.count) - (Teacher.all.select {|s| s.workshop_ids == []}.count)} of #{Teacher.all.count}" %></h3>
   <h3><%= "Boys Division: #{(Teacher.boys.count) - (Teacher.boys.select {|s| s.workshop_ids == []}.count)} of #{Teacher.boys.count}" %></h3>
   <h3><%= "Girls Division: #{(Teacher.girls.count) - (Teacher.girls.select {|s| s.workshop_ids == []}.count)} of #{Teacher.girls.count}" %></h3>
-  <h4> Incomplete Registration: </h4>
+  <h4> Registered Teachers: </h4>
   <div style="overflow: auto;height: 400px; width: 400px; background-color: #cccccc;">
     <table style="height: 10em; width: 50%;">
-      <% Teacher.unregistered.each do |t| %>
+      <% Teacher.registered.each do |t| %>
       <tr>
       <td><%= t.full %></td>
       <td><%= t.prefix %></td>
-      <td><%= t.number %></td>
+      <td><%= t.first %></td>
+      <td><%= t.second %></td>
+      <td><%= t.third %></td>
       </tr>
       <% end %>
     </table>
@@ -18,17 +20,19 @@
   <br />
 </div>
 <div style="font-size: 1.3em; float: left; ">
-  <h3><%= "Students registered: #{(Student.all.count) - (Student.all.select {|s| s.workshop_ids == []}.count)} of #{Student.all.count}" %></h3>
+  <h3><%= "Students registered: #{(Student.unregistered.count)} of #{Student.all.count}" %></h3>
   <h3><%= "Boys Division: #{(Student.boys.count) - (Student.boys.select {|s| s.workshop_ids == []}.count)} of #{Student.boys.count}" %></h3>
   <h3><%= "Girls Division: #{(Student.girls.count) - (Student.girls.select {|s| s.workshop_ids == []}.count)} of #{Student.girls.count}" %></h3>
-  <h4> Incomplete Registration: </h4>
+  <h4> Registered Students: </h4>
   <div style="overflow: auto;height: 400px; width: 400px; background-color: #cccccc;">
   <table style="height: 10em; width: 50%;">
-    <% Student.unregistered.each do |s| %>
+    <% Student.registered.each do |s| %>
     <tr>
       <td><%= s.full %></td>
       <td><%= s.prefix %></td>
-      <td><%= s.number %></td>
+      <td><%= s.first%></td>
+      <td><%= s.second%></td>
+      <td><%= s.third%></td>
       </tr>
     <% end %>
   </table>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140223231424) do
+ActiveRecord::Schema.define(version: 20140307191541) do
 
   create_table "sessions", force: true do |t|
     t.string   "session_id", null: false
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20140223231424) do
     t.string  "rw_number"
     t.string  "rw_teacher"
     t.string  "advisement"
+    t.string  "advisement_name"
   end
 
   create_table "students_workshops", force: true do |t|

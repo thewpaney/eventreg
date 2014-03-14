@@ -10,6 +10,14 @@ class Workshop < ActiveRecord::Base
   has_and_belongs_to_many :students, uniq: true
   has_and_belongs_to_many :teachers, uniq: true
 
+  def sfullness
+    staken.to_f/slimit.to_f
+  end
+
+  def tfullness
+    ttaken.to_f/tlimit.to_f
+  end
+
   def self.full
     all.select {|w|w.full?}
   end
@@ -68,17 +76,17 @@ class Workshop < ActiveRecord::Base
 
   def cantSignUp(user)
     if user.workshops.count > 3
-      logger.error "User #{user.to_s} has more than three workshops, and requested workshop #{to_s}\n#{user.to_yaml}"
+      logger.error "User #{user.to_s} has more than three workshops, and requested workshop #{to_s}\n#{user.to_yaml}\n#{user.workshops}"
       return "You have more than three workshops."
     end
 
     if user.workshops.count == 3
-      logger.error "User #{user.to_s} was able to request a workshop #{to_s} with three workshops\n#{user.to_yaml}"
+      logger.error "User #{user.to_s} was able to request a workshop #{to_s} with three workshops\n#{user.to_yaml}\n#{user.workshops}"
       return "You are already signed up for three workshops."
     end
 
     if user.workshops.collect {|w| w.session}.include? session
-      logger.error "User #{user.to_s} was able to request multiple workshops in a session, #{to_s}\n#{user.to_yaml}"
+      logger.error "User #{user.to_s} was able to request multiple workshops in a session, #{to_s}\n#{user.to_yaml}#{user.workshops}"
       return "You can't have more than one workshop in a session"
     end
 

@@ -1,5 +1,5 @@
 class Student < ActiveRecord::Base
-  attr_accessible :number, :full, :gender, :grade, :year, :email, :prefix, :rw, :rw_number, :rw_teacher, :advisement
+  attr_accessible :number, :full, :gender, :grade, :year, :email, :prefix, :rw, :rw_number, :rw_teacher, :advisement, :advisement_name
   validates :number, :full, :gender, :grade, :year, :email, :prefix, :rw, :rw_number, :rw_teacher, :advisement,  presence: true
   has_and_belongs_to_many :workshops,  uniq: true
 
@@ -23,6 +23,10 @@ class Student < ActiveRecord::Base
     self.all.select {|s| !(s.done?)}
   end
 
+  def sessions_needed
+    [1,2,3] - workshops.map(&:session)
+  end
+
   #Force sign up. Does no checks
   def force(workshop_id)
     workshop = Workshop.find(workshop_id)
@@ -36,6 +40,7 @@ class Student < ActiveRecord::Base
   #This kinda makes me want to puke. 
   def signup(workshop_id)
     workshop = Workshop.find(workshop_id)
+    puts "Signing up ", prefix, " for workshop", workshop_id 
     
     unless (whynot = workshop.cantSignUp self)
       workshop.students << self
@@ -45,6 +50,49 @@ class Student < ActiveRecord::Base
       return "Signed up"
     else
       return whynot
+    end
+  end
+
+  def unsignup(workshop_id)
+    workshop = Workshop.find(workshop_id)
+    puts "Unsigning ", prefix, "from workshop", workshop_id
+    workshop.students.delete(self)
+    workshops.delete(workshop)
+    workshop.staken -= 1
+    workshop.save!
+  end
+  def auto
+    begin 
+      unless has_first?
+        # Give them the one with the lowest fullness (amount of people/amount of spots)
+        miserables = Workshop.firstsAvailable(self).sort {|w, w2| w.sfullness <=> w2.sfullness}
+        puts miserables
+        signup miserables.first.id
+      end
+    rescue 
+      puts "Unable to find First for #{prefix}"
+    end
+
+   begin 
+      unless has_second?
+        # Give them the one with the lowest fullness (amount of people/amount of spots)
+        miserables = Workshop.secondsAvailable(self).sort {|w, w2| w.sfullness <=> w2.sfullness}
+        puts miserables
+        signup miserables.first.id
+      end
+    rescue 
+      puts "Unable to find Second for #{prefix}"
+    end
+
+  begin 
+      unless has_third?
+        # Give them the one with the lowest fullness (amount of people/amount of spots)
+        miserables = Workshop.thirdsAvailable(self).sort {|w, w2| w.sfullness <=> w2.sfullness}
+        puts miserables
+        signup miserables.first.id
+      end
+    rescue 
+      puts "Unable to find Third for #{prefix}"
     end
   end
 
