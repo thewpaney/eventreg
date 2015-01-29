@@ -55,7 +55,9 @@ without either breaking the gender limit or being in the same workshop twice
 
 I think the best way to fix this is to check if the person trying to sign up
 has no options for a session. If that's the case, and allowing them to bipass 
-the gender limits will fix that, liet them break the gender limits.
+the gender limits will fix that, let them break the gender limits.
+
+Evenly distribute overflow of gender
 
 *** Working the first time
 *** E-mail registration confirmation
@@ -73,10 +75,37 @@ Testing for Volume
 Testing whether any permutation of button presses can screw things up
 *** Month-to-month, buy in advance
 *** Buy for all of February, get set up immediately
-
 ** Sign up for one section at a time and send feedback via Javascript
 *** Make Ajax work everywhere (Netscape, Explorer)
 *** Awesome Admin Page
 **** God Mode (™)
 **** Email?
 **** Empower the admins
+* 2015
+** Gender limits
+*** On overflow in endgame, spread gender evenly (rank by percentage maybe)?
+** Emails
+*** diversity@regisjesuit.com!
+** Deadlines!
+*** Conference: March 10
+*** Registration info: Feb 9 ideally
+*** Registration opens: Feb 24 - March 2
+** Overflow
+*** Overflow class in each session that is unique (otherwise we pull kids)
+** Spreadsheet Data Fields
+*** Workshop
+**** Presentor/Name/Description/S1/S2/S3/Room/Slimit/Tlimit/Gprc
+*** Student
+**** SID/First/Last/Div/Prefix/Gender/Year/2RW/Advisement
+*** Teacher
+**** TID/First/Last/Div/Prefix/2RW?/Advise?
+** Linode
+*** Yay!
+** Sign up for one section at a time and send feedback via Javascript
+*** Make Ajax work everywhere (Netscape, Explorer)
+*** Awesome Admin Page
+**** God Mode (™)
+**** Email?
+**** Empower the admin
+** Flexible signup
+*** Overflow number
