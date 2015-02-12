@@ -8,14 +8,34 @@
 #
 # This is the same as the one we used in 2013
 
-puts "Username and Password, one after the other."
-session = GoogleDrive.login($stdin.gets, $stdin.gets)
-puts "Connected to Google"
+require "google/api_client"
+client = Google::APIClient.new
+auth = client.authorization
+# Follow "Create a client ID and client secret" in
+# https://developers.google.com/drive/web/auth/web-server] to get a client ID and client secret.
+auth.client_id = "15945331926-0728u4paofpjt03ggah2j19modctpv6p.apps.googleusercontent.com"
+auth.client_secret = "BPxAu57AaP-gObUf4MGyjRwd"
+auth.scope =
+  "https://www.googleapis.com/auth/drive " +
+  "https://spreadsheets.google.com/feeds/"
+auth.redirect_uri = "urn:ietf:wg:oauth:2.0:oob"
+print("1. Open this page:\n%s\n\n" % auth.authorization_uri)
+print("2. Enter the authorization code shown in the page: ")
+auth.code = $stdin.gets.chomp
+auth.fetch_access_token!
+access_token = auth.access_token
+
+session = GoogleDrive.login_with_oauth(auth.access_token)
+
+# This is now super deprecated
+# puts "Username and Password, one after the other."
+# session = GoogleDrive.login($stdin.gets, $stdin.gets)
+# puts "Connected to Google"
 
 require 'csv'
 
 puts "Downloading workshops"
-workshops = session.spreadsheet_by_key("0AiFYq092sE5adFVBNVg4ZWVyUEhiUUdia1VyUVo0MXc").worksheets[0]
+workshops = session.spreadsheet_by_key("1p3QAoXMowYA0Ds6_k2WmdIoVbmIldfccH1mRfxJbVdQ").worksheets[0]
 puts "Downloaded workshops"
 
 puts "Seeding workshops"
@@ -23,12 +43,12 @@ workshops.rows[1..-1].each do |row|
   if row[3] == "x"
     begin
       w = Workshop.new
-      w.presentor = row[0]
+      w.presentor = row[0].blank? ? "TBA" : row[0]
       w.name = row[1].blank? ? "TBA" : row[1]
       w.description = row[2].blank? ? "TBA" : row[2]
       w.session = 1
       w.room = row[6].blank? ? "TBA" : row[6]
-      w.slimit = row[7]
+      w.slimit = row[7].blank? ? "1000" : row[7]
       w.tlimit = row[8].blank? ? 2 : row[8]
       w.staken = 0
       w.ttaken = 0
@@ -41,12 +61,12 @@ workshops.rows[1..-1].each do |row|
   if row[4] == "x"
     begin
       w = Workshop.new
-      w.presentor = row[0]
+      w.presentor = row[0].blank? ? "TBA" : row[0]
       w.name = row[1].blank? ? "TBA" : row[1]
       w.description = row[2].blank? ? "TBA" : row[2]
       w.session = 2
       w.room = row[6].blank? ? "TBA" : row[6]
-      w.slimit = row[7]
+      w.slimit = row[7].blank? ? "1000" : row[7]
       w.tlimit = row[8].blank? ? 2 : row[8]
       w.staken = 0
       w.ttaken = 0
@@ -59,12 +79,12 @@ workshops.rows[1..-1].each do |row|
   if row[5] == "x"
     begin
       w = Workshop.new
-      w.presentor = row[0]
+      w.presentor = row[0].blank? ? "TBA" : row[0]
       w.name = row[1].blank? ? "TBA" : row[1]
       w.description = row[2].blank? ? "TBA" : row[2]
       w.session = 3
       w.room = row[6].blank? ? "TBA" : row[6]
-      w.slimit = row[7]
+      w.slimit = row[7].blank? ? "1000" : row[7]
       w.tlimit = row[8].blank? ? 2 : row[8]
       w.staken = 0
       w.ttaken = 0
@@ -110,16 +130,17 @@ CSV.foreach("db/students-seed.csv") do |row|
   s.number = row[0].to_i
   #s.last = row[1]
   #s.first = row[2]
-  s.full = row[3] + " " + row[2]
-  s.gender = ( row[4] === "Male" ? 'BD' : 'GD' )
-  s.grade = row[5]
-  s.year = ( row[5] === "Senior" ? 12 : ( row[5] === "Junior" ? 11 : ( row[5] === "Sophomore" ? 10 : ( row[5] === "Freshman" ? 9 : nil ) ) ) )
-  s.email = row[7]
-  s.prefix = row[7].split('@').first
-  s.rw = row[12]
-  s.rw_number = row[13]
-  s.rw_teacher = row[15]
-  s.advisement = row[9].to_i
+  s.full = row[2] + " " + row[1]
+  s.gender = ( row[3] === "Male" ? 'BD' : 'GD' )
+  s.grade = row[4].blank? ? "ERROR" : row[4]
+  s.year = row[4].blank? ? 99 : ( row[4] === "Senior" ? 12 : ( row[4] === "Junior" ? 11 : ( row[4] === "Sophomore" ? 10 : ( row[4] === "Freshman" ? 9 : 99 ) ) ) )
+  s.email = row[6]
+  s.prefix = row[6].split('@').first
+  s.rw = row[10].blank? ? "ERROR" : row[10]
+  s.rw_number = row[10].blank? ? "ERROR" : row[10]
+  s.rw_teacher = row[11].blank? ? "ERROR" : row[11]
+  s.advisement = row[7].blank? ? "ERROR" : row[7].to_i
+  puts "saving student #{s.full}"
   s.save!
 end
 puts "Seeded students"
