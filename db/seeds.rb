@@ -48,7 +48,7 @@ workshops.rows[1..-1].each do |row|
       w.description = row[2].blank? ? "TBA" : row[2]
       w.session = 1
       w.room = row[6].blank? ? "TBA" : row[6]
-      w.slimit = row[7].blank? ? "1000" : row[7]
+      w.slimit = row[7].blank? ? "TBA" : row[7]
       w.tlimit = row[8].blank? ? 2 : row[8]
       w.staken = 0
       w.ttaken = 0
@@ -66,7 +66,7 @@ workshops.rows[1..-1].each do |row|
       w.description = row[2].blank? ? "TBA" : row[2]
       w.session = 2
       w.room = row[6].blank? ? "TBA" : row[6]
-      w.slimit = row[7].blank? ? "1000" : row[7]
+      w.slimit = row[7].blank? ? "TBA" : row[7]
       w.tlimit = row[8].blank? ? 2 : row[8]
       w.staken = 0
       w.ttaken = 0
@@ -84,7 +84,7 @@ workshops.rows[1..-1].each do |row|
       w.description = row[2].blank? ? "TBA" : row[2]
       w.session = 3
       w.room = row[6].blank? ? "TBA" : row[6]
-      w.slimit = row[7].blank? ? "1000" : row[7]
+      w.slimit = row[7].blank? ? "TBA" : row[7]
       w.tlimit = row[8].blank? ? 2 : row[8]
       w.staken = 0
       w.ttaken = 0
