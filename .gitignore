@@ -32,3 +32,4 @@ vendor/*
 db/*.csv
 # Database backup dumps
 db/*.db
+db/*.dmp
