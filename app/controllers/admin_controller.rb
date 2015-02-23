@@ -4,6 +4,10 @@ class AdminController < ApplicationController
   # Yeah
   before_filter :admin!
 
+  def review
+    self.deauthenticate!
+  end
+
   def export
     csv_data = CSV.generate do |csv|
       csv << %w(id full grade gender advisement advisement-teacher first second third)
@@ -78,4 +82,56 @@ class AdminController < ApplicationController
       end
     end
   end
+
+  def force
+    if request.post?
+      # Submitting form
+      # Removing a workshop
+      if params["1"]
+        self.user.unsignup(self.user.first.id)
+        return
+      elsif params["2"]
+        self.user.unsignup(self.user.second.id)
+        return
+      elsif params["3"]
+        self.user.unsignup(self.user.third.id)
+        return
+      end
+      # Adding workshops
+      if params[:user][:first]
+        unless (whynot = user.signup(params[:user][:first])) == "Signed up"
+          workshop = Workshop.find(params[:user][:first])
+          flash[:error] = "Could not sign up for Session #{workshop.session}:\n #{whynot} "
+        end
+      end
+      
+      if params[:user][:second]
+        unless (whynot = user.signup(params[:user][:second])) == "Signed up"
+          workshop = Workshop.find(params[:user][:second])
+          flash[:error] = "Could not sign up for Session #{workshop.session}:\n #{whynot} "
+        end
+      end
+      
+      if params[:user][:third]
+        unless (whynot = user.signup(params[:user][:third])) == "Signed up"
+          workshop = Workshop.find(params[:user][:third])
+          flash[:error] = "Could not sign up for Session #{workshop.session}:\n #{whynot} "
+        end
+      end
+    else
+      # Rendering form
+      if (!(params[:type] === "student" or params[:type] === "teacher"))
+        flash[:error] = "Bad user type #{params[:type]} - make it student or teacher."
+        redirect_to '/admin'
+      else
+        session[:type] = params[:type]
+        session[:user_id] = params[:id]
+        if self.user.nil?
+          flash[:error] = 'No user with id #{params[:id]} and type #{params[:type]} exists.'
+          redirect_to '/admin'
+        end
+      end
+    end
+  end
+  
 end

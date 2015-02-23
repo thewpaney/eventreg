@@ -1,6 +1,6 @@
 class UserController < ApplicationController
-  before_filter :login_required!, only: [:register, :ready, :force_register]
-  before_filter :admin!, only: :force_register
+  before_filter :login_required!, only: [:register, :ready, :force_register, :details, :reset]
+  before_filter :admin!, only: [:force_register, :reset]
   before_filter :edit, only: :register
 
   def ajaxDescription
@@ -90,4 +90,9 @@ class UserController < ApplicationController
     end
     redirect_to "/user/register"
   end
+
+  def details
+    # Nothing to be done here
+  end
+  
 end

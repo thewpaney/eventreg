@@ -43,7 +43,8 @@ class Student < ActiveRecord::Base
     puts "Signing up ", prefix, " for workshop", workshop_id 
     
     unless (whynot = workshop.cantSignUp self)
-      workshop.students << self
+      # I think this is double counting
+      # workshop.students << self
       workshops << workshop
       workshop.staken += 1
       workshop.save!

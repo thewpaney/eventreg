@@ -61,7 +61,8 @@ class Teacher < ActiveRecord::Base
     workshop = Workshop.find(workshop_id)
     
     unless (whynot = workshop.cantSignUp self)
-      workshop.teachers << self
+      # Don't double register
+      # workshop.teachers << self
       workshops << workshop
       workshop.ttaken += 1
       workshop.save!
@@ -69,6 +70,15 @@ class Teacher < ActiveRecord::Base
     else
       return whynot
     end
+  end
+
+  def unsignup(workshop_id)
+    workshop = Workshop.find(workshop_id)
+    puts "Unsigning ", prefix, "from workshop", workshop_id
+    workshop.teachers.delete(self)
+    workshops.delete(workshop)
+    workshop.ttaken -= 1
+    workshop.save!
   end
 
   def done?

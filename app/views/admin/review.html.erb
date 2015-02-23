@@ -1,18 +1,19 @@
 <h1>Review Event Registration Status</h1>
-<div style="font-size: 1.3em; float: left; ">
+<%= link_to "Export Event Registration Info", "/admin/export", :style => "font-size: 1.5em;" %>
+<div style="margin-top: 2em;">
+<div style="font-size: 1.3em; float: left;  ">
   <h3><%= "Teachers registered: #{(Teacher.all.count) - (Teacher.all.select {|s| s.workshop_ids == []}.count)} of #{Teacher.all.count}" %></h3>
   <h3><%= "Boys Division: #{(Teacher.boys.count) - (Teacher.boys.select {|s| s.workshop_ids == []}.count)} of #{Teacher.boys.count}" %></h3>
   <h3><%= "Girls Division: #{(Teacher.girls.count) - (Teacher.girls.select {|s| s.workshop_ids == []}.count)} of #{Teacher.girls.count}" %></h3>
-  <h4> Registered Teachers: </h4>
-  <div style="overflow: auto;height: 400px; width: 400px; background-color: #cccccc;">
+  <div style="overflow: auto;height: 400px; width: 400px; background-color: #cccccc; margin: 3em 3em 3em 1em;">
     <table style="height: 10em; width: 50%;">
-      <% Teacher.registered.each do |t| %>
+      <% Teacher.all.each do |t| %>
       <tr>
-      <td><%= t.full %></td>
+      <td><%= link_to t.full, "/admin/force/teacher/#{t.id}" %></td>
       <td><%= t.prefix %></td>
-      <td><%= t.first %></td>
-      <td><%= t.second %></td>
-      <td><%= t.third %></td>
+      <td><%= t.first.nil? ? "None" : t.first %></td>
+      <td><%= t.second.nil? ? "None" : t.second %></td>
+      <td><%= t.third.nil? ? "None" : t.third %></td>
       </tr>
       <% end %>
     </table>
@@ -20,19 +21,18 @@
   <br />
 </div>
 <div style="font-size: 1.3em; float: left; ">
-  <h3><%= "Students registered: #{(Student.unregistered.count)} of #{Student.all.count}" %></h3>
+  <h3><%= "Students registered: #{(Student.all.count - Student.unregistered.count)} of #{Student.all.count}" %></h3>
   <h3><%= "Boys Division: #{(Student.boys.count) - (Student.boys.select {|s| s.workshop_ids == []}.count)} of #{Student.boys.count}" %></h3>
   <h3><%= "Girls Division: #{(Student.girls.count) - (Student.girls.select {|s| s.workshop_ids == []}.count)} of #{Student.girls.count}" %></h3>
-  <h4> Registered Students: </h4>
-  <div style="overflow: auto;height: 400px; width: 400px; background-color: #cccccc;">
+  <div style="overflow: auto;height: 400px; width: 400px; background-color: #cccccc; margin: 3em 3em 3em 1em;">
   <table style="height: 10em; width: 50%;">
-    <% Student.registered.each do |s| %>
+    <% Student.all.each do |s| %>
     <tr>
-      <td><%= s.full %></td>
+      <td><%= link_to s.full, "/admin/force/student/#{s.id}" %></td>
       <td><%= s.prefix %></td>
-      <td><%= s.first%></td>
-      <td><%= s.second%></td>
-      <td><%= s.third%></td>
+      <td><%= s.first.nil? ? "None" : s.first %></td>
+      <td><%= s.second.nil? ? "None" : s.second %></td>
+      <td><%= s.third.nil? ? "None" : s.third %></td>
       </tr>
     <% end %>
   </table>
@@ -41,4 +41,4 @@
 </div>
 <div style="clear: both;"></div>
 <br />
-<%= link_to "Export Event Registration Info", "/admin/export", :style => "font-size: 1.5em;" %>
+</div>
