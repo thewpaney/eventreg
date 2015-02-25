@@ -23,3 +23,10 @@ CSV.foreach("db/presenters.csv") do |row|
     puts "NO WORKSHOPS"
   end
 end
+
+CSV.foreach("db/student-presenters.csv") do |row|
+  p = Student.where(full: row[0]).first
+  puts p.full
+  w = Workshop.find(row[1])
+  puts "Signed up #{p.full} for workshop #{w.name} in session #{w.session}."
+end

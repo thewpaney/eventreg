@@ -35,6 +35,15 @@ class AdminController < ApplicationController
     send_data csv_data, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=diversity_log.csv"
   end
 
+  def export_workshops
+    csv_data = CSV.generate do |csv|
+      csv << %w(workshop amount)
+      Workshop.all.collect {|w| [w.name + " Session " + w.session.to_s, w.staken, w.slimit]}.each {|w| csv << w}
+    end
+    send_data csv_data, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=workshop_popularity.csv"
+  end
+
+
   def force_register
     if request.get?
       if user.class == "Teacher"
@@ -102,7 +111,11 @@ class AdminController < ApplicationController
   end
 
   def force
-    if request.post?
+    if request.post? and !(params[:user].nil?)
+      # No parameters
+      if params.nil?
+        return
+      end
       # Submitting form
       # Removing a workshop
       if params["1"]
@@ -116,6 +129,10 @@ class AdminController < ApplicationController
         return
       end
       # Adding workshops
+      # If user clicked "submit" without anything selected
+      if params[:user].nil?
+        return
+      end
       if params[:user][:first]
         unless (whynot = user.signup(params[:user][:first])) == "Signed up"
           workshop = Workshop.find(params[:user][:first])

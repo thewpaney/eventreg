@@ -1,4 +1,10 @@
 Eventreg::Application.routes.draw do
+  get 'errors/file_not_found'
+
+  get 'errors/unprocessable'
+
+  get 'errors/internal_server_error'
+
 #  get '/user/ready' => 'user#ready'
   get '/user/edit' => 'user#edit'
   get '/user/register' => 'user#register'
@@ -10,6 +16,7 @@ Eventreg::Application.routes.draw do
   post '/user/login' => 'user#login'
   post '/user/edit' => 'user#update'
   get '/admin/export' => 'admin#export'
+  get '/admin/export_workshops' => 'admin#export_workshops'
   get '/user/reset' => 'user#reset'
   get '/user/details' => 'user#details'
   
@@ -24,4 +31,8 @@ Eventreg::Application.routes.draw do
   match '/user/description/:id' => 'user#ajaxDescription', :via => [:post]
 
   root :to => 'user#login'
+
+  match '/404', to: 'errors#file_not_found', via: :all
+  match '/422', to: 'errors#unprocessable', via: :all
+  match '/500', to: 'errors#internal_server_error', via: :all
 end

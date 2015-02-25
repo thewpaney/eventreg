@@ -18,7 +18,12 @@ module Eventreg
 
     config.assets.enabled = true
     config.serve_static_files = true
-    
+    config.action_mailer.perform_deliveries = true
+    config.action_mailer.delivery_method = :sendmail    
+
+    # Custom error pages!
+    config.exceptions_app = self.routes
+
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de

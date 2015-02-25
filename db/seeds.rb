@@ -53,6 +53,7 @@ workshops.rows[1..-1].each do |row|
       w.staken = 0
       w.ttaken = 0
       w.percentage = row[9].blank? ? 66 : row[9].to_i
+      w.overflow = row[10].blank? ? 0 : row[10].to_i
       w.save!
 #     rescue
 #       puts "Couldn't make workshop with row #{workshops.rows.index(row) + 1}: " << row.to_s
@@ -71,6 +72,7 @@ workshops.rows[1..-1].each do |row|
       w.staken = 0
       w.ttaken = 0
       w.percentage = row[9].blank? ? 66 : row[9].to_i
+      w.overflow = row[10].blank? ? 0 : row[10].to_i
       w.save!
 #    rescue
 #      puts "Couldn't make workshop with row #{workshops.rows.index(row) + 1}: " << row.to_s
@@ -89,6 +91,7 @@ workshops.rows[1..-1].each do |row|
       w.staken = 0
       w.ttaken = 0
       w.percentage = row[9].blank? ? 66 : row[9].to_i
+      w.overflow = row[10].blank? ? 0 : row[10].to_i
       w.save!
 #    rescue
 #      puts "Couldn't make workshop with row #{workshops.rows.index(row) + 1}: " << row.to_s
@@ -203,3 +206,13 @@ CSV.foreach("db/presenters.csv") do |row|
     end
   end
 end
+
+CSV.foreach("db/student-presenters.csv") do |row|
+  p = Student.where(full: row[0]).first
+  puts p.full
+  w = Workshop.find(row[1])
+  p.workshops << w
+  puts "Signed up #{p.full} for workshop #{w.name} in session #{w.session}."
+  p.save!
+end
+

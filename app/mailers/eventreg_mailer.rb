@@ -1,5 +1,5 @@
 class EventregMailer < ActionMailer::Base
-  default from: "diversity.mailer@gmail.com"
+  default from: "diversityprogram@regisjesuit.com"
   
   def open_email(recipient)
     mail(to: recipient.email, subject: "RJHS Diversity Day Registration Now Open!")

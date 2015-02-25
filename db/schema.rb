@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140307191541) do
+ActiveRecord::Schema.define(version: 20150225043718) do
 
   create_table "sessions", force: :cascade do |t|
     t.string   "session_id", limit: 255,   null: false
@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20140307191541) do
     t.integer "ttaken",      limit: 4
     t.integer "staken",      limit: 4
     t.integer "percentage",  limit: 4
+    t.integer "overflow",    limit: 4
   end
 
 end
