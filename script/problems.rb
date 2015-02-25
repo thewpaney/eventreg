@@ -1,7 +1,6 @@
 # Script to check for problem children and teachers and print the errors
 
 def checkProblems(user)
-  print "#{user.full}: "
   problems = []
   if user.workshops.count > 3
     problems << "More than three workshops."
@@ -51,9 +50,12 @@ def checkProblems(user)
   end
   
   if problems == []
-    puts "No issues!"
+    return
   else
+    puts "#{user.full}: "
     problems.each {|p| puts p}
+    puts
+    return
   end
   
 end

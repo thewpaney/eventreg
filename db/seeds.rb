@@ -176,3 +176,30 @@ CSV.foreach("db/teachers-seed.csv") do |row|
   t.save!
 end
 puts "Seeded teachers"
+
+will = Student.where(full: "William Tara").first
+will.signup(24)
+will.signup(21)
+will.signup(114)
+will.save!
+
+CSV.foreach("db/presenters.csv") do |row|
+  p = Teacher.where(name: row[0]).first
+  if p.nil?
+    p = Teacher.where(name: row[1]).first
+  end
+  puts p.name
+  Workshop.all.each do |w|
+    if w.presentor.include?(row[0])
+      p.workshops << w
+      puts "Signed up #{p.full} for workshop #{w.name} in session #{w.session}."
+      p.save!
+    elsif !row[1].nil?
+      if w.presentor.include?(row[1])
+        p.workshops << w
+        puts "Signed up #{p.full} for workshop #{w.name} in session #{w.session}."
+        p.save!
+      end
+    end
+  end
+end
