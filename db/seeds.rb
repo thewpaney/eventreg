@@ -36,7 +36,7 @@ def seed_workshops
   # puts "Connected to Google"
 
   puts "Downloading workshops"
-  workshops = session.spreadsheet_by_key("1p3QAoXMowYA0Ds6_k2WmdIoVbmIldfccH1mRfxJbVdQ").worksheets[0]
+  workshops = session.spreadsheet_by_key("1i25k5GQdwSJ_UsFgZByd_g8_TyI2KyJpAjewu7dj95Y").worksheets[0]
   puts "Downloaded workshops"
 
   puts "Seeding workshops"
@@ -221,7 +221,7 @@ end
 
 # Now actually do it
 
-#seed_workshops
+seed_workshops
 seed_students
 seed_teachers
 #seed_presenters
