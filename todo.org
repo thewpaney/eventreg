@@ -109,3 +109,8 @@ Testing whether any permutation of button presses can screw things up
 **** Empower the admin
 ** Flexible signup
 *** Overflow number
+* 2016
+** Access
+*** MySQL - root: letmein
+*** Root - root: Theansweris42
+*** Web - nginx: 

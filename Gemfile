@@ -25,19 +25,19 @@ gem 'turbolinks'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
-  gem 'sass-rails',   '~> 4.0.0'
-  gem 'coffee-rails', '~> 4.0.0'
-  gem 'zurb-foundation', '~> 4.0.0'
+  gem 'sass-rails'
+  gem 'coffee-rails'
+  gem 'zurb-foundation'
   gem 'compass-rails'
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby
 
-  gem 'uglifier', '>= 1.0.3'
+  gem 'uglifier'
 end
 
 
 # To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+# gem 'bcrypt-ruby'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
@@ -53,3 +53,6 @@ end
 
 # Because we're lazy
 gem 'protected_attributes'
+
+# To allow accents in names
+gem 'rack-utf8_sanitizer'
