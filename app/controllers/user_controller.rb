@@ -3,6 +3,27 @@ class UserController < ApplicationController
   before_filter :admin!, only: [:force_register, :reset]
   before_filter :edit, only: :register
 
+  def login
+    self.authenticate! params[:user]
+    if self.user
+      flash[:message]  = "You're logged in as #{user.full}."
+      redirect_to action: "register"
+    elsif request.post?
+      flash[:error] = "Login failed."
+    end
+  end
+
+  def logout
+    if self.user
+      self.deauthenticate!
+      flash[:message] = 'Successfully logged out.'
+      redirect_to "/user/login"
+    else
+      flash[:error] = "You're not currently logged in!"
+      redirect_to "/user/login"   
+    end
+  end
+
   def ajaxDescription
     @workshop = Workshop.find(params[:id].to_i)
     render :json => @workshop
@@ -14,23 +35,6 @@ class UserController < ApplicationController
       redirect_to action: 'login'
     end
   end
-
-  def force_register
-    if request.post?
-      if params[:user][:first]
-        user.force(params[:user][:first])
-      end
-      if params[:user][:second]
-        user.force(params[:user][:second])
-      end
-      if params[:user][:third]
-        user.force(params[:user][:third])
-      end
-    else
-      params[:user] = {}
-    end
-  end
-
 
   def register
     if request.post? and !(params[:user].nil?)
@@ -59,24 +63,19 @@ class UserController < ApplicationController
     end
   end
 
-  def login
-    self.authenticate! params[:user]
-    if self.user
-      flash[:message]  = "You're logged in as #{user.full}."
-      redirect_to action: "register"
-    elsif request.post?
-      flash[:error] = "Login failed."
-    end
-  end
-
-  def logout
-    if self.user
-      self.deauthenticate!
-      flash[:message] = 'Successfully logged out.'
-      redirect_to "/user/login"
+  def force_register
+    if request.post?
+      if params[:user][:first]
+        user.force(params[:user][:first])
+      end
+      if params[:user][:second]
+        user.force(params[:user][:second])
+      end
+      if params[:user][:third]
+        user.force(params[:user][:third])
+      end
     else
-      flash[:error] = "You're not currently logged in!"
-      redirect_to "/user/login"   
+      params[:user] = {}
     end
   end
 
@@ -94,5 +93,4 @@ class UserController < ApplicationController
   def details
     # Nothing to be done here
   end
-  
 end

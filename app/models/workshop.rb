@@ -10,13 +10,6 @@ class Workshop < ActiveRecord::Base
   has_and_belongs_to_many :students, uniq: true
   has_and_belongs_to_many :teachers, uniq: true
 
-  def sfullness
-    staken.to_f/slimit.to_f
-  end
-
-  def tfullness
-    ttaken.to_f/tlimit.to_f
-  end
 
   def self.full
     all.select {|w|w.full?}
@@ -50,6 +43,18 @@ class Workshop < ActiveRecord::Base
     self.where(:session => 3)
   end
 
+  #TODO Add how full of each class
+  # possibly to store in the db
+  #How full of any kind of students
+  def sfullness
+    staken.to_f/slimit.to_f
+  end
+
+  #How full of teachers
+  def tfullness
+    ttaken.to_f/tlimit.to_f
+  end
+
   def to_s
     "#{name}:#{session}"
   end
@@ -74,6 +79,8 @@ class Workshop < ActiveRecord::Base
     students.count >= slimit.to_i
   end
 
+  #We need to add grade limits in here; possibly modify so workshops store whether they can have more of a year or gender
+  # fetch instead of calculating.
   def cantSignUp(user)
     if user.workshops.count > 3
       logger.error "User #{user.to_s} has more than three workshops, and requested workshop #{to_s}\n#{user.to_yaml}\n#{user.workshops}"
