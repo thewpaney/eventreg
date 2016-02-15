@@ -37,17 +37,29 @@ class Student < ActiveRecord::Base
   end
 
   #Regular sign up, checks before it confirms
-  #This kinda makes me want to puke. 
   def signup(workshop_id)
     workshop = Workshop.find(workshop_id)
     puts "Signing up ", prefix, " for workshop", workshop_id 
     
     unless (whynot = workshop.cantSignUp self)
-      # I think this is double counting
-      # workshop.students << self
       workshops << workshop
       workshop.staken += 1
       workshop.save!
+      
+      # Something along these lines
+      # If they've signed up for something that repeats
+    if Workshop.repeats.include? workshop.name 
+      sessions_needed.each do |s|
+        #Something along the lines of 
+        #TODO reserved_workshops <<  Workshop.leastFullOfSession s
+        #Something that gets us a reference to that other 
+        #workshop and makes it seem taken 
+        #But doesn't confuse them with actual workshops
+        reserved.staken += 1
+        reserved.save!
+      end
+    end
+
       return "Signed up"
     else
       return whynot

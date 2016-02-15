@@ -10,7 +10,6 @@ class Workshop < ActiveRecord::Base
   has_and_belongs_to_many :students, uniq: true
   has_and_belongs_to_many :teachers, uniq: true
 
-
   def self.full
     all.select {|w|w.full?}
   end
@@ -41,6 +40,20 @@ class Workshop < ActiveRecord::Base
 
   def self.thirds
     self.where(:session => 3)
+  end
+
+  def self.leastFullOfSession n
+    self.find_by_sql("SELECT * FROM workshops 
+                     WHERE session = #{n} 
+                     ORDER BY staken/slimit 
+                     LIMIT 1")
+  end
+
+  # Names of workshops with more than one session
+  def self.repeats
+    self.find_by_sql("SELECT name FROM workshops
+                     GROUP BY 1
+                     HAVING count(*) > 1").map(&:name)
   end
 
   #TODO Add how full of each class
