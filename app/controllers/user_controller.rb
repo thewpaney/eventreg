@@ -24,6 +24,8 @@ class UserController < ApplicationController
     end
   end
 
+  set caches_page :login
+
   def ajaxDescription
     @workshop = Workshop.find(params[:id].to_i)
     render :json => @workshop

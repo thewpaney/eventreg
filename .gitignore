@@ -33,3 +33,6 @@ db/*.csv
 # Database backup dumps
 db/*.db
 db/*.dmp
+
+# Precompiled assets
+public/assets/*

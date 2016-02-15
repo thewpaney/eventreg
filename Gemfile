@@ -56,3 +56,10 @@ gem 'protected_attributes'
 
 # To allow accents in names
 gem 'rack-utf8_sanitizer'
+
+group :development, :test do
+      gem 'bullet'
+end
+
+gem 'actionpack-page_caching'
+gem 'actionpack-action_caching'
