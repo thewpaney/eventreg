@@ -114,3 +114,10 @@ Testing whether any permutation of button presses can screw things up
 *** MySQL - root: letmein
 *** Root - root: Theansweris42
 *** Web - nginx: 
+** diversityprogram@regisjesuit.com to get past spam filters
+** Fancy thinking to fill up large workshops first
+** Registration on February 16th - February 23rd
+*** Workshop info by February 4th/5th
+*** Finalized data by February 10th (loose)
+** Another conference call the week of the 8th
+** Conference March 1st
