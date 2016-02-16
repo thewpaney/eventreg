@@ -3,6 +3,8 @@ class UserController < ApplicationController
   before_filter :admin!, only: [:force_register, :reset]
   before_filter :edit, only: :register
 
+  caches_page :login
+
   def login
     self.authenticate! params[:user]
     if self.user
@@ -24,8 +26,6 @@ class UserController < ApplicationController
     end
   end
 
-  set caches_page :login
-
   def ajaxDescription
     @workshop = Workshop.find(params[:id].to_i)
     render :json => @workshop
@@ -40,6 +40,9 @@ class UserController < ApplicationController
 
   def register
     if request.post? and !(params[:user].nil?)
+      @firsts = Workshop.firstsAvailable(self.user).collect {|w| [w.name, w.id] }
+      @seconds = Workshop.secondsAvailable(self.user).collect {|w| [w.name, w.id] }
+      @thirds = Workshop.thirdsAvailable(self.user).collect {|w| [w.name, w.id] }
       if params[:user][:first]
         unless (whynot = user.signup(params[:user][:first])) == "Signed up"
           workshop = Workshop.find(params[:user][:first])

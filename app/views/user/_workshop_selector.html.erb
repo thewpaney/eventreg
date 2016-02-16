@@ -9,7 +9,7 @@
 
 <% else %>
     <span class="leader not-done">1</span>
-  <%= select(:user, :first, Workshop.firstsAvailable(user).collect {|w| [w.name, w.id]}, {}, {:size => "6"}) %>
+  <%= select(:user, :first, @firsts, {}, {:size => "6"}) %>
   <br /><br />
 
   <% end %>
@@ -18,13 +18,13 @@
 
     <span style="color: green;">Second Session: <%= (user.second.name + " &#10003;").html_safe %></span> <br />
   <span class="leader done">2</span>
-  <%= select(:user, :second, Workshop.seconds.collect {|w| [w.name, w.id]}, {}, {:size => "6", :disabled => "true", :selected => params[:user][:second]}) %>
+  <%= select(:user, :second, , {}, {:size => "6", :disabled => "true", :selected => params[:user][:second]}) %>
   <br /><br />
 
 <% else %>
 
     <span class="leader not-done">2</span>
-  <%= select(:user, :second, Workshop.secondsAvailable(user).collect {|w| [w.name, w.id]}, {}, {:size => "6"}) %>
+  <%= select(:user, :second, @seconds, {}, {:size => "6"}) %>
   <br /><br />
 
 <% end %>
@@ -33,13 +33,13 @@
 
     <span style="color: green;">Third Session: <%= (user.third.name + " &#10003;").html_safe %></span> <br />
   <span class="leader done">3</span>
-  <%= select(:user, :third, Workshop.thirds.collect {|w| [w.name, w.id]}, {}, {:size => "6", :disabled => "true", :selected => params[:user][:third]}) %>
+  <%=  %>
   <br /><br />
 
 <% else %>
 
     <span class="leader not-done">3</span>
-  <%= select(:user, :third, Workshop.thirdsAvailable(user).collect {|w| [w.name, w.id]}, {}, {:size => "6"}) %>
+  <%= select(:user, :third, @thirds, {}, {:size => "6"}) %>
   <br /><br />
 <% end %>
   <br />

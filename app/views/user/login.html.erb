@@ -5,16 +5,13 @@ h1 {font-size: 2.2em;}
 </style>
 
 <h1 class="text">Step 1: Log In</h1>
-<div style="float: left; ">
-  <%= image_tag "/assets/steele.png" %>
-</div>
 
 <div class="text" style="float: left">
   <div class="text" style="float: left; position: relative; left: 15%;" >
     <%= form_tag(:action => "login") do %>
 
       <label for="user_prefix">Username:</label><br/><br/>
-    <%= text_field("user", "prefix", :size => 20, :placeholder => "PSteele88")%>
+    <%= text_field("user", "prefix", :size => 20, :placeholder => "TRoosevelt76")%>
     <br/><br/>Your Regis Jesuit Login Prefix.<br/>
     This is the same as the first part<br/>
     of your Regis Jesuit email.<br/><br/>
