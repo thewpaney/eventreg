@@ -39,10 +39,13 @@ class UserController < ApplicationController
   end
 
   def register
+    @firsts = Workshop.firstsAvailable(self.user).collect {|w| [w.name, w.id] }
+    @seconds = Workshop.secondsAvailable(self.user).collect {|w| [w.name, w.id] }
+    @thirds = Workshop.thirdsAvailable(self.user).collect {|w| [w.name, w.id] }
+    firsts = {} if (@firsts.nil?)
+    seconds = {} if (@seconds.nil?)
+    thirds = {} if (@thirds.nil?)
     if request.post? and !(params[:user].nil?)
-      @firsts = Workshop.firstsAvailable(self.user).collect {|w| [w.name, w.id] }
-      @seconds = Workshop.secondsAvailable(self.user).collect {|w| [w.name, w.id] }
-      @thirds = Workshop.thirdsAvailable(self.user).collect {|w| [w.name, w.id] }
       if params[:user][:first]
         unless (whynot = user.signup(params[:user][:first])) == "Signed up"
           workshop = Workshop.find(params[:user][:first])

@@ -1,5 +1,5 @@
 # TO PUT INTO MYSQL:
-# CREATE USER 'eventreg'@'localhost' IDENTIFIED BY 'kurdmcfrogspleen';
+# CREATE USER 'eventreg'@'localhost' IDENTIFIED BY 'letmein';
 # GRANT ALL ON eventreg_development.* TO 'eventreg'@'localhost';
 # GRANT ALL ON eventreg_production.* TO 'eventreg'@'localhost';
 # GRANT ALL ON eventreg_test.* TO 'eventreg'@'localhost';
@@ -9,7 +9,7 @@ development:
   encoding: utf8
   database: eventreg_development
   username: eventreg
-  password: kurdmcfrogspleen
+  password: letmein
   host: localhost
   port: 3306
 
@@ -18,7 +18,7 @@ test:
   encoding: utf8
   database: eventreg_test
   username: eventreg
-  password: kurdmcfrogspleen
+  password: letmein
   host: localhost
   port: 3306
 
@@ -27,6 +27,6 @@ production:
   encoding: utf8
   database: eventreg_production
   username: eventreg
-  password: kurdmcfrogspleen
+  password: letmein
   host: localhost
   port: 3306

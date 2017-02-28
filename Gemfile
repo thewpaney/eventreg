@@ -8,6 +8,7 @@ gem 'rake'
 gem 'thin'
 
 gem 'google_drive'
+gem 'google-api-client'
 gem 'awesome_print'
 
 # Bundle edge Rails instead:

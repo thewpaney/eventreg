@@ -11,7 +11,7 @@ h1 {font-size: 2.2em;}
     <%= form_tag(:action => "login") do %>
 
       <label for="user_prefix">Username:</label><br/><br/>
-    <%= text_field("user", "prefix", :size => 20, :placeholder => "TRoosevelt76")%>
+    <%= text_field("user", "prefix", :size => 20, :placeholder => "JBergoglio17")%>
     <br/><br/>Your Regis Jesuit Login Prefix.<br/>
     This is the same as the first part<br/>
     of your Regis Jesuit email.<br/><br/>
@@ -23,7 +23,7 @@ h1 {font-size: 2.2em;}
   <% end %>
 
     <label for="user_number">ID Number:</label><br/><br/>
-    <%= password_field("user","number",:size => 20, :placeholder => "12345" )%>
+    <%= password_field("user","number",:size => 20, :placeholder => "200012345" )%>
     <br/><br/>The 4, 5, or 9 digit number<br/> on your student/teacher ID.<br/><br/>
 
 
@@ -35,5 +35,5 @@ h1 {font-size: 2.2em;}
 
   </div>
   <div class="text" style="float: left; position: relative; left: 20%; top: 80px;">
-    <%= image_tag "/assets/gandhi.png" %>
+    <%= image_tag "/assets/id.jpg", height:"200px", width:"336px" %>
 </div>

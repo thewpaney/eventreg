@@ -24,7 +24,7 @@ def seed_workshops
   auth.redirect_uri = "urn:ietf:wg:oauth:2.0:oob"
   print("1. Open this page:\n%s\n\n" % auth.authorization_uri)
   print("2. Enter the authorization code shown in the page: ")
-  auth.code = $stdin.gets.chomp
+  auth.code = STDIN.gets.chomp
   auth.fetch_access_token!
   access_token = auth.access_token
 
@@ -221,17 +221,12 @@ end
 
 # Now actually do it
 
-puts "Google drive workshops?"
-if $stdin.gets.chomp === 'y'
+if STDIN.gets("Google Drive workshops?").chomp === 'y'
   seed_workshops
-end
-puts "CSV files?"
-if $stdin.gets.chomp === 'y'
+elsif STDIN.gets("CSV files?").chomp === 'y'
   seed_students
   seed_teachers
-end
-puts "Presenter CSV files?"
-if $stdin.gets.chomp === 'y'
+elsif STDIN.gets("Presenter CSV files?").chomp === 'y'
   seed_presenters
   seed_student_presenters
 end
