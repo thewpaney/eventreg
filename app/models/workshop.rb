@@ -1,11 +1,12 @@
 class Workshop < ActiveRecord::Base
-  attr_accessible :name, :presentor, :description, :session, :tlimit, :slimit, :room, :ttaken, :staken, :percentage, :overflow
+  attr_accessible :name, :presentor, :description, :session, :tlimit, :slimit, :room, :ttaken, :staken, :percentage, :overflow, :twofer_ref
   validates :name, presence: true
   validates :presentor, presence: true  
   validates :session, presence: true
   validates :tlimit, presence: true
   validates :slimit, presence: true
   validates :room, presence: true
+  validates :twofer_ref, presence: true
 
   has_and_belongs_to_many :students, uniq: true
   has_and_belongs_to_many :teachers, uniq: true
@@ -17,6 +18,10 @@ class Workshop < ActiveRecord::Base
   def self.available?(user)
     all.select {|w| !w.cantSignUp user}
   end
+
+  def self.available_for_from(user, session)
+    self.where(:session => session).select {|w| !w.cantSignUp user}
+  end 
 
   def self.firstsAvailable(user)
     firsts.select {|w| !w.cantSignUp user}
@@ -99,7 +104,7 @@ class Workshop < ActiveRecord::Base
       logger.error "User #{user.to_s} has more than three workshops, and requested workshop #{to_s}\n#{user.to_yaml}\n#{user.workshops}"
       return "You have more than three workshops."
     end
-
+    
     if user.workshops.count == 3
       logger.error "User #{user.to_s} was able to request a workshop #{to_s} with three workshops\n#{user.to_yaml}\n#{user.workshops}"
       return "You are already signed up for three workshops."
@@ -117,7 +122,10 @@ class Workshop < ActiveRecord::Base
     if user.class == Teacher and (ttaken.to_f < tlimit.to_f)
       return false
     end
-
+    
+    # You can't sign up for a workshop if it has a nonzero twofer_ref and the workshop it points to is in a session you already are signed up for
+    return true if self.twofer_ref != 0 and not ( user.sessions_needed.include?(Workshop.find(self.twofer_ref).session) )
+    
     if user.class == Student and (staken.to_f < slimit.to_f)
       #if adding a boy doesn't push us over the percentage limit
       if user.gender == "BD" and ((boys.count + 1)/slimit.to_f <= percentage.to_f/100.to_f)

@@ -4,6 +4,14 @@ class Teacher < ActiveRecord::Base
   validates :prefix, uniqueness: true
 
   has_and_belongs_to_many :workshops, uniq: true
+
+  def reg_time
+    return Time.new(2017, 3, 1, 11, 35, 00, "-07:00")
+  end
+
+  def can_register
+    return Time.now > reg_time
+  end
   
   def self.boys
     where(division: "BD")
@@ -25,6 +33,10 @@ class Teacher < ActiveRecord::Base
     self.all.select {|t| !(t.done?)}
   end
 
+  def sessions_needed
+    [1,2,3] - workshops.map(&:session)
+  end
+  
   def has_first?
     workshops.collect {|w| w.session}.include? 1
   end
@@ -93,7 +105,7 @@ class Teacher < ActiveRecord::Base
     name
   end
 
-  def finished_with_registration
+  def finished_with_registration?
     if (needed = sessions_needed).empty?
       return true
     elsif Workshop.firstsAvailable(self) and needed.include? 1

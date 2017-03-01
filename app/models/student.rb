@@ -1,12 +1,23 @@
 class Student < ActiveRecord::Base
   attr_accessible :number, :full, :gender, :grade, :year, :email, :prefix, :rw, :rw_number, :rw_teacher, :advisement, :advisement_name
-  validates :number, :full, :gender, :grade, :year, :email, :prefix, :rw, :rw_number, :rw_teacher, :advisement,  presence: true
+  validates :number, :full, :gender, :grade, :year, :email, :prefix, :rw, :rw_number, :rw_teacher, :advisement, presence: true
   has_and_belongs_to_many :workshops,  uniq: true
 
   def self.authenticate(number, prefix)
     where(prefix: prefix.downcase, number: number).first
   end
 
+  def reg_time
+    return Time.new(2017, 3, 1, 11, 35, 00, "-07:00") if self.year == "12"
+    return Time.new(2017, 3, 1, 14, 45, 00, "-07:00") if self.year == "11"
+    return Time.new(2017, 3, 2, 12, 25, 00, "-07:00") if self.year == "10"
+    return Time.new(2017, 3, 2, 14, 45, 00, "-07:00") if self.year == "9"
+  end
+  
+  def can_register
+    return Time.now > self.reg_time
+  end
+  
   def self.boys
     where("gender = 'BD'")
   end
@@ -48,24 +59,31 @@ class Student < ActiveRecord::Base
       
       # Something along these lines
       # If they've signed up for something that repeats
-    if Workshop.repeats.include? workshop.name 
-      sessions_needed.each do |s|
+      #if Workshop.repeats.include? workshop.name 
+      #  sessions_needed.each do |s|
         #Something along the lines of 
         #TODO reserved_workshops <<  Workshop.leastFullOfSession s
         #Something that gets us a reference to that other 
         #workshop and makes it seem taken 
         #But doesn't confuse them with actual workshops
-        reserved.staken += 1
-        reserved.save!
+      #  reserved.staken += 1
+      #  reserved.save!
+      #end
+      
+      # How about this instead
+      if workshop.twofer_ref != 0
+        twin = Workshop.find(workshop.twofer_ref)
+        workshops << twin
+        twin.staken += 1
+        twin.save!
       end
-    end
-
+      
       return "Signed up"
     else
       return whynot
     end
   end
-
+  
   def unsignup(workshop_id)
     workshop = Workshop.find(workshop_id)
     puts "Unsigning ", prefix, "from workshop", workshop_id
@@ -74,6 +92,7 @@ class Student < ActiveRecord::Base
     workshop.staken -= 1
     workshop.save!
   end
+  
   def auto
     begin 
       unless has_first?
@@ -141,7 +160,7 @@ class Student < ActiveRecord::Base
     full
   end
 
-  def finished_with_registration
+  def finished_with_registration?
     if (needed = sessions_needed).empty?
       return true
     elsif Workshop.firstsAvailable(self) and needed.include? 1

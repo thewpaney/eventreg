@@ -11,21 +11,14 @@ h1 {font-size: 2.2em;}
     <%= form_tag(:action => "login") do %>
 
       <label for="user_prefix">Username:</label><br/><br/>
-    <%= text_field("user", "prefix", :size => 20, :placeholder => "JBergoglio17")%>
+    <%= text_field("user", "prefix", :size => 20, :placeholder => "JBergoglio")%>
     <br/><br/>Your Regis Jesuit Login Prefix.<br/>
     This is the same as the first part<br/>
     of your Regis Jesuit email.<br/><br/>
 
-    <% if flash[:error] %>
-      <p id="flash_error" style="color: #c41130;"><%= flash[:error] %></p>
-  <% else %>
-      <br /><br />
-  <% end %>
-
     <label for="user_number">ID Number:</label><br/><br/>
     <%= password_field("user","number",:size => 20, :placeholder => "200012345" )%>
     <br/><br/>The 4, 5, or 9 digit number<br/> on your student/teacher ID.<br/><br/>
-
 
     <%= submit_tag("Login") %>
 
@@ -34,6 +27,6 @@ h1 {font-size: 2.2em;}
   </div>
 
   </div>
-  <div class="text" style="float: left; position: relative; left: 20%; top: 80px;">
+  <div class="text" style="float: left; position: relative; left: 5%; top: 40px;">
     <%= image_tag "/assets/id.jpg", height:"200px", width:"336px" %>
 </div>

@@ -38,32 +38,29 @@ class UserController < ApplicationController
     end
   end
 
-  def register
+  def browse
     @firsts = Workshop.firstsAvailable(self.user).collect {|w| [w.name, w.id] }
     @seconds = Workshop.secondsAvailable(self.user).collect {|w| [w.name, w.id] }
     @thirds = Workshop.thirdsAvailable(self.user).collect {|w| [w.name, w.id] }
     firsts = {} if (@firsts.nil?)
     seconds = {} if (@seconds.nil?)
     thirds = {} if (@thirds.nil?)
+  end
+
+  def register
+    if self.user.finished_with_registration? #No sessions left or no options in sessions left
+      redirect_to action: 'details'
+    end
+    @session = self.user.sessions_needed.min
+    @availabilities = Workshop.available_for_from(self.user, @session).collect {|w| [w.name, w.id] }
     if request.post? and !(params[:user].nil?)
-      if params[:user][:first]
-        unless (whynot = user.signup(params[:user][:first])) == "Signed up"
-          workshop = Workshop.find(params[:user][:first])
-          flash[:error] = "Could not sign up for Session #{workshop.session}:\n #{whynot} "
-        end
-      end
-
-      if params[:user][:second]
-        unless (whynot = user.signup(params[:user][:second])) == "Signed up"
-          workshop = Workshop.find(params[:user][:second])
-          flash[:error] = "Could not sign up for Session #{workshop.session}:\n #{whynot} "
-        end
-      end
-
-      if params[:user][:third]
-        unless (whynot = user.signup(params[:user][:third])) == "Signed up"
-          workshop = Workshop.find(params[:user][:third])
-          flash[:error] = "Could not sign up for Session #{workshop.session}:\n #{whynot} "
+      if params[:user][:selection]
+        workshop = Workshop.find(params[:user][:selection])
+        if (whynot = user.signup(params[:user][:selection])) == "Signed up"
+	  flash[:confirmation] = "Signup for #{workshop.name} Succesful"
+          redirect_to action: 'register'
+        else
+          flash[:confirmation] = "Could not sign up for Session #{workshop.session}:\n #{whynot} "
         end
       end
     else
@@ -107,5 +104,4 @@ class UserController < ApplicationController
   def user_params
     params.permid(:login, :pass, :pass_confirm)
   end
-  
-end
+ end 

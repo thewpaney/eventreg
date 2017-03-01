@@ -10,8 +10,8 @@ $(document).ready(function(){ // When the document is ready
 	    json = JSON.parse(response);
 	    $("#description").html( // then replaces description's html with
 		json.description); // the description
-	    $("#presentor").html(
-		json.presentor );
+	    $("#presentor").html( //and the pages presenter with 
+		json.presentor ); //the presenter
 
 	}
     )

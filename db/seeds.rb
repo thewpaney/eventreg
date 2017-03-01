@@ -20,6 +20,88 @@ def seed_workshops
 
   puts "Seeding workshops"
   workshops.rows[1..-1].each do |row|
+    # Twofers sessions 1->2
+    if (row[3] == "d" and row[4] == "d")
+      begin
+        w1 = Workshop.new
+        w1.presentor = row[0].blank? ? "TBA" : row[0]
+        w1.name = row[1].blank? ? "TBA" : row[1]
+        w1.name += " (Part One)"
+        w1.description = row[2].blank? ? "TBA" : row[2]
+        w1.description += "\n\nThis workshop is part one of a two-part workshop.\nRegistering for this workshop will automatically register you for\npart two, and vice-versa."
+        w1.session = 1
+        w1.room = row[6].blank? ? "TBA" : row[6]
+        w1.slimit = row[7].blank? ? "TBA" : row[7]
+        w1.tlimit = row[8].blank? ? 2 : row[8]
+        w1.staken = 0
+        w1.ttaken = 0
+        w1.percentage = row[9].blank? ? 66 : row[9].to_i
+        w1.overflow = row[10].blank? ? 0 : row[10].to_i
+        w1.twofer_ref = 0
+        w1.save!
+        w2 = Workshop.new
+        w2.presentor = row[0].blank? ? "TBA" : row[0]
+        w2.name = row[1].blank? ? "TBA" : row[1]
+        w2.name += " (Part Two)"
+        w2.description = row[2].blank? ? "TBA" : row[2]
+        w2.description += "\n\nThis workshop is part two of a two-part workshop.\nRegistering for this workshop will automatically register you for\npart one, and vice-versa."
+        w2.session = 2
+        w2.room = row[6].blank? ? "TBA" : row[6]
+        w2.slimit = row[7].blank? ? "TBA" : row[7]
+        w2.tlimit = row[8].blank? ? 2 : row[8]
+        w2.staken = 0
+        w2.ttaken = 0
+        w2.percentage = row[9].blank? ? 66 : row[9].to_i
+        w2.overflow = row[10].blank? ? 0 : row[10].to_i
+        w2.twofer_ref = 0
+        w2.save!
+        w1.twofer_ref = w2.id
+        w2.twofer_ref = w1.id
+        w1.save!
+        w2.save!
+      end
+    end
+    # Twofers sessions 2->3
+    if (row[4] == "d" and row [5] == "d")
+      begin
+        w1 = Workshop.new
+        w1.presentor = row[0].blank? ? "TBA" : row[0]
+        w1.name = row[1].blank? ? "TBA" : row[1]
+        w1.name += " (Part One)"
+        w1.description = row[2].blank? ? "TBA" : row[2]
+        w1.description += "\n\nThis workshop is part one of a two-part workshop.\nRegistering for this workshop will automatically register you for\npart two, and vice-versa."
+        w1.session = 2
+        w1.room = row[6].blank? ? "TBA" : row[6]
+        w1.slimit = row[7].blank? ? "TBA" : row[7]
+        w1.tlimit = row[8].blank? ? 2 : row[8]
+        w1.staken = 0
+        w1.ttaken = 0
+        w1.percentage = row[9].blank? ? 66 : row[9].to_i
+        w1.overflow = row[10].blank? ? 0 : row[10].to_i
+        w1.twofer_ref = 0
+        w1.save!
+        w2 = Workshop.new
+        w2.presentor = row[0].blank? ? "TBA" : row[0]
+        w2.name = row[1].blank? ? "TBA" : row[1]
+        w2.name += " (Part Two)"
+        w2.description = row[2].blank? ? "TBA" : row[2]
+        w2.description += "\n\nThis workshop is part two of a two-part workshop.\nRegistering for this workshop will automatically register you for\npart one, and vice-versa."
+        w2.session = 3
+        w2.room = row[6].blank? ? "TBA" : row[6]
+        w2.slimit = row[7].blank? ? "TBA" : row[7]
+        w2.tlimit = row[8].blank? ? 2 : row[8]
+        w2.staken = 0
+        w2.ttaken = 0
+        w2.percentage = row[9].blank? ? 66 : row[9].to_i
+        w2.overflow = row[10].blank? ? 0 : row[10].to_i
+        w2.twofer_ref = 0
+        w2.save!
+        w1.twofer_ref = w2.id
+        w2.twofer_ref = w1.id
+        w1.save!
+        w2.save!
+      end
+    end
     if row[3] == "x"
       begin
         w = Workshop.new
@@ -34,6 +116,7 @@ def seed_workshops
         w.ttaken = 0
         w.percentage = row[9].blank? ? 66 : row[9].to_i
         w.overflow = row[10].blank? ? 0 : row[10].to_i
+        w.twofer_ref = 0
         w.save!
         #     rescue
         #       puts "Couldn't make workshop with row #{workshops.rows.index(row) + 1}: " << row.to_s
@@ -53,6 +136,7 @@ def seed_workshops
         w.ttaken = 0
         w.percentage = row[9].blank? ? 66 : row[9].to_i
         w.overflow = row[10].blank? ? 0 : row[10].to_i
+        w.twofer_ref = 0
         w.save!
         #    rescue
         #      puts "Couldn't make workshop with row #{workshops.rows.index(row) + 1}: " << row.to_s
@@ -72,6 +156,7 @@ def seed_workshops
         w.ttaken = 0
         w.percentage = row[9].blank? ? 66 : row[9].to_i
         w.overflow = row[10].blank? ? 0 : row[10].to_i
+        w.twofer_ref = 0
         w.save!
         #    rescue
         #      puts "Couldn't make workshop with row #{workshops.rows.index(row) + 1}: " << row.to_s
@@ -110,7 +195,6 @@ def seed_students
   contents = CSV.read("db/students-seed.csv", col_sep: ",", encoding: "ISO8859-1")
   puts "Seeding students"
   contents.each do |row|
-    puts row.inspect
     s = Student.new
     s.id = index
     index += 1
@@ -203,19 +287,75 @@ def seed_student_presenters
   end
 end
 
+def seed_presenters_from_drive
+  session = GoogleDrive::Session.from_config("config.json")
+  
+  puts "Downloading presenters"
+  presenters = session.spreadsheet_by_key("1vdMBbJuzvmaPk__yB3zSlXtQvXMtUAMHIs-8L7A6nWI").worksheets[1]
+  puts "Downloaded presenters"
+  
+  presenters.rows[1..-1].each do |row|
+    p = Student.where(full: row[0]).first
+    if p.nil?
+      p = Teacher.where(name: row[0]).first
+    end
+    if p.nil?
+      puts "Bad presenter name: #{row[0]}"
+      next
+    end
+    if row[1] == "x"
+      w = Workshop.where(name: row[4], session: 1).first
+      if w.nil?
+        puts "No workshop named #{row[4]} in session 1"
+        next
+      end
+      p.workshops << w
+      puts "Signed up #{p.full} for workshop #{w.name} in session #{w.session}."
+    end
+    if row[2] == "x"
+      w = Workshop.where(name: row[4], session: 2).first
+      if w.nil?
+        puts "No workshop named #{row[4]} in session 1"
+        next
+      end
+      p.workshops << w
+      puts "Signed up #{p.full} for workshop #{w.name} in session #{w.session}."
+    end
+    if row[3] == "x"
+      w = Workshop.where(name: row[4], session: 3).first
+      if w.nil?
+        puts "No workshop named #{row[4]} in session 1"
+        next
+      end
+      p.workshops << w
+      puts "Signed up #{p.full} for workshop #{w.name} in session #{w.session}."
+    end
+    p.save!
+  end
+end
+
 # Now actually do it
 
-puts "Google drive workshops?"
-if $stdin.gets.chomp === 'y'
-  seed_workshops
-end
-puts "CSV files?"
-if $stdin.gets.chomp === 'y'
-  seed_students
-  seed_teachers
-end
-puts "Presenter CSV files?"
-if $stdin.gets.chomp === 'y'
-  seed_presenters
-  seed_student_presenters
-end
+seed_workshops
+seed_students
+seed_teachers
+seed_presenters_from_drive
+
+#puts "Google drive workshops?"
+#if $stdin.gets.chomp === 'y'
+#  seed_workshops
+#end
+#puts "Students and Teachers?"
+#if $stdin.gets.chomp === 'y'
+#  seed_students
+#  seed_teachers
+#end
+#puts "Presenter CSV files?"
+#if $stdin.gets.chomp === 'y'
+#  seed_presenters
+#  seed_student_presenters
+#end
+#puts "Presenters from Drive?"
+#if $stdin.gets.chomp === 'y'
+#  seed_presenters_from_drive
+#end
