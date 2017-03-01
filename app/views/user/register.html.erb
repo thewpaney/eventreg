@@ -34,13 +34,14 @@ select {
   <% javascript_include_tag :register %>
 <% end %>
 
-<% if user.done? %>
+<% if user.finished_with_registration %>
 
 <h2>You are done! You can <%= link_to "Log Out", "/user/logout" %> or <%= link_to "View Details", "/user/details" %>.</h2>
 
 <% else %>
 
 <p class="text">Click on a workshop to see its description. Press submit to sign up for the highlited workshops.</p>
+<p class="text"> If a session is empty, all workshops have been filled. One will be selected for you.</p>
 
 <% end %>
 

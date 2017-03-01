@@ -92,4 +92,16 @@ class Teacher < ActiveRecord::Base
   def full
     name
   end
+
+  def finished_with_registration
+    if (needed = sessions_needed).empty?
+      return true
+    elsif Workshop.firstsAvailable(self) and needed.include? 1
+      return false
+    elsif Workshop.secondsAvailable(self) and needed.include? 2
+      return false
+    else #Workshop.thirdsAvailable(self) and needed.include? 3
+      return false
+    end
+  end
 end
