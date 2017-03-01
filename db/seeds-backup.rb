@@ -130,7 +130,7 @@ def seed_students
   index = 1
   puts "Seeding students"
   CSV.foreach("db/students-seed.csv") do |row|
-    s = Student.new
+g    s = Student.new
     s.id = index
     index += 1
     s.number = row[0].to_i

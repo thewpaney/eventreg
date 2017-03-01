@@ -9,34 +9,13 @@
 # This is the same as the one we used in 2013
 
 require 'csv'
-require "google/apis/drive_v2"
 
 def seed_workshops
-  client = Google::Apis::DriveV2::DriveService.new
-  auth = client.authorization
-  # Follow "Create a client ID and client secret" in
-  # https://developers.google.com/drive/web/auth/web-server] to get a client ID and client secret.
-  auth.client_id = "15945331926-0728u4paofpjt03ggah2j19modctpv6p.apps.googleusercontent.com"
-  auth.client_secret = "BPxAu57AaP-gObUf4MGyjRwd"
-  auth.scope =
-    "https://www.googleapis.com/auth/drive " +
-    "https://spreadsheets.google.com/feeds/"
-  auth.redirect_uri = "urn:ietf:wg:oauth:2.0:oob"
-  print("1. Open this page:\n%s\n\n" % auth.authorization_uri)
-  print("2. Enter the authorization code shown in the page: ")
-  auth.code = $stdin.gets.chomp
-  auth.fetch_access_token!
-  access_token = auth.access_token
 
-  session = GoogleDrive.login_with_oauth(auth.access_token)
-
-  # This is now super deprecated
-  # puts "Username and Password, one after the other."
-  # session = GoogleDrive.login($stdin.gets, $stdin.gets)
-  # puts "Connected to Google"
-
+  session = GoogleDrive::Session.from_config("config.json")
+   
   puts "Downloading workshops"
-  workshops = session.spreadsheet_by_key("1i25k5GQdwSJ_UsFgZByd_g8_TyI2KyJpAjewu7dj95Y").worksheets[0]
+  workshops = session.spreadsheet_by_key("1vdMBbJuzvmaPk__yB3zSlXtQvXMtUAMHIs-8L7A6nWI").worksheets[0]
   puts "Downloaded workshops"
 
   puts "Seeding workshops"
@@ -128,15 +107,17 @@ end
 # 15 PERIOD 2 TEACHER FULL NAME
 def seed_students
   index = 1
+  contents = CSV.read("db/students-seed.csv", col_sep: ",", encoding: "ISO8859-1")
   puts "Seeding students"
-  CSV.foreach("db/students-seed.csv") do |row|
+  contents.each do |row|
+    puts row.inspect
     s = Student.new
     s.id = index
     index += 1
     s.number = row[0].to_i
     #s.last = row[1]
     #s.first = row[2]
-    s.full = row[2] + " " + row[1]
+    s.full = (row[2] + " " + row[1])
     s.gender = ( row[3] === "Male" ? 'BD' : 'GD' )
     s.grade = row[4].blank? ? "MISSING INFO" : row[4]
     s.year = row[4].blank? ? 99 : ( row[4] === "Senior" ? 12 : ( row[4] === "Junior" ? 11 : ( row[4] === "Sophomore" ? 10 : ( row[4] === "Freshman" ? 9 : 99 ) ) ) )
@@ -147,7 +128,6 @@ def seed_students
     s.rw_teacher = row[11].blank? ? "MISSING INFO" : row[11]
     s.advisement = row[7].blank? ? "MISSING INFO" : row[7]
     s.advisement_name = row[8].blank? ? "MISSING INFO" : row[8]
-    puts "saving student #{s.full}"
     s.save!
   end
   puts "Seeded students"
@@ -170,14 +150,15 @@ end
 # 10 2RW ROOM #
 def seed_teachers
   index = 1
+  contents = CSV.read("db/teachers-seed.csv", col_sep: ",", encoding: "ISO8859-1")
   puts "Seeding teachers"
-  CSV.foreach("db/teachers-seed.csv") do |row|
+  contents.each do |row|
     t = Teacher.new
     t.id = index
     index += 1
     t.division = ( row[0] ? "BD" : "GD" )
     t.number = row[2]
-    t.name = row[4] + " " + row[3]
+    t.name = (row[4] + " " + row[3])
     t.prefix = row[6].split("@")[0]
     t.email = row[6]
     t.save!
@@ -186,7 +167,9 @@ def seed_teachers
 end
 
 def seed_presenters
-  CSV.foreach("db/presenters.csv") do |row|
+  contents = CSV.read("db/presenters.csv", col_sep: ",", encoding: "ISO8859-1")
+  
+  contents.each do |row|
     p = Teacher.where(name: row[0]).first
     if p.nil?
       p = Teacher.where(name: row[1]).first
@@ -209,7 +192,8 @@ def seed_presenters
 end
 
 def seed_student_presenters
-  CSV.foreach("db/student-presenters.csv") do |row|
+  contents = CSV.read("db/student-presenters.csv", col_sep: ",", encoding: "ISO8859-1")
+  contents do |row|
     p = Student.where(full: row[0]).first
     puts p.full
     w = Workshop.find(row[1])
