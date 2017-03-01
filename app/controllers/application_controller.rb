@@ -60,7 +60,7 @@ class ApplicationController < ActionController::Base
   
   def admin!
     authenticate_or_request_with_http_basic "Provide credentials to continue." do |username, password|
-      username == "admin" && password == "ulysses2013"
+      username == "admin" && password == "ulysses2017"
     end
   end
   
