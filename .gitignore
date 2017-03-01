@@ -1,5 +1,6 @@
 # Ignore bundler config
 .bundle
+*.swp
 
 # Ignore all databases.
 db/*.sqlite3
@@ -33,6 +34,10 @@ db/*.csv
 # Database backup dumps
 db/*.db
 db/*.dmp
+db/backups
 
 # Precompiled assets
 public/assets/*
+
+# Secret Files for google OAuth
+config.json
