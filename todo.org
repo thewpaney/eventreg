@@ -121,3 +121,14 @@ Testing whether any permutation of button presses can screw things up
 *** Finalized data by February 10th (loose)
 ** Another conference call the week of the 8th
 ** Conference March 1st
+* 2017
+** Most stuff hasn't changed
+*** Still class limits and gender limits
+*** Still a few multi-session ones
+** More test-driven development
+*** Write some unit tests first?
+*** Share workshop spreadsheet immediately
+** DATES
+*** Diversity Day is March 6th
+*** Registration: Feb 26-28, class staggered
+**** No classes Feb 27th
