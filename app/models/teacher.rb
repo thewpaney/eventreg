@@ -69,6 +69,7 @@ class Teacher < ActiveRecord::Base
     workshop.save!
   end
 
+  # DEPRECATED - see UserHelper#sign_up_user
   def signup(workshop_id)
     workshop = Workshop.find(workshop_id)
     

@@ -48,6 +48,7 @@ class Student < ActiveRecord::Base
   end
 
   #Regular sign up, checks before it confirms
+  # DEPRECATED - see UserHelper#sign_up_user
   def signup(workshop_id)
     workshop = Workshop.find(workshop_id)
     puts "Signing up ", prefix, " for workshop", workshop_id 
