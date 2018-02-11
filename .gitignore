@@ -41,3 +41,6 @@ public/assets/*
 
 # Secret Files for google OAuth
 config.json
+
+# Ignore platform-specific binaries
+bin/*
