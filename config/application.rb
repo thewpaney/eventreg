@@ -20,8 +20,6 @@ module Eventreg
 
     config.assets.enabled = true
     config.serve_static_files = true
-    config.action_mailer.perform_deliveries = true
-    config.action_mailer.delivery_method = :sendmail    
 
     # Custom error pages!
     config.exceptions_app = self.routes
