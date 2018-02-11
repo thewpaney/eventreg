@@ -121,14 +121,50 @@ Testing whether any permutation of button presses can screw things up
 *** Finalized data by February 10th (loose)
 ** Another conference call the week of the 8th
 ** Conference March 1st
-* 2017
-** Most stuff hasn't changed
-*** Still class limits and gender limits
-*** Still a few multi-session ones
-** More test-driven development
-*** Write some unit tests first?
-*** Share workshop spreadsheet immediately
-** DATES
-*** Diversity Day is March 6th
-*** Registration: Feb 26-28, class staggered
-**** No classes Feb 27th
+* 2018
+** Admin things
+*** Most stuff hasn't changed
+**** Still class limits and gender limits
+**** Still a few multi-session ones
+*** More test-driven development
+**** Write some unit tests first?
+**** Share workshop spreadsheet immediately
+*** DATES
+**** Diversity Day is March 6th
+**** Registration: Feb 26-28, class staggered
+***** No classes Feb 27th
+** Technical things
+*** To write
+**** Sign up specific user for specific workshop array
+***** right now this is in the model
+**** Identify problems
+***** teachers
+***** workshops
+***** students
+**** Check if registration is complete
+***** Is this no problem teachers OR students OR workshops?
+***** Make sure these problem methods are "complete"
+****** If all three are empty, no further changes need to be made
+****** Would be good to enumerate success conditions again
+****** "quantitative characteristics of a completed registration database"
+*** To revisit
+**** Downloading workshops from Google Drive
+***** Make sure dependencies don't break in the future
+**** student#force and teacher#force
+***** Move these out of model?
+**** student#auto and teacher#auto
+**** student#finished_with_registration? and teacher#finished_with_registration?
+***** Essentially just `return sessions_needed.empty?`
+***** Can we delete this? I think we can
+*** Views
+**** Get rid of highlighting the workshop from the list once it's been claimed
+***** Eliminates 3 database queries
+**** Deleta users#table
+*** General
+**** Can move a lot of code out of the models
+**** Why are student and teacher different classes?
+**** vindicator.rb really just calls student#auto
+**** Delete workshop#student_percentage_taken
+**** Delete workshop#teacher_percentage_taken
+**** workshop#cantSignUp does a lot of work - looks fine as is though
+
