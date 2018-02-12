@@ -1,5 +1,5 @@
 # Script to check for problem children and teachers and print the errors
-
+# DEPRECATED - now in UserHelper#problem_[students|teachers|workshops]
 def checkProblems(user)
   problems = []
   if user.workshops.count > 3

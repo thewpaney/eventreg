@@ -134,10 +134,10 @@ Testing whether any permutation of button presses can screw things up
 **** Registration: Feb 26-28, class staggered
 ***** No classes Feb 27th
 ** Technical things
-*** [33%] To write
+*** [66%] To write
 **** DONE Sign up specific user for specific workshop array
 ***** right now this is in the model
-**** TODO Identify problems
+**** DONE Identify problems
 ***** teachers
 ***** workshops
 ***** students
@@ -159,7 +159,7 @@ Testing whether any permutation of button presses can screw things up
 *** [0%] Views
 **** TODO Get rid of highlighting the workshop from the list once it's been claimed
 ***** Eliminates 3 database queries
-**** TODO Deleta users#table
+**** TODO Delete users#table
 *** [0%] Helpers
 **** TODO events_helper
 ***** Where are the generate_html functions ever used?
