@@ -14,6 +14,8 @@ module UserHelper
       workshop = Workshop.find(w)
       unless (whynot = workshop.cantSignUp user)
         user.workshops << workshop
+        user.save!
+        workshop.users << user
         workshop.staken += 1 if user.class == Student
         workshop.ttaken += 1 if user.class == Teacher
         workshop.save!
@@ -21,7 +23,8 @@ module UserHelper
         puts "  Signed up for #{workshop.name} ID #{w}" if verbose
         if workshop.twofer_ref != 0
           twin = Workshop.find(workshop.twofer_ref)
-          workshops << twin
+          user.workshops << twin
+          user.save!
           twin.staken += 1 if user.class == Student
           twin.ttaken += 1 if user.class == Teacher
           twin.save!
@@ -82,4 +85,23 @@ module UserHelper
   def registration_complete?
     return (problem_teachers == []) and (problem_students == []) and (problem_workshops == [])
   end # registration_complete?
+
+  # @brief Place a user in a workshop without checking limits
+  # @param user Type Student or Teacher - the user to register
+  # @param workshops Type Array - array of workshop IDs to register
+  # @param verbose Type Boolean - whether to print logs, defaults to true
+  # @return nil
+  def force_register(user, workshops, verbose = true)
+    workshops.each do |w|
+      workshop = Workshop.find(w)
+      user.workshops << workshop
+      user.save!
+      workshop.students << user if user.class == Student
+      workshop.teachers << user if user.class == Teacher
+      workshop.staken += 1 if user.class == Student
+      workshop.ttaken += 1 if user.class == Teacher
+      workshop.save!
+    end
+    return nil
+  end
 end

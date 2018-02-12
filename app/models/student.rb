@@ -39,6 +39,7 @@ class Student < ActiveRecord::Base
   end
 
   #Force sign up. Does no checks
+  # DEPRECATED - use UserHelper#force_register
   def force(workshop_id)
     workshop = Workshop.find(workshop_id)
     workshop.students << self

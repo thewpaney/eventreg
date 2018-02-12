@@ -61,6 +61,7 @@ class Teacher < ActiveRecord::Base
     workshops.select {|w| w.session == 3}[0]
   end
 
+  # DEPRECATED - use UserHelper#force_register instead
   def force(workshop_id)
     workshop = Workshop.find(workshop_id)
     workshop.teachers << self

@@ -147,10 +147,10 @@ Testing whether any permutation of button presses can screw things up
 ****** If all three are empty, no further changes need to be made
 ****** Would be good to enumerate success conditions again
 ****** "quantitative characteristics of a completed registration database"
-*** [0%] To revisit
+*** [25%] To revisit
 **** TODO Downloading workshops from Google Drive
 ***** Make sure dependencies don't break in the future
-**** TODO student#force and teacher#force
+**** DONE student#force and teacher#force
 ***** Move these out of model?
 **** TODO student#auto and teacher#auto
 **** TODO student#finished_with_registration? and teacher#finished_with_registration?
