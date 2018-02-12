@@ -156,8 +156,8 @@ Testing whether any permutation of button presses can screw things up
 **** TODO student#finished_with_registration? and teacher#finished_with_registration?
 ***** Essentially just `return sessions_needed.empty?`
 ***** Can we delete this? I think we can
-*** [0%] Views
-**** TODO Get rid of highlighting the workshop from the list once it's been claimed
+*** [50%] Views
+**** DONE Get rid of highlighting the workshop from the list once it's been claimed
 ***** Eliminates 3 database queries
 **** TODO Delete users#table
 *** [0%] Helpers
