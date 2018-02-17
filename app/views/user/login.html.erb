@@ -1,7 +1,7 @@
 <style type="text/css">
-.text{font-family: Helvetica, Arial, sans-serif;}
-.text label{font-size: 1.5em;}
-h1 {font-size: 2.2em;}
+ .text{font-family: Helvetica, Arial, sans-serif;}
+ .text label{font-size: 1.5em;}
+ h1 {font-size: 2.2em;}
 </style>
 
 <h1 class="text">Step 1: Log In</h1>
@@ -11,22 +11,22 @@ h1 {font-size: 2.2em;}
     <%= form_tag(:action => "login") do %>
 
       <label for="user_prefix">Username:</label><br/><br/>
-    <%= text_field("user", "prefix", :size => 20, :placeholder => "JBergoglio")%>
-    <br/><br/>Your Regis Jesuit Login Prefix.<br/>
-    This is the same as the first part<br/>
-    of your Regis Jesuit email.<br/><br/>
+      <%= text_field("user", "prefix", :size => 20)%>
+      <p>
+        Your username. This is the same as the first part of your Regis Jesuit email.
+      </p>
 
-    <label for="user_number">ID Number:</label><br/><br/>
-    <%= password_field("user","number",:size => 20, :placeholder => "200012345" )%>
-    <br/><br/>The 4, 5, or 9 digit number<br/> on your student/teacher ID.<br/><br/>
+      <label for="user_number">ID Number:</label><br/><br/>
+      <%= password_field("user","number",:size => 20)%>
+      <p>The number on your student/teacher ID.</p>
 
-    <%= submit_tag("Login") %>
+      <%= submit_tag("Login") %>
 
-  <% end %>
-
-  </div>
+    <% end %>
 
   </div>
-  <div class="text" style="float: left; position: relative; left: 5%; top: 40px;">
-    <%= image_tag "/assets/id.jpg", height:"200px", width:"336px" %>
+
+</div>
+<div class="text" style="float: left; position: relative; left: 5%; top: 40px;">
+  <%= image_tag "/assets/id.jpg", height:"200px", width:"336px" %>
 </div>
