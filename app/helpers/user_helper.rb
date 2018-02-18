@@ -15,9 +15,13 @@ module UserHelper
       unless (whynot = workshop.cantSignUp user)
         user.workshops << workshop
         user.save!
-        workshop.users << user
-        workshop.staken += 1 if user.class == Student
-        workshop.ttaken += 1 if user.class == Teacher
+        if user.class == Student
+          workshop.staken += 1
+          workshop.students << user
+        elsif user.class == Teacher
+          workshop.ttaken += 1  
+          workshop.teachers << user
+        end
         workshop.save!
         success << w
         puts "  Signed up for #{workshop.name} ID #{w}" if verbose
@@ -50,7 +54,7 @@ module UserHelper
       t.id if
         (t.workshops.count != 3 or \
          t.workshop_ids.select {|w| t.workshop_ids.count(w) > 1}.count > 1 or \
-         sessions.select {|s| sessions,count(s) > 1}.uniq != [] or \
+         sessions.select {|s| sessions.count(s) > 1}.uniq != [] or \
          t.workshops.collect {|w| w.tlimit.to_i - w.ttaken.to_i}.delete_if {|v| v > 0} != [])
     }.delete_if {|t| t.nil?}
   end # problem_teachers
@@ -63,7 +67,7 @@ module UserHelper
       t.id if
         (t.workshops.count != 3 or \
          t.workshop_ids.select {|w| t.workshop_ids.count(w) > 1}.count > 1 or \
-         sessions.select {|s| sessions,count(s) > 1}.uniq != [] or \
+         sessions.select {|s| sessions.count(s) > 1}.uniq != [] or \
          t.workshops.collect {|w| w.slimit.to_i - w.staken.to_i}.delete_if {|v| v > 0} != [])
     }.delete_if {|t| t.nil?}
   end # problem_students
@@ -83,7 +87,7 @@ module UserHelper
   # @brief Determine whether registration is complete
   # @return Boolean value
   def registration_complete?
-    return (problem_teachers == []) and (problem_students == []) and (problem_workshops == [])
+    return (problem_teachers == [] and problem_students == [] and problem_workshops == [])
   end # registration_complete?
 
   # @brief Place a user in a workshop without checking limits
