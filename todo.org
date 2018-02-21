@@ -1,4 +1,4 @@
-* 2013 
+* 2013  :ARCHIVE:
 ** Functionality [100%]
 *** DONE Make all flashes go to pop-up JS box (or maybe just errors)
 *** DONE Implement time start/time limit
@@ -43,7 +43,7 @@ we need to talk with the tech department.
 **** People who aren't signed up
 ***** Download a list of thems
 **** 
-* 2014
+* 2014 :ARCHIVE:
 ** Basic requirements
 *** Two workshops in the morning
 **** Pull from set 1
@@ -81,7 +81,7 @@ Testing whether any permutation of button presses can screw things up
 **** God Mode (™)
 **** Email?
 **** Empower the admins
-* 2015
+* 2015 :ARCHIVE:
 ** Gender limits
 *** On overflow in endgame, spread gender evenly (rank by percentage maybe)?
 ** Emails
@@ -109,7 +109,7 @@ Testing whether any permutation of button presses can screw things up
 **** Empower the admin
 ** Flexible signup
 *** Overflow number
-* 2016
+* 2016 :ARCHIVE:
 ** Access
 *** MySQL - root: letmein
 *** Root - root: Theansweris42
@@ -122,7 +122,16 @@ Testing whether any permutation of button presses can screw things up
 ** Another conference call the week of the 8th
 ** Conference March 1st
 * 2018
-** Admin things
+** Priorities
+*** TODO Seed the database
+*** TODO Smoke Test: Can 5 random students and a teacher signup with proper emails?
+*** TODO Fuzz Test: Iterating stochastic signups, how do we do?
+**** Let's avoid the new helpers. I like them, but the other things have worked for years.
+**** Look for: 
+     - Large workshops in multiple sessions are hard to fill
+     - Students sometimes had two signups in one session last year - race condition?
+*** TODO Get Vela copy for confirmation emails
+** Admin things                                                     :ARCHIVE:
 *** Most stuff hasn't changed
 **** Still class limits and gender limits
 **** Still a few multi-session ones
