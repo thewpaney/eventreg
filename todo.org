@@ -124,6 +124,7 @@ Testing whether any permutation of button presses can screw things up
 * 2018
 ** Priorities
 *** TODO Seed the database
+**** [[file:db/seeds.rb::puts%20"Bad%20presenter%20name:%20#{row%5B0%5D}"][Does this account for speakers unafilliated with regis?]]
 *** TODO Smoke Test: Can 5 random students and a teacher signup with proper emails?
 *** TODO Fuzz Test: Iterating stochastic signups, how do we do?
 **** Let's avoid the new helpers. I like them, but the other things have worked for years.

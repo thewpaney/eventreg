@@ -1,21 +1,20 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-# cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-# Mayor.create(name: 'Emanuel', city: cities.first)
-#
-# This is the same as the one we used in 2013
 
 require 'csv'
+
+$workshop_url_2017 = "1vdMBbJuzvmaPk__yB3zSlXtQvXMtUAMHIs-8L7A6nWI"
+$workshop_url_2018 = "1Ww5qmj89gYDIdB3OCjpM8fvhkFo50mTADvf3eSAjqLQ"
+
+$student_csv = "db/students-seed.2018.csv"
+$teacher_csv = "db/teachers-seed.2018.csv"
 
 def seed_workshops
 
   session = GoogleDrive::Session.from_config("config.json")
-   
+
   puts "Downloading workshops"
-  workshops = session.spreadsheet_by_key("1vdMBbJuzvmaPk__yB3zSlXtQvXMtUAMHIs-8L7A6nWI").worksheets[0]
+  workshops = session.spreadsheet_by_key($workshop_url_2018).worksheets[0]
   puts "Downloaded workshops"
 
   puts "Seeding workshops"
@@ -163,36 +162,12 @@ def seed_workshops
       end
     end
   end
-  puts "Seeded workshops"  
+  puts "Seeded workshops"
 end
 
-# Deprecated - now grab from .csv
-# puts "Downloading students"
-# students = session.spreadsheet_by_key("0Apg__KXOdrg8dDNYMFVIclFudG9oWm11Ymt6T2RVUXc").worksheets[0]
-# puts "Downloading students"
-
-# Student fields:
-# <Student id: nil, number: nil, full: nil, gender: nil, grade: nil, year: nil, email: nil, prefix: nil, rw: nil, rw_number: nil, rw_teacher: nil, advisement: nil>
-# .csv rows:
-# 0  STUDENT ID
-# 1  StsSt_IntegrationID
-# 2  STUDENT LAST NAME
-# 3  STUDENT FIRST NAME
-# 4  DIVISION
-# 5  CURRENT GRADE
-# 6  STUDENT CELL
-# 7  STUDENT EMAIL
-# 8  ADVISEMENT
-# 9  ADVISEMENT ROOM
-# 10 ADVISEMENT TEACHER LAST NAME
-# 11 ADVISEMENT TEACHER FULL NAME
-# 12 PERIOD 2
-# 13 PERIOD 2 ROOM
-# 14 PERIOD 2 TEACHER LAST NAME
-# 15 PERIOD 2 TEACHER FULL NAME
 def seed_students
   index = 1
-  contents = CSV.read("db/students-seed.csv", col_sep: ",", encoding: "ISO8859-1")
+  contents = CSV.read($student_csv, col_sep: ",", encoding: "ISO8859-1")
   puts "Seeding students"
   contents.each do |row|
     s = Student.new
@@ -217,24 +192,9 @@ def seed_students
   puts "Seeded students"
 end
 
-# Deprecated - now get from .csv
-# puts "Downloading teachers"
-# teachers = session.spreadsheet_by_key("0Apg__KXOdrg8dHRBem5CUC1vanJ3OXlpbWlfMGJLNnc").worksheets[0]
-# puts "Downloaded teachers"
-# 0 BOYS SCHOOL?
-# 1 GIRLS SCHOOL?
-# 2 RECORD ID
-# 3 LAST NAME
-# 4 FIRST NAME
-# 5 NICKNAME
-# 6 EMAIL
-# 7 ADVISEMENT
-# 8 ROOM #
-# 9 2ND PERIOD
-# 10 2RW ROOM #
 def seed_teachers
   index = 1
-  contents = CSV.read("db/teachers-seed.csv", col_sep: ",", encoding: "ISO8859-1")
+  contents = CSV.read($teacher_csv, col_sep: ",", encoding: "ISO8859-1")
   puts "Seeding teachers"
   contents.each do |row|
     t = Teacher.new
@@ -252,7 +212,7 @@ end
 
 def seed_presenters
   contents = CSV.read("db/presenters.csv", col_sep: ",", encoding: "ISO8859-1")
-  
+
   contents.each do |row|
     p = Teacher.where(name: row[0]).first
     if p.nil?
@@ -289,11 +249,11 @@ end
 
 def seed_presenters_from_drive
   session = GoogleDrive::Session.from_config("config.json")
-  
+
   puts "Downloading presenters"
   presenters = session.spreadsheet_by_key("1vdMBbJuzvmaPk__yB3zSlXtQvXMtUAMHIs-8L7A6nWI").worksheets[1]
   puts "Downloaded presenters"
-  
+
   presenters.rows[1..-1].each do |row|
     p = Student.where(full: row[0]).first
     if p.nil?
