@@ -23,14 +23,11 @@ tmp
 events.yml
 spr-*.csv
 *.orig
-db/seeds.rb
 vendor/ruby/
 vendor
 vendor/
 vendor/*
 
-# Seeding database files
-db/*.csv
 # Database backup dumps
 db/*.db
 db/*.dmp
