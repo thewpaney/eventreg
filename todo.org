@@ -123,7 +123,9 @@ Testing whether any permutation of button presses can screw things up
 ** Conference March 1st
 * 2018
 ** Priorities
-*** TODO Seed the database
+*** TODO Debug Workshop seeding
+*** DONE Seed the database
+    CLOSED: [2018-02-22 Thu 22:34]
 **** [[file:db/seeds.rb::puts%20"Bad%20presenter%20name:%20#{row%5B0%5D}"][Does this account for speakers unafilliated with regis?]]
 *** TODO Smoke Test: Can 5 random students and a teacher signup with proper emails?
 *** TODO Fuzz Test: Iterating stochastic signups, how do we do?
@@ -131,8 +133,6 @@ Testing whether any permutation of button presses can screw things up
 **** Look for: 
      - Large workshops in multiple sessions are hard to fill
      - Students sometimes had two signups in one session last year - race condition?
-*** DONE Get Vela copy for confirmation emails
-**** Turns out we don't do confirmation emails
 ** Admin things                                                     :ARCHIVE:
 *** Most stuff hasn't changed
 **** Still class limits and gender limits
@@ -183,3 +183,4 @@ Testing whether any permutation of button presses can screw things up
 **** Delete workshop#student_percentage_taken
 **** Delete workshop#teacher_percentage_taken
 **** workshop#cantSignUp does a lot of work - looks fine as is though
+**** TODO Do we duplicate entries in the student_workshop table?
