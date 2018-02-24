@@ -1,5 +1,10 @@
 source 'https://rubygems.org'
 
+# Heroku recommendations
+ruby '2.4.2'
+gem 'rails_12factor'
+gem 'puma'
+
 gem 'rails'
 gem 'jquery-rails'
 gem 'mysql2'
