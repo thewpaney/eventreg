@@ -104,4 +104,4 @@ class UserController < ApplicationController
   def user_params
     params.permid(:login, :pass, :pass_confirm)
   end
- end 
+end 
