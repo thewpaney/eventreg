@@ -299,7 +299,7 @@ end
 seed_workshops
 seed_students
 seed_teachers
-seed_presenters_from_drive
+#seed_presenters_from_drive
 
 #puts "Google drive workshops?"
 #if $stdin.gets.chomp === 'y'
