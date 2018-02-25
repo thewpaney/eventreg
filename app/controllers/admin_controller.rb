@@ -119,13 +119,16 @@ class AdminController < ApplicationController
       # Submitting form
       # Removing a workshop
       if params["1"]
-        self.user.unsignup(self.user.first.id)
+        user.unsignup(user.first.id)
+        flash[:message] = "Removed session"
         return
       elsif params["2"]
-        self.user.unsignup(self.user.second.id)
+        user.unsignup(user.second.id)
+        flash[:message] = "Removed session"
         return
       elsif params["3"]
-        self.user.unsignup(self.user.third.id)
+        user.unsignup(user.third.id)
+        flash[:message] = "Removed session"
         return
       end
       # Adding workshops
@@ -161,7 +164,7 @@ class AdminController < ApplicationController
       else
         session[:type] = params[:type]
         session[:user_id] = params[:id]
-        if self.user.nil?
+        if user.nil?
           flash[:error] = 'No user with id #{params[:id]} and type #{params[:type]} exists.'
           redirect_to '/admin'
         end
