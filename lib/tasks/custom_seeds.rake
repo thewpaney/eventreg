@@ -8,4 +8,19 @@ namespace :db do
       end
     end
   end
+  namespace :workshops do
+    desc "Update workshops using names as references"
+    task :update_name => :environment do
+      load(Rails.root.join('script','update-workshops-name.rb'))
+    end
+    desc "Update workshops using presenters as references"
+    task :update_presenter => :environment do
+      load(Rails.root.join('script','update-workshops-presenter.rb'))
+    end
+    desc "Update workshops first by name, then by presenter"
+    task :update => :environment do
+      load(Rails.root.join('script','update-workshops-name.rb'))
+      load(Rails.root.join('script','update-workshops-presenter.rb'))
+    end
+  end
 end
