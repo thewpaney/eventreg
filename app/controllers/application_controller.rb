@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery prepend: true
+  skip_before_action :verify_authenticity_token
   
   # include ActionController::Caching::Pages
   # self.page_cache_directory = "#{Rails.root.to_s}/public/page_cache"
