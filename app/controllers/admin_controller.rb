@@ -6,24 +6,24 @@ class AdminController < ApplicationController
 
   def review
     self.deauthenticate!
-    tboys = Teacher.boys
-    @tboysall = tboys.count
-    @tboysdone = tboys.select {|s| s.workshop_ids.count == 3}.count
-    tgirls = Teacher.girls
-    @tgirlsall = tgirls.count
-    @tgirlsdone = tgirls.select {|s| s.workshop_ids.count == 3}.count
+    @tboys = Teacher.boys
+    @tboysall = @tboys.count
+    @tboysdone = @tboys.select {|s| s.workshop_ids.count == 3}.count
+    @tgirls = Teacher.girls
+    @tgirlsall = @tgirls.count
+    @tgirlsdone = @tgirls.select {|s| s.workshop_ids.count == 3}.count
     @tregistered = @tgirlsdone + @tboysdone
     @tall = @tboysall + @tgirlsall
-    sboys = Student.boys
-    @sboysall = sboys.count
-    @sboysdone = sboys.select {|s| s.workshop_ids.count == 3}.count
-    sgirls = Student.girls
-    @sgirlsall = sgirls.count
-    @sgirlsdone = sgirls.select {|s| s.workshop_ids.count == 3}.count
+    @sboys = Student.boys
+    @sboysall = @sboys.count
+    @sboysdone = @sboys.select {|s| s.workshop_ids.count == 3}.count
+    @sgirls = Student.girls
+    @sgirlsall = @sgirls.count
+    @sgirlsdone = @sgirls.select {|s| s.workshop_ids.count == 3}.count
     @sall = @sboysall + @sgirlsall
     @sregistered = @sboysdone + @sgirlsdone
-    @sproblems = (sboys + sgirls).collect {|s| s.workshop_ids.count != 0 and s.workshop_ids.count != 3}.delete_if {|a| !a}.count
-    @tproblems = (tboys + tgirls).collect {|s| s.workshop_ids.count != 0 and s.workshop_ids.count != 3}.delete_if {|a| !a}.count
+    @sproblems = (@sboys + @sgirls).collect {|s| s.workshop_ids.count != 0 and s.workshop_ids.count != 3}.delete_if {|a| !a}.count
+    @tproblems = (@tboys + @tgirls).collect {|s| s.workshop_ids.count != 0 and s.workshop_ids.count != 3}.delete_if {|a| !a}.count
   end
 
   def export
