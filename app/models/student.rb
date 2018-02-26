@@ -1,5 +1,5 @@
 class Student < ActiveRecord::Base
-  attr_accessible :number, :full, :gender, :grade, :year, :email, :prefix, :rw, :rw_number, :rw_teacher, :advisement, :advisement_name
+  attr_accessible :number, :full, :gender, :grade, :year, :email, :prefix, :rw, :rw_number, :rw_teacher, :advisement, :advisement_name, :special
   validates :number, :full, :gender, :grade, :year, :email, :prefix, :rw, :rw_number, :rw_teacher, :advisement, presence: true
   has_and_belongs_to_many :workshops,  uniq: true
 
@@ -8,10 +8,11 @@ class Student < ActiveRecord::Base
   end
 
   def reg_time
-    return Time.new(2017, 3, 1, 11, 35, 00, "-07:00") if self.year == "12"
-    return Time.new(2017, 3, 1, 14, 45, 00, "-07:00") if self.year == "11"
-    return Time.new(2017, 3, 2, 12, 25, 00, "-07:00") if self.year == "10"
-    return Time.new(2017, 3, 2, 14, 45, 00, "-07:00") if self.year == "9"
+    return Time.new(2018, 2, 26, 7, 45, 00, "-07:00") if self.special == "DAG"
+    return Time.new(2018, 2, 26, 9, 30, 00, "-07:00") if self.year == "12"
+    return Time.new(2018, 2, 26, 14, 45, 00, "-07:00") if self.year == "11"
+    return Time.new(2018, 2, 27, 8, 0, 00, "-07:00") if self.year == "10"
+    return Time.new(2018, 2, 28, 9, 30, 00, "-07:00") if self.year == "9"
   end
   
   def can_register

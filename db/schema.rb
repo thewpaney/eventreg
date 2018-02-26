@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170301044327) do
+ActiveRecord::Schema.define(version: 20180225212340) do
 
   create_table "sessions", force: :cascade do |t|
     t.string   "session_id", limit: 255,   null: false
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20170301044327) do
     t.string  "rw_teacher",      limit: 255
     t.string  "advisement",      limit: 255
     t.string  "advisement_name", limit: 255
+    t.string  "special",         limit: 255
   end
 
   create_table "students_workshops", force: :cascade do |t|

@@ -6,7 +6,7 @@ class Teacher < ActiveRecord::Base
   has_and_belongs_to_many :workshops, uniq: true
 
   def reg_time
-    return Time.new(2017, 3, 1, 11, 35, 00, "-07:00")
+    return Time.new(2018, 2, 26, 9, 30, 00, "-07:00")
   end
 
   def can_register
