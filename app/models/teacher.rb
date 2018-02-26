@@ -93,6 +93,7 @@ class Teacher < ActiveRecord::Base
     workshops.delete(workshop)
     workshop.ttaken -= 1
     workshop.save!
+    self.save!
   end
 
   def done?

@@ -94,6 +94,7 @@ class Student < ActiveRecord::Base
     workshops.delete(workshop)
     workshop.staken -= 1
     workshop.save!
+    self.save!
   end
   
   def auto

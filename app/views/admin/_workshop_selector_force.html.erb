@@ -6,7 +6,7 @@
   <span class="leader done">1</span>
   <%= select(:user, :first, Workshop.firsts.collect {|w| [w.name, w.id]}, {}, {:size => "6", :disabled => "true"}) %>
   <br />
-  <%= submit_tag "Remove First Workshop", :name => "1" %>
+  <%= submit_tag "Remove First Workshop", :name => "rmfirst" %>
   <br /><br />
 
 <% else %>
@@ -22,7 +22,7 @@
   <span class="leader done">2</span>
   <%= select(:user, :second, Workshop.seconds.collect {|w| [w.name, w.id]}, {}, {:size => "6", :disabled => "true"}) %>
   <br />
-  <%= submit_tag "Remove Second Workshop", :name => "2" %>
+  <%= submit_tag "Remove Second Workshop", :name => "rmsecond" %>
   <br /><br />
 
 <% else %>
@@ -39,7 +39,7 @@
   <span class="leader done">3</span>
   <%= select(:user, :third, Workshop.thirds.collect {|w| [w.name, w.id]}, {}, {:size => "6", :disabled => "true"}) %>
   <br />
-  <%= submit_tag "Remove Third Workshop", :name => "3" %>
+  <%= submit_tag "Remove Third Workshop", :name => "rmthird" %>
   <br /><br />
 
 <% else %>

@@ -63,6 +63,14 @@ class AdminController < ApplicationController
       if params[:user][:third]
         user.force(params[:user][:third])
       end
+      puts "###{params[:name]}"
+      if params[:rmfirst]
+        user.unsignup(user.first)
+      elsif params[:rmsecond]
+        user.unsignup(user.second)
+      elsif params[:rmthird]
+        user.unsignup(user.third)
+      end
     else
       params[:user] = {}
     end
@@ -111,22 +119,26 @@ class AdminController < ApplicationController
   end
 
   def force
-    if request.post? and !(params[:user].nil?)
+    # Don't check if params[:user] is populated - this is what broke removing students
+    if request.post?
       # No parameters
       if params.nil?
         return
       end
       # Submitting form
       # Removing a workshop
-      if params["1"]
+      puts params[:rmfirst]
+      puts params[:rmsecond]
+      puts params[:rmthird]
+      if params[:rmfirst]
         user.unsignup(user.first.id)
         flash[:message] = "Removed session"
         return
-      elsif params["2"]
+      elsif params[:rmsecond]
         user.unsignup(user.second.id)
         flash[:message] = "Removed session"
         return
-      elsif params["3"]
+      elsif params[:rmthird]
         user.unsignup(user.third.id)
         flash[:message] = "Removed session"
         return
