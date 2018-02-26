@@ -8,7 +8,7 @@
   <% if user.can_register %>
   <%= submit_tag "Confirm Selection" %>
   <% else %>
-  Your registration slot is <%= user.reg_time %>
+  Registration for your class will open on <%= user.reg_time.strftime("%A, %B %d at %l:%M %p") %>.
   <% end %>
   <% end %>
 </div>
