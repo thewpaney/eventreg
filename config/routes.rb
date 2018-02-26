@@ -5,8 +5,6 @@ Eventreg::Application.routes.draw do
 
   get 'errors/internal_server_error'
 
-#  get '/user/ready' => 'user#ready'
-#  get '/user/edit' => 'user#edit'
   get '/user/browse' => 'user#browse'
   get '/user/register' => 'user#register'
   get '/user/login' => 'user#login'
@@ -15,7 +13,6 @@ Eventreg::Application.routes.draw do
   post '/user/force_register' => 'user#force_register'
   post '/user/register' => 'user#register'
   post '/user/login' => 'user#login'
-  post '/user/edit' => 'user#update'
   get '/admin/export' => 'admin#export'
   get '/admin/export_workshops' => 'admin#export_workshops'
   get '/user/reset' => 'user#reset'
