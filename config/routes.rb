@@ -6,7 +6,8 @@ Eventreg::Application.routes.draw do
   get 'errors/internal_server_error'
 
 #  get '/user/ready' => 'user#ready'
-  get '/user/edit' => 'user#edit'
+#  get '/user/edit' => 'user#edit'
+  get '/user/browse' => 'user#browse'
   get '/user/register' => 'user#register'
   get '/user/login' => 'user#login'
   get '/user/logout' => 'user#logout'

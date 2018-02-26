@@ -39,9 +39,15 @@ class UserController < ApplicationController
   end
 
   def browse
-    @firsts = Workshop.firstsAvailable(self.user).collect {|w| [w.name, w.id] }
-    @seconds = Workshop.secondsAvailable(self.user).collect {|w| [w.name, w.id] }
-    @thirds = Workshop.thirdsAvailable(self.user).collect {|w| [w.name, w.id] }
+    if user.class == Student
+      @firsts = Workshop.firsts.collect {|w| ["#{w.name} [#{w.staken}/#{w.slimit}]", w.id] }
+      @seconds = Workshop.seconds.collect {|w| ["#{w.name} [#{w.staken}/#{w.slimit}]", w.id] }
+      @thirds = Workshop.thirds.collect {|w| ["#{w.name} [#{w.staken}/#{w.slimit}]", w.id] }
+    elsif user.Class == Teacher
+      @firsts = Workshop.firsts.collect {|w| ["#{w.name} [#{w.ttaken}/#{w.tlimit}]", w.id] }
+      @seconds = Workshop.seconds.collect {|w| ["#{w.name} [#{w.ttaken}/#{w.tlimit}]", w.id] }
+      @thirds = Workshop.thirds.collect {|w| ["#{w.name} [#{w.ttaken}/#{w.tlimit}]", w.id] }
+    end
     firsts = {} if (@firsts.nil?)
     seconds = {} if (@seconds.nil?)
     thirds = {} if (@thirds.nil?)

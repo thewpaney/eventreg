@@ -9,6 +9,8 @@
   <%= submit_tag "Confirm Selection" %>
   <% else %>
   Registration for your class will open on <%= user.reg_time.strftime("%A, %B %d at %l:%M %p") %>.
+  <br />
+  Until then, feel free to <%= link_to "browse available workshops", "browse" %>.
   <% end %>
   <% end %>
 </div>
