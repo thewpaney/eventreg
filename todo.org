@@ -122,7 +122,30 @@ Testing whether any permutation of button presses can screw things up
 ** Another conference call the week of the 8th
 ** Conference March 1st
 * 2018
-** Priorities
+** Live
+*** If there's time...
+**** TODO Check for horizontal scaling
+***** This is how we have smooth UI
+**** TODO Static workshops.json
+**** TODO Improve Admin UI
+***** How much overlap do the remaining seats have? Can we affect that?
+***** Distinguish "In Progress" and "Stuck"
+***** View only stuck students and solutions
+****** Options to add to workshop, increasing workshop size
+*** Post Seniors
+**** We don't use more than 250 MB under any load
+**** We do drop requests like they're hot
+***** Hundreds of timeouts - 30 seconds
+***** Still got 374 students through
+*** Post Juniors
+**** Some Students have >3 workshops
+     BenkeRo
+     GedroseEt
+     KilkennyCo
+     Zabiegalskizab
+**** PGBackup right before scheduleing, can we control that?
+**** A few thousand Requests timedout.. half as many as with seniors(~2500 comp ~5000)
+** Priorities :ARCHIVE:
 *** TODO Debug Workshop seeding
 *** DONE Seed the database
     CLOSED: [2018-02-22 Thu 22:34]
