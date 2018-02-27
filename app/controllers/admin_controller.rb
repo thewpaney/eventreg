@@ -22,9 +22,10 @@ class AdminController < ApplicationController
     @sgirlsdone = @sgirls.select {|s| s.workshop_ids.count == 3}.count
     @sall = @sboysall + @sgirlsall
     @sregistered = @sboysdone + @sgirlsdone
-    @sproblems = (@sboys + @sgirls).collect {|s| s.workshop_ids.count != 0 and s.workshop_ids.count != 3}.delete_if {|a| !a}.count
-    @tproblems = (@tboys + @tgirls).collect {|s| s.workshop_ids.count != 0 and s.workshop_ids.count != 3}.delete_if {|a| !a}.count
+    @sUnfinished= Student.all.collect {|s| s.workshops.count.between? 1,3}.delete_if {|a| !a}.count #inclusive
+    @tUnfinished= Teacher.all.collect {|t| t.workshops.count.between? 1,3}.delete_if {|a| !a}.count #inclusive
   end
+
 
   def export
     csv_data = CSV.generate do |csv|
