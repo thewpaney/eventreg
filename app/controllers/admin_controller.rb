@@ -22,8 +22,8 @@ class AdminController < ApplicationController
     @sgirlsdone = @sgirls.select {|s| s.workshop_ids.count == 3}.count
     @sall = @sboysall + @sgirlsall
     @sregistered = @sboysdone + @sgirlsdone
-    @sUnfinished= Student.all.collect {|s| s.workshops.count.between? 1,3}.delete_if {|a| !a}.count #inclusive
-    @tUnfinished= Teacher.all.collect {|t| t.workshops.count.between? 1,3}.delete_if {|a| !a}.count #inclusive
+    @sUnfinished= Student.all.collect {|s| s.workshops.count.between? 1,2}.delete_if {|a| !a}.count #inclusive
+    @tUnfinished= Teacher.all.collect {|t| t.workshops.count.between? 1,2}.delete_if {|a| !a}.count #inclusive
   end
 
 
