@@ -14,11 +14,11 @@ class Student < ActiveRecord::Base
     return Time.new(2018, 2, 27, 8, 0, 00, "-07:00") if self.year == "10"
     return Time.new(2018, 2, 28, 9, 30, 00, "-07:00") if self.year == "9"
   end
-  
+
   def can_register
     return Time.now > self.reg_time
   end
-  
+
   def self.boys
     where("gender = 'BD'")
   end
@@ -26,11 +26,11 @@ class Student < ActiveRecord::Base
   def self.girls
     where("gender = 'GD'")
   end
-  
+
   def self.registered
     self.all.select {|s| s.done?}
   end
-  
+
   def self.unregistered
     self.all.select {|s| !(s.done?)}
   end
@@ -42,61 +42,66 @@ class Student < ActiveRecord::Base
   #Force sign up. Does no checks
   # DEPRECATED - use UserHelper#force_register
   def force(workshop_id)
-    workshop = Workshop.find(workshop_id)
-    workshop.students << self
-    workshops << workshop
-    workshop.staken += 1
-    workshop.save!
+    self.transaction do
+      workshop = Workshop.find(workshop_id)
+      workshops << workshop
+      workshop.staken += 1
+      workshop.save!
+    end
   end
 
   #Regular sign up, checks before it confirms
   # DEPRECATED - see UserHelper#sign_up_user
   def signup(workshop_id)
-    workshop = Workshop.find(workshop_id)
-    puts "Signing up ", prefix, " for workshop", workshop_id 
-    
-    unless (whynot = workshop.cantSignUp self)
-      workshops << workshop
-      workshop.staken += 1
-      workshop.save!
-      
-      # Something along these lines
-      # If they've signed up for something that repeats
-      #if Workshop.repeats.include? workshop.name 
-      #  sessions_needed.each do |s|
-        #Something along the lines of 
+    self.transaction do
+      workshop = Workshop.find(workshop_id)
+      puts "Signing up ", prefix, " for workshop", workshop_id
+
+      unless (whynot = workshop.cantSignUp self)
+        workshops << workshop
+        workshop.staken += 1
+        workshop.save!
+
+        # Something along these lines
+        # If they've signed up for something that repeats
+        #if Workshop.repeats.include? workshop.name
+        #  sessions_needed.each do |s|
+        #Something along the lines of
         #TODO reserved_workshops <<  Workshop.leastFullOfSession s
-        #Something that gets us a reference to that other 
-        #workshop and makes it seem taken 
+        #Something that gets us a reference to that other
+        #workshop and makes it seem taken
         #But doesn't confuse them with actual workshops
-      #  reserved.staken += 1
-      #  reserved.save!
-      #end
-      
-      # How about this instead
-      if workshop.twofer_ref != 0
-        twin = Workshop.find(workshop.twofer_ref)
-        workshops << twin
-        twin.staken += 1
-        twin.save!
+        #  reserved.staken += 1
+        #  reserved.save!
+        #end
+
+        # How about this instead
+        if workshop.twofer_ref != 0
+          twin = Workshop.find(workshop.twofer_ref)
+          workshops << twin
+          twin.staken += 1
+          twin.save!
+        end
+
+        return "Signed up"
+      else
+        return whynot
       end
-      
-      return "Signed up"
-    else
-      return whynot
     end
   end
-  
+
   def unsignup(workshop_id)
-    workshop = Workshop.find(workshop_id)
-    puts "Unsigning ", prefix, "from workshop", workshop_id
-    workshop.students.delete(self)
-    workshops.delete(workshop)
-    workshop.staken -= 1
-    workshop.save!
-    self.save!
+    self.transaction do
+      workshop = Workshop.find(workshop_id)
+      puts "Unsigning ", prefix, "from workshop", workshop_id
+      workshop.students.delete(self)
+      workshops.delete(workshop)
+      workshop.staken -= 1
+      workshop.save!
+      self.save!
+    end
   end
-  
+
   def auto
     begin 
       unless has_first?
@@ -109,7 +114,7 @@ class Student < ActiveRecord::Base
       puts "Unable to find First for #{prefix}"
     end
 
-   begin 
+    begin 
       unless has_second?
         # Give them the one with the lowest fullness (amount of people/amount of spots)
         miserables = Workshop.secondsAvailable(self).sort {|w, w2| w.sfullness <=> w2.sfullness}
@@ -120,7 +125,7 @@ class Student < ActiveRecord::Base
       puts "Unable to find Second for #{prefix}"
     end
 
-  begin 
+    begin 
       unless has_third?
         # Give them the one with the lowest fullness (amount of people/amount of spots)
         miserables = Workshop.thirdsAvailable(self).sort {|w, w2| w.sfullness <=> w2.sfullness}

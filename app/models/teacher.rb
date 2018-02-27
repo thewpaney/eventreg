@@ -56,44 +56,49 @@ class Teacher < ActiveRecord::Base
   def has_third?
     workshops.collect {|w| w.session}.include? 3
   end
-  
+
   def third
     workshops.select {|w| w.session == 3}[0]
   end
 
   # DEPRECATED - use UserHelper#force_register instead
   def force(workshop_id)
-    workshop = Workshop.find(workshop_id)
-    workshop.teachers << self
-    workshops << workshop
-    workshop.ttaken += 1
-    workshop.save!
+    self.transaction do
+      workshop = Workshop.find(workshop_id)
+      workshops << workshop
+      workshop.ttaken += 1
+      workshop.save!
+    end
   end
 
   # DEPRECATED - see UserHelper#sign_up_user
   def signup(workshop_id)
-    workshop = Workshop.find(workshop_id)
-    
-    unless (whynot = workshop.cantSignUp self)
-      # Don't double register
-      # workshop.teachers << self
-      workshops << workshop
-      workshop.ttaken += 1
-      workshop.save!
-      return "Signed up"
-    else
-      return whynot
+    self.transaction do
+      workshop = Workshop.find(workshop_id)
+
+      unless (whynot = workshop.cantSignUp self)
+        # Don't double register
+        # workshop.teachers << self
+        workshops << workshop
+        workshop.ttaken += 1
+        workshop.save!
+        return "Signed up"
+      else
+        return whynot
+      end
     end
   end
 
   def unsignup(workshop_id)
-    workshop = Workshop.find(workshop_id)
-    puts "Unsigning ", prefix, "from workshop", workshop_id
-    workshop.teachers.delete(self)
-    workshops.delete(workshop)
-    workshop.ttaken -= 1
-    workshop.save!
-    self.save!
+    self.transaction do
+      workshop = Workshop.find(workshop_id)
+      puts "Unsigning ", prefix, "from workshop", workshop_id
+      workshop.teachers.delete(self)
+      workshops.delete(workshop)
+      workshop.ttaken -= 1
+      workshop.save!
+      self.save!
+    end
   end
 
   def done?
