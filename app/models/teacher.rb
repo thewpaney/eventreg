@@ -124,4 +124,40 @@ class Teacher < ActiveRecord::Base
       return false
     end
   end
+  
+  def auto
+    begin 
+      unless has_first?
+        # Give them the one with the lowest fullness (amount of people/amount of spots)
+        miserables = Workshop.firstsAvailable(self).sort {|w, w2| w.tfullness <=> w2.tfullness}
+        puts miserables
+        signup miserables.first.id
+      end
+    rescue 
+      puts "Unable to find First for #{prefix}"
+    end
+
+    begin 
+      unless has_second?
+        # Give them the one with the lowest fullness (amount of people/amount of spots)
+        miserables = Workshop.secondsAvailable(self).sort {|w, w2| w.tfullness <=> w2.tfullness}
+        puts miserables
+        signup miserables.first.id
+      end
+    rescue 
+      puts "Unable to find Second for #{prefix}"
+    end
+
+    begin 
+      unless has_third?
+        # Give them the one with the lowest fullness (amount of people/amount of spots)
+        miserables = Workshop.thirdsAvailable(self).sort {|w, w2| w.tfullness <=> w2.tfullness}
+        puts miserables
+        signup miserables.first.id
+      end
+    rescue 
+      puts "Unable to find Third for #{prefix}"
+    end
+  end
+  
 end
