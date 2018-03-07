@@ -11,6 +11,7 @@ gem 'rake'
 
 # ORM
 gem 'activerecord', '>= 3.1', :require => 'active_record'
+gem 'activesupport'
 
 # Database
 gem 'pg'
