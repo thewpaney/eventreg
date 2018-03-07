@@ -1,6 +1,7 @@
 module Events
   class App < Padrino::Application
     use ConnectionPoolManagement
+    register ScssInitializer
     register Padrino::Mailer
     register Padrino::Helpers
     enable :sessions
@@ -56,6 +57,10 @@ module Events
     
     error 500 do
       render 'errors/500'
+    end
+
+    error 422 do
+      render 'errors/422'
     end
     
   end

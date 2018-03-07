@@ -1,0 +1,28 @@
+// Place all the styles related to the User controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+$base00:    #657b83;
+$base1:     #93a1a1;
+$light:     #eee8d5;
+$lighter:   #fdf6e3;
+$red:       #dc322f;
+$green:     #859900;
+
+$regis:     #c41130;
+
+.text{
+}
+.leader{
+  font-size: 7em; 
+  padding-right: 15px; 
+/*  font-family: "Courier New", Courier, monospace;*/
+  font-family: "Lucida Console", Monaco, monospace; 
+}
+
+.done {
+  color: green;
+}
+
+.not-done {
+  color: $red;
+}

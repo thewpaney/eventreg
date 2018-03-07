@@ -1,0 +1,13 @@
+.leader {
+  font-size: 7em;
+  padding-right: 15px;
+  /*  font-family: "Courier New", Courier, monospace;*/
+  font-family: "Lucida Console", Monaco, monospace; }
+
+.done {
+  color: green; }
+
+.not-done {
+  color: #dc322f; }
+
+/*# sourceMappingURL=user.css.map */

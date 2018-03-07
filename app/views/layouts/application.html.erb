@@ -1,45 +1,41 @@
 <!DOCTYPE html>
 <html>
-<head>
-<title>RJHS Diversity Day Registration</title>
-<%= stylesheet_link_tag    "application", :media => "all" %>
-<%= javascript_include_tag "application" %>
-<% if content_for?(:head) %>
-  <div><%= yield_content :head %></div>
-<% end %>
-</head>
-<body>
-
-<style type="text/css">
-#info { position: absolute; right: 5%; top: 0px; }
-.flash { z-index: 3; text-align: right; position: relative; top: 30px; left: -5%; font-size: 1.1em;}
-#yielded { position: absolute; top: 120px; left: 10%; }
-</style>
-
-<div id="wrapper">
-  <div id="header">
-    <div style="position: absolute; left: 10%;">
-      <a href="/" tab="0" did="0" pid="192" ><%= image_tag "/assets/rjhs-logo.png" %></a>
+  <head>
+    <title>RJHS Diversity Day Registration</title>
+    <link rel="stylesheet" type="text/css" href="stylesheets/application.css" %>
+    <%= javascript_include_tag "application" %>
+    <% if content_for?(:head) %>
+    <div><%= yield_content :head %></div>
+    <% end %>
+  </head>
+  <body>
+    <style type="text/css">
+      #info { position: absolute; right: 5%; top: 0px; }
+      .flash { z-index: 3; text-align: right; position: relative; top: 30px; left: -5%; font-size: 1.1em;}
+      #yielded { position: absolute; top: 120px; left: 10%; }
+    </style>
+    
+    <div id="wrapper">
+      <div id="header">
+	<div style="position: absolute; left: 10%;">
+	  <a href="/" tab="0" did="0" pid="192" ><%= image_tag "/images/rjhs-logo.png" %></a>
+	</div>
+	
+	<% if flash[:warning] %>
+	<p id="flash_warning" class="flash" style="color: #859900;"><%= flash[:warning] %></p>
+	<% end %>
+	<% if flash[:notice] %>
+	<p id="flash_notice" class="flash"><%= flash[:notice] %></p>
+	<% end %>
+	<% if flash[:error] %>
+	<p id="flash_error" class="flash" style="color: #dc322f;"><%= flash[:error] %></p>
+	<% end %>
+      </div>
+      
     </div>
-
-    <% if user %>
-      <p id="info">Logged in as <%= user.full %>.  <%= link_to "Log out", "/user/logout" %></p>
-  <% end %>
-    <% if flash[:warning] %>
-      <p id="flash_warning" class="flash" style="color: #859900;"><%= flash[:warning] %></p>
-  <% end %>
-    <% if flash[:notice] %>
-      <p id="flash_notice" class="flash"><%= flash[:notice] %></p>
-  <% end %>
-    <% if flash[:error] %>
-      <p id="flash_error" class="flash" style="color: #dc322f;"><%= flash[:error] %></p>
-  <% end %>
-  </div>
-
-</div>
-<div id="yielded">
-  <%= yield %>
-</div>
-<div style="clear: both;"></div>
-</body>
+    <div id="yielded">
+      <%= yield %>
+    </div>
+    <div style="clear: both;"></div>
+  </body>
 </html>
