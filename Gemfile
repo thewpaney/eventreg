@@ -3,29 +3,22 @@ source 'https://rubygems.org'
 # Padrino supports Ruby version 2.2.2 and later
 ruby '2.4.2'
 
-# Distribute your app as a gem
-# gemspec
-
-# Server requirements
+# Server
 gem 'puma'
-# gem 'thin' # or mongrel
-# gem 'trinidad', :platform => 'jruby'
 
-# Optional JSON codec (faster performance)
-# gem 'oj'
-
-# Project requirements
+# Rake
 gem 'rake'
 
-# Component requirements
+# ORM
 gem 'activerecord', '>= 3.1', :require => 'active_record'
-gem 'pg'
 
-# Test requirements
+# Database
+gem 'pg'
 
 # Padrino Stable Gem
 gem 'padrino', '0.14.3'
 
+<<<<<<< HEAD
 # Or Padrino Edge
 # gem 'padrino', :github => 'padrino/padrino-framework'
 
@@ -34,3 +27,7 @@ gem 'padrino', '0.14.3'
 #   gem 'padrino-' + g, '0.14.3'
 # end
 
+=======
+# For displaying nice flash messages
+gem 'sinatra-flash'
+>>>>>>> Added registration and admin controllers. Added a layout.

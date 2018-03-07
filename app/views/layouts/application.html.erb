@@ -4,14 +4,9 @@
 <title>RJHS Diversity Day Registration</title>
 <%= stylesheet_link_tag    "application", :media => "all" %>
 <%= javascript_include_tag "application" %>
-<script type="text/javascript">
-$(document).ready(function () {
-    if(window.location.href.indexOf("72") > -1) {
-    window.navigate("http://diversity.regisjesuit.com");
-    }
-    });
-</script>
-<%= yield(:head) %>
+<% if content_for?(:head) %>
+  <div><%= yield_content :head %></div>
+<% end %>
 </head>
 <body>
 
