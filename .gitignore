@@ -1,40 +1,9 @@
-# Ignore bundler config
-.bundle
-*.swp
-
-# Ignore all databases.
-db/*.sqlite3
-db/*.sql
-
-# Ignore database, time and admin configs
-config/database.yml
-config/initializers/time.rb
-config/initializers/admin.rb
-
-# Ignore all logfiles and tempfiles.
-log/*.log
-tmp
-
-*~
-.*~
-*#
-.*#
 .DS_Store
-events.yml
-spr-*.csv
-*.orig
-vendor/ruby/
-vendor
-vendor/
-vendor/*
-
-# Database backup dumps
+log/**/*
+tmp/**/*
+vendor/gems/*
+!vendor/gems/cache/
+.sass-cache/*
 db/*.db
-db/*.dmp
-db/backups
+.*.sw*
 
-# Precompiled assets
-public/assets/*
-
-# Secret Files for google OAuth
-config.json

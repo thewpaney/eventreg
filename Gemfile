@@ -1,71 +1,36 @@
 source 'https://rubygems.org'
 
-# Heroku recommendations
+# Padrino supports Ruby version 2.2.2 and later
 ruby '2.4.2'
-gem 'rails_12factor'
+
+# Distribute your app as a gem
+# gemspec
+
+# Server requirements
 gem 'puma'
+# gem 'thin' # or mongrel
+# gem 'trinidad', :platform => 'jruby'
 
-gem 'rails'
-gem 'jquery-rails'
-gem 'mysql2'
-# gem 'scroll'
+# Optional JSON codec (faster performance)
+# gem 'oj'
+
+# Project requirements
 gem 'rake'
-gem 'thin'
 
-gem 'google_drive'
-gem 'google-api-client'
-gem 'awesome_print'
+# Component requirements
+gem 'activerecord', '>= 3.1', :require => 'active_record'
+gem 'pg'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+# Test requirements
 
-# Likewise, grab Scroll from Git build
-# gem 'scroll', :git => 'git@git.stratosphe.re:scroll/scroll.git'
+# Padrino Stable Gem
+gem 'padrino', '0.14.3'
 
-gem 'execjs'
-gem 'turbolinks'
+# Or Padrino Edge
+# gem 'padrino', :github => 'padrino/padrino-framework'
 
-# gem 'actionpack-page_caching'
-# gem 'activerecord-session_store'
+# Or Individual Gems
+# %w(core support gen helpers cache mailer admin).each do |g|
+#   gem 'padrino-' + g, '0.14.3'
+# end
 
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'zurb-foundation'
-  gem 'compass-rails'
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
-
-  gem 'uglifier'
-end
-
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'
-
-# Because we're lazy
-gem 'protected_attributes'
-
-# To allow accents in names
-gem 'rack-utf8_sanitizer'
-
-group :development, :test do
-      gem 'bullet'
-end
-
-gem 'actionpack-page_caching'
-gem 'actionpack-action_caching'
