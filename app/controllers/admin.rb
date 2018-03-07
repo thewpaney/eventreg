@@ -20,6 +20,7 @@ def request_http_basic_authentication(realm = 'Application')
 end
 
 Events::App.controllers :admin, :provides => [:html,:json] do
+  enable :sessions
   layout :application
 
   before do
@@ -29,30 +30,61 @@ Events::App.controllers :admin, :provides => [:html,:json] do
   
   get :index do
     # admin#review
+    # user groupings
+    session[:user_id] = nil
+    @tboys  = User.where(role: "teacher", division: "BD")
+    @tgirls = User.where(role: "teacher", division: "GD")
+    @sboys  = User.where(role: "student", division: "BD")
+    @sgirls = User.where(role: "student", division: "GD")
+    # teacher statistics
+    @tboysall   = @tboys.count
+    @tboysdone  = @tboys.select {|s| s.done? }.count
+    @tgirlsall  = @tgirls.count
+    @tgirlsdone = @tgirls.select {|s| s.done? }.count
+    @tall = @tboysall + @tgirlsall
+    @tregistered = @tgirlsdone + @tboysdone
+    @tUnfinished = @tall - @tregistered
+    # student statistics
+    @sboysall   = @sboys.count
+    @sboysdone  = @sboys.select {|s| s.done? }.count
+    @sgirlsall  = @sgirls.count
+    @sgirlsdone = @sgirls.select {|s| s.done? }.count
+    @sall = @sboysall + @sgirlsall
+    @sregistered = @sgirlsdone + @sboysdone
+    @sUnfinished = @sall - @sregistered
+    render :review
   end
   
   get :email do
     # admin#email
+    # TODO
   end
   
   post :email do
     # admin#email
+    # TODO
+  end
+
+  get :force, with: :id do
+    # admin#force
+    session[:user_id] = params[:id]
+    if user.nil?
+      flash[:error] = "No user with id #{params[:id]} and type #{params[:type]} exists."
+      redirect :index
+    end
+    render :force
   end
   
-  get :force_register do
-    # admin#force_register
-  end
-
-  post :force_register do
-    # admin#force_register
-  end
-
-  get :force, with: [:type, :id] do
-    # admin#force
-  end
-
-  post :force, with: [:type, :id] do
-    # admin#force
+  post :force, with: :id do
+    # admin#force and admin#force_register combo
+    return if params.nil?
+    user.force(params[:first]) if params[:first]
+    user.force(params[:second]) if params[:second]
+    user.force(params[:third]) if params[:third]
+    user.unsignup(user.first) and flash[:notice] = "Removed session 1" if params[:rmfirst]
+    user.unsignup(user.second) and flash[:notice] = "Removed session 2" if params[:rmsecond]
+    user.unsignup(user.third) and flash[:notice] = "Removed session 3" if params[:rmthird]
+    redirect :force, with: :id
   end
 
   get :export do
