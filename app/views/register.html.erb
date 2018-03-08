@@ -1,0 +1,40 @@
+<style>
+body
+{
+background-image:url('/assets/earth.png');
+background-repeat:no-repeat;
+background-attachment:fixed;
+background-position: right bottom;
+}
+</style>
+<style type="text/css">
+.text{
+  font-family: Verdana, Geneva, sans-serif;
+}
+.text label{
+  font-size: 1.5em;
+}
+h1 {
+  font-size: 2.5em;
+}
+td {
+  border-bottom: dashed;
+  padding: 5px;
+}
+table {
+  padding:10px;
+}
+select {
+  width: 45em;
+}
+
+</style>
+
+<% content_for(:head) do %>
+  <% javascript_include_tag :register %>
+<% end %>
+
+<p class="text">Click on a workshop to see its description. Press submit to sign up for the highlited workshops.</p>
+
+<%= render "session" %>
+

@@ -1,0 +1,32 @@
+<style type="text/css">
+td {
+  border-bottom: dashed;
+  padding: 5px;
+}
+table {
+  padding:10px;
+}
+select {
+  width: 45em;
+}
+</style>
+
+<h2>You are registered for: </h2>
+
+<table>
+  <tr>
+    <td> Session </td> <td> Name </td> <td> Presentor </td> <td> Description </td> <td> Location </td>
+    <% user.workshops.each do |w|  %>
+  <tr>
+    <td> <%= w.session %> </td>
+    <td> <%= w.name %> </td>
+    <td> <%= w.presentor %> </td>
+    <td> <%= w.description %> </td>
+    <td> <%= w.room %> </td>      
+  </tr>
+  <% end %>
+</table>
+
+
+<p> If you are missing any sessions, one will be assigned to you. </p> 
+

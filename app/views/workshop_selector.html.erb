@@ -1,0 +1,25 @@
+<div style="float: left;">
+  <%= form_tag(:controller => "user", :action => "register") do %>
+  <span class="leader not-done">1</span>
+  <%= select(:user, :first, @firsts, {}, {:size => "6"}) %>
+  <br /><br />
+  
+  <span class="leader not-done">2</span>
+  <%= select(:user, :second, @seconds, {}, {:size => "6"}) %>
+  <br /><br />
+  
+  <span class="leader not-done">3</span>
+  <%= select(:user, :third, @thirds, {}, {:size => "6"}) %>
+  <br />
+  <br />
+  <%= link_to "Back to registration page", "register" %>
+  <br />
+  <% end %>
+</div>
+
+<div style="float: left; width: 350px; margin: 20px;">
+  <h3 id="presentor"></h3>
+  <div id="description" style="font-size: 0.9em;">
+  </div>
+</div>
+
