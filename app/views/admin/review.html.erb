@@ -17,8 +17,8 @@
   </div>
   <div style="clear: both;"></div>
   <style>
-   #admin-table tr:nth-child(even) {background: #CCC}
-   #admin-table tr:nth-child(odd) {background: #FFF}
+    #admin-table tr:nth-child(even) {background: #CCC}
+    #admin-table tr:nth-child(odd) {background: #FFF}
   </style>
   <div style="font-size: 1.3em;  ">
     Tips for navigating: Search for student name with Cmd-f or Ctrl-f
@@ -30,63 +30,63 @@
   <table id="admin-table" style="height: 10em; width: 50%;">
     <!-- BD students -->
     <% @sboys.each do |s| %>
-      <% if s.workshop_ids.count != 0 and s.workshop_ids.count != 3 %>
-      <tr style="color: red;">
-        <td><%= link_to (s.full + "(Stuck)"), "/admin/force/student/#{s.id}" %></td>
+    <% if s.workshop_ids.count != 0 and s.workshop_ids.count != 3 %>
+    <tr style="color: red;">
+      <td><%= link_to (s.full + "(Stuck)"), "/admin/force/student/#{s.id}" %></td>
       <% else %>
-      <tr>
-        <td><%= link_to s.full, "/admin/force/student/#{s.id}" %></td>
+    <tr>
+      <td><%= link_to s.full, "/admin/force/student/#{s.id}" %></td>
       <% end %>
         <td><%= s.prefix %></td>
-        <td><%= s.first.nil? ? "None" : s.first %></td>
-        <td><%= s.second.nil? ? "None" : s.second %></td>
-        <td><%= s.third.nil? ? "None" : s.third %></td>
-      </tr>
+      <td><%= s.first.nil? ? "None" : s.first %></td>
+      <td><%= s.second.nil? ? "None" : s.second %></td>
+      <td><%= s.third.nil? ? "None" : s.third %></td>
+    </tr>
     <% end %>
     <!-- GD students -->
     <% @sgirls.each do |s| %>
-      <% if s.workshop_ids.count != 0 and s.workshop_ids.count != 3 %>
-        <tr style="color: red;">
-          <td><%= link_to (s.full + "(Stuck)"), "/admin/force/student/#{s.id}" %></td>
+    <% if s.workshop_ids.count != 0 and s.workshop_ids.count != 3 %>
+    <tr style="color: red;">
+      <td><%= link_to (s.full + "(Stuck)"), "/admin/force/student/#{s.id}" %></td>
       <% else %>
-        <tr>
+    <tr>
           <td><%= link_to s.full, "/admin/force/student/#{s.id}" %></td>
-      <% end %>
+	  <% end %>
           <td><%= s.prefix %></td>
           <td><%= s.first.nil? ? "None" : s.first %></td>
           <td><%= s.second.nil? ? "None" : s.second %></td>
           <td><%= s.third.nil? ? "None" : s.third %></td>
-        </tr>
+    </tr>
     <% end %>
     <!-- BD teachers -->
     <% @tboys.each do |t| %>
-      <% if t.workshop_ids.count != 0 and t.workshop_ids.count != 3 %>
-        <tr style="color: red;">
-          <td><%= link_to (t.full + "(Stuck)"), "/admin/force/teacher/#{t.id}" %></td>
+    <% if t.workshop_ids.count != 0 and t.workshop_ids.count != 3 %>
+    <tr style="color: red;">
+      <td><%= link_to (t.full + "(Stuck)"), "/admin/force/teacher/#{t.id}" %></td>
       <% else %>
-        <tr>
-          <td><%= link_to t.full, "/admin/force/teacher/#{t.id}" %></td>
-	  <% end %>
-          <td><%= t.prefix %></td>
-          <td><%= t.first.nil? ? "None" : t.first %></td>
-          <td><%= t.second.nil? ? "None" : t.second %></td>
-          <td><%= t.third.nil? ? "None" : t.third %></td>
-        </tr>
+    <tr>
+      <td><%= link_to t.full, "/admin/force/teacher/#{t.id}" %></td>
+      <% end %>
+      <td><%= t.prefix %></td>
+      <td><%= t.first.nil? ? "None" : t.first %></td>
+      <td><%= t.second.nil? ? "None" : t.second %></td>
+      <td><%= t.third.nil? ? "None" : t.third %></td>
+    </tr>
     <% end %>
     <!-- GD teachers -->
     <% @tgirls.each do |t| %>
-      <% if t.workshop_ids.count != 0 and t.workshop_ids.count != 3 %>
-        <tr style="color: red;">
-          <td><%= link_to (t.full + "(Stuck)"), "/admin/force/teacher/#{t.id}" %></td>
+    <% if t.workshop_ids.count != 0 and t.workshop_ids.count != 3 %>
+    <tr style="color: red;">
+      <td><%= link_to (t.full + "(Stuck)"), "/admin/force/teacher/#{t.id}" %></td>
       <% else %>
-        <tr>
-          <td><%= link_to t.full, "/admin/force/teacher/#{t.id}" %></td>
+    <tr>
+      <td><%= link_to t.full, "/admin/force/teacher/#{t.id}" %></td>
       <% end %>
-          <td><%= t.prefix %></td>
-          <td><%= t.first.nil? ? "None" : t.first %></td>
-          <td><%= t.second.nil? ? "None" : t.second %></td>
-          <td><%= t.third.nil? ? "None" : t.third %></td>
-        </tr>
+      <td><%= t.prefix %></td>
+      <td><%= t.first.nil? ? "None" : t.first %></td>
+      <td><%= t.second.nil? ? "None" : t.second %></td>
+      <td><%= t.third.nil? ? "None" : t.third %></td>
+    </tr>
     <% end %>
   </table>
   <br />
