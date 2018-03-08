@@ -8,25 +8,18 @@
 
 <div class="text" style="float: left">
   <div class="text" style="float: left; position: relative; left: 15%;" >
-    <%= form_tag(:action => "login") do %>
-
+    <form action="/login" accept-charset="UTF-8" method="post">
+      <%= csrf_token_field %>
       <label for="user_prefix">Username:</label><br/><br/>
-      <%= text_field("user", "prefix", :size => 20)%>
-      <p>
-        This is the same as the first part of your Regis Jesuit email.
-      </p>
-
+      <input size="20" type="text" name="prefix" id="prefix" />
+      <p>This is the same as the first part of your Regis Jesuit email.</p>
       <label for="user_number">ID Number:</label><br/><br/>
-      <%= password_field("user","number",:size => 20)%>
+      <input size="20" type="password" name="number" id="number" />
       <p>The number on your student/teacher ID.</p>
-
-      <%= submit_tag("Login") %>
-
-    <% end %>
-
+      <input type="submit" name="commit" value="Login" />
+    </form>
   </div>
-
 </div>
 <div class="text" style="float: left; position: relative; left: 10%; top: 40px;">
-  <%= image_tag "/assets/id.jpg", height:"200px", width:"336px" %>
+  <%= image_tag "/images/id.jpg", height:"200px", width:"336px" %>
 </div>

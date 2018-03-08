@@ -4,6 +4,7 @@
     <title>RJHS Diversity Day Registration</title>
     <link rel="stylesheet" type="text/css" href="/stylesheets/application.css" %>
     <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
     <% if content_for?(:head) %>
     <div><%= yield_content :head %></div>
     <% end %>

@@ -6,6 +6,7 @@ module Events
     register Padrino::Helpers
     register Sinatra::Flash
     enable :sessions
+    use Rack::Protection::AuthenticityToken
 
     def user
       User.find(session[:user_id])
@@ -24,6 +25,10 @@ module Events
         flash[:error] = "You must log in to view your registration details."
         redirect :login
       end
+    end
+
+    get :index do
+      redirect :login
     end
     
     get :browse do
