@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
 
-  def authenticate(prefix, number)
-    # return id if prefix-number is a match
-    # return nil otherwise
+  def authenticate(p, n)
+    u = User.where(prefix: p, number: n).first
+    return u.id unless u.nil?
   end
   
 end
