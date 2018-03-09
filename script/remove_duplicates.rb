@@ -1,10 +1,10 @@
-duplicate_students = Student.all.collect {|s| s if s.workshop_ids.uniq.length != s.workshop_ids.length}.delete_if {|s| s.nil?}
+duplicate_users = User.all.collect {|u| u if u.workshop_ids.uniq.length != u.workshop_ids.length}.delete_if {|u| u.nil?}
 
-duplicate_pairs = duplicate_students.collect {|s| [s.id, s.workshop_ids.select {|e| s.workshop_ids.count(e) > 1}.uniq] }
+duplicate_pairs = duplicate_users.collect {|u| [u.id, u.workshop_ids.select {|e| u.workshop_ids.count(e) > 1}.uniq] }
 
 duplicate_pairs.each do |sid, warr|
   wid = warr.first
-  s = Student.find(sid)
-  s.unsignup(wid)
-  s.force(wid)
+  u = User.find(sid)
+  u.unsignup(wid)
+  u.force(wid)
 end

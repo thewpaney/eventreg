@@ -1,12 +1,11 @@
 require 'csv'
 
-$workshop_url_2017 = "1vdMBbJuzvmaPk__yB3zSlXtQvXMtUAMHIs-8L7A6nWI"
-$workshop_url_2018 = "1Ww5qmj89gYDIdB3OCjpM8fvhkFo50mTADvf3eSAjqLQ"
+$workshop_spreadsheet_key = "1Ww5qmj89gYDIdB3OCjpM8fvhkFo50mTADvf3eSAjqLQ"
 
 session = GoogleDrive::Session.from_config("config.json")
 
 puts "Downloading workshops"
-workshops = session.spreadsheet_by_key($workshop_url_2018).worksheets[0]
+workshops = session.spreadsheet_by_key($workshop_spreadsheet_key).worksheets[0]
 puts "Downloaded workshops"
 
 puts "Updating workshops by presenter"
@@ -17,13 +16,13 @@ workshops.rows[1..-1].each do |row|
         if row[0].blank? or row[1].blank?
           raise "Malformed row #{workshops.rows.index(row) + 1}: " << row.to_s
         end
-        w = Workshop.where(presentor: row[0], session: session).first
+        w = Workshop.where(presenter: row[0], session: session).first
         if w.nil?
           raise "Couldn't find workshop with name #{row[1]} in session #{row[0]}: " << row.to_s
         end
         # Now: update workshop fields without modifying presenter or numbers of slots taken
         w.session     = session
-        # w.presentor   = row[0].blank? ? "TBA" : row[0]
+        # w.presenter   = row[0].blank? ? "TBA" : row[0]
         w.name        = row[1].blank? ? "TBA" : row[1]
         w.description = row[2].blank? ? "TBA" : row[2]
         w.slimit      = row[session+2]

@@ -1,12 +1,12 @@
 require 'csv'
 
-$student_csv = "db/students-seed.2018.csv"
+$student_csv = "db/students-seed.csv"
 
 index = 1
 
 contents = CSV.read($student_csv, col_sep: ",", encoding: "ISO8859-1")
 
-puts "Updating student advisement teacher names from CSV columns 10 and 11"
+puts "Updating student advisement teacher names from CSV data"
 
 contents[1..-1].each do |row|
   s = Student.where(number: row[0].to_i).first

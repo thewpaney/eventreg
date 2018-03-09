@@ -1,4 +1,4 @@
-Student.all.shuffle.each do |student|
+User.students.all.shuffle.each do |student|
   first  = Workshop.firstsAvailable(student).sample
   student.signup first.id
   second = Workshop.secondsAvailable(student).sample
