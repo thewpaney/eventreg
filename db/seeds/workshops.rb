@@ -1,12 +1,11 @@
 require 'csv'
 
-$workshop_url_2017 = "1vdMBbJuzvmaPk__yB3zSlXtQvXMtUAMHIs-8L7A6nWI"
-$workshop_url_2018 = "1Ww5qmj89gYDIdB3OCjpM8fvhkFo50mTADvf3eSAjqLQ"
+$workshop_spreadsheet_key = "1Ww5qmj89gYDIdB3OCjpM8fvhkFo50mTADvf3eSAjqLQ"
 
 session = GoogleDrive::Session.from_config("config.json")
 
 puts "Downloading workshops"
-workshops = session.spreadsheet_by_key($workshop_url_2018).worksheets[0]
+workshops = session.spreadsheet_by_key($workshop_spreadsheet_key).worksheets[0]
 puts "Downloaded workshops"
 
 puts "Seeding workshops"

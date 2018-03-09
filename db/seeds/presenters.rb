@@ -1,11 +1,11 @@
 require 'csv'
 
-$workshop_url_2018 = "1Ww5qmj89gYDIdB3OCjpM8fvhkFo50mTADvf3eSAjqLQ"
+$workshop_spreadsheet_key = "1Ww5qmj89gYDIdB3OCjpM8fvhkFo50mTADvf3eSAjqLQ"
 
 session = GoogleDrive::Session.from_config("config.json")
 
 puts "Downloading spreadsheet"
-spreadsheet = session.spreadsheet_by_key($workshop_url_2018)
+spreadsheet = session.spreadsheet_by_key($workshop_spreadsheet_key)
 puts "Downloaded spreadsheet"
 
 teacher_presenters = spreadsheet.worksheets[2]
@@ -13,7 +13,7 @@ student_presenters = spreadsheet.worksheets[3]
 
 puts "Seeding student presenters"
 student_presenters.rows[1..-1].each do |row|
-  p = Student.where(full: row[0]).first
+  p = User.where(full: row[0]).first
   if p.nil?
     puts "Bad presenter name: #{row[0]}"
     next
@@ -64,7 +64,7 @@ puts "Seeded student presenters"
 
 puts "Seeding teacher presenters"
 teacher_presenters.rows[1..-1].each do |row|
-  p = Teacher.where(name: row[0]).first
+  p = User.where(full: row[0]).first
   if p.nil?
     puts "Bad presenter name: #{row[0]}"
     next
