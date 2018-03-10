@@ -25,3 +25,6 @@ gem 'sinatra-flash'
 # Fancy CSS
 gem 'sass'
 gem 'coffee-script'
+
+# Background work queue
+gem 'resque'
