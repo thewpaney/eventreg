@@ -8,4 +8,4 @@ db/*.db
 .*.sw*
 .bundle
 .bundle/*
-
+public/backups/*.dmp
