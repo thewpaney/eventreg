@@ -1,36 +1,3 @@
-# ActiveRecord::Base.configurations[:development] = {
-#  :adapter   => 'postgresql',
-#  :database  => 'diversity-proto-staging-dev',
-#  :username  => 'user'
-# }
-
-#  ActiveRecord::Base.configurations[:development] = {
-#   :adapter   => 'postgresql',
-#   :database  => 'events_development',
-#   :username  => 'events',
-#   :password  => 'kurdmcfrogspleen',
-#   :host      => 'localhost',
-#   :port      => 5432
-# }
-
-# ActiveRecord::Base.configurations[:production] = {
-#   :adapter   => 'postgresql',
-#   :database  => 'events_production',
-#   :username  => 'events',
-#   :password  => 'kurdmcfrogspleen',
-#   :host      => 'localhost',
-#   :port      => 5432
-# }
-
-# ActiveRecord::Base.configurations[:test] = {
-#   :adapter   => 'postgresql',
-#   :database  => 'events_test',
-#   :username  => 'events',
-#   :password  => 'kurdmcfrogspleen',
-#   :host      => 'localhost',
-#   :port      => 5432
-# }
-
 # Setup our logger
 ActiveRecord::Base.logger = logger
 

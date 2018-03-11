@@ -9,3 +9,4 @@ db/*.db
 .bundle
 .bundle/*
 public/backups/*.dmp
+.env
