@@ -2,7 +2,7 @@
 web: bundle exec puma -C config/puma.rb
 
 # Worker dyno configuration
-worker: INTERVAL=0.1 QUEUE=db bundle exec rake resque:work
+worker: env INTERVAL=0.1 QUEUE=db bundle exec rake resque:work
 
 # Clock dyno (make this a free-tier one!) that schedules timed worker jobs
 clock: bundle exec rake jobs:clock

@@ -124,7 +124,7 @@ Testing whether any permutation of button presses can screw things up
 * 2018
 ** Live
 *** If there's time...
-**** TODO Check for horizontal scaling
+**** DONE Check for horizontal scaling
 ***** This is how we have smooth UI
 **** TODO Static workshops.json
 **** TODO Improve Admin UI
@@ -181,22 +181,26 @@ Testing whether any permutation of button presses can screw things up
 ****** If all three are empty, no further changes need to be made
 ****** Would be good to enumerate success conditions again
 ****** "quantitative characteristics of a completed registration database"
+<<<<<<< HEAD
 *** [50%] To revisit
+=======
+*** [75%] To revisit
+>>>>>>> Changed Procfiles to run correctly with `forego` (which Heroku uses). Added database configuration that actually sets the DB connection pool size. Added in some new todos.
 **** TODO Downloading workshops from Google Drive
 ***** Make sure dependencies don't break in the future
 **** DONE student#force and teacher#force
 ***** Move these out of model?
 **** DONE student#auto and teacher#auto
-**** TODO student#finished_with_registration? and teacher#finished_with_registration?
+**** DONE student#finished_with_registration? and teacher#finished_with_registration?
 ***** Essentially just `return sessions_needed.empty?`
-***** Can we delete this? I think we can
-*** [50%] Views
+*** [100%] Views
 **** DONE Get rid of highlighting the workshop from the list once it's been claimed
 ***** Eliminates 3 database queries
-**** TODO Delete users#table
-*** [50%] Helpers
-**** TODO events_helper
+**** DONE Delete users#table
+*** [100%] Helpers
+**** DONE events_helper
 ***** Where are the generate_html functions ever used?
+****** They're not
 **** DONE user_helper
 ***** sign_up_user method
 *** General
@@ -207,3 +211,40 @@ Testing whether any permutation of button presses can screw things up
 **** Delete workshop#teacher_percentage_taken
 **** workshop#cantSignUp does a lot of work - looks fine as is though
 **** TODO Do we duplicate entries in the student_workshop table?
+* 2018 Post
+** DB bottleneck: many concurrent connections?
+*** See https://elements.heroku.com/addons/heroku-postgresql#pricing
+**** Hobby tier: 20 connections, zero ram, row limit
+***** Won't need more than 10K DB rows for this application
+****** Hit just under 8K in 2018:
+row_count = (Teacher.all.count + Student.all.count) * 4 + Workshop.all.count
+**** Standard 0: 120 connections, 4GB ram, $9/mo
+***** Probably worth it!
+*** Assume Standard 0: 120 connections
+**** 5x web    : 2 procs 5 threads : 100 read-write connections
+**** 1x worker : single-threaded   : 1 read-write connection
+**** 1x clock  : single-threaded   : no connections
+** Downloading workshops and students: consider S3
+*** Step 1: add 'aws-sdk', '~> 2' to Gemfile
+*** Step 2: store AWS credentials in `.env` and Heroku app config
+*** Step 3: Rake task from http://www.rymcmahon.com/articles/7:
+namespace :acltc_website do
+  desc 'Import applicant data from CSV to database'
+  task :import_applicant_data => :environment do
+    s3 = Aws::S3::Resource.new(
+      region: 'region',
+      access_key_id: ENV['AWS_ACCESS_KEY_ID'],
+      secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
+    )
+    obj = s3.bucket(ENV['S3_BUCKET_TITLE']).object('key').get
+    CSV.parse(obj.body, :headers => true) do |row|
+      Application.create(row.to_hash.slice(*%w[first_name last_name email phone programming_experience preferred_work_location capstone_idea created_at]))
+    end
+  end
+end
+** Think about a background worker that could detect problems
+*** worker: Resque queue
+*** clock: backups every 30 minutes, fix_duplicates every 5 minutes
+**** Can definitely clock jobs at particular times too
+**** e.g. 10 minutes before registration opens
+
