@@ -1,18 +1,18 @@
 class CreateWorkshops < ActiveRecord::Migration[5.1]
   def self.up
     create_table :workshops do |t|
-      t.string :name
-      t.string :presenter
-      t.string :description
-      t.integer :session
-      t.integer :tlimit
-      t.integer :slimit
-      t.string :room
-      t.integer :ttaken
-      t.integer :staken
-      t.integer :percentage
-      t.integer :overflow
-      t.integer :twofer_ref
+      t.string :name, null: false
+      t.string :presenter, null: false
+      t.string :description, null: false
+      t.integer :session, null: false
+      t.integer :tlimit, null: false
+      t.integer :slimit, null: false
+      t.string :room, null: false
+      t.integer :ttaken, null: false
+      t.integer :staken, null: false
+      t.integer :percentage, null: false
+      t.integer :overflow, null: false
+      t.integer :twofer_ref, null: false
       t.timestamps null: false
     end
   end
