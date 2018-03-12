@@ -1,6 +1,6 @@
 class Workshop < ActiveRecord::Base
   has_and_belongs_to_many :users
-  attr_accessible :name, :presenter, :description, :session, :tlimit, :slimit, :room, :ttaken, :staken, :percentage, :overflow, :twofer_ref
+  attr_accessor :name, :presenter, :description, :session, :tlimit, :slimit, :room, :ttaken, :staken, :percentage, :overflow, :twofer_ref
 
   # List of all workshops in first session
   # Deprecate in the near future
