@@ -1,3 +1,14 @@
+# This config only gets called when running `padrino console`
+# It's overridden by `DATABASE_URL` when running with `forego`
+ActiveRecord::Base.configurations[:development] = {
+  :adapter   => 'postgresql',
+  :database  => 'events_development',
+  :username  => 'events',
+  :password  => 'kurdmcfrogspleen',
+  :host      => 'localhost',
+  :port      => 5432
+}
+
 # Setup our logger
 ActiveRecord::Base.logger = logger
 
