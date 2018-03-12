@@ -1,6 +1,5 @@
 class Workshop < ActiveRecord::Base
   has_and_belongs_to_many :users
-  attr_accessor :name, :presenter, :description, :session, :tlimit, :slimit, :room, :ttaken, :staken, :percentage, :overflow, :twofer_ref
 
   # List of all workshops in first session
   # Deprecate in the near future
@@ -149,7 +148,7 @@ class Workshop < ActiveRecord::Base
     end
     
     # You can't sign up for a workshop if it has a nonzero twofer_ref and the workshop it points to is in a session you already are signed up for
-    return true if self.twofer_ref != 0 and not ( user.sessions_needed.include?(Workshop.find(self.twofer_ref).session) )
+    return true if self.twofer_ref != 0 and not ( user.sessions_needed.include?(Workshop.find(self.twofer_ref).session) ) unless twofer_ref.nil?
     
     if user.role == "student" and (staken.to_f < slimit.to_f)
       #if adding a boy doesn't push us over the percentage limit

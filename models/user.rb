@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
   has_and_belongs_to_many :workshops
-  attr_accessor :number, :full, :division, :year, :email, :prefix, :rw, :rw_number, :rw_teacher, :advisement, :advisement_name, :special, :role
   
   def self.authenticate(p, n)
     u = User.where(prefix: p, number: n).first
@@ -65,6 +64,23 @@ class User < ActiveRecord::Base
   
   def to_s
     full
+  end
+
+  # Idea: move these settings to a new table
+  def reg_time
+    if self.role == "student"
+      return Time.new(2018, 2, 26, 7, 45, 00, "-07:00") if self.special == "DAG"
+      return Time.new(2018, 2, 26, 9, 30, 00, "-07:00") if self.year == 12
+      return Time.new(2018, 2, 26, 14, 45, 00, "-07:00") if self.year == 11
+      return Time.new(2018, 2, 27, 8, 0, 00, "-07:00") if self.year == 10
+      return Time.new(2018, 2, 28, 9, 30, 00, "-07:00") if self.year == 9
+    else
+      return Time.new(2018, 2, 26, 9, 30, 00, "-07:00")
+    end
+  end
+  
+  def can_register
+    return Time.now > self.reg_time
   end
   
 end
