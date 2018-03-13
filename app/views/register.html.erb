@@ -36,5 +36,26 @@ select {
 
 <p class="text">Click on a workshop to see its description. Press submit to sign up for the highlited workshops.</p>
 
-<%= render "session" %>
+<div style="float: left;">
+  <form action="/register" accept-charset="UTF-8" method="post">
+    <%= csrf_token_field %>
+    <h1 class="not-done">Session <%= @session %></h1>
+    <h3> <%= flash[:confirmation] %></h3>
+    <% p @availabilities %>
+    <%= select_tag :selection, :options => @availabilities, :size => "15" %>
+    <br /><br />
+    <% if user.can_register %>
+    <%= submit_tag "Confirm Selection" %>
+    <% else %>
+    Registration for your class will open on <%= user.reg_time.strftime("%A, %B %d at %l:%M %p") %>.
+    <br />
+    Until then, feel free to <%= link_to "browse available workshops", "browse" %>.
+    <% end %>
+  </form>
+</div>
 
+<div style="float: left; width: 350px; margin: 20px;">
+  <h3 id="presentor"></h3>
+  <div id="description" style="font-size: 0.9em;">
+  </div>
+</div>
