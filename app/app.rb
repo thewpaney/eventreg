@@ -62,6 +62,7 @@ module Events
       else
         flash[:warn] = "Please make a selection."
       end
+      redirect :register
     end
     
     get :login do

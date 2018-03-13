@@ -20,10 +20,8 @@ module Events
             user.save!
             if user.role == "student"
               workshop.staken += 1
-              workshop.students << user
             elsif user.role == "teacher"
               workshop.ttaken += 1  
-              workshop.teachers << user
             end
             workshop.save!
             success << w

@@ -27,7 +27,7 @@ class Workshop < ActiveRecord::Base
 
   # Like `available` but specify a session
   def self.available_for_from(user, session)
-    self.where(:session => session).select {|w| !w.cantSignUp user}
+    self.where(:session => session).select {|w| w.canSignUp(user)[:result]}
   end 
 
   # List of available first-session workshops for a user
@@ -97,7 +97,15 @@ class Workshop < ActiveRecord::Base
   def teacher_percentage_taken
     ttaken.to_f/tlimit.to_f
   end
+  
+  def teachers
+    users.select{|u| u.role == "teacher"}
+  end
 
+  def students
+    users.select{|u| u.role == "student"}
+  end
+  
   # BD students enrolled
   def boys
     users.select {|s| s.division == "BD" && s.role == "student"}
@@ -120,7 +128,7 @@ class Workshop < ActiveRecord::Base
   # @return Hash with elements :status and :result
   def canSignUp(user)
     ret = {}
-    
+
     if user.workshops.count >= 3
       # Can't have more than 3 workshops
       ret[:status] = "You can't more than three workshops."
@@ -140,16 +148,14 @@ class Workshop < ActiveRecord::Base
       # You can't sign up for a workshop if it has a nonzero twofer_ref and the workshop it points to is in a session you already are signed up for
       ret[:status] = "You can't register for a double-length workshop that overlaps one of your other workshops."
       ret[:result] = false
-    elsif user.role == "student" and (staken.to_f < slimit.to_f)
-      if user.division == "BD" and ((boys.count + 1)/slimit.to_f <= percentage.to_f/100.to_f)
-        #if adding a boy doesn't push us over the percentage limit
-        ret[:status] = "The workshop is full."
-        ret[:result] = false
-      elsif user.division == "GD" and ((girls.count + 1)/slimit.to_f <= percentage.to_f/100.to_f)
-        #same with girls
-        ret[:status] = "The workshop is full."
-        ret[:result] = false
-      end
+    elsif user.role == "student" and (staken.to_f < slimit.to_f) and user.division == "BD" and ((boys.count + 1)/slimit.to_f <= percentage.to_f/100.to_f)
+      #if adding a boy doesn't push us over the percentage limit
+      ret[:status] = "The workshop is full."
+      ret[:result] = false
+    elsif user.role == "student" and (staken.to_f < slimit.to_f) and user.division == "GD" and ((girls.count + 1)/slimit.to_f <= percentage.to_f/100.to_f)
+      #same with girls
+      ret[:status] = "The workshop is full."
+      ret[:result] = false
     else
       # If none of these conditions: slot is available
       ret[:status] = "Available"
