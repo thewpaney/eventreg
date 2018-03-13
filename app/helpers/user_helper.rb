@@ -14,7 +14,8 @@ module Events
         puts "#{user.full} signing up for IDs #{workshops.inspect}" if verbose
         workshops.each do |w|
           workshop = Workshop.find(w)
-          unless (whynot = workshop.cantSignUp user)
+          result = workshop.canSignUp(user)
+          if (result[:result])
             user.workshops << workshop
             user.save!
             if user.role == "student"
@@ -42,7 +43,7 @@ module Events
               end
             end
           else
-            puts "Failed signup for #{workshop.name} ID #{w}: #{whynot}" if verbose
+            puts "Failed signup for #{workshop.name} ID #{w}: #{result[:status]}"# if verbose # Probably should always print this
           end
         end
         return success

@@ -18,17 +18,11 @@ class Workshop < ActiveRecord::Base
   def self.thirds
     self.where(:session => 3)
   end
-  
-  # Return list of workshops that are full
-  # Do we need this?
-  def self.full
-    all.select {|w|w.full?}
-  end
 
   # Returns list of available workshops for a user
   # Used to be `available?`
   def self.available(user)
-    all.select {|w| !w.cantSignUp user}
+    all.select {|w| w.canSignUp(user)[:result]}
   end
 
   # Like `available` but specify a session
@@ -39,19 +33,19 @@ class Workshop < ActiveRecord::Base
   # List of available first-session workshops for a user
   # Deprecate in the near future
   def self.firstsAvailable(user)
-    firsts.select {|w| !w.cantSignUp user}
+    firsts.select {|w| w.canSignUp(user)[:result]}
   end
 
   # List of available second-session workshops for a user
   # Deprecate in the near future
   def self.secondsAvailable(user)
-    seconds.select {|w| !w.cantSignUp user}
+    seconds.select {|w| w.canSignUp(user)[:result]}
   end
 
   # List of available third-session workshops for a user
   # Deprecate in the near future
   def self.thirdsAvailable(user)
-    thirds.select {|w| !w.cantSignUp user}
+    thirds.select {|w| w.canSignUp(user)[:result]}
   end
 
   # List of all workshops sorted by STUDENT fullness
@@ -123,45 +117,44 @@ class Workshop < ActiveRecord::Base
   # We need to add grade limits in here; possibly modify so workshops
   # store whether they can have more of a year or gender
   # fetch instead of calculating
-  def cantSignUp(user)
-    if user.workshops.count > 3
-      logger.error "User #{user.to_s} has more than three workshops, and requested workshop #{to_s}\n#{user.to_yaml}\n#{user.workshops}"
-      return "You have more than three workshops."
-    end
+  # @return Hash with elements :status and :result
+  def canSignUp(user)
+    ret = {}
     
-    if user.workshops.count == 3
-      logger.error "User #{user.to_s} was able to request a workshop #{to_s} with three workshops\n#{user.to_yaml}\n#{user.workshops}"
-      return "You are already signed up for three workshops."
-    end
-    
-    if user.workshops.collect {|w| w.session}.include? session
-      logger.error "User #{user.to_s} was able to request multiple workshops in a session, #{to_s}\n#{user.to_yaml}#{user.workshops}"
-      return "You can't have more than one workshop in a session"
-    end
-    
-    if user.workshops.collect {|w| w.name}.include? name
-      return "You can't sign up for a workshop twice"
-    end
-    
-    if user.role == "teacher" and (ttaken.to_f < tlimit.to_f)
-      return false
-    end
-    
-    # You can't sign up for a workshop if it has a nonzero twofer_ref and the workshop it points to is in a session you already are signed up for
-    return true if self.twofer_ref != 0 and not ( user.sessions_needed.include?(Workshop.find(self.twofer_ref).session) ) unless twofer_ref.nil?
-    
-    if user.role == "student" and (staken.to_f < slimit.to_f)
-      #if adding a boy doesn't push us over the percentage limit
+    if user.workshops.count >= 3
+      # Can't have more than 3 workshops
+      ret[:status] = "You can't more than three workshops."
+      ret[:result] = false
+    elsif user.workshops.collect {|w| w.session}.include? session
+      # Can't have more than one workshop in a session
+      ret[:status] = "You can't have more than one workshop in a session."
+      ret[:result] = false
+    elsif user.workshops.collect {|w| w.name}.include? name
+      # Can't sign up for a workshop twice
+      ret[:status] = "You can't sign up for a workshop twice."
+      ret[:result] = false
+    elsif user.role == "teacher" and (ttaken.to_f < tlimit.to_f)
+      ret[:status] = "The workshop is full."
+      ret[:result] = false
+    elsif self.twofer_ref != 0 and not ( user.sessions_needed.include?(Workshop.find(self.twofer_ref).session) )
+      # You can't sign up for a workshop if it has a nonzero twofer_ref and the workshop it points to is in a session you already are signed up for
+      ret[:status] = "You can't register for a double-length workshop that overlaps one of your other workshops."
+      ret[:result] = false
+    elsif user.role == "student" and (staken.to_f < slimit.to_f)
       if user.division == "BD" and ((boys.count + 1)/slimit.to_f <= percentage.to_f/100.to_f)
-        return false
+        #if adding a boy doesn't push us over the percentage limit
+        ret[:status] = "The workshop is full."
+        ret[:result] = false
+      elsif user.division == "GD" and ((girls.count + 1)/slimit.to_f <= percentage.to_f/100.to_f)
+        #same with girls
+        ret[:status] = "The workshop is full."
+        ret[:result] = false
       end
-      #same with girls
-      if user.division == "GD" and ((girls.count + 1)/slimit.to_f <= percentage.to_f/100.to_f)
-        return false
-      end
+    else
+      # If none of these conditions: slot is available
+      ret[:status] = "Available"
+      ret[:result] = true
     end
-    
-    return "The workshop is full"
+    ret
   end
-  
 end

@@ -44,18 +44,20 @@ module Events
         redirect :details
       end
       @session = user.sessions_needed.min
+      puts " USER NAME: #{user.full}"
       @availabilities = Workshop.available_for_from(user, @session).collect {|w| [w.name, w.id]}
       render :register
     end
 
     post :register do
+      puts "### SELECTION: #{params[:selection]}"
       if params[:selection]
         workshop = Workshop.find(params[:selection])
-        whynot = user.signup(params[:selection])
-        if whynot == "Signed Up"
+        successes = sign_up_user(user, [params[:selection].to_i], false)
+        if successes == [params[:selection].to_i]
           flash[:notice] = "Signed up for #{workshop.name} in session #{workshop.session}."
         else
-          flash[:error] = "Could not sign up for #{workshop.name} in session #{workshop.session}: #{whynot}"
+          flash[:error] = "Could not sign up for #{workshop.name} in session #{workshop.session}"
         end
       else
         flash[:warn] = "Please make a selection."
