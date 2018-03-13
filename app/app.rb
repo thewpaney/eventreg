@@ -9,7 +9,7 @@ module Events
     use Rack::Protection::AuthenticityToken
 
     def user
-      User.find(session[:user_id])
+      User.where(id: session[:user_id]).first
     end
     
     # User needs to be authenticated 

@@ -21,7 +21,11 @@
 	<div style="position: absolute; left: 10%;">
 	  <a href="/" tab="0" did="0" pid="192" ><%= image_tag "/images/rjhs-logo.png" %></a>
 	</div>
-	
+
+
+	<% if user %>
+	<p id="info">Logged in as <%= user.full %>.  <%= link_to "Log out", "/logout" %></p>
+	<% end %>
 	<% if flash[:warning] %>
 	<p id="flash_warning" class="flash" style="color: #859900;"><%= flash[:warning] %></p>
 	<% end %>
