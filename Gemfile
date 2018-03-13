@@ -28,3 +28,6 @@ gem 'coffee-script'
 
 # Background work queue
 gem 'resque'
+
+# CI
+gem 'rspec'

@@ -9,6 +9,16 @@ ActiveRecord::Base.configurations[:development] = {
   :port      => 5432
 }
 
+# This config is used by CI
+ActiveRecord::Base.configurations[:test] = {
+  :adapter   => 'postgresql',
+  :database  => 'events_test',
+  :username  => 'events',
+  :password  => 'kurdmcfrogspleen',
+  :host      => 'localhost',
+  :port      => 5432
+}
+
 # Setup our logger
 ActiveRecord::Base.logger = logger
 
