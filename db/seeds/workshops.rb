@@ -18,7 +18,7 @@ workshops.rows[1..-1].each do |row|
         end
         w = Workshop.new
         w.session     = session
-        w.presentor   = row[0].blank? ? "TBA" : row[0]
+        w.presenter   = row[0].blank? ? "TBA" : row[0]
         w.name        = row[1].blank? ? "TBA" : row[1]
         w.description = row[2].blank? ? "TBA" : row[2]
         w.slimit      = row[session+2]
