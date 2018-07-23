@@ -1,6 +1,6 @@
 # Event registration Padrino rewrite
 
-[![Build Status](https://travis-ci.org/thewpaney/eventreg.svg?branch=padrino)](https://travis-ci.org/thewpaney/eventreg)
+[![Build Status](https://travis-ci.org/thewpaney/eventreg.svg?branch=master)](https://travis-ci.org/thewpaney/eventreg)
 [![Inline docs](http://inch-ci.org/github/thewpaney/eventreg.svg?branch=padrino)](http://inch-ci.org/github/thewpaney/eventreg)
 
 Test locally using the [`foreman`](https://github.com/ddollar/foreman) gem or the [`forego`](https://github.com/ddollar/forego) package.
