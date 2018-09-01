@@ -1,5 +1,5 @@
 class Student < ActiveRecord::Base
-  attr_accessible :number, :full, :gender, :grade, :year, :email, :prefix, :rw, :rw_number, :rw_teacher, :advisement, :advisement_name, :special
+  attr_accessor :number, :full, :gender, :grade, :year, :email, :prefix, :rw, :rw_number, :rw_teacher, :advisement, :advisement_name, :special
   validates :number, :full, :gender, :grade, :year, :email, :prefix, :rw, :rw_number, :rw_teacher, :advisement, presence: true
   has_and_belongs_to_many :workshops,  uniq: true
 
