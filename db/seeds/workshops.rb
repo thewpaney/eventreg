@@ -10,6 +10,7 @@ workshops = session.spreadsheet_by_key($workshop_url_2018).worksheets[0]
 puts "Downloaded workshops"
 
 puts "Seeding workshops"
+success_count = 0
 workshops.rows[1..-1].each do |row|
   [1,2,3].each do |session|
     if not row[session + 2].blank? #Third box is first session et cetera
@@ -31,11 +32,15 @@ workshops.rows[1..-1].each do |row|
         w.ttaken      = 0
         w.twofer_ref  = 0
         w.save!
-      rescue
+      rescue StandardError => e  
+        puts "Message: #{e.message}"
+        puts e.backtrace.inspect  
         puts "Couldn't make workshop with row #{workshops.rows.index(row) + 1}: " << row.to_s
+      else
+        success_count += 1
       end
     end
   end
 end
 
-puts "Seeded workshops"
+puts "Seeded #{success_count} workshops"
