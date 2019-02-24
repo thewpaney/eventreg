@@ -16,5 +16,6 @@
 #  end
 #end
 
+puts "Registering all students"
 Student.unregistered.map(&:auto)
-puts Student.unregistered.count
+puts "#{Student.unregistered.count} students are not fully registered"
