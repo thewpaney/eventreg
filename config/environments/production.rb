@@ -84,7 +84,6 @@ Eventreg::Application.configure do
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :sendmail
 
-  config.assets.compile = true
   config.assets.precompile =  ['*.js', '*.css', '*.css.erb'] 
   
 end
