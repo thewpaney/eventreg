@@ -5,7 +5,7 @@
 # GRANT ALL ON eventreg_test.* TO 'eventreg'@'localhost';
 
 development:
-  adapter: mysql2
+  adapter: postgresql 
   encoding: utf8
   database: eventreg_development
   username: eventreg
@@ -14,7 +14,7 @@ development:
   port: 3306
 
 test:
-  adapter: mysql2
+  adapter: postgresql 
   encoding: utf8
   database: eventreg_test
   username: eventreg
@@ -23,7 +23,7 @@ test:
   port: 3306
 
 production:
-  adapter: mysql2
+  adapter: postgresql
   encoding: utf8
   database: eventreg_production
   username: eventreg

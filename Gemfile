@@ -7,7 +7,7 @@ gem 'puma'
 
 gem 'rails'
 gem 'jquery-rails'
-gem 'mysql2'
+gem 'pg'
 # gem 'scroll'
 gem 'rake'
 gem 'thin'
