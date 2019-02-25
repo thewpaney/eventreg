@@ -132,7 +132,7 @@ GEM
     nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
     os (0.9.6)
-    pg (1.1.4)
+    pg (0.21.0)
     protected_attributes (1.1.4)
       activemodel (>= 4.0.1, < 5.0)
     public_suffix (3.0.1)
@@ -232,7 +232,7 @@ DEPENDENCIES
   google-api-client
   google_drive
   jquery-rails
-  pg
+  pg (~> 0.20)
   protected_attributes
   puma
   rack-utf8_sanitizer

@@ -7,7 +7,7 @@ gem 'puma'
 
 gem 'rails'
 gem 'jquery-rails'
-gem 'pg'
+gem 'pg', '~> 0.20'
 # gem 'scroll'
 gem 'rake'
 gem 'thin'
