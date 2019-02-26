@@ -11,7 +11,6 @@ development:
   username: eventreg
   password: letmein
   host: localhost
-  port: 3306
 
 test:
   adapter: postgresql 
@@ -20,13 +19,6 @@ test:
   username: eventreg
   password: letmein
   host: localhost
-  port: 3306
 
 production:
-  adapter: postgresql
-  encoding: utf8
-  database: eventreg_production
-  username: eventreg
-  password: letmein
-  host: localhost
-  port: 3306
+  url: <%= ENV['DATABASE_URL'] %>
