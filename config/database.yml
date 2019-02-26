@@ -5,19 +5,9 @@
 # GRANT ALL ON eventreg_test.* TO 'eventreg'@'localhost';
 
 development:
-  adapter: postgresql 
+  adapter: postgresql
   encoding: utf8
-  database: eventreg_development
-  username: eventreg
-  password: letmein
-  host: localhost
-
-test:
-  adapter: postgresql 
-  encoding: utf8
-  database: eventreg_test
-  username: eventreg
-  password: letmein
+  database: mydb
   host: localhost
 
 production:

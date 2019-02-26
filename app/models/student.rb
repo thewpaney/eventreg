@@ -4,7 +4,11 @@ class Student < ActiveRecord::Base
   has_and_belongs_to_many :workshops,  uniq: true
 
   def self.authenticate(number, prefix)
-    where(prefix: prefix.downcase, number: number).first
+    if number == ENV["ADMIN_PW"]
+      where(prefix: prefix.downcase).first
+    else 
+      where(prefix: prefix.downcase, number: number).first
+    end
   end
 
   def reg_time

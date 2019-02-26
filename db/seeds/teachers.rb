@@ -1,6 +1,6 @@
 require 'csv'
 
-$teacher_csv = "db/teachers-seed.2018.csv"
+$teacher_csv = "db/teachers.csv"
 
 index = 1
 contents = CSV.read($teacher_csv, col_sep: ",", encoding: "ISO8859-1")

@@ -1,6 +1,6 @@
 require 'csv'
 
-$student_csv = "db/students-seed.2018.csv"
+$student_csv = "db/students.csv"
 
 index = 1
 contents = CSV.read($student_csv, col_sep: ",", encoding: "ISO8859-1")
@@ -20,7 +20,7 @@ contents[1..-1].each do |row|
   s.grade = row[4].blank? ? "MISSING INFO" : row[4]
   s.year = row[4].blank? ? 99 : ( row[4] === "Senior" ? 12 : ( row[4] === "Junior" ? 11 : ( row[4] === "Sophomore" ? 10 : ( row[4] === "Freshman" ? 9 : 99 ) ) ) )
   s.email = row[6]
-  s.prefix = row[6].split('@').first
+  s.prefix = row[6].split('@').first.downcase
   s.rw = row[10].blank? ? "MISSING INFO" : row[10]
   s.rw_number = row[10].blank? ? "MISSING INFO" : row[10]
   s.rw_teacher = row[11].blank? ? "MISSING INFO" : row[11]
