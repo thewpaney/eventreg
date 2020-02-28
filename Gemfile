@@ -1,71 +1,53 @@
 source 'https://rubygems.org'
 
+ruby '2.6.5'
+
 # Heroku recommendations
-ruby '2.4.2'
 gem 'rails_12factor'
 gem 'puma'
 
+# Rails base
 gem 'rails'
 gem 'jquery-rails'
-gem 'pg', '~> 0.20'
-# gem 'scroll'
 gem 'rake'
-gem 'thin'
 
+# DB seeding
 gem 'google_drive'
 gem 'google-api-client'
+gem 'rack-utf8_sanitizer'  # To allow accents in names
+
+# Protect us from ourselves
+gem 'protected_attributes'
+
+# Nicer debug/console output
 gem 'awesome_print'
 
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
+# For alerts on how to improve queries
+group :development, :test, :staging do
+  gem 'bullet'  # For alerts on how to improve queries
+end
 
-# Likewise, grab Scroll from Git build
-# gem 'scroll', :git => 'git@git.stratosphe.re:scroll/scroll.git'
+# Heroku database driver
+group :staging, :production do
+  gem 'pg'  # For Heroku Postgres
+end
 
+# CI/local database driver
+group :development, :test do
+  gem 'sqlite3'
+end
+
+# Caching and fancy views
+gem 'actionpack-page_caching'
+gem 'actionpack-action_caching'
 gem 'execjs'
 gem 'turbolinks'
 
-# gem 'actionpack-page_caching'
-# gem 'activerecord-session_store'
-
-# Gems used only for assets and not required
-# in production environments by default.
+# Asset gems - not needed in production (assets are precompiled)
 group :assets do
-  gem 'sass-rails'
-  gem 'coffee-rails'
-  gem 'zurb-foundation'
-  gem 'compass-rails'
-  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
-  # gem 'therubyracer', :platforms => :ruby
-
-  gem 'uglifier'
+  gem 'sass-rails'       # Better than CSS
+  gem 'coffee-rails'     # CoffeeScript
+  gem 'zurb-foundation'  # Page structure
+  gem 'uglifier'         # Optimize and mangle JS
 end
 
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-# gem 'debugger'
-
-# Because we're lazy
-gem 'protected_attributes'
-
-# To allow accents in names
-gem 'rack-utf8_sanitizer'
-
-group :development, :test do
-      gem 'bullet'
-end
-
-gem 'actionpack-page_caching'
-gem 'actionpack-action_caching'
