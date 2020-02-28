@@ -23,9 +23,9 @@ workshops.rows[1..-1].each do |row|
         w.presentor   = row[0].blank? ? "TBA" : row[0]
         w.name        = row[1].blank? ? "TBA" : row[1]
         w.description = row[2].blank? ? "TBA" : row[2]
-        w.slimit      = row[session+2]
+        w.slimit      = row[session+2].blank? ? 0 : row[session+2].to_i
         w.room        = row[6].blank? ? "TBA" : row[6]
-        w.tlimit      = row[8].blank? ? 2 : row[8]
+        w.tlimit      = row[8].blank? ? 2 : row[8].to_i
         w.percentage  = row[9].blank? ? 66 : row[9].to_i
         w.overflow    = row[10].blank? ? 0 : row[10].to_i
         w.staken      = 0

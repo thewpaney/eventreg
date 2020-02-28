@@ -15,7 +15,7 @@ contents[1..-1].each do |row|
   t.division = ( row[0] ? "BD" : "GD" )
   t.number = row[2]
   t.name = (row[4] + " " + row[3])
-  t.prefix = row[7].split("@")[0]
+  t.prefix = row[7].split("@").first.downcase
   t.email = row[7]
   t.save!
 end
