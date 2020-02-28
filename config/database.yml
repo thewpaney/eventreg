@@ -7,17 +7,17 @@
 test:
   adapter: sqlite3
   encoding: utf8
-  url: <%= ENV['TD_SQLITE_DB_FILE'] =%>
+  url: <%= ENV['TD_SQLITE_DB_FILE'] %>
 
 development:
   adapter: sqlite3
   encoding: utf8
-  url: <%= ENV['TD_SQLITE_DB_FILE'] =%>
+  url: <%= ENV['TD_SQLITE_DB_FILE'] %>
 
 staging:
   adapter: postgresql
   encoding: utf8
-  url: <%= ENV['DATABASE_URL'] =%>
+  url: <%= ENV['DATABASE_URL'] %>
 
 production:
   adapter: postgresql
