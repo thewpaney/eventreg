@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Eventreg::Application do
+describe 'UserController', type: :controller do
   context "When accessing root" do
     it "redirects to login" do
       r = get('/')
