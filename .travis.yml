@@ -1,4 +1,4 @@
-script: bundle exec rake spec
+script: bundle exec rake -f spec/spec.rake spec
 language: ruby
 cache: bundler
 before_install: gem install bundler

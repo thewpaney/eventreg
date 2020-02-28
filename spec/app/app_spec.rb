@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Events::App do
+describe Eventreg::Application do
   context "When accessing root" do
     it "redirects to login" do
       r = get('/')

@@ -1,6 +1,9 @@
-ENV['RACK_ENV'] = 'test'
-RACK_ENV = 'test' unless defined?(RACK_ENV)
-require File.expand_path(File.dirname(__FILE__) + "/../config/boot")
+ENV["RACK_ENV"] ||= 'test'
+require File.expand_path("../../config/environment", __FILE__)
+require 'rspec/rails'
+require 'rspec/autorun'
+
+require File.expand_path(File.dirname(__FILE__) + "/../config/application")
 Dir[File.expand_path(File.dirname(__FILE__) + "/../app/helpers/*.rb")].each(&method(:require))
 
 RSpec.configure do |conf|
@@ -19,7 +22,7 @@ end
 #
 def app(app = nil, &blk)
   @app ||= block_given? ? app.instance_eval(&blk) : app
-  @app ||= Padrino.application
+  @app ||= Rails.application
 end
 
 module AuthHelper

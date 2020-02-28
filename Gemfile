@@ -33,6 +33,7 @@ end
 # Testing
 group :test do
   gem 'rspec'
+  gem 'rspec-rails'
   gem 'rack-test'
   gem 'faker'
 end
