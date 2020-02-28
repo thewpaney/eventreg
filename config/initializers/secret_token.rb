@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Eventreg::Application.config.secret_key_base = 'b78af7c27345e9c47b5f719850ce4820d6461a3becde5dd05d6fa0174e06751d5396639c30a0d843d3de82b4657531f41e37bd246864b71698551be764f55b2a'
+Eventreg::Application.config.secret_key_base = (ENV['SECRET_KEY_BASE'] || 'b78af7c27345e9c47b5f719850ce4820d6461a3becde5dd05d6fa0174e06751d5396639c30a0d843d3de82b4657531f41e37bd246864b71698551be764f55b2a')

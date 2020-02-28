@@ -4,11 +4,22 @@
 # GRANT ALL ON eventreg_production.* TO 'eventreg'@'localhost';
 # GRANT ALL ON eventreg_test.* TO 'eventreg'@'localhost';
 
+test:
+  adapter: sqlite3
+  encoding: utf8
+  url: <%= ENV['TD_SQLITE_DB_FILE'] =%>
+
 development:
+  adapter: sqlite3
+  encoding: utf8
+  url: <%= ENV['TD_SQLITE_DB_FILE'] =%>
+
+staging:
   adapter: postgresql
   encoding: utf8
-  database: mydb
-  host: localhost
+  url: <%= ENV['DATABASE_URL'] =%>
 
 production:
+  adapter: postgresql
+  encoding: utf8
   url: <%= ENV['DATABASE_URL'] %>
