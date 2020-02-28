@@ -15,11 +15,8 @@ Morgan Jones: integ3rs@gmail.com (integ3r)
 
 ## Usage
 
-Test locally using the foreman gem or the forego package.
+Test locally using the foreman gem or the forego package. To simulate a Heroku process configuration:
 
-$ foreman start -f Procfile.local
-$ forego start -f Procfile.local
-
-To simulate a Heroku process configuration:
-
-$ forego start -f Procfile.local -m web=5,worker=2,clock=1
+```
+$ forego start -f Procfile -m web=2
+```
