@@ -3,7 +3,7 @@ Hello!
 Our names are Matthew Haney and Drew Lazzeri.  We're alumni of Regis Jesuit High School in Aurora, Colorado.  Our school needed a web framework for signing students up for stuff, so we jumped on it!
 
 Drew Lazzeri: dlazzeri1@gmail.com (asteroidb612)
-Matthew Haney: mahaney@q.com (Dacilndak)
+Matthew Haney: thewpaney@gmail.com (thewpaney)
 
 We were also assisted by another graduate mentor (our senior):
 Morgan Jones: integ3rs@gmail.com (integ3r)
