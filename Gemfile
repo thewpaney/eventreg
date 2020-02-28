@@ -20,15 +20,8 @@ group :development, :test, :staging do
   gem 'bullet'  # For alerts on how to improve queries
 end
 
-# Heroku database driver
-group :staging, :production do
-  gem 'pg'  # For Heroku Postgres
-end
-
-# CI/local database driver
-group :development, :test do
-  gem 'sqlite3'
-end
+# Deploying with Heroku Postgres, may as well use PG for all environments
+gem 'pg'
 
 # Testing
 group :test do

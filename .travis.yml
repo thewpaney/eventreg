@@ -1,7 +1,13 @@
 script: bundle exec rake -f spec/spec.rake spec
 language: ruby
 cache: bundler
+before_script:
+  - psql -c 'create database travis_ci_test;' -U postgres
 before_install: gem install bundler
 bundler_args: --without development
 rvm:
-- 2.6.5
+  - 2.6.5
+services:
+  - postgresql
+addons:
+  - postgresql: "11"
