@@ -1,3 +1,8 @@
+[![Build Status](https://travis-ci.org/thewpaney/eventreg.svg?branch=hindsight-updates)](https://travis-ci.org/thewpaney/eventreg)
+[![Inline docs](http://inch-ci.org/github/thewpaney/eventreg.svg?branch=hindsight-updates)](http://inch-ci.org/github/thewpaney/eventreg)
+
+## Introduction
+
 Hello!
 
 Our names are Matthew Haney and Drew Lazzeri.  We're alumni of Regis Jesuit High School in Aurora, Colorado.  Our school needed a web framework for signing students up for stuff, so we jumped on it!
@@ -7,3 +12,14 @@ Matthew Haney: thewpaney@gmail.com (thewpaney)
 
 We were also assisted by another graduate mentor (our senior):
 Morgan Jones: integ3rs@gmail.com (integ3r)
+
+## Usage
+
+Test locally using the foreman gem or the forego package.
+
+$ foreman start -f Procfile.local
+$ forego start -f Procfile.local
+
+To simulate a Heroku process configuration:
+
+$ forego start -f Procfile.local -m web=5,worker=2,clock=1
