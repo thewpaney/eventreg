@@ -1,4 +1,4 @@
-class CreateStudents < ActiveRecord::Migration
+class CreateStudents < ActiveRecord::Migration[6.0]
   def up
     create_table :students do |t|
       t.integer :number

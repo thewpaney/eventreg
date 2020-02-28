@@ -1,4 +1,4 @@
-class CreateWorkshops < ActiveRecord::Migration
+class CreateWorkshops < ActiveRecord::Migration[6.0]
   def up
     create_table :workshops do |t|
       t.string :name

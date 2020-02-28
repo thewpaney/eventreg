@@ -1,4 +1,4 @@
-class CreateTeachersWorkshopsTable < ActiveRecord::Migration
+class CreateTeachersWorkshopsTable < ActiveRecord::Migration[6.0]
   def up
     create_table :teachers_workshops do |t|
       t.references :teacher
