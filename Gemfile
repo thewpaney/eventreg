@@ -2,8 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.6.5'
 
-# Heroku recommendations
-gem 'rails_12factor'
+# Web server
 gem 'puma'
 
 # Rails base
@@ -15,12 +14,6 @@ gem 'rake'
 gem 'google_drive'
 gem 'google-api-client'
 gem 'rack-utf8_sanitizer'  # To allow accents in names
-
-# Protect us from ourselves
-gem 'protected_attributes'
-
-# Nicer debug/console output
-gem 'awesome_print'
 
 # For alerts on how to improve queries
 group :development, :test, :staging do
@@ -37,10 +30,7 @@ group :development, :test do
   gem 'sqlite3'
 end
 
-# Caching and fancy views
-gem 'actionpack-page_caching'
-gem 'actionpack-action_caching'
-gem 'execjs'
+# Super speedy
 gem 'turbolinks'
 
 # Asset gems - not needed in production (assets are precompiled)
