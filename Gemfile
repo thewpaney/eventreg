@@ -30,6 +30,13 @@ group :development, :test do
   gem 'sqlite3'
 end
 
+# Testing
+group :test do
+  gem 'rspec'
+  gem 'rack-test'
+  gem 'faker'
+end
+
 # Super speedy
 gem 'turbolinks'
 

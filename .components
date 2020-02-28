@@ -1,0 +1,9 @@
+---
+:orm: activerecord
+:test: rspec
+:mock: none
+:script: jquery
+:renderer: none
+:stylesheet: none
+:namespace: Eventreg
+:migration_format: number

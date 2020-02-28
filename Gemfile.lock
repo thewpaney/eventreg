@@ -73,8 +73,11 @@ GEM
     crass (1.0.6)
     declarative (0.0.10)
     declarative-option (0.1.0)
+    diff-lcs (1.3)
     erubi (1.9.0)
     execjs (2.7.0)
+    faker (2.10.2)
+      i18n (>= 1.6, < 2)
     faraday (1.0.0)
       multipart-post (>= 1.2, < 3)
     ffi (1.12.2)
@@ -170,6 +173,19 @@ GEM
       declarative-option (< 0.2.0)
       uber (< 0.2.0)
     retriable (3.1.2)
+    rspec (3.9.0)
+      rspec-core (~> 3.9.0)
+      rspec-expectations (~> 3.9.0)
+      rspec-mocks (~> 3.9.0)
+    rspec-core (3.9.1)
+      rspec-support (~> 3.9.1)
+    rspec-expectations (3.9.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.9.0)
+    rspec-mocks (3.9.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.9.0)
+    rspec-support (3.9.2)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
@@ -223,14 +239,17 @@ PLATFORMS
 DEPENDENCIES
   bullet
   coffee-rails
+  faker
   google-api-client
   google_drive
   jquery-rails
   pg
   puma
+  rack-test
   rack-utf8_sanitizer
   rails
   rake
+  rspec
   sass-rails
   sqlite3
   turbolinks
