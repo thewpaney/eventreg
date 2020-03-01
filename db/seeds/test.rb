@@ -16,8 +16,8 @@ Student.delete_all
 Teacher.delete_all
 Workshop.delete_all
 
-# puts "Seeding test database with:"
-# $stdout.write "#{nStudents} students... "
+puts "Seeding test database with:"
+puts "#{nStudents} students... "
 nStudents.times do |id|
   s = Student.new
   s.full = Faker::Name.name
@@ -36,7 +36,7 @@ nStudents.times do |id|
 end
 # puts "Done."
 
-# $stdout.write "#{nTeachers} teachers... "
+puts "#{nTeachers} teachers... "
 nTeachers.times do |id|
   t = Teacher.new
   t.name = Faker::Name.name
@@ -66,15 +66,17 @@ def genWorkshop()
 end
 
 # Workshops
+puts "#{nSingleWorkshops} single workshops..."
 nSingleWorkshops.times do |id|
   w = genWorkshop()
   w.save!
 end
 
+puts "#{nDoubleWorkshops} double workshops..."
 nDoubleWorkshops.times do |id|
   w = genWorkshop()
-  sessions_list = [[1,2],[2,3],[1,3]]
-  sessions = sessions_list(Faker::Number.sample([0,1,2]))
+  sessions_list = [ [1,2], [2,3], [1,3] ]
+  sessions = sessions_list[ Faker::Number.sample( [0,1,2] ) ]
   Faker::Number.sample(sessions).each do |s|
     w2 = w.dup()
     w2.session = s
@@ -82,6 +84,7 @@ nDoubleWorkshops.times do |id|
   end
 end
 
+puts "#{nTripleWorkshops} triple workshops..."
 nTripleWorkshops.times do |id|
   w = genWorkshop()
   [1,2,3].each do |s|
@@ -96,3 +99,5 @@ end
 # 50-50 (dance) workshops
 
 # Done
+
+puts "Done."
