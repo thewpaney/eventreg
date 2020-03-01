@@ -36,7 +36,6 @@ gem 'turbolinks'
 
 # Asset gems - not needed in production (assets are precompiled)
 group :assets do
-  gem 'sass-rails'       # Better than CSS
   gem 'coffee-rails'     # CoffeeScript
   gem 'zurb-foundation'  # Page structure
   gem 'uglifier'         # Optimize and mangle JS

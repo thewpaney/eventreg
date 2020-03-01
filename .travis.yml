@@ -9,5 +9,5 @@ services:
 before_script:
   - psql -c 'create database travis_ci_test;' -U postgres
   - RACK_ENV=test bundle exec rake db:migrate
-  - RACK_ENV=test bundle exec rake db:seed
+  - RACK_ENV=test bundle exec rake db:seed:test
 before_install: gem install bundler
