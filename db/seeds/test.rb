@@ -1,3 +1,5 @@
+require 'faker'
+
 # Deterministic random seed
 # Definitely not my library card number
 Faker::Config.random = Random.new(23025003306107)
@@ -17,7 +19,7 @@ Workshop.delete_all
 # puts "Seeding test database with:"
 # $stdout.write "#{nStudents} students... "
 nStudents.times do |id|
-  s = User.new
+  s = Student.new
   s.full = Faker::Name.name
   s.division = Faker::Number.sample(["GD", "BD"])
   s.year = Faker::Number.sample([9,10,11,12])
@@ -30,7 +32,7 @@ end
 
 # $stdout.write "#{nTeachers} teachers... "
 nTeachers.times do |id|
-  t = User.new
+  t = Teacher.new
   t.full = Faker::Name.name
   t.division = Faker::Number.sample(["GD", "BD"])
   t.number = Faker::Number.number(4)
