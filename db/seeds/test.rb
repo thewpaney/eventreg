@@ -61,7 +61,7 @@ def genWorkshop()
   w.staken = 0
   w.overflow = 0
   w.percentage = 66
-  w.twofer_ref = nil
+  w.twofer_ref = 0
   return w
 end
 
