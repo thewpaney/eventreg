@@ -21,7 +21,7 @@ Workshop.delete_all
 nStudents.times do |id|
   s = Student.new
   s.full = Faker::Name.name
-  s.division = Faker::Number.sample(["GD", "BD"])
+  s.gender = Faker::Number.sample(["GD", "BD"])
   s.year = Faker::Number.sample([9,10,11,12])
   s.number = Faker::Number.number(9)
   s.prefix = Faker::Internet.user_name(s.full)
