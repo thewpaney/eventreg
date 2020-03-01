@@ -77,8 +77,8 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-  conf.include Rack::Test::Methods
-  conf.include UserHelper
+  config.include Rack::Test::Methods
+  config.include UserHelper
 end
 
 module AuthHelper
