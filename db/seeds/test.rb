@@ -39,7 +39,7 @@ end
 # $stdout.write "#{nTeachers} teachers... "
 nTeachers.times do |id|
   t = Teacher.new
-  t.full = Faker::Name.name
+  t.name = Faker::Name.name
   t.division = Faker::Number.sample(["GD", "BD"])
   t.number = Faker::Number.number(digits: 4)
   t.prefix = Faker::Internet.user_name(specifier: t.full)
