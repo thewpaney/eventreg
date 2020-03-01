@@ -1,5 +1,5 @@
 class Teacher < ActiveRecord::Base
-  attr_accessible :number, :prefix, :email, :name
+  attr_accessor :number, :prefix, :email, :name
   validates :number, :prefix, :email, :division, :name, presence: true
   validates :prefix, uniqueness: true
 

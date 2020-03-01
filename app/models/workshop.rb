@@ -1,5 +1,5 @@
 class Workshop < ActiveRecord::Base
-  attr_accessible :name, :presentor, :description, :session, :tlimit, :slimit, :room, :ttaken, :staken, :percentage, :overflow, :twofer_ref
+  attr_accessor :name, :presentor, :description, :session, :tlimit, :slimit, :room, :ttaken, :staken, :percentage, :overflow, :twofer_ref
   validates :name, presence: true
   validates :presentor, presence: true  
   validates :session, presence: true
