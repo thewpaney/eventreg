@@ -73,7 +73,8 @@ end
 
 nDoubleWorkshops.times do |id|
   w = genWorkshop()
-  sessions = Faker::Number.sample([[1,2],[2,3],[1,3]])
+  sessions_list = [[1,2],[2,3],[1,3]]
+  sessions = sessions_list(Faker::Number.sample([0,1,2]))
   Faker::Number.sample(sessions).each do |s|
     w2 = w.dup()
     w2.session = s
