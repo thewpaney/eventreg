@@ -23,9 +23,15 @@ nStudents.times do |id|
   s.full = Faker::Name.name
   s.gender = Faker::Number.sample(["GD", "BD"])
   s.year = Faker::Number.sample([9,10,11,12])
-  s.number = Faker::Number.number(9)
-  s.prefix = Faker::Internet.user_name(s.full)
+  s.grade = s.year
+  s.number = Faker::Number.number(digits: 9)
+  s.prefix = Faker::Internet.user_name(specifier: s.full)
   s.email = s.prefix + "@student.regisjesuit.com"
+  s.rw = Faker::Educator.campus
+  s.rw_number = Faker::Number.number(digits: 3)
+  s.rw_teacher = Faker::Name.prefix + " " + Faker::Name.name
+  s.advisement = Faker::Educator.campus
+  s.advisement_name = Faker::Name.prefix + " " + Faker::Name.name
   s.save!
 end
 # puts "Done."
@@ -35,8 +41,8 @@ nTeachers.times do |id|
   t = Teacher.new
   t.full = Faker::Name.name
   t.division = Faker::Number.sample(["GD", "BD"])
-  t.number = Faker::Number.number(4)
-  t.prefix = Faker::Internet.user_name(t.full)
+  t.number = Faker::Number.number(digits: 4)
+  t.prefix = Faker::Internet.user_name(specifier: t.full)
   t.email = t.prefix + "@regisjesuit.com"
   t.save!
 end
