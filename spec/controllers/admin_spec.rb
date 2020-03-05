@@ -10,12 +10,5 @@ describe 'AdminController', type: :controller do
       true
     end
   end
-
-  context "When loading page" do
-    it "can authorize" do
-      r = get("/admin")
-      expect(r.status).to eq(200)
-    end
-  end
   
 end
